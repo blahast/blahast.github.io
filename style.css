@@ -1,19 +1,30 @@
-/* zakladni nastaveni */
+/* CSS Variables for easy theming */
+:root {
+    --bg-main: #f9f9f9;
+    --bg-card: #fff;
+    --text-dark: #222;
+    --text-main: #333;
+    --text-muted: #555;
+    --border-light: #eee;
+    --border-med: #ddd;
+}
+
+/* Base settings */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--bg-main);
+    color: var(--text-main);
     line-height: 1.6;
-    
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
 }
 
-/* navigace */
+/* Navigation */
 nav {
-    background-color: #fff;
+    background-color: var(--bg-card);
     padding: 1rem 2rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     display: flex;
@@ -23,7 +34,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    color: #555;
+    color: var(--text-muted);
     font-weight: 600;
     transition: color 0.3s;
 }
@@ -34,11 +45,11 @@ nav a:hover {
 
 nav a.active {
     color: #000;
-    border-bottom: 2px solid #222;
+    border-bottom: 2px solid var(--text-dark);
     padding-bottom: 3px;
 }
 
-/* hlavni kontejner */
+/* Main container */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -46,12 +57,11 @@ nav a.active {
     text-align: center;
 }
 
-/* nadpisy a texty */
+/* Typography */
 h1 {
     font-size: 2.5rem;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #222;
+    margin: 0 0 20px;
+    color: var(--text-dark);
 }
 
 .content h1 {
@@ -62,23 +72,20 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    color: #222;
+    margin: 30px 0 15px;
+    color: var(--text-dark);
 }
 
 h3 {
     font-size: 1.25rem;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    color: #222;
+    margin: 25px 0 15px;
+    color: var(--text-dark);
 }
 
 h4 {
     font-size: 1.1rem;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #222;
+    margin: 20px 0 10px;
+    color: var(--text-dark);
 }
 
 .description {
@@ -90,12 +97,12 @@ h4 {
 
 p {
     font-size: 1.1rem;
-    color: #555;
+    color: var(--text-muted);
     line-height: 1.8;
     margin-bottom: 20px;
 }
 
-/* seznamy */
+/* Lists */
 ul, ol {
     margin-bottom: 20px; 
     padding-left: 60px;
@@ -103,16 +110,28 @@ ul, ol {
 
 li {
     font-size: 1.1rem;
-    color: #555;
+    color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 4px;
 }
 
 strong {
-    color: #333;
+    color: var(--text-main);
 }
 
-/* mrizka pro tydny */
+/* Layout wrappers */
+.main-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 30px;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Grid layout */
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -120,14 +139,14 @@ strong {
     margin-bottom: 30px;
 }
 
-/* karty */
+/* Cards */
 .card {
-    background-color: #fff;
-    border: 1px solid #eee;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
     border-radius: 8px;
     padding: 30px 20px;
     text-decoration: none;
-    color: #333;
+    color: var(--text-main);
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     flex-direction: column;
@@ -138,7 +157,7 @@ strong {
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-color: #ddd;
+    border-color: var(--border-med);
 }
 
 .card.disabled {
@@ -166,10 +185,10 @@ strong {
     font-weight: bold;
 }
 
-/* tlacitko projektu */
+/* Buttons */
 .final-project {
     display: block;
-    background-color: #222;
+    background-color: var(--text-dark);
     color: #fff;
     text-decoration: none;
     padding: 20px;
@@ -184,35 +203,22 @@ strong {
     background-color: #444;
 }
 
-/* rozlozeni sloupcu */
-.main-wrapper {
-    display: flex;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    gap: 30px;
-    align-items: flex-start;
-
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* postranni panel */
+/* Sidebar */
 .sidebar {
     width: 250px;
     flex-shrink: 0;
-    background-color: #fff;
+    background-color: var(--bg-card);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
+    border: 1px solid var(--border-light);
 }
 
 .sidebar a {
     display: block;
     padding: 12px 20px;
-    color: #333;
+    color: var(--text-main);
     text-decoration: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-light);
     transition: background-color 0.2s, color 0.2s;
 }
 
@@ -226,8 +232,8 @@ strong {
 
 .sidebar a.active {
     font-weight: bold;
-    background-color: #f9f9f9;
-    border-left: 4px solid #222;
+    background-color: var(--bg-main);
+    border-left: 4px solid var(--text-dark);
 }
 
 .sidebar a.disabled {
@@ -236,69 +242,46 @@ strong {
     cursor: default;
 }
 
-/* obsah stranky */
+/* Main content */
 .content {
     flex-grow: 1;
-    background-color: #fff;
+    background-color: var(--bg-card);
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
+    border: 1px solid var(--border-light);
     box-sizing: border-box;
-
     min-width: 0;
     overflow-x: hidden;
     width: 100%;
 }
 
-/* obrazek projektu */
-.project-image {
+/* Shared media styles */
+.project-image,
+.project-video-ikfinal,
+.project-video-ik {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 15px auto;
     max-width: 100%;
     height: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
     border-radius: 8px; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.project-video-ikfinal {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    height: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px; 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-    
-
-    aspect-ratio: 45 / 71;
+/* Specific video properties */
+.project-video-ikfinal,
+.project-video-ik {
     object-fit: cover;
     object-position: center;
+}
+
+.project-video-ikfinal {
+    aspect-ratio: 45 / 71;
 }
 
 .project-video-ik {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    height: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px; 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-    
-
     aspect-ratio: 1.14 / 1;
-    object-fit: cover;
-    object-position: center;
 }
-
-
 
 .project-image-noborder {
     display: block;
@@ -311,7 +294,7 @@ strong {
     box-shadow: none;
 }
 
-/* YouTube video */
+/* YouTube container */
 .video-container {
     position: relative;
     width: 100%;
@@ -320,7 +303,6 @@ strong {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     background-color: #000;
-    
     aspect-ratio: 16 / 9;
 }
 
@@ -333,28 +315,26 @@ strong {
     border: none;
 }
 
-/* blok kodu */
+/* Code blocks */
 .code-container {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-med);
     border-radius: 8px;
     margin-bottom: 20px;
     background-color: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-    
     max-width: 100%;
     width: 100%;
     overflow: auto;
     display: block;
 }
 
-/* lista kodu */
 .code-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #eaeaea;
     padding: 8px 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-med);
 }
 
 .code-info {
@@ -364,7 +344,7 @@ strong {
 }
 
 .lang-badge {
-    background-color: #222;
+    background-color: var(--text-dark);
     color: #fff;
     font-size: 0.8rem;
     font-weight: bold;
@@ -376,16 +356,15 @@ strong {
 .language-label {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 0.9rem;
-    color: #555;
+    color: var(--text-muted);
     font-weight: 600;
 }
 
-/* tlacitka */
 .toggle-btn, .copy-btn {
     background: none;
     border: none;
     cursor: pointer;
-    color: #555;
+    color: var(--text-muted);
     font-size: 0.9rem;
     font-family: inherit;
     padding: 5px 10px;
@@ -399,8 +378,7 @@ strong {
     color: #000;
 }
 
-/* reset pre - PŘIZPŮSOBENO PRO PRISM.JS */
-/* reset pre - PŘIZPŮSOBENO PRO PRISM.JS */
+/* Prism.js overrides */
 .code-container pre,
 .code-container pre[class*="language-"] {
     margin: 0 !important;
@@ -408,18 +386,13 @@ strong {
     border-radius: 0 !important;
     padding: 15px !important;
     max-height: 700px;
-    
-    /* --- ZMĚNA ZDE --- */
-    overflow-x: auto !important;     /* Vynutí horizontální posuvník */
-    overflow-y: auto !important;     /* Vynutí vertikální posuvník */
+    overflow-x: auto !important;
+    overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
     display: block !important;
-    
-    /* DŮLEŽITÉ: Fixní šířka pro rodiče, aby se pre neroztahoval */
     word-break: normal !important;
     word-wrap: normal !important;
     white-space: pre !important;
@@ -427,13 +400,13 @@ strong {
 
 .code-container code[class*="language-"] {
     display: block !important;
-    width: fit-content !important;   /* Šířka podle délky kódu */
-    min-width: 100%;                /* Aby pozadí bylo minimálně přes celou šířku */
-    padding: 0 !important;           /* Padding dáváme na PRE, ne na CODE */
-    white-space: pre !important;     /* Zachová mezery a nezlomí řádek */
+    width: fit-content !important;
+    min-width: 100%;
+    padding: 0 !important;
+    white-space: pre !important;
 }
 
-/* animace sbaleni */
+/* Code animation */
 .code-content {
     transition: max-height 0.3s ease-in-out;
     max-height: 5000px;
@@ -449,71 +422,10 @@ code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
-/* responzivita */
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .main-wrapper {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-    }
-    .content {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 500px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-    h1 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        min-width: 600px;
-        overflow-x: auto;
-    }
-    
-    .main-wrapper {
-        min-width: 600px;
-        width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 10px;
-        overflow-x: hidden
-    }
-    
-    .container {
-        min-width: 600px;
-        width: 600px;
-        padding: 30px 10px;
-    }
-    
-    .content {
-        min-width: 0;
-        width: 100%;
-    }
-    
-    nav {
-        min-width: 600px;
-        padding: 1rem 10px;
-    }
-    
-    .grid {
-        min-width: 580px;
-    }
-} /* ZDE KONČÍ @MEDIA BLOK - DALŠÍ KÓD UŽ PLATÍ PRO VŠECHNA ZAŘÍZENÍ */
-
-/* Rozcestník (Table of Contents) - přesunuto mimo @media */
+/* Table of Contents (TOC) */
 .toc {
     background-color: #f4f4f4;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-med);
     border-radius: 8px;
     padding: 20px 30px;
     margin-bottom: 40px;
@@ -521,8 +433,7 @@ code {
 }
 
 .toc h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
+    margin: 0 0 15px;
     font-size: 1.3rem;
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 10px;
@@ -532,38 +443,33 @@ code {
     margin-bottom: 8px;
 }
 
-/* 1. úroveň: nezanořená odrážka - plné kolečko */
+/* TOC levels styling */
 .toc ul {
-    list-style-type: disc; /* disc = plné kolečko */
-    padding-left: 50px;    /* Musí tu být odsazení, jinak bude odrážka mimo div */
+    list-style-type: disc;
+    padding-left: 50px;
     margin-bottom: 0;
 }
 
-/* 2. úroveň: zanořená odrážka - prázdné kolečko */
 .toc ul ul {
-    list-style-type: circle; /* circle = prázdné kolečko */
+    list-style-type: circle;
     padding-left: 50px;
-    margin-top: 8px;
-    margin-bottom: 15px;
+    margin: 8px 0 15px;
 }
 
-/* 3. úroveň: dvakrát zanořená odrážka - zase plné kolečko */
 .toc ul ul ul {
-    list-style-type: disc; /* disc = plné kolečko */
-    margin-bottom: 0;      /* Volitelné: zrušení spodního odsazení pro nejhlubší úroveň */
+    list-style-type: disc;
+    margin-bottom: 0;
 }
 
-/* 4. úroveň: dvakrát zanořená odrážka - zase plné kolečko */
 .toc ul ul ul ul {
-    list-style-type: circle; /* circle = prázdné kolečko */
+    list-style-type: circle;
     padding-left: 50px;
-    margin-top: 8px;
-    margin-bottom: 15px;
+    margin: 8px 0 15px;
 }
 
 .toc a {
     text-decoration: none;
-    color: #555;
+    color: var(--text-muted);
     font-weight: 600;
     transition: color 0.2s;
 }
@@ -573,18 +479,13 @@ code {
     text-decoration: underline;
 }
 
-/* Jemná úprava pro plynulé scrollování po kliknutí na odkaz */
-html {
-    scroll-behavior: smooth;
-}
-
-/* --- SOUBORY KE STAŽENÍ --- */
+/* Downloadable files */
 .file-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #f4f4f4;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-med);
     border-radius: 8px;
     padding: 12px 20px;
     margin-bottom: 20px;
@@ -598,7 +499,7 @@ html {
 }
 
 .file-badge {
-    background-color: #222;
+    background-color: var(--text-dark);
     color: #fff;
     font-size: 0.8rem;
     font-weight: bold;
@@ -608,14 +509,14 @@ html {
 }
 
 .file-badge.fusion {
-    background-color: #f26522; /* Oranžová barva Fusionu */
+    background-color: #f26522;
 }
 
 .file-name {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-main);
 }
 
 .file-size {
@@ -625,7 +526,7 @@ html {
 
 .download-btn {
     display: inline-block;
-    background-color: #222;
+    background-color: var(--text-dark);
     color: #fff;
     text-decoration: none;
     font-size: 0.9rem;
@@ -644,28 +545,55 @@ html {
     transform: scale(0.98);
 }
 
-/* Responzivita pro soubory */
+/* Desktop layout additions */
+@media (min-width: 769px) {
+    .sidebar {
+        position: sticky;
+        top: 40px;
+        max-height: calc(100vh - 80px); 
+        overflow-y: auto;
+    }
+}
+
+/* Media queries (Responsive - Mobile & Tablets) */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .main-wrapper {
+        flex-direction: column;
+        padding: 0 10px; /* Fluid padding instead of hardcoded min-width */
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .content {
+        padding: 20px;
+        width: 100%;
+    }
+    nav {
+        padding: 1rem 10px;
+    }
+    .container {
+        padding: 30px 10px;
+    }
+}
+
 @media (max-width: 500px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    h1 {
+        font-size: 2rem;
+    }
     .file-container {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
-    
     .download-btn {
         width: 100%;
         text-align: center;
         box-sizing: border-box;
-    }
-}
-
-/* Přilepení postranního panelu na počítači */
-@media (min-width: 769px) {
-    .sidebar {
-        position: sticky;
-        top: 40px;
-    
-        max-height: calc(100vh - 80px); 
-        overflow-y: auto;
     }
 }
