@@ -1,0 +1,3208 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html" class="active">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>8. týden: Propojování drátové a bezdrátové, programování aplikace</h1>
+            
+            <p>Během osmého týdne bylo úkolem:</p>
+            <ul>
+                <li><strong>Ovládat obvod</strong> přes <strong>lokální bezdrátovou síť</strong>.</li>
+                <li><strong>Vytvořit aplikaci</strong>, která bude fungovat jako uživatelské rozhraní pro komunikaci se vstupním nebo výstupním zařízením.</li>
+            </ul>
+
+            <h2>Dálkové ovládání a vizualizace stavu hexapoda</h2>
+
+            <p>
+                V předchozích týdnech jsem postavil <strong>funkční základ hexapoda</strong> (zbývá už jen kryt elektroniky a poslední články nohou)
+                a <strong>Bluetooth dálkové ovládání</strong>. 
+                Cílem tohoto týdne bylo implementovat <strong>inverzní kinematiku</strong>, 
+                zprovoznit <strong>komunikaci</strong> mezi robotem a ovladačem a vytvořit <strong>PC aplikaci pro vizualizaci</strong> pohybů robota.
+            </p>
+
+            <p>
+                <strong>Arduino</strong> v ovladači bude s <strong>Raspberry Pi 5</strong> v hexapodovi komunikovat pomocí <strong>Bluetooth</strong> a 
+                Raspberry Pi bude odesílat svůj <strong>aktuální stav do počítače</strong> prostřednictvím protokolu <strong>UDP</strong>.
+            </p>
+
+            <img src="media/HexapodSFemuremAElektronikou.jpg" alt="Tělo hexapoda s femury a s elektronikou" class="project-image">
+            <img src="media/HotoveOvladani.JPG" alt="Hotový model dálkového ovládání" class="project-image">
+
+            <br><br>
+
+            <h3>Dálkové ovládání hexapoda</h3>
+                
+            <p>
+                Dálkové ovládání aktuálně poskytuje kontrolu nad <strong>náklony těla</strong> (roll, pitch a yaw)
+                a jeho <strong>posuny ve třech osách</strong> (x, y, z).
+                K tomu využívám <strong>pravý joystick</strong> (včetně jeho tlačítka) a <strong>oba pravé potenciometry</strong>.
+            </p>
+
+            <p>
+                Výchozí režim joysticku ovládá <strong>posuny těla</strong> v osách X a Y. 
+                Po stisknutí tlačítka joysticku se režim přepne na <strong>ovládání náklonů</strong> (pitch a roll).
+                Potenciometry pak slouží k nastavení <strong>výšky těla</strong> (posun v ose Z) a <strong>rotace</strong> (yaw - otáčení kolem osy Z).
+            </p>
+
+            <p>
+                Komunikace mezi Arduinem (ovladač) a Raspberry Pi 5 (hexapod) probíhá <strong>jednosměrně</strong> přes <strong>sériovou linku</strong>
+                a Bluetooth modul <strong>HC-05</strong> pomocí <strong>vlastního protokolu</strong>.
+                Na Raspberry Pi běží vlákno <code>bluetooth_thread</code>, 
+                které <strong>paralelně</strong> s hlavní smyčkou čte a zpracovává příchozí data.
+            </p>
+
+            <p><strong>Formát datového paketu:</strong></p>
+            <ul>
+                <li><strong>Byte 0:</strong> <code>0xAA</code> - <strong>Startovací byte</strong> (hlavička), podle které RPi identifikuje začátek paketu.</li>
+                <li><strong>Byte 1:</strong> <code>0x11</code> (17 desítkově) - <strong>Délka užitečných dat</strong> (payload).</li>
+                <li><strong>Byte 2 až 17:</strong> <strong>Analogová data</strong> z potenciometrů a joysticků (osm 16bitových hodnot odesílaných ve formátu Little Endian).</li>
+                <li><strong>Byte 18:</strong> <strong>Bitmaska tlačítek</strong> (1 byte). Jednotlivé bity reprezentují stav pěti tlačítek.</li>
+                <li><strong>Byte 19:</strong> <strong>Kontrolní součet</strong> (Checksum).</li>
+            </ul>
+
+            <p><strong>Relevantní výtažky z kódu</strong> (kompletní kód je na konci stránky):</p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">HexapodRemoteControl.ino</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-cpp">// Send data frame
+static inline void sendFrameHW(const uint16_t v[8], uint8_t buttons) {
+    const uint8_t LEN = 8*2 + 1; // Payload length
+    uint8_t sum = 0; // Checksum
+
+    auto put = [&](uint8_t b ){
+        Serial3.write(b); 
+        sum = (uint8_t)(sum + b); 
+    }; 
+
+    put(0xAA); // Start byte
+    put(LEN);  // Data length
+
+    for (int i = 0; i < 8; i++) { 
+        put((uint8_t)(v[i] & 0xFF)); // Low byte
+        put((uint8_t)(v[i] >> 8));   // High byte
+    }
+
+    put(buttons); 
+    
+    Serial3.write(sum); 
+}
+
+void setup() {
+...
+    Serial3.begin(115200);
+...
+}
+
+void loop() {
+...
+    // Read inputs and send using Bluetooth
+    if (due) {
+    ...
+        // Prepare data for Bluetooth
+        uint16_t v[8];
+        v[0] = (uint16_t) constrain(dX1 + 512, 0, 1023); 
+        v[1] = (uint16_t) constrain(dY1 + 512, 0, 1023);
+        v[2] = (uint16_t) constrain(dX2 + 512, 0, 1023);
+        v[3] = (uint16_t) constrain(dY2 + 512, 0, 1023);
+        v[4] = valRV1;
+        v[5] = valRV2;
+        v[6] = valRV3;
+        v[7] = valRV4;
+
+        uint8_t buttons = 0;
+        if (j1Btn) buttons |= (1 << 0);
+        if (j2Btn) buttons |= (1 << 1);
+        if (btn1)  buttons |= (1 << 2);
+        if (btn2)  buttons |= (1 << 3);
+        if (btn3)  buttons |= (1 << 4);
+
+        sendFrameHW(v, buttons);
+    }
+
+...
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">bluetooth_thread.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;stdint.h&gt;
+
+typedef struct {
+    // 4 joysticks, 4 potentiometers - J1X, J1Y, J2X, J2Y, P1, P2, P3, P4
+    uint16_t a[8];
+
+    // 2 joystick buttons, 3 buttons - bit0 = J1BTN, bit1 = J2BTN, bit2 = BTN1, bit3 = BTN2, bit4 = BTN3
+    uint8_t buttons;
+} InputPacket;
+
+// Thread for bluetooth commands
+void* bluetooth_thread(void* arg);
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">bluetooth_thread.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#include &lt;stdint.h&gt;
+...
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;termios.h&gt;
+...
+
+// HC-05 MAC: FC:A8:FF:00:60:55
+
+// Protocol constants
+// [0xAA] [LEN] [J1X_L] [J1X_H] [J1Y_L] [J1Y_H] [J2X_L] [J2X_H] [J2Y_L] [J2Y_H]
+// [P1_L] [P1_H] [P2_L] [P2_H] [P3_L] [P3_H]  [P4_L] [P4_H] [Buttons] [Checksum] - 20 bytes
+#define FRAME_START 0xAA // Start byte
+#define PAYLOAD_LEN 17 // 16 analog + 1 buttons = 17 bytes
+#define FRAME_LEN  (1 + 1 + PAYLOAD_LEN + 1) // 20 bytes (start + len + 17 + checksum)
+
+...
+
+// Where to read commands from
+static const char* dev = "/dev/rfcomm0";
+
+// Raw serial settings (binary I/O)
+static void set_raw_termios(struct termios* tio) {
+    tio->c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
+    tio->c_oflag &= ~OPOST;
+    tio->c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
+    tio->c_cflag &= ~(CSIZE | PARENB);
+    tio->c_cflag |= CS8;
+}
+
+// Open serial
+static int open_serial(const char* dev, speed_t speed) {
+    int fd = open(dev, O_RDWR | O_NOCTTY); // Open file
+
+    // Check if file is open
+    if (fd < 0) {
+        fprintf(stderr,"ERROR: Open(%s): %s\n", dev, strerror(errno)); 
+        return -1;
+    }
+
+    struct termios tio;
+    if (tcgetattr(fd, &tio) != 0){
+        fprintf(stderr,"ERROR: Tcgetattr: %s\n", strerror(errno));
+        close(fd);
+        return -1;
+    }
+    
+    set_raw_termios(&tio); // Set raw mode
+    cfsetispeed(&tio, speed); // Set input baud
+    cfsetospeed(&tio, speed); // Set output baud
+    tio.c_cflag |= (CLOCAL | CREAD); // Enable RX
+    tio.c_cflag &= ~CSTOPB; // 1 stop bit
+
+    #ifdef CRTSCTS
+    tio.c_cflag &= ~CRTSCTS; // No HW flow control
+    #endif
+
+    tio.c_cc[VMIN] = 0; // Return even if no byte available
+    tio.c_cc[VTIME] = 1; // 0.1 s timeout
+
+    // Apply settings
+    if (tcsetattr(fd, TCSANOW, &tio) != 0) {
+        fprintf(stderr,"ERROR: Tcsetattr: %s\n", strerror(errno));
+        close(fd);
+        return -1;
+    }
+
+    tcflush(fd, TCIOFLUSH); // Flush the serial buffer
+
+    return fd;
+}
+
+// Sum n bytes modulo 256 for checksum
+static uint8_t sum_bytes(const uint8_t* b, size_t n) {
+    uint32_t s = 0;
+    for (size_t i = 0; i < n; i++) s += b[i];
+    return (uint8_t)(s & 0xFF);
+}
+
+// Read little-endian uint16_t from byte buffer
+static uint16_t rd_u16le(const uint8_t* p) {
+    return (uint16_t)(p[0] | ((uint16_t)p[1] << 8));
+}
+
+// Message handler
+static void message_handler(const InputPacket* p) {
+    // Decode buttons (bitfield)
+    const bool js2btn = (p->buttons & (1u << 1)) != 0;  // joystick 2 push
+    const bool btn2   = (p->buttons & (1u << 3)) != 0;  // BTN2 (Sit down/stand up)
+    const bool btn3   = (p->buttons & (1u << 4)) != 0;  // BTN3 (Quit)
+
+    // Get analog values
+    const uint16_t j2x = p->a[3];
+    const uint16_t j2y = p->a[2];
+    const uint16_t pot3 = p->a[4];
+    const uint16_t pot4 = p->a[5];
+
+...
+}
+
+// Thread for bluetooth commands
+void* bluetooth_thread(void* arg) {
+    (void)arg;
+
+    // Open serial in raw
+    int fd = open_serial(dev, B115200);
+    if (fd < 0) return (void*)(intptr_t)-1;
+
+    printf("INFO: Bluetooth_thread listening on %s.\n", dev);
+
+    // Message buffer
+    uint8_t buf[512];
+    size_t len = 0;
+
+    // Thread loop
+    while (1) {
+...
+        // Read new bytes
+        ssize_t n = read(fd, buf + len, sizeof(buf) - len);
+
+        // Read errors
+        if (n < 0) {
+            // If read was interrupted by a signal, retry
+            if (errno == EINTR) continue;
+            // Otherwise report error
+            fprintf(stderr, "ERROR: Read(%s): %s\n", dev, strerror(errno));
+            break;
+        }
+        if (n == 0) {
+            // TIMEOUT (no data for 0.1s)
+            continue;
+        }
+
+        // N-bytes received
+        len += (size_t)n;
+
+        // Parse messages
+        size_t i = 0;
+        while (len - i >= FRAME_LEN) {
+            while (i < len && buf[i] != FRAME_START) i++; // Find the start of a message
+            if (len - i < FRAME_LEN) break; // Stop parsing if not enough bytes in the buffer
+
+            // Verify the payload length
+            if (buf[i+1] != PAYLOAD_LEN) {
+                i++;
+                continue;
+            }
+
+            // Verify the checksum
+            uint8_t calc = sum_bytes(&buf[i], 1 + 1 + PAYLOAD_LEN);
+            uint8_t rxcs = buf[i + 1 + 1 + PAYLOAD_LEN];
+            if (calc != rxcs) { 
+                i++;
+                continue;
+            }
+
+            // Parse payload
+            const uint8_t* pld = &buf[i+2];
+            InputPacket pkt;
+            for (int k = 0; k < 8; k++) pkt.a[k] = rd_u16le(pld + k*2);
+            pkt.buttons = pld[16];
+
+            // Handle message
+            message_handler(&pkt);
+
+            i += FRAME_LEN;
+        }
+
+        // Move bytes to the beginning of the buffer
+        if (i > 0) {
+            size_t rest = len - i;
+            if (rest) memmove(buf, buf + i, rest);
+            len = rest;
+        }
+
+        // Reset the buffer if failed to find a message
+        if (len > sizeof(buf) - FRAME_LEN) len = 0;
+    }
+
+    close(fd); // Close the serial
+    return (void*)(intptr_t)0;
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <br><br>
+
+            <h2 id="hexapod-inverzni-kinematika">Inverzní kinematika</h2>
+
+            <p>
+                Zatímco <strong>dopředná kinematika</strong> řeší otázku:
+                <em>„Když nastavím tyto úhly v kloubech, kde skončí špička nohy?“</em>,
+                <strong>inverzní kinematika</strong> funguje přesně naopak.
+                Ptá se: <em>„Pokud chci špičku nohy umístit do těchto souřadnic, jaké úhly musím nastavit v jednotlivých kloubech?“</em>
+            </p>
+
+            <p><strong>Noha robota se skládá ze tří kloubů a tří článků:</strong></p>
+            <ul>
+                <li><strong>Coxa (kyčel):</strong> Nejbližší kloub k tělu robota se <strong>svislou osou rotace</strong>. Zajišťuje pohyb celé nohy <strong>vlevo a vpravo</strong>.</li>
+                <li><strong>Femur (stehno):</strong> Druhý kloub od těla s <strong>vodorovnou osou rotace</strong>. Slouží ke <strong>zvedání a spouštění</strong> nohy.</li>
+                <li><strong>Tibia (holeň):</strong> Třetí kloub opět s <strong>vodorovnou osou rotace</strong>. Společně s femurem tvoří <strong>dvoučlánkové rameno</strong>.</li>
+            </ul>
+
+            <img src="media/CoxaFemurTibia.JPG" alt="Model hexapoda s označenými články nohou" class="project-image">
+
+            <p>
+                Při výpočtech budeme pracovat v <strong>souřadnicovém systému hexapoda</strong>,
+                jehož počátek (0, 0, 0) leží ve <strong>středu jeho těla</strong>.
+                Vstupem algoritmu inverzní kinematiky jsou požadované cílové pozice pro špičky jednotlivých nohou právě v tomto souřadnicovém systému.
+            </p>
+
+            <p>
+                <strong>Prvním krokem</strong> výpočtu je aplikace <strong>posunů těla</strong>.
+                Pokud chceme posunout tělo vůči zemi (zatímco nohy pevně stojí na podložce),
+                z pohledu těla se <strong>posouvá samotná zem v opačném směru</strong>. Stačí tedy od koncových bodů všech nohou <strong>odečíst požadovaný vektor posunu</strong> těla.
+            </p>
+
+            <p>
+                <strong>Druhým krokem</strong> je aplikace <strong>náklonů těla</strong>, u kterých platí stejný princip.
+                Chceme-li tělo naklonit, zatímco nohy drží pevnou pozici, z pohledu těla se <strong>zem naklání na opačnou stranu</strong>.
+                Koncové body nohou proto přenásobíme <strong>rotačními maticemi s opačným úhlem</strong> kolem os procházejících středem hexapoda.
+            </p>
+
+            <p class="math-display">
+                $$\begin{pmatrix}x_{ee} \\ y_{ee} \\ z_{ee}\end{pmatrix} = \mathbf{R_x}(-\phi) \cdot \mathbf{R_y}(-\theta) \cdot \mathbf{R_z}(-\psi) \cdot \begin{pmatrix}x_0 - t_x \\ y_0 - t_y \\ z_0 - t_z\end{pmatrix}$$
+            </p>
+
+            <p class="math-display">
+                $$\mathbf{R_x}(-\phi) = \begin{pmatrix}1 & 0 & 0 \\ 0 & \cos(-\phi) & -\sin(-\phi) \\ 0 & \sin(-\phi) & \cos(-\phi)\end{pmatrix}$$
+            </p>
+
+            <p class="math-display">
+                $$\mathbf{R_y}(-\theta) = \begin{pmatrix}\cos(-\theta) & 0 & \sin(-\theta) \\ 0 & 1 & 0 \\ -\sin(-\theta) & 0 & \cos(-\theta)\end{pmatrix}$$
+            </p>
+
+            <p class="math-display">
+                $$\mathbf{R_z}(-\psi) = \begin{pmatrix}\cos(-\psi) & -\sin(-\psi) & 0 \\ \sin(-\psi) & \cos(-\psi) & 0 \\ 0 & 0 & 1\end{pmatrix}$$
+            </p>
+
+            <ul>
+                <li><strong>$x_{ee}, y_{ee}, z_{ee}$:</strong> Výsledné souřadnice špičky nohy (koncového efektoru - <em>end effector</em>) po zohlednění posunů a náklonů těla.</li>
+                <li><strong>$x_0, y_0, z_0$:</strong> Původní souřadnice špičky nohy před provedením posunů a náklonů.</li>
+                <li><strong>$t_x, t_y, t_z$:</strong> Složky vektoru, který udává <strong>posun těla</strong> vůči zemi.</li>
+                <li><strong>$\phi, \theta, \psi$:</strong> Úhly udávající <strong>náklon těla</strong> (roll, pitch, yaw).</li>
+                <li><strong>$\mathbf{R_x}(-\phi)$:</strong> Rotační matice kolem osy X o úhel $-\phi$ (roll - náklon do stran).</li>
+                <li><strong>$\mathbf{R_y}(-\theta)$:</strong> Rotační matice kolem osy Y o úhel $-\theta$ (pitch - náklon dopředu a dozadu).</li>
+                <li><strong>$\mathbf{R_z}(-\psi)$:</strong> Rotační matice kolem osy Z o úhel $-\psi$ (yaw - natáčení do stran).</li>
+            </ul>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">motion.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">// Translate by (-tx,-ty,-tz) and rotate point by -yaw (psi), -pitch (theta), -roll(phi)
+static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, const float z0,
+                                                const float t_x, const float t_y, const float t_z,
+                                                const float cos_phi, const float sin_phi,
+                                                const float cos_theta,  const float sin_theta,
+                                                const float cos_psi, const float sin_psi,
+                                                float *x_ee, float *y_ee, float *z_ee)
+{
+    // Translate (x0 - t_x, atd.)
+    const float dx = x0 - t_x;
+    const float dy = y0 - t_y;
+    const float dz = z0 - t_z;
+
+    // Rotate around z (-yaw / -psi)
+    const float x1 =  dx*cos_psi + dy*sin_psi;
+    const float y1 = -dx*sin_psi + dy*cos_psi;
+    const float z1 =  dz;
+
+    // Rotate around y (-pitch / -theta)
+    const float x2 =  x1*cos_theta - z1*sin_theta;
+    const float y2 =  y1;
+    const float z2 =  x1*sin_theta + z1*cos_theta;
+
+    // Rotate around x (-roll / -phi)
+    *x_ee =  x2;
+    *y_ee =  y2*cos_phi + z2*sin_phi;
+    *z_ee =  y2*sin_phi - z2*cos_phi;
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <video class="project-video-ik" controls muted playsinline aria-label="Hexapod posouvající tělo.">
+                <source src="media/PosunyTela.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
+
+            <video class="project-video-ik" controls muted playsinline aria-label="Hexapod naklánějící tělo.">
+                <source src="media/NaklonyTela.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
+
+            <p>
+                Nyní máme spočítané <strong>nové polohy nohou</strong> zohledňující posuny i náklony. 
+                <strong>Třetím krokem</strong> je samotný <strong>výpočet úhlů</strong> v jednotlivých kloubech.
+                Zde lze postupovat podle následujících rovnic.
+            </p>
+
+            <h3>1. Výpočet úhlu coxa</h3>
+
+            <img src="media/ShoraIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda shora" class="project-image-noborder">
+
+            <p class="math-display">
+                $$x_c = R_b \cdot \cos(\alpha_{offset})$$
+            </p>
+
+            <p class="math-display">
+                $$y_c = R_b \cdot \sin(\alpha_{offset})$$
+            </p>
+
+            <p class="math-display">
+                $$\Delta x = x_{ee} - x_c$$
+            </p>
+
+            <p class="math-display">
+                $$\Delta y = y_{ee} - y_c$$
+            </p>
+
+            <p class="math-display">
+                $$\boldsymbol{\theta_{coxa}} = \operatorname{atan2}(\Delta y, \Delta x) - \alpha_{offset}$$
+            </p>
+
+            <ul>
+                <li><strong>$x_c, y_c$:</strong> Souřadnice bodu, kde je noha uchycena k tělu robota (kloub coxa).</li>
+                <li><strong>$R_b$:</strong> Poloměr těla robota (vzdálenost od středu těla ke kloubu coxa).</li>
+                <li><strong>$\alpha_{offset}$:</strong> Úhlový offset konkrétní nohy vůči středové ose těla robota.</li>
+                <li><strong>$x_{ee}, y_{ee}$:</strong> Požadované souřadnice špičky nohy.</li>
+                <li><strong>$\Delta x, \Delta y$:</strong> Vzdálenost mezi špičkou nohy a kloubem coxa v ose X a Y.</li>
+                <li><strong>$\theta_{coxa}$:</strong> Výsledný úhel natočení pro servo v prvním kloubu (coxa). Funkce <code>atan2</code> vrací úhel ve správném kvadrantu.</li>
+            </ul>
+
+            <h3>2. Výpočet úhlů femur a tibia</h3>
+
+            <img src="media/ZbokuIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda zboku" class="project-image-noborder">
+
+            <p class="math-display">
+                $$\rho = \sqrt{\Delta x^2 + \Delta y^2} - L_{coxa}$$
+            </p>
+
+            <p class="math-display">
+                $$R = \sqrt{\rho^2 + z_{ee}^2}$$
+            </p>
+
+            <p class="math-display">
+                $$\gamma = \arccos\left(\frac{L_{femur}^2 + L_{tibia}^2 - R^2}{2 \cdot L_{femur} \cdot L_{tibia}}\right)$$
+            </p>
+
+            <p class="math-display">
+                $$\boldsymbol{\theta_{tibia}} = \pi - \gamma - \theta_{offset}$$
+            </p>
+
+            <p class="math-display">
+                $$\alpha = \arccos\left(\frac{L_{femur}^2 + R^2 - L_{tibia}^2}{2 \cdot L_{femur} \cdot R}\right)$$
+            </p>
+
+            <p class="math-display">
+                $$\beta = \operatorname{atan2}(z_{ee}, \rho)$$
+            </p>
+
+            <p class="math-display">
+                $$\boldsymbol{\theta_{femur}} = \alpha - \beta$$
+            </p>
+
+            <ul>
+                <li><strong>$L_{coxa}, L_{femur}, L_{tibia}$:</strong> Délky jednotlivých částí nohy.</li>
+                <li><strong>$\rho$:</strong> Horizontální vzdálenost od druhého kloubu (femur) ke špičce nohy.</li>
+                <li><strong>$z_{ee}$:</strong> Vertikální poloha špičky nohy.</li>
+                <li><strong>$R$:</strong> Přímá vzdálenost od kloubu femur ke špičce nohy.</li>
+                <li><strong>$\gamma$:</strong> Vnitřní úhel mezi segmenty femur a tibia.</li>
+                <li><strong>$\theta_{tibia}$:</strong> Výsledný úhel pro kloub tibia (s mechanickým offsetem $\theta_{offset}$).</li>
+                <li><strong>$\alpha$:</strong> Vnitřní úhel mezi segmentem femur a pomyslnou spojnicí $R$.</li>
+                <li><strong>$\beta$:</strong> Úhel zdvihu špičky nohy vůči horizontální rovině kloubu femur.</li>
+                <li><strong>$\theta_{femur}$:</strong> Výsledný úhel pro kloub femur.</li>
+            </ul>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">motion.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">// Inverse kinematics for one leg
+static bool ik_angles_from_body_target(float x_ee, float y_ee, float z_ee, int leg,
+                                       float *theta_coxa_out, float *theta_femur_out, float *theta_tibia_out)
+{
+    // Get leg anchor point and angle
+    float x_c = leg_anchor[leg].x;
+    float y_c = leg_anchor[leg].y;
+    float alpha_offset = leg_anchor[leg].alpha;
+
+    // Compute coxa angle
+    const float delta_x = x_ee - x_c;
+    const float delta_y = y_ee - y_c;
+    float theta_coxa = atan2f(delta_y, delta_x) - alpha_offset;
+    theta_coxa = remainderf(theta_coxa, 2.0f*(float)M_PI); // (-pi, pi]
+
+    // Projection
+    float rho = hypotf(delta_x, delta_y) - L_COXA;
+    float R = hypotf(rho, z_ee);
+
+    // Where the robot can reach
+    const float R_min = fabsf(L_FEMUR - L_TIBIA);
+    const float R_max = (L_FEMUR + L_TIBIA);
+
+    // Can it be reached?
+    if (R < R_min || R > R_max || rho < 0.0f) {
+        return false;
+    }
+
+    // Compute tibia angle
+    float cos_gamma = (L_FEMUR*L_FEMUR + L_TIBIA*L_TIBIA - R*R) / (2.0f*L_FEMUR*L_TIBIA);
+    cos_gamma = clamp(cos_gamma, -1.0f, 1.0f);
+    float gamma = acosf(cos_gamma);
+    float theta_tibia = (float)M_PI - gamma;
+
+    const float theta_offset = TIBIA_ANGLE * (float)M_PI / 180.0f; // Convert tibia angle offset to radians
+    
+    theta_tibia -= theta_offset; // Apply tibia angle offset
+
+    // Compute femur angle
+    float cos_alpha = (L_FEMUR*L_FEMUR + R*R - L_TIBIA*L_TIBIA) / (2.0f*L_FEMUR * fmaxf(R, 1e-9f));
+    cos_alpha = clamp(cos_alpha, -1.0f, 1.0f);
+    float alpha = acosf(cos_alpha);
+    
+    float beta = atan2f(z_ee, rho);
+    float theta_femur = alpha - beta;
+
+    *theta_coxa_out = theta_coxa;
+    *theta_femur_out = theta_femur;
+    *theta_tibia_out = theta_tibia;
+    return true;
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <video class="project-video-ikfinal" controls muted playsinline aria-label="Ukázka dálkového ovládání hexapoda.">
+                <source src="media/HexapodDalkove.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
+
+            <br><br>
+
+            <h3>Vizualizace stavu hexapoda</h3>
+                
+            <p>
+                Pro komunikaci mezi hexapodem a aplikací v počítači používám <strong>UDP socket</strong>.
+                Tento protokol nevytváří trvalé spojení a nekontroluje, zda data v pořádku dorazila - paket se prostě „vystřelí“ do sítě.
+                Pro tyto účely to však nevadí.
+                Pokud se paket po cestě ztratí, za zlomek sekundy dorazí nový.
+            </p>
+
+            <p><strong>Přenos a zpracování dat funguje v následujících krocích:</strong></p>
+            <ul>
+                <li>
+                    <strong>Odesílání (Raspberry Pi):</strong> Výstupem algoritmu inverzní kinematiky jsou <strong>úhly v jednotlivých kloubech</strong> (celkem 18 hodnot). 
+                    Ty se pomocí <code>snprintf</code> zformátují do jednoho <strong>textového řetězce</strong>,
+                    kde jsou čísla oddělena čárkou (např. <code>15.0,45.2,-10.1...</code>). 
+                    Tento řetězec se následně naslepo odešle na pevně nastavenou <strong>IP adresu počítače a port 5005</strong>.
+                </li>
+                <li>
+                    <strong>Příjem (PC):</strong> Čtení dat je v aplikaci nastaveno na <strong>neblokující režim</strong>,
+                    aby program nezamrzl při čekání na zprávy. 
+                    Jelikož hlavní smyčka hexapoda odesílá data s frekvencí <strong>50 Hz</strong>,
+                    zatímco vizualizace se překresluje při <strong>30 Hz</strong>, 
+                    jsou všechna starší data ve frontě <strong>zahozena</strong>
+                    a skript použije jen <strong>nejnovější paket</strong>.
+                </li>
+                <li>
+                    <strong>Dekódování:</strong> Přijatá data se dekódují z bytů na text a rozdělením podle čárek (<code>.split(',')</code>) 
+                    z nich aplikace získá zpět <strong>seznam osmnácti úhlů</strong>.
+                </li>
+            </ul>
+
+            <p><strong>Relevantní výtažky z kódu</strong> (kompletní kód je na konci stránky):</p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">main.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+...
+// Main function
+int main(void) {
+...
+    int udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
+    struct sockaddr_in pc_addr;
+    pc_addr.sin_family = AF_INET;
+    pc_addr.sin_port = htons(5005);
+    
+    // PC local IP
+    pc_addr.sin_addr.s_addr = inet_addr("xxx.xxx.x.xx");
+...
+    // IK Loop
+    while (1) {
+...
+        // Send angles to PC for visualisation
+        char visualisation[256];
+        int len = snprintf(visualisation, sizeof(visualisation), 
+            "%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f",
+            servo_angle[0][0].target_angle, servo_angle[0][1].target_angle, servo_angle[0][2].target_angle,
+            servo_angle[1][0].target_angle, servo_angle[1][1].target_angle, servo_angle[1][2].target_angle,
+            servo_angle[2][0].target_angle, servo_angle[2][1].target_angle, servo_angle[2][2].target_angle,
+            servo_angle[3][0].target_angle, servo_angle[3][1].target_angle, servo_angle[3][2].target_angle,
+            servo_angle[4][0].target_angle, servo_angle[4][1].target_angle, servo_angle[4][2].target_angle,
+            servo_angle[5][0].target_angle, servo_angle[5][1].target_angle, servo_angle[5][2].target_angle
+        );
+        sendto(udp_sock, visualisation, len, 0, (struct sockaddr*)&pc_addr, sizeof(pc_addr));
+...
+    }
+...
+    close(udp_sock);
+    return 0;
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">Python</span>
+                        <span class="language-label">visualisation.py</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-python">import socket
+...
+# UDP setup
+UDP_IP = "0.0.0.0"
+UDP_PORT = 5005
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
+sock.setblocking(False)
+...
+while True:
+...
+    # Throw away old data, process the latest
+    latest_data = None
+    while True:
+        try:
+            data, _ = sock.recvfrom(1024)
+            latest_data = data
+        except BlockingIOError: # Empty buffer
+            break
+        except Exception as e:
+            print(f"Socket error: {e}")
+            break
+    
+    if latest_data:
+        try:
+            text = latest_data.decode('utf-8').strip()
+            values = list(map(float, text.split(',')))
+...
+        except Exception as e:
+            print(f"Data processing error: {e}")
+</code></pre>
+
+                </div>
+            </div>
+
+            <p>
+                K zobrazení 3D modelu používá Python skript knihovnu <strong>VPython</strong>.
+                Články nohou v ní reprezentuji <strong>válci</strong> a klouby <strong>koulemi</strong>.
+                Skript následně pomocí <strong>dopředné kinematiky</strong> řetězí rotace a posuny.
+                Tím <strong>skládá nohu dílek po dílku</strong> od těla ven směrem ke špičce.
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">Python</span>
+                        <span class="language-label">visualisation.py</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-python">import math
+from vpython import *
+
+...
+
+# Hexapod dimensions [mm]
+L_COXA = 48.0
+L_FEMUR = 75.0
+L_TIBIA = 112.0
+BASE_RADIUS = 78.0
+
+# 3D scene setup
+scene = canvas(
+    title = 'Hexapod IK Visualization',
+    width = 1200,
+    height = 800,
+    background = color.gray(0.2),
+    shadows = False
+)
+scene.up = vector(0, 0, 1)
+scene.forward = vector(-1, -1, -1)
+
+# Body
+body = cylinder(pos = vector(0, 0, -10), axis = vector(0, 0, 20), radius = BASE_RADIUS, color = color.white, opacity = 0.8)
+
+class Leg:
+    def __init__(self, index):
+        # Leg anchor position around the body
+        self.alpha = math.radians(30.0 + index * 60.0)
+        self.anchor_pos = vector(BASE_RADIUS * math.cos(self.alpha), BASE_RADIUS * math.sin(self.alpha), 0)
+        
+        # Leg segments and joints
+        self.joint_base = sphere(pos = self.anchor_pos, radius = 8, color = color.yellow)
+        self.coxa = cylinder(pos = self.anchor_pos, axis = vector(L_COXA, 0, 0), radius = 5, color = color.red)
+        self.joint_femur = sphere(pos = self.coxa.pos + self.coxa.axis, radius = 6, color = color.yellow)
+        self.femur = cylinder(pos = self.joint_femur.pos, axis = vector(L_FEMUR, 0, 0), radius = 4, color = color.green)
+        self.joint_tibia = sphere(pos = self.femur.pos + self.femur.axis, radius = 5, color = color.yellow)
+        self.tibia = cylinder(pos = self.joint_tibia.pos, axis = vector(L_TIBIA, 0, 0), radius = 3, color = color.blue)
+        self.foot = sphere(pos = self.tibia.pos + self.tibia.axis, radius = 6, color = color.orange)
+        
+    def update(self, coxa_angle_deg, femur_angle_deg, tibia_angle_deg):
+        t1 = math.radians(coxa_angle_deg)
+        t2 = math.radians(femur_angle_deg)
+        t3 = math.radians(tibia_angle_deg)
+        
+        # Coxa
+        coxa_dir = vector(1, 0, 0).rotate(angle = self.alpha + t1, axis = vector(0, 0, 1))
+        self.coxa.axis = coxa_dir * L_COXA
+        
+        # Femur and tibia joint axis
+        joint_axis = vector(0, 0, 1).cross(coxa_dir)
+        
+        # Femur
+        femur_dir = coxa_dir.rotate(angle = -t2, axis = joint_axis)
+        self.joint_femur.pos = self.anchor_pos + self.coxa.axis
+        self.femur.pos = self.joint_femur.pos
+        self.femur.axis = femur_dir * L_FEMUR
+        
+        # Tibia
+        tibia_dir = femur_dir.rotate(angle=t3, axis=joint_axis)
+        self.joint_tibia.pos = self.femur.pos + self.femur.axis
+        self.tibia.pos = self.joint_tibia.pos
+        self.tibia.axis = tibia_dir * L_TIBIA
+        
+        self.foot.pos = self.tibia.pos + self.tibia.axis
+
+legs = [Leg(i) for i in range(6)]
+
+...
+
+while True:
+    rate(30)  # 30 FPS
+    
+...
+
+            if len(values) == 18:
+                
+                # Update legs
+                for i in range(6):
+                    legs[i].update(values[i*3], values[i*3+1], values[i*3+2])
+            
+...
+</code></pre>
+
+                </div>
+            </div>
+            
+            <video class="project-image" controls muted playsinline aria-label="Zobrazení pohybů hexapoda v aplikaci.">
+                <source src="media/HexapodVirtualne.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
+
+            <h3>Kompletní kód projektu</h3>
+
+            <p>
+                <strong>Kód hexapoda:</strong>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">Make</span>
+                        <span class="language-label">Makefile</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-makefile">CC := gcc
+CFLAGS := -Wall -Wextra -Werror -O2 -std=c99 -I. -pthread
+LIBS   := -lwiringPi -lm
+
+SRCS := main.c pca9685.c servo.c mathUtils.c motion.c vector.c bluetooth_thread.c animation.c
+HEADERS := pca9685.h servo.h mathUtils.h motion.h vector.h shared.h bluetooth_thread.h animation.h
+
+OUT := main
+
+all: $(OUT)
+
+$(OUT): $(SRCS) $(HEADERS)
+    $(CC) $(CFLAGS) -o $@ $(SRCS) $(LIBS)
+
+run: $(OUT)
+    sudo ./$(OUT)
+
+clean:
+    rm -f $(OUT)
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">shared.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;stdbool.h&gt;
+#include &lt;pthread.h&gt;
+
+#include "vector.h"
+
+// Synchronization
+extern pthread_mutex_t mtx;
+
+// Global states
+extern bool exit_program; // Signal to threads to exit
+extern bool standing; // Is robot standing or not
+extern bool animating; // Is robot in animation
+
+// Base offsets - xyz, rpy
+extern Vector3 base_offset_target_xyz; // [mm]
+extern Vector3 base_offset_target_rpy; // [rad]
+
+// Max and min parameters for offset limits
+extern const float min_x_offset; extern const float max_x_offset; // [mm]
+extern const float min_y_offset; extern const float max_y_offset; // [mm]
+extern const float min_z_offset; extern const float max_z_offset; // [mm]
+extern const float min_roll; extern const float max_roll; // [rad]
+extern const float min_pitch; extern const float max_pitch; // [rad]
+extern const float min_yaw; extern const float max_yaw; // [rad]
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">main.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#define _POSIX_C_SOURCE 200809L
+#define _DEFAULT_SOURCE // usleep
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdint.h&gt;   // uint8_t, intptr_t
+#include &lt;stdbool.h&gt;
+#include &lt;unistd.h&gt;   // usleep
+#include &lt;math.h&gt;
+#include &lt;pthread.h&gt;  // Threads
+#include &lt;wiringPiI2C.h&gt; // PCA9685
+#include &lt;wiringPi.h&gt;    // GPIO
+
+#include "pca9685.h"
+#include "servo.h"
+#include "mathUtils.h"
+#include "motion.h"
+#include "vector.h"
+#include "animation.h"
+
+#include "shared.h"
+#include "bluetooth_thread.h"
+
+#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+
+// Synchronization
+pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
+
+// Global states
+bool exit_program = false;
+bool standing = false; // Starting position is seated
+bool animating = false; // Is animation running
+
+// Base offsets - xyz, rpy
+Vector3 base_offset_target_xyz = {0.0f, 0.0f, 0.0f};
+Vector3 base_offset_target_rpy = {0.0f, 0.0f, 0.0f};
+
+// Max and min parameters
+const float min_x_offset = -70.0f; const float max_x_offset = 70.0f; // [mm]
+const float min_y_offset = -70.0f; const float max_y_offset = 70.0f; // [mm]
+const float min_z_offset = -80.0f; const float max_z_offset = 80.0f; // [mm]
+const float min_roll = -0.3f; const float max_roll = 0.3f; // [rad]
+const float min_pitch = -0.3f; const float max_pitch = 0.3f; // [rad]
+const float min_yaw = -0.4f; const float max_yaw = 0.4f; // [rad]
+
+// For smoothing changes in offsets
+static const float OFFSET_SMOOTHING = 0.92f;
+
+// Function that runs before exit
+static void exit_function(void) {
+    servos_safe_shutdown(); // Turn servos off without jerk
+}
+
+// Smoothly interpolate variable
+static inline float smooth_var(float current, float target, float factor, float deadband) {
+    if (fabsf(current - target) < deadband) {
+        return target;
+    }
+    return factor * current + (1.0f - factor) * target;
+}
+
+// Main function
+int main(void) {
+    // Initialize GPIO
+    if (wiringPiSetup() < 0) {
+        fprintf(stderr, "ERROR: Failed to initialize GPIO.\n");
+        exit(1);
+    }
+
+    // Open I2C for both PCA9685
+    int fd_r = wiringPiI2CSetup(PCA_ADDR_R);
+    int fd_l = wiringPiI2CSetup(PCA_ADDR_L);
+    if (fd_r < 0 || fd_l < 0) {
+        fprintf(stderr, "ERROR: Failed to open I2C.\n");
+        exit(1);
+    }
+
+    // Initialize servos and both PCA9685
+    if (servo_init(fd_r, fd_l) < 0) {
+        fprintf(stderr, "ERROR: Failed to initialize servos.\n");
+        exit(1);
+    }
+
+    // Initialize motion module and move to default folded position
+    setup_motion();
+
+    // Run this function before exit
+    atexit(exit_function);
+
+    // Create Bluetooth thread
+    pthread_t bt_thread;
+    if (pthread_create(&bt_thread, NULL, bluetooth_thread, NULL) != 0) {
+        fprintf(stderr, "ERROR: Failed to create BT thread.\n");
+        exit(1);
+    }
+
+    // Control loop period
+    const uint64_t period_us = 20000; // 20 ms ... 50 Hz
+    
+    // Timing
+    uint64_t t0 = now_us();
+    uint64_t next_tick = t0 + period_us;
+
+    // Current offsets
+    Vector3 current_xyz = {0.0f, 0.0f, 0.0f};
+    Vector3 current_rpy = {0.0f, 0.0f, 0.0f};
+
+    int udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
+    struct sockaddr_in pc_addr;
+    pc_addr.sin_family = AF_INET;
+    pc_addr.sin_port = htons(5005);
+    
+    // PC local IP
+    pc_addr.sin_addr.s_addr = inet_addr("xxx.xxx.x.xx"); 
+
+    printf("INFO: IK control loop started (50 Hz).\n");
+
+    // IK Loop
+    while (1) {
+        pthread_mutex_lock(&mtx);
+        bool stop = exit_program;
+        bool is_animating = animating;
+        Vector3 target_xyz = base_offset_target_xyz;
+        Vector3 target_rpy = base_offset_target_rpy;
+        pthread_mutex_unlock(&mtx);
+
+        if (stop) break;
+
+        // Update IK if not animating
+        if (!is_animating) {
+            current_xyz.x = smooth_var(current_xyz.x, target_xyz.x, OFFSET_SMOOTHING, 0.5f);
+            current_xyz.y = smooth_var(current_xyz.y, target_xyz.y, OFFSET_SMOOTHING, 0.5f);
+            current_xyz.z = smooth_var(current_xyz.z, target_xyz.z, OFFSET_SMOOTHING, 0.5f);
+
+            current_rpy.x = smooth_var(current_rpy.x, target_rpy.x, OFFSET_SMOOTHING, 0.001f);
+            current_rpy.y = smooth_var(current_rpy.y, target_rpy.y, OFFSET_SMOOTHING, 0.001f);
+            current_rpy.z = smooth_var(current_rpy.z, target_rpy.z, OFFSET_SMOOTHING, 0.001f);
+
+            set_base_offset(current_xyz, current_rpy);
+            inverse_kinematics();
+            move_servos();
+        }
+
+        // Send angles to PC for visualisation
+        char visualisation[256];
+        int len = snprintf(visualisation, sizeof(visualisation), 
+            "%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f",
+            servo_angle[0][0].target_angle, servo_angle[0][1].target_angle, servo_angle[0][2].target_angle,
+            servo_angle[1][0].target_angle, servo_angle[1][1].target_angle, servo_angle[1][2].target_angle,
+            servo_angle[2][0].target_angle, servo_angle[2][1].target_angle, servo_angle[2][2].target_angle,
+            servo_angle[3][0].target_angle, servo_angle[3][1].target_angle, servo_angle[3][2].target_angle,
+            servo_angle[4][0].target_angle, servo_angle[4][1].target_angle, servo_angle[4][2].target_angle,
+            servo_angle[5][0].target_angle, servo_angle[5][1].target_angle, servo_angle[5][2].target_angle
+        );
+        sendto(udp_sock, visualisation, len, 0, (struct sockaddr*)&pc_addr, sizeof(pc_addr));
+
+        // Sleep until next tick
+        uint64_t now = now_us();
+        if (now < next_tick) {
+            sleep_until_us(next_tick);
+            next_tick += period_us;
+        } else {
+            next_tick += ((now - next_tick) / period_us + 1) * period_us; // Skip missed ticks
+        }
+    }
+
+    pthread_join(bt_thread, NULL);
+    close(udp_sock);
+    return 0;
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">bluetooth_thread.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;stdint.h&gt;
+
+typedef struct {
+    // 4 joysticks, 4 potentiometers - J1X, J1Y, J2X, J2Y, P1, P2, P3, P4
+    uint16_t a[8];
+
+    // 2 joystick buttons, 3 buttons - bit0 = J1BTN, bit1 = J2BTN, bit2 = BTN1, bit3 = BTN2, bit4 = BTN3
+    uint8_t buttons;
+} InputPacket;
+
+// Thread for bluetooth commands
+void* bluetooth_thread(void* arg);    
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">bluetooth_thread.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;termios.h&gt;
+#include &lt;pthread.h&gt;
+
+#include "shared.h"
+#include "bluetooth_thread.h"
+#include "mathUtils.h"
+#include "vector.h"
+#include "motion.h"
+
+// HC-05 MAC: FC:A8:FF:00:60:55
+
+// Protocol constants
+// [0xAA] [LEN] [J1X_L] [J1X_H] [J1Y_L] [J1Y_H] [J2X_L] [J2X_H] [J2Y_L] [J2Y_H]
+// [P1_L] [P1_H] [P2_L] [P2_H] [P3_L] [P3_H]  [P4_L] [P4_H] [Buttons] [Checksum] - 20 bytes
+#define FRAME_START 0xAA // Start byte
+#define PAYLOAD_LEN 17 // 16 analog + 1 buttons = 17 bytes
+#define FRAME_LEN  (1 + 1 + PAYLOAD_LEN + 1) // 20 bytes (start + len + 17 + checksum)
+
+// Offset type - xyz/rpy
+static bool offset_rpy = false;
+
+// Previous button state
+static bool js2btn_prev = false; // Base offset xyz/rpy
+static bool btn2_prev = false; // Sit down/stand up
+static bool btn3_prev = false; // Quit program
+
+// Current offsets
+static float x_offset = 0.0f;
+static float y_offset = 0.0f;
+static float z_offset = 0.0f;
+static float pitch = 0.0f;
+static float roll = 0.0f;
+static float yaw = 0.0f;
+
+// Change thresholds
+const float offset_change_threshold = 30.0f;
+
+// Middle of the analog value range (0 - 1023)
+const float analog_middle = 512.0f;
+
+// Where to read commands from
+static const char* dev = "/dev/rfcomm0";
+
+// Raw serial settings (binary I/O)
+static void set_raw_termios(struct termios* tio) {
+    tio->c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
+    tio->c_oflag &= ~OPOST;
+    tio->c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
+    tio->c_cflag &= ~(CSIZE | PARENB);
+    tio->c_cflag |= CS8;
+}
+
+// Open serial
+static int open_serial(const char* dev, speed_t speed) {
+    int fd = open(dev, O_RDWR | O_NOCTTY); // Open file
+
+    // Check if file is open
+    if (fd < 0) {
+        fprintf(stderr,"ERROR: Open(%s): %s\n", dev, strerror(errno)); 
+        return -1;
+    }
+
+    struct termios tio;
+    if (tcgetattr(fd, &tio) != 0){
+        fprintf(stderr,"ERROR: Tcgetattr: %s\n", strerror(errno));
+        close(fd);
+        return -1;
+    }
+    
+    set_raw_termios(&tio); // Set raw mode
+    cfsetispeed(&tio, speed); // Set input baud
+    cfsetospeed(&tio, speed); // Set output baud
+    tio.c_cflag |= (CLOCAL | CREAD); // Enable RX
+    tio.c_cflag &= ~CSTOPB; // 1 stop bit
+
+    #ifdef CRTSCTS
+    tio.c_cflag &= ~CRTSCTS; // No HW flow control
+    #endif
+
+    tio.c_cc[VMIN] = 0; // Return even if no byte available
+    tio.c_cc[VTIME] = 1; // 0.1 s timeout
+
+    // Apply settings
+    if (tcsetattr(fd, TCSANOW, &tio) != 0) {
+        fprintf(stderr,"ERROR: Tcsetattr: %s\n", strerror(errno));
+        close(fd);
+        return -1;
+    }
+
+    tcflush(fd, TCIOFLUSH); // Flush the serial buffer
+
+    return fd;
+}
+
+// Sum n bytes modulo 256 for checksum
+static uint8_t sum_bytes(const uint8_t* b, size_t n) {
+    uint32_t s = 0;
+    for (size_t i = 0; i < n; i++) s += b[i];
+    return (uint8_t)(s & 0xFF);
+}
+
+// Read little-endian uint16_t from byte buffer
+static uint16_t rd_u16le(const uint8_t* p) {
+    return (uint16_t)(p[0] | ((uint16_t)p[1] << 8));
+}
+
+// Message handler
+static void message_handler(const InputPacket* p) {
+    // Decode buttons (bitfield)
+    const bool js2btn = (p->buttons & (1u << 1)) != 0;  // joystick 2 push
+    const bool btn2   = (p->buttons & (1u << 3)) != 0;  // BTN2 (Sit down/stand up)
+    const bool btn3   = (p->buttons & (1u << 4)) != 0;  // BTN3 (Quit)
+
+    // Get analog values
+    const uint16_t j2x = p->a[3];
+    const uint16_t j2y = p->a[2];
+    const uint16_t pot3 = p->a[4];
+    const uint16_t pot4 = p->a[5];
+
+    // Sit down/stand up
+    if (btn2 == true && btn2_prev == false) {
+        pthread_mutex_lock(&mtx);
+        bool is_standing = standing;
+        animating = true; // Pause main 50Hz IK loop
+        
+        // Reset offsets before sitting
+        if (is_standing) {
+            base_offset_target_xyz = Vector3_create(0.0f, 0.0f, 0.0f);
+            base_offset_target_rpy = Vector3_create(0.0f, 0.0f, 0.0f);
+        }
+        pthread_mutex_unlock(&mtx);
+
+        if (is_standing) {
+            printf("INFO: Sitting down.\n");
+            sit_down();
+            
+            pthread_mutex_lock(&mtx);
+            standing = false;
+            animating = false; // Resume main loop
+            pthread_mutex_unlock(&mtx);
+        } else {
+            printf("INFO: Standing up.\n");
+            stand_up();
+            
+            pthread_mutex_lock(&mtx);
+            standing = true;
+            animating = false; // Resume main loop
+            pthread_mutex_unlock(&mtx);
+        }
+    }
+
+    // Change offset type (xyz/rpy)
+    if (js2btn == true && js2btn_prev == false) {
+        offset_rpy = offset_rpy ? false : true;
+    }
+
+    // Apply controller offsets
+    pthread_mutex_lock(&mtx);
+    if (standing && !animating) {
+        // Base offset x, y, roll, pitch
+        if (offset_rpy) {
+            x_offset = 0.0f;
+            y_offset = 0.0f;
+
+            // Pitch
+            if (fabsf(j2x - analog_middle) > offset_change_threshold) {
+                pitch = lerp(min_pitch, max_pitch, (float)j2x / 1023.0f);
+            } else {
+                pitch = 0.0f;
+            }
+
+            // Roll
+            if (fabsf(j2y - analog_middle) > offset_change_threshold) {
+                roll = lerp(min_roll, max_roll, (float)j2y / 1023.0f);
+            } else {
+                roll = 0.0f;
+            }
+            
+        } else {
+            // X offset
+            if (fabsf(j2x - analog_middle) > offset_change_threshold) {
+                x_offset = lerp(min_x_offset, max_x_offset, (float)j2x / 1023.0f);
+            } else {
+                x_offset = 0.0f;
+            }
+
+            // Y offset
+            if (fabsf(j2y - analog_middle) > offset_change_threshold) {
+                y_offset = lerp(min_y_offset, max_y_offset, (float)j2y / 1023.0f);
+            } else {
+                y_offset = 0.0f;
+            }
+
+            pitch = 0.0f;
+            roll = 0.0f;
+        }
+
+        // Z offset
+        if (fabsf(pot3 - analog_middle) > offset_change_threshold) {
+            z_offset = lerp(min_z_offset, max_z_offset, (float)pot3 / 1023.0f);
+        } else {
+            z_offset = 0.0f;
+        }
+
+        // Yaw
+        if (fabsf(pot4 - analog_middle) > offset_change_threshold) {
+            yaw = lerp(min_yaw, max_yaw, (float)pot4 / 1023.0f);
+        } else {
+            yaw = 0.0f;
+        }
+
+        // Apply offsets
+        base_offset_target_xyz = Vector3_create(x_offset, y_offset, z_offset);
+        base_offset_target_rpy = Vector3_create(roll, pitch, yaw);
+    }
+
+    // Quit program
+    if (btn3 == true && btn3_prev == false) {
+        exit_program = true;
+    }
+    pthread_mutex_unlock(&mtx);
+
+    // Update button state
+    js2btn_prev = js2btn;
+    btn2_prev = btn2;
+    btn3_prev = btn3;
+}
+
+// Thread for bluetooth commands
+void* bluetooth_thread(void* arg) {
+    (void)arg;
+
+    // Open serial in raw
+    int fd = open_serial(dev, B115200);
+    if(fd < 0) return (void*)(intptr_t)-1;
+
+    printf("INFO: Bluetooth_thread listening on %s.\n", dev);
+
+    // Message buffer
+    uint8_t buf[512];
+    size_t len = 0;
+
+    // Thread loop
+    while (1) {
+        pthread_mutex_lock(&mtx);
+        bool stop = exit_program;
+        pthread_mutex_unlock(&mtx);
+        if (stop) break;
+
+        // Read new bytes
+        ssize_t n = read(fd, buf + len, sizeof(buf) - len);
+
+        // Read errors
+        if (n < 0) {
+            // If read was interrupted by a signal, retry
+            if (errno == EINTR) continue;
+            // Otherwise report error
+            fprintf(stderr, "ERROR: Read(%s): %s\n", dev, strerror(errno));
+            break;
+        }
+        if (n == 0) {
+            // TIMEOUT (no data for 0.1s)
+            continue;
+        }
+
+        // N-bytes received
+        len += (size_t)n;
+
+        // Parse messages
+        size_t i = 0;
+        while (len - i >= FRAME_LEN) {
+            while (i < len && buf[i] != FRAME_START) i++; // Find the start of a message
+            if (len - i < FRAME_LEN) break; // Stop parsing if not enough bytes in the buffer
+
+            // Verify the payload length
+            if (buf[i+1] != PAYLOAD_LEN) {
+                i++;
+                continue;
+            }
+
+            // Verify the checksum
+            uint8_t calc = sum_bytes(&buf[i], 1 + 1 + PAYLOAD_LEN);
+            uint8_t rxcs = buf[i + 1 + 1 + PAYLOAD_LEN];
+            if (calc != rxcs) { 
+                i++;
+                continue;
+            }
+
+            // Parse payload
+            const uint8_t* pld = &buf[i+2];
+            InputPacket pkt;
+            for (int k = 0; k < 8; k++) pkt.a[k] = rd_u16le(pld + k*2);
+            pkt.buttons = pld[16];
+
+            // Handle message
+            message_handler(&pkt);
+
+            i += FRAME_LEN;
+        }
+
+        // Move bytes to the beginning of the buffer
+        if (i > 0) {
+            size_t rest = len - i;
+            if (rest) memmove(buf, buf + i, rest);
+            len = rest;
+        }
+
+        // Reset the buffer if failed to find a message
+        if (len > sizeof(buf) - FRAME_LEN) len = 0;
+    }
+
+    close(fd); // Close the serial
+    return (void*)(intptr_t)0;
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">motion.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;stdint.h&gt;
+#include &lt;math.h&gt;
+
+#include "vector.h"
+#include "servo.h"
+
+// Leg dimensions [mm]
+#define L_COXA       48.0f   // Coxa length
+#define L_FEMUR      75.0f   // Femur length
+#define L_TIBIA     112.0f   // Tibia length
+#define BASE_RADIUS  78.0f   // Distance from center to coxa joint
+
+#define ALPHA0 (30.0f * (float)M_PI / 180.0f) // Leg 0 angle offset [rad]
+
+// Default foot position [mm]
+#define DEFAULT_DISTANCE    210.0f
+#define DEFAULT_HEIGHT      -80.0f
+
+// Initial foot position [mm]
+#define INITIAL_DISTANCE 186.0f
+#define INITIAL_HEIGHT -5.0f
+
+#define GROUND_HEIGHT -28.0f
+
+// Converts radians to degrees
+#define RAD2DEG(x) ((x) * (180.0f / (float)M_PI))
+
+void setup_motion(void); // Set default offsets, get leg anchors
+
+void stand_up(void); // Move legs to default position
+void sit_down(void); // Return legs to initial positions
+
+// Set, change or get base (body) offset and orientation
+void set_base_offset(Vector3 xyz_offset, Vector3 rpy_offset);
+void change_base_offset(Vector3 xyz_offset, Vector3 rpy_offset);
+void get_base_offset(Vector3 *xyz_offset, Vector3 *rpy_offset);
+
+void get_legs_anchor(void); // Get legs anchor positions
+
+void inverse_kinematics(void); // Compute inverse kinematics and set target angles for all legs
+void set_initial_foot_targets(void); // Set target leg positions to initial
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">motion.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#define _POSIX_C_SOURCE 200809L
+#define _DEFAULT_SOURCE // usleep
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;stdbool.h&gt;
+
+#include "motion.h"
+#include "mathUtils.h"
+#include "servo.h"
+#include "vector.h"
+#include "animation.h"
+
+//----------------------------------------------------------
+
+// Default offsets
+const float default_base_offset_x = 0.0f; // Base x offset (translation) [mm]
+const float default_base_offset_y = 0.0f; // Base y offset (translation) [mm]
+const float default_base_offset_z = 0.0f; // Base z offset (translation) [mm]
+
+const float default_roll = 0.0f;  // Roll [rad]
+const float default_pitch = 0.0f;  // Pitch [rad]
+const float default_yaw = 0.0f;  // Yaw [rad]
+
+//----------------------------------------------------------
+
+// Leg anchor positions and angles
+static LegAnchor leg_anchor[NUM_OF_LEGS];
+
+// For storing current offsets
+static float base_offset_x;
+static float base_offset_y;
+static float base_offset_z;
+
+static float roll;
+static float pitch;
+static float yaw;
+
+// Sets target for all legs in distance r and height z
+static inline Vector3 default_target_for_leg(int leg, float r, float z) {
+    const float alpha_offset = leg_anchor[leg].alpha;
+    const float x = r * cosf(alpha_offset);
+    const float y = r * sinf(alpha_offset);
+    return Vector3_create(x, y, z);
+}
+
+// Set initial foot target positions (relative to body center)
+void set_initial_foot_targets(void)
+{
+    for (int leg = 0; leg < NUM_OF_LEGS; ++leg) {
+        const float alpha_offset = leg_anchor[leg].alpha;
+        const float r = INITIAL_DISTANCE;
+        const float x = r * cosf(alpha_offset);
+        const float y = r * sinf(alpha_offset);
+        const float z = INITIAL_HEIGHT;
+
+        leg_position[leg].target_position = Vector3_create(x, y, z);
+        leg_position[leg].current_position = Vector3_create(x, y, z);
+    }
+}
+
+void setup_motion(void) {
+    // Reset offsets
+    base_offset_x = default_base_offset_x;
+    base_offset_y = default_base_offset_y;
+    base_offset_z = default_base_offset_z;
+    roll  = default_roll;
+    pitch = default_pitch;
+    yaw   = default_yaw;
+
+    // Get leg anchor point
+    get_legs_anchor();
+
+    // Get default (idle standing) positions for legs
+    for (int leg = 0; leg < NUM_OF_LEGS; ++leg) {
+        const float alpha_offset = leg_anchor[leg].alpha;
+        const float r = DEFAULT_DISTANCE;
+        const float x = r * cosf(alpha_offset);
+        const float y = r * sinf(alpha_offset);
+
+        default_leg_position[leg].target_position = Vector3_create(x, y, DEFAULT_HEIGHT);
+    }
+
+    // Enable all servos
+    servos_enable();
+
+    // Mov legs to initial positions
+    set_initial_foot_targets();
+    inverse_kinematics();
+    move_servos();         
+
+    usleep(1000000); // sleep to let servos get to position
+}
+
+void sit_down(void) {
+    usleep(100000);
+
+    // Move legs to the ground
+    Vector3 end1[NUM_OF_LEGS];
+    for (int l = 0; l < NUM_OF_LEGS; ++l) {
+        end1[l] = Vector3_create(leg_position[l].target_position.x, leg_position[l].target_position.y, GROUND_HEIGHT);
+    }
+    interpolate_legs_and_offsets(end1);
+
+    usleep(100000);
+
+    // Move legs to initial position
+    Vector3 end2[NUM_OF_LEGS];
+    for (int l = 0; l < NUM_OF_LEGS; ++l) {
+        end2[l] = default_target_for_leg(l, INITIAL_DISTANCE, INITIAL_HEIGHT);
+    }
+    interpolate_legs_and_offsets(end2);
+
+    printf("INFO: Sitting down finished.\n");
+    usleep(100000);
+}
+
+void stand_up(void) {
+    usleep(100000);
+
+    // Move legs to the ground
+    Vector3 end1[NUM_OF_LEGS];
+    for (int l = 0; l < NUM_OF_LEGS; ++l) {
+        end1[l] = default_target_for_leg(l, DEFAULT_DISTANCE, GROUND_HEIGHT);
+    }
+    interpolate_legs_and_offsets(end1);
+
+    usleep(100000);
+
+    // Move legs to default positions
+    Vector3 end2[NUM_OF_LEGS];
+    for (int l = 0; l < NUM_OF_LEGS; ++l) {
+        end2[l] = default_target_for_leg(l, DEFAULT_DISTANCE, DEFAULT_HEIGHT);
+    }
+    interpolate_legs_and_offsets(end2);
+
+    printf("INFO: Standing up finished.\n");
+    usleep(100000);
+}
+
+// Prints target positions for all legs and joints
+void print_target_positions(void) {
+    for (int leg = 0; leg < NUM_OF_LEGS; ++leg) {
+        const Vector3 p = leg_position[leg].target_position;
+        printf("Leg %d: (%.2f, %.2f, %.2f)\n", leg, p.x, p.y, p.z);
+    }
+}
+
+// Prints target angles for all legs and joints
+void print_target_angles(void) {
+    for (int leg = 0; leg < NUM_OF_LEGS; ++leg) {
+        for (int joint = 0; joint < JOINTS_PER_LEG; ++joint) {
+            const float angle = servo_angle[leg][joint].target_angle;
+            printf("Leg %d, Joint %d: %.2f°\n", leg, joint, angle);
+        }
+    }
+}
+
+// Translate by (-tx,-ty,-tz) and rotate point by -yaw (psi), -pitch (theta), -roll(phi)
+static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, const float z0,
+                                                const float t_x, const float t_y, const float t_z,
+                                                const float cos_phi, const float sin_phi,
+                                                const float cos_theta,  const float sin_theta,
+                                                const float cos_psi, const float sin_psi,
+                                                float *x_ee, float *y_ee, float *z_ee)
+{
+    // Translate (x0 - t_x, atd.)
+    const float dx = x0 - t_x;
+    const float dy = y0 - t_y;
+    const float dz = z0 - t_z;
+
+    // Rotate around z (-yaw / -psi)
+    const float x1 =  dx*cos_psi + dy*sin_psi;
+    const float y1 = -dx*sin_psi + dy*cos_psi;
+    const float z1 =  dz;
+
+    // Rotate around y (-pitch / -theta)
+    const float x2 =  x1*cos_theta - z1*sin_theta;
+    const float y2 =  y1;
+    const float z2 =  x1*sin_theta + z1*cos_theta;
+
+    // Rotate around x (-roll / -phi)
+    *x_ee =  x2;
+    *y_ee =  y2*cos_phi + z2*sin_phi;
+    *z_ee =  y2*sin_phi - z2*cos_phi;
+}
+
+// Compute leg anchor positions to body and angle from x axis
+void get_legs_anchor() {
+    for (int leg = 0; leg < NUM_OF_LEGS; ++leg) {
+        leg_anchor[leg].alpha = ALPHA0 + (float)M_PI * (float)leg / 3.0f; // i * 60°
+        leg_anchor[leg].x = BASE_RADIUS * cosf(leg_anchor[leg].alpha);
+        leg_anchor[leg].y = BASE_RADIUS * sinf(leg_anchor[leg].alpha);
+    }
+}
+
+// Inverse kinematics for one leg
+static bool ik_angles_from_body_target(float x_ee, float y_ee, float z_ee, int leg,
+                                       float *theta_coxa_out, float *theta_femur_out, float *theta_tibia_out)
+{
+    // Get leg anchor point and angle
+    float x_c = leg_anchor[leg].x;
+    float y_c = leg_anchor[leg].y;
+    float alpha_offset = leg_anchor[leg].alpha;
+
+    // Compute coxa angle
+    const float delta_x = x_ee - x_c;
+    const float delta_y = y_ee - y_c;
+    float theta_coxa = atan2f(delta_y, delta_x) - alpha_offset;
+    theta_coxa = remainderf(theta_coxa, 2.0f*(float)M_PI); // (-pi, pi]
+
+    // Projection
+    float rho = hypotf(delta_x, delta_y) - L_COXA;
+    float R = hypotf(rho, z_ee);
+
+    // Where the robot can reach
+    const float R_min = fabsf(L_FEMUR - L_TIBIA);
+    const float R_max = (L_FEMUR + L_TIBIA);
+
+    // Can it be reached?
+    if (R < R_min || R > R_max || rho < 0.0f) {
+        return false;
+    }
+
+    // Compute tibia angle
+    float cos_gamma = (L_FEMUR*L_FEMUR + L_TIBIA*L_TIBIA - R*R) / (2.0f*L_FEMUR*L_TIBIA);
+    cos_gamma = clamp(cos_gamma, -1.0f, 1.0f);
+    float gamma = acosf(cos_gamma);
+    float theta_tibia = (float)M_PI - gamma;
+
+    const float theta_offset = TIBIA_ANGLE * (float)M_PI / 180.0f; // Convert tibia angle offset to radians
+    
+    theta_tibia -= theta_offset; // Apply tibia angle offset
+
+    // Compute femur angle
+    float cos_alpha = (L_FEMUR*L_FEMUR + R*R - L_TIBIA*L_TIBIA) / (2.0f*L_FEMUR * fmaxf(R, 1e-9f));
+    cos_alpha = clamp(cos_alpha, -1.0f, 1.0f);
+    float alpha = acosf(cos_alpha);
+    
+    float beta = atan2f(z_ee, rho);
+    float theta_femur = alpha - beta;
+
+    *theta_coxa_out = theta_coxa;
+    *theta_femur_out = theta_femur;
+    *theta_tibia_out = theta_tibia;
+    return true;
+}
+
+// Set base offset and orientation
+void set_base_offset(Vector3 xyz_offset, Vector3 rpy_offset) {
+    base_offset_x = xyz_offset.x;
+    base_offset_y = xyz_offset.y;
+    base_offset_z = xyz_offset.z;
+
+    roll  = rpy_offset.x;
+    pitch = rpy_offset.y;
+    yaw   = rpy_offset.z;
+}
+
+// Change base offset and orientation
+void change_base_offset(Vector3 xyz_offset, Vector3 rpy_offset) {
+    base_offset_x += xyz_offset.x;
+    base_offset_y += xyz_offset.y;
+    base_offset_z += xyz_offset.z;
+
+    roll  += rpy_offset.x;
+    pitch += rpy_offset.y;
+    yaw   += rpy_offset.z;
+}
+
+// Get base offset and orientation
+void get_base_offset(Vector3 *xyz_offset, Vector3 *rpy_offset) {
+    *xyz_offset = Vector3_create(base_offset_x, base_offset_y, base_offset_z);
+    *rpy_offset = Vector3_create(roll, pitch, yaw);
+}
+
+// Computes inverse kinematics and sets target angles for all legs
+void inverse_kinematics(void)
+{
+    // Precompute sines and cosines for rotation
+    const float cos_phi = cosf(roll),   sin_phi = sinf(roll);
+    const float cos_theta  = cosf(pitch), sin_theta  = sinf(pitch);
+    const float cos_psi = cosf(yaw),    sin_psi = sinf(yaw);
+
+    for (int leg = 0; leg < NUM_OF_LEGS; ++leg) {
+        // Get the target foot position in body frame
+        const Vector3 p0 = leg_position[leg].target_position;
+
+        // Transform to body frame - inverse rotation + inverse translation
+        float x_ee, y_ee, z_ee;
+        rotate_neg_rpy_and_translate(p0.x, p0.y, p0.z,
+                                     base_offset_x, base_offset_y, base_offset_z,
+                                     cos_phi, sin_phi, cos_theta, sin_theta, cos_psi, sin_psi,
+                                     &x_ee, &y_ee, &z_ee);
+
+        // Inverse kinematics
+        float theta_coxa, theta_femur, theta_tibia;
+        const bool ok = ik_angles_from_body_target(x_ee, y_ee, z_ee, leg, &theta_coxa, &theta_femur, &theta_tibia);
+
+        // Send warning if leg cant reach target point
+        if (!ok) {
+            fprintf(stderr, "WARNING: Leg %d cant reach target (%.1f, %.1f, %.1f).\n", leg, p0.x, p0.y, p0.z);
+            continue;
+        }
+
+        // Set target angles in degrees
+        const float theta_deg[3] = { RAD2DEG(theta_coxa), RAD2DEG(theta_femur), RAD2DEG(theta_tibia) };
+        for (int j = 0; j < 3; ++j) {
+            servo_angle[leg][j].target_angle = theta_deg[j];
+        }
+    }
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">servo.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;stdbool.h&gt;
+#include &lt;stdint.h&gt;
+
+#include "vector.h"
+
+#define NUM_OF_LEGS 6
+#define JOINTS_PER_LEG 3
+
+// Angle calibration window for linear mapping
+#define CALIBRATION_MIN_ANGLE 45.0f
+#define CALIBRATION_MAX_ANGLE 135.0f 
+
+#define OE_PIN 7  //PCA9685 OE pin
+
+// Struct for servo configuration
+typedef struct {
+    uint8_t  pca_addr;
+    uint8_t  channel;
+    float    min_angle;
+    float    max_angle;
+    bool     inverted;
+    float    angle_offset;
+} ServoConfig;
+
+// Struct for PWM calibration
+typedef struct {
+    int pwm_0;
+    int pwm_45;
+    int pwm_90;
+    int pwm_135;
+    int pwm_180;
+} ServoCalibration;
+
+// Struct for servo angles
+typedef struct {
+    float current_angle;
+    float target_angle; 
+} ServoAngle;
+
+// Struct for servo positions
+typedef struct {
+    Vector3 current_position;
+    Vector3 target_position;
+} LegPosition;
+
+// Struct for leg anchor (to the body) positions
+typedef struct {
+    float x;
+    float y;
+    float alpha;
+} LegAnchor;
+
+extern const ServoConfig servo_config[NUM_OF_LEGS][JOINTS_PER_LEG]; // Servo configuration
+extern ServoAngle servo_angle[NUM_OF_LEGS][JOINTS_PER_LEG]; // Current and target angles [deg]
+extern LegPosition leg_position[NUM_OF_LEGS]; // Target leg positions (x, y, z) [mm]
+extern LegPosition default_leg_position[NUM_OF_LEGS]; // Default leg positions (x, y, z) [mm]
+
+int servo_init(int fd_r, int fd_l); // Initialize PCA9685 and disable servos
+
+void servos_enable(void); // Enable all servos
+void servos_disable(void); // Disable all servos
+void servos_safe_shutdown(void); // Shuts down servos without final twitch
+
+void move_servos(void); // Moves all servos to their target angles
+void move_leg(int l); // Moves servos of one leg    
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">servo.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#define _DEFAULT_SOURCE
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;wiringPi.h&gt;
+#include &lt;wiringPiI2C.h&gt;
+
+#include "servo.h"
+#include "pca9685.h"
+#include "vector.h"
+#include "motion.h"
+#include "mathUtils.h"
+
+// Prescale (50 Hz from 25 MHz)
+#define PRESCALE_CONST_R 121
+#define PRESCALE_CONST_L 121
+
+// Number of calibration points
+#define CAL_POINTS 5
+
+// File descriptors for PCA9685
+static int s_fd_r = -1;
+static int s_fd_l = -1;
+
+// Cache last written PWM to avoid redundant I2C writes
+static int prev_pwm[NUM_OF_LEGS][JOINTS_PER_LEG];
+
+// Servo configuration
+// PCA9685 address, channel, min angle, max angle, inverted, angle offset
+const ServoConfig servo_config[NUM_OF_LEGS][JOINTS_PER_LEG] = {
+    // Leg 0 - L1
+    {{0x40, 0, 45.0f, 145.0f, false, 90.0f}, //L11
+        {0x40, 1, -20.0f, 200.0f, true, 90.0f},  //L12
+        {0x40, 2, 27.0f, 200.0f, true, 0.0f}}, //L13
+
+    // Leg 1 - L2
+    {{0x40, 5, 35.0f, 145.0f, false, 90.0f}, //L21
+        {0x40, 6, -20.0f, 200.0f, true, 90.0f},  //L22
+        {0x40, 7, 27.0f, 200.0f, true, 0.0f}}, //L23
+
+    // Leg 2 - L3
+    {{0x40, 12, 35.0f, 135.0f, false, 90.0f}, //L31
+        {0x40, 13, -20.0f, 200.0f, true, 90.0f},  //L32
+        {0x40, 14, 27.0f, 200.0f, true, 0.0f}}, //L33
+
+    // Leg 3 - P3 
+    {{0x41, 3, 45.0f, 145.0f, false, 90.0f}, //P31
+        {0x41, 2, -20.0f, 200.0f, false, 90.0f}, //P32
+        {0x41, 1, 27.0f, 200.0f, false, 0.0f}}, //P33
+
+    // Leg 4 - P2
+    {{0x41, 10, 35.0f, 145.0f, false, 90.0f}, //P21
+        {0x41, 9, -20.0f, 200.0f, false, 90.0f},  //P22
+        {0x41, 8, 27.0f, 200.0f, false, 0.0f}}, //P23
+
+    // Leg 5 - P1 
+    {{0x41, 15, 35.0f, 135.0f, false, 90.0f}, //P11
+        {0x41, 14, -20.0f, 200.0f, false, 90.0f}, //P12
+        {0x41, 13, 27.0f, 200.0f, false, 0.0f}}  //P13
+};
+
+// Calibration angles [deg]
+static const float kCalAnglesDeg[5] = {0.f, 45.f, 90.f, 135.f, 180.f};
+
+// Servo calibration PWM values at 0, 45, 90, 135, 180 deg
+static const float servo_calibration[NUM_OF_LEGS][JOINTS_PER_LEG][CAL_POINTS] = {
+    // Leg 0 - L1
+    {
+        {119.f, 208.f, 307.f, 403.f, 504.f}, // L11
+        {114.f, 212.f, 315.f, 420.f, 521.f}, // L12
+        {109.f, 205.f, 308.f, 406.f, 501.f}  // L13
+    },
+
+    // Leg 1 - L2
+    {
+        {115.f, 210.f, 311.f, 411.f, 508.f}, // L21
+        {104.f, 206.f, 313.f, 417.f, 514.f}, // L22
+        {112.f, 206.f, 310.f, 414.f, 510.f}  // L23
+    },
+
+    // Leg 2 - L3
+    {
+        {110.f, 205.f, 310.f, 415.f, 511.f}, // L31
+        {104.f, 206.f, 315.f, 418.f, 515.f}, // L32
+        { 98.f, 191.f, 293.f, 397.f, 493.f}  // L33
+    },
+
+    // Leg 3 - P3
+    {
+        {109.f, 201.f, 299.f, 395.f, 490.f}, // P31
+        { 96.f, 196.f, 298.f, 400.f, 496.f}, // P32
+        {104.f, 197.f, 293.f, 390.f, 490.f}  // P33
+    },
+
+    // Leg 4 - P2
+    {
+        {106.f, 200.f, 300.f, 398.f, 494.f}, // P21
+        {111.f, 211.f, 310.f, 412.f, 508.f}, // P22
+        {102.f, 195.f, 295.f, 394.f, 489.f}  // P23
+    },
+
+    // Leg 5 - P1
+    {
+        {111.f, 203.f, 300.f, 399.f, 494.f}, // P11
+        {100.f, 200.f, 301.f, 402.f, 500.f}, // P12
+        {118.f, 207.f, 307.f, 403.f, 502.f}  // P13
+    }
+};
+
+ServoAngle servo_angle[NUM_OF_LEGS][JOINTS_PER_LEG]; // Current and target servo positions
+LegPosition leg_position[NUM_OF_LEGS]; // Target leg end effector positions
+LegPosition default_leg_position[NUM_OF_LEGS]; // Default leg end effector positions
+
+// Map angle to [pwm_min, pwm_max] linearly
+static inline int lin_angle_to_pwm(float angle, int pwm_min, int pwm_max) {
+    const float span = (float)(pwm_max - pwm_min);
+    const float t = (angle - CALIBRATION_MIN_ANGLE) / (CALIBRATION_MAX_ANGLE - CALIBRATION_MIN_ANGLE);
+    const float v = (float)pwm_min + t * span;
+    return (int)lroundf(v);
+}
+
+// Map angle to [pwm_min, pwm_max] using all calibration values lineraly per partes
+static inline int angle_to_pwm(float angle, int leg, int joint) {
+    if (angle == 0.0f)   return (int)lroundf(servo_calibration[leg][joint][0]);
+    if (angle == 180.0f) return (int)lroundf(servo_calibration[leg][joint][4]);
+
+    int i = (int)(angle / 45.0f);
+    if (i < 0) i = 0;
+    if (i > 3) i = 3;
+    float t = (angle - kCalAnglesDeg[i]) / 45.0f;
+
+    const float *p = servo_calibration[leg][joint];
+    float v = lerp(p[i], p[i+1], t);
+    return (int)lroundf(v);
+}
+
+// Initialize PCA9685 and disable servos
+int servo_init(int fd_r, int fd_l) {
+    s_fd_r = fd_r;
+    s_fd_l = fd_l;
+
+    pinMode(OE_PIN, OUTPUT);
+    digitalWrite(OE_PIN, HIGH);
+    
+    // Reset cache
+    for (int l = 0; l < NUM_OF_LEGS; ++l)
+        for (int j = 0; j < JOINTS_PER_LEG; ++j)
+            prev_pwm[l][j] = -1;
+
+    if (pca9685_init(s_fd_r, PRESCALE_CONST_R) < 0 || pca9685_init(s_fd_l, PRESCALE_CONST_L) < 0) {
+        return -1;
+    }
+
+    return 0;
+}
+
+// Enable all servos
+inline void servos_enable(void)  {
+    digitalWrite(OE_PIN, LOW);
+}
+
+// Disable all servos
+inline void servos_disable(void) { 
+    digitalWrite(OE_PIN, HIGH); 
+}
+
+//
+void servos_safe_shutdown(void) {
+    // FULL OFF (no pulse)
+    for (int l = 0; l < NUM_OF_LEGS; ++l) {
+        for (int j = 0; j < JOINTS_PER_LEG; ++j) {
+            const ServoConfig *cfg = &servo_config[l][j];
+            int fd = (cfg->pca_addr == PCA_ADDR_R) ? s_fd_r : s_fd_l;
+            pca9685_channel_full_off(fd, cfg->channel);
+        }
+    }
+
+    // Sleep
+    pca9685_sleep(s_fd_r);
+    pca9685_sleep(s_fd_l);
+
+    // Disable all servos
+    servos_disable();
+}
+
+// Sets angle to servo
+static inline void set_servo_angle(int l, int j) {
+    const ServoConfig *cfg = &servo_config[l][j];
+    float a = servo_angle[l][j].target_angle + (float)cfg->angle_offset;
+    if (cfg->inverted) {
+        a = 180.0f - a;
+    }
+
+    // Check servo angle limits
+    if (a < cfg->min_angle || a > cfg->max_angle) {
+        //printf("WARNING: Servo limit reached. Leg: %d, Joint: %d, Angle: %.1f\n", l, j, a);
+        a = clamp(a, cfg->min_angle, cfg->max_angle);
+    }
+
+    int pwm = angle_to_pwm(a, l, j);
+    int fd = (cfg->pca_addr == PCA_ADDR_R) ? s_fd_r : s_fd_l;
+
+    // Set pwm only if value changed
+    if (pwm != prev_pwm[l][j]) {
+        pca9685_set_pwm(fd, cfg->channel, 0, pwm);
+        prev_pwm[l][j] = pwm;
+    }
+}
+
+// Moves all servos to their target angles
+void move_servos(void) {
+    for (int l = 0; l < NUM_OF_LEGS; ++l) {
+        for (int j = 0; j < JOINTS_PER_LEG; ++j) {
+            set_servo_angle(l, j);
+        }
+    }
+}
+
+// Moves servos of one leg
+void move_leg(int l) {
+    for (int j = 0; j < JOINTS_PER_LEG; ++j) {
+        set_servo_angle(l, j);
+    }
+}    
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">PCA9685.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;stdint.h&gt;
+
+// PCA9685 I2C addresses
+#define PCA_ADDR_R  0x40
+#define PCA_ADDR_L  0x41
+
+int  pca9685_init(int fd, int prescale_val); // Initialize PCA9685
+
+// Write a single channel's ON/OFF 12-bit timings
+void pca9685_set_pwm(int fd, int channel, int on, int off);
+
+void pca9685_sleep(int fd); // Put PCA9685 to sleep
+void pca9685_wake(int fd); // Wake PCA9685 up from sleep
+void pca9685_channel_full_off(int fd, int channel); // Sets LEDx_OFF_H bit4 - FULL OFF
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">PCA9685.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#define _DEFAULT_SOURCE
+
+#include &lt;unistd.h&gt;
+#include &lt;wiringPiI2C.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+
+#include "pca9685.h"
+
+// registers
+enum { MODE1 = 0x00, MODE2 = 0x01, PRESCALE = 0xFE, LED0_ON_L = 0x06 };
+enum { MODE1_RESTART = 0x80, MODE1_AI = 0x20, MODE1_SLEEP = 0x10 };
+enum { MODE2_OCH = 0x08, MODE2_OUTDRV = 0x04 };
+
+// Initialize PCA9685
+int pca9685_init(int fd, int prescale_val) {
+    // MODE2: push-pull outputs + update on STOP for glitch-free multi-write
+    if (wiringPiI2CWriteReg8(fd, MODE2, MODE2_OUTDRV | MODE2_OCH) < 0) {
+        return -1;
+    }
+
+    // Sleep to allow prescale update
+    uint8_t mode1 = wiringPiI2CReadReg8(fd, MODE1);
+    if (wiringPiI2CWriteReg8(fd, MODE1, (mode1 & ~MODE1_RESTART) | MODE1_SLEEP) < 0) {
+        return -1;
+    }
+    usleep(500);
+
+    // Set frequency prescaler
+    if (wiringPiI2CWriteReg8(fd, PRESCALE, prescale_val) < 0) {
+        return -1;
+    }
+    usleep(500);
+
+    // Wake up, enable auto-increment
+    mode1 = (mode1 & ~MODE1_SLEEP) | MODE1_AI;
+    if (wiringPiI2CWriteReg8(fd, MODE1, mode1) < 0) {
+        return -1;
+    }
+    usleep(500);
+
+    // Restart to apply settings
+    if (wiringPiI2CWriteReg8(fd, MODE1, mode1 | MODE1_RESTART) < 0) {
+        return -1;
+    }
+    usleep(500);
+
+    return 0;
+}
+
+// Write a single channel's ON/OFF 12-bit timings
+void pca9685_set_pwm(int fd, int channel, int on, int off) {
+    int base = LED0_ON_L + 4 * channel;
+    
+    uint8_t buffer[5];
+    
+    buffer[0] = base;
+    buffer[1] = on & 0xFF;         // LEDx_ON_L
+    buffer[2] = (on >> 8) & 0x0F;  // LEDx_ON_H
+    buffer[3] = off & 0xFF;        // LEDx_OFF_L
+    buffer[4] = (off >> 8) & 0x0F; // LEDx_OFF_H
+
+    if (write(fd, buffer, 5) != 5) {
+        fprintf(stderr, "ERROR: I2C write failed for channel %d\n", channel);
+    }
+}
+
+// Put PCA9685 to sleep
+void pca9685_sleep(int fd) {
+    uint8_t mode1 = (uint8_t)wiringPiI2CReadReg8(fd, MODE1);
+    wiringPiI2CWriteReg8(fd, MODE1, mode1 | MODE1_SLEEP);
+}
+
+// Wake PCA9685 up from sleep
+void pca9685_wake(int fd) {
+    uint8_t mode1 = wiringPiI2CReadReg8(fd, MODE1);
+    mode1 = (mode1 & ~MODE1_SLEEP) | MODE1_AI;
+    wiringPiI2CWriteReg8(fd, MODE1, mode1);
+    usleep(500);
+    wiringPiI2CWriteReg8(fd, MODE1, mode1 | MODE1_RESTART);
+}
+
+// Sets LEDx_OFF_H bit4 (FULL OFF)
+void pca9685_channel_full_off(int fd, int channel) {
+    int base = LED0_ON_L + 4 * channel;
+    uint8_t buffer[5];
+    
+    buffer[0] = base;
+    buffer[1] = 0x00; // LEDx_ON_L
+    buffer[2] = 0x00; // LEDx_ON_H
+    buffer[3] = 0x00; // LEDx_OFF_L
+    buffer[4] = 0x10; // LEDx_OFF_H (bit 4 = FULL OFF)
+    
+    if (write(fd, buffer, 5) != 5) {
+        fprintf(stderr, "ERROR: I2C write failed for channel %d\n", channel);
+    }
+}    
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">animation.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;stdint.h&gt;
+#include "vector.h"
+#include "servo.h"
+
+uint64_t now_us(void); // Get current time in microseconds
+void sleep_until_us(uint64_t target_us); // Absolute sleep, retries on EINTR
+
+// Interpolates legs positions using polynom
+void interpolate_legs_and_offsets(const Vector3 end_targets[NUM_OF_LEGS]);
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">animation.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#define _POSIX_C_SOURCE 200809L
+#define _DEFAULT_SOURCE // usleep
+
+#include &lt;time.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;errno.h&gt;
+
+#include "animation.h"
+#include "motion.h"
+#include "vector.h"
+#include "mathUtils.h"
+#include "shared.h"
+
+// Animation parameters
+const double animation_dur = 1.5; // [s]
+static const int animation_pol_deg = 7;
+
+// Get current time in microseconds
+uint64_t now_us(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (uint64_t)ts.tv_sec * 1000000ull + (uint64_t)(ts.tv_nsec / 1000ull);
+}
+
+// Absolute sleep, retries on EINTR
+void sleep_until_us(uint64_t target_us) {
+    struct timespec ts;
+    ts.tv_sec  = (time_t)(target_us / 1000000ull);
+    ts.tv_nsec = (long)((target_us % 1000000ull) * 1000ull);
+    for (;;) {
+        int rc = clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &ts, NULL);
+        if (rc == 0) break;
+        if (rc != EINTR) break; // Interrupted by signal - exit
+    }
+}
+
+void interpolate_legs_and_offsets(const Vector3 end_targets[NUM_OF_LEGS]) {
+    // Timing
+    const int SERVO_UPDATE_HZ = 50;
+    const uint64_t period_us  = 1000000ull / SERVO_UPDATE_HZ;
+    uint64_t t0 = now_us();
+    uint64_t next_tick = t0 + period_us;
+    float t_normalised = 0.0f;
+
+    // Get starting positions
+    Vector3 start[NUM_OF_LEGS];
+    for (int l = 0; l < NUM_OF_LEGS; ++l) {
+        start[l] = leg_position[l].target_position;
+    }
+
+    while (t_normalised < 1.0f) {
+        uint64_t now = now_us();
+        t_normalised = (float)((now - t0) * 1e-6f) / (float)animation_dur;
+        if (t_normalised > 1.0f) t_normalised = 1.0f;
+
+        // Get new leg positions
+        for (int l = 0; l < NUM_OF_LEGS; ++l) {
+            Vector3 xyz = Vector3_create(
+                smooth_interpolation(start[l].x, end_targets[l].x, t_normalised, animation_pol_deg),
+                smooth_interpolation(start[l].y, end_targets[l].y, t_normalised, animation_pol_deg),
+                smooth_interpolation(start[l].z, end_targets[l].z, t_normalised, animation_pol_deg)
+            );
+            leg_position[l].target_position = xyz;
+            leg_position[l].current_position = xyz;
+        }
+
+        // Compute IK and move servos
+        inverse_kinematics();
+        move_servos();
+
+        // Timing
+        if (now < next_tick) {
+            sleep_until_us(next_tick);
+            next_tick += period_us;
+        } else {
+            uint64_t behind = now - next_tick;
+            next_tick += ((behind / period_us) + 1) * period_us;
+        }
+    }
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">mathUtils.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+#include &lt;math.h&gt;
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+// Linear interpolation
+float lerp(float a, float b, float t);
+
+// Constrain value between min and max
+float clamp(float value, float min, float max);
+
+// Evaluate polynomial using Horner's method
+float poly_horner(const float *coeffs, int deg, float x);
+
+// Interpolates between start and end using polynomial
+float smooth_interpolation(float start, float end, float t, int deg);
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">mathUtils.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+
+#include "mathUtils.h"
+
+// 5th degree polynomial
+static const float polynom5[] = {0.0f, 0.0f, 0.0f, 10.0f, -15.0f, 6.0f};
+static const int polynom5_deg = sizeof(polynom5)/sizeof(polynom5[0]) - 1;
+
+// 7th degree polynomial
+static const float polynom7[] = {0.0f, 0.0f, 0.0f, 0.0f, 35.0f, -84.0f, 70.0f, -20.0f};
+static const int polynom7_deg = sizeof(polynom7)/sizeof(polynom7[0]) - 1;
+
+// Linear interpolation
+float lerp(float a, float b, float t) {
+    return a + (b - a) * t;
+}
+
+// Constrain value between min and max
+float clamp(float value, float min, float max) {
+    return fmaxf(min, fminf(max, value));
+}
+
+// Evaluate polynomial using Horner's method
+float poly_horner(const float *coeffs, int deg, float x) {
+    float result = 0.0f;
+    for (int i = deg; i >= 0; --i) {
+        result = fmaf(result, x, coeffs[i]);
+    }
+    return result;
+}
+
+// Interpolates between start and end using polynomial easing
+float smooth_interpolation(float start, float end, float t, int deg) {
+    float t_ease;
+
+    switch (deg) {
+        case 7:
+            t_ease = poly_horner(polynom7, polynom7_deg, t);
+            break;
+        case 5:
+            t_ease = poly_horner(polynom5, polynom5_deg, t);
+            break;
+        default:
+            fprintf(stderr, "ERROR: %dth degree polynomial not supported.\n", deg);
+            exit(-1);
+    }
+
+    t_ease = clamp(t_ease, 0.0f, 1.0f);
+    return lerp(start, end, t_ease);
+}        
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">vector.h</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#pragma once
+
+typedef struct {
+    float x;
+    float y;
+    float z;
+} Vector3;
+
+Vector3 Vector3_create(float x, float y, float z); // Creates vector
+Vector3 Vector3_add(Vector3 a, Vector3 b); // Adds two vectors
+Vector3 Vector3_sub(Vector3 a, Vector3 b); // Subtracts vector b from a
+Vector3 Vector3_scale(Vector3 v, float s); // Scales vector by a scalar
+</code></pre>
+
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">vector.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-c">#include "vector.h"
+
+// Creates Vector3
+Vector3 Vector3_create(float x, float y, float z) {
+    Vector3 v = {x, y, z};
+    return v;
+}
+
+// Adds two vectors
+Vector3 Vector3_add(Vector3 a, Vector3 b) {
+    return Vector3_create(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+
+// Subtracts vector b from a
+Vector3 Vector3_sub(Vector3 a, Vector3 b) {
+    return Vector3_create(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+
+// Scales vector by a scalar
+Vector3 Vector3_scale(Vector3 v, float s) {
+    return Vector3_create(v.x * s, v.y * s, v.z * s);
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <p>
+                <strong>Kód dálkového ovládání:</strong>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">HexapodRemoteControl.ino</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-cpp">#include &lt;U8g2lib.h&gt; // OLED
+#include &lt;Wire.h&gt;    // I2C
+
+// Display object
+U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+
+// Button pins
+const int pinSW1 = 27;
+const int pinSW2 = 5;
+const int pinSW3 = 3;
+
+// Potentiometer pins
+const int pinRV1 = A0;
+const int pinRV2 = A1;
+const int pinRV3 = A14;
+const int pinRV4 = A12;
+
+// Left joystick
+const int joy1X = A10;
+const int joy1Y = A8;
+const int joy1Btn = A6;
+
+// Right joystick
+const int joy2X = A7;
+const int joy2Y = A5;
+const int joy2Btn = A3;
+
+// Timing
+constexpr float FREQ = 50.0f;
+volatile bool sample_due = false;
+
+const float EMA_ALPHA = 0.30f; 
+
+// Setup Timer1 for CTC mode
+void setupTimer1CTC(float hz) {
+    const uint16_t presc_vals[5] = {1,8,64,256,1024};
+    const uint16_t presc_bits[5] = {_BV(CS10), _BV(CS11), _BV(CS11)|_BV(CS10), _BV(CS12), _BV(CS12)|_BV(CS10)};
+
+    uint16_t chosen = 0; uint32_t ocr = 0;
+    for(int i = 0;i < 5; i++){
+    ocr = (uint32_t)(F_CPU/(presc_vals[i]*hz)) - 1U;
+    if (ocr <= 65535U && ocr >= 1U) {
+        chosen = presc_bits[i]; 
+        break;
+    }
+    }
+
+    if (!chosen) {
+    uint32_t t = (uint32_t)(F_CPU/(1024.0*hz)) - 1U;
+    if (t > 65535U) t = 65535U; 
+    ocr = t; 
+    chosen = _BV(CS12)| _BV(CS10);
+    }
+
+    noInterrupts(); 
+    TCCR1A = 0;
+    TCCR1B = 0; 
+    TCNT1 = 0; 
+    OCR1A = (uint16_t)ocr; 
+    TCCR1B |= _BV(WGM12) | chosen; 
+    TIMSK1 |= _BV(OCIE1A); 
+    interrupts();
+}
+
+// Timer interrupt
+ISR(TIMER1_COMPA_vect) {
+    sample_due = true;
+}
+
+// Send data frame
+static inline void sendFrameHW(const uint16_t v[8], uint8_t buttons) {
+    const uint8_t LEN = 8*2 + 1; // Payload length
+    uint8_t sum = 0; // Checksum
+
+    auto put = [&](uint8_t b ){
+    Serial3.write(b); 
+    sum = (uint8_t)(sum + b); 
+    }; 
+
+    put(0xAA); // Start byte
+    put(LEN);  // Data length
+
+    for (int i = 0; i < 8; i++) { 
+    put((uint8_t)(v[i] & 0xFF)); // Low byte
+    put((uint8_t)(v[i] >> 8));   // High byte
+    }
+
+    put(buttons); 
+    
+    Serial3.write(sum); 
+}
+
+void setup() {
+    Serial.begin(115200);
+    Serial3.begin(115200);
+    delay(50);
+
+    pinMode(pinSW1, INPUT_PULLUP);
+    pinMode(pinSW2, INPUT_PULLUP);
+    pinMode(pinSW3, INPUT_PULLUP);
+    pinMode(joy1Btn, INPUT_PULLUP);
+    pinMode(joy2Btn, INPUT_PULLUP);
+
+    u8g2.setBusClock(400000); // Fast I2C
+    u8g2.begin();            
+
+    setupTimer1CTC(FREQ); 
+}
+
+void loop() {
+    // Store display values between cycles
+    static int drawJ1X = 20, drawJ1Y = 32, drawJ2X = 106, drawJ2Y = 32;
+    static int h1 = 0, h2 = 0, h3 = 0, h4 = 0;
+    static bool btn1 = false, btn2 = false, btn3 = false;
+    static bool j1Btn = false, j2Btn = false;
+    
+    // Store smoothed potentiometer values
+    static float smoothRV1 = -1.0f;
+    static float smoothRV2 = -1.0f;
+    static float smoothRV3 = -1.0f;
+    static float smoothRV4 = -1.0f;
+
+    bool due;
+    noInterrupts();
+    due = sample_due; 
+    if (due) sample_due = false; // Reset if true
+    interrupts();
+
+    // Read inputs and send using Bluetooth
+    if (due) {
+    // Read values
+    int rawRV1 = analogRead(pinRV1);
+    int rawRV2 = analogRead(pinRV2);
+    int rawRV3 = 1023 - analogRead(pinRV3); 
+    int rawRV4 = analogRead(pinRV4);
+
+    // Initialize first read
+    if (smoothRV1 < 0.0f) {
+        smoothRV1 = rawRV1;
+        smoothRV2 = rawRV2;
+        smoothRV3 = rawRV3;
+        smoothRV4 = rawRV4;
+    } else {
+        // EMA smoothing
+        smoothRV1 = (EMA_ALPHA * rawRV1) + ((1.0f - EMA_ALPHA) * smoothRV1);
+        smoothRV2 = (EMA_ALPHA * rawRV2) + ((1.0f - EMA_ALPHA) * smoothRV2);
+        smoothRV3 = (EMA_ALPHA * rawRV3) + ((1.0f - EMA_ALPHA) * smoothRV3);
+        smoothRV4 = (EMA_ALPHA * rawRV4) + ((1.0f - EMA_ALPHA) * smoothRV4);
+    }
+
+    // Convert to integers
+    unsigned int valRV1 = (unsigned int)smoothRV1;
+    unsigned int valRV2 = (unsigned int)smoothRV2;
+    unsigned int valRV3 = (unsigned int)smoothRV3;
+    unsigned int valRV4 = (unsigned int)smoothRV4;
+
+    // Convert values to pixels
+    h1 = (valRV1 * 36) >> 10;
+    h2 = (valRV2 * 36) >> 10;
+    h3 = (valRV3 * 36) >> 10;
+    h4 = (valRV4 * 36) >> 10;
+
+    // Read button presses
+    btn1 = !digitalRead(pinSW1);
+    btn2 = !digitalRead(pinSW2);
+    btn3 = !digitalRead(pinSW3);
+    j1Btn = !digitalRead(joy1Btn);
+    j2Btn = !digitalRead(joy2Btn);
+
+    // Invert Joy 1 axes
+    long dX1 = 512 - analogRead(joy1X); 
+    long dY1 = 512 - analogRead(joy1Y);
+    long distSq1 = dX1 * dX1 + dY1 * dY1; 
+    
+    if (distSq1 > 40000L) j1Btn = false;
+    if (distSq1 > 262144L) { 
+        long dist1 = sqrt(distSq1);
+        dX1 = (dX1 * 512) / dist1;
+        dY1 = (dY1 * 512) / dist1;
+    }
+    
+    drawJ1X = 20 + (dX1 / 32);
+    drawJ1Y = 32 + (dY1 / 32);
+
+    // Normal Joy 2 axes
+    long dX2 = analogRead(joy2X) - 512;
+    long dY2 = analogRead(joy2Y) - 512;
+    long baseDistSq2 = dX2 * dX2 + dY2 * dY2; 
+    
+    if (baseDistSq2 > 40000L) j2Btn = false;
+    
+    long distSq2 = dX2 * dX2 + dY2 * dY2; 
+    if (distSq2 > 262144L) { 
+        long dist2 = sqrt(distSq2);
+        dX2 = (dX2 * 512) / dist2;
+        dY2 = (dY2 * 512) / dist2;
+    }
+
+    drawJ2X = 106 + (dX2 / 32);
+    drawJ2Y = 32 + (dY2 / 32);
+
+    // Prepare data for Bluetooth
+    uint16_t v[8];
+    v[0] = (uint16_t) constrain(dX1 + 512, 0, 1023); 
+    v[1] = (uint16_t) constrain(dY1 + 512, 0, 1023);
+    v[2] = (uint16_t) constrain(dX2 + 512, 0, 1023);
+    v[3] = (uint16_t) constrain(dY2 + 512, 0, 1023);
+    v[4] = valRV1;
+    v[5] = valRV2;
+    v[6] = valRV3;
+    v[7] = valRV4;
+
+    uint8_t buttons = 0;
+    if (j1Btn) buttons |= (1 << 0);
+    if (j2Btn) buttons |= (1 << 1);
+    if (btn1)  buttons |= (1 << 2);
+    if (btn2)  buttons |= (1 << 3);
+    if (btn3)  buttons |= (1 << 4);
+
+    sendFrameHW(v, buttons);
+    }
+
+    static uint32_t last = 0;
+    uint32_t now = millis();
+    
+    if (now - last >= 35) { // 35 ms delay = ~28 FPS
+    last = now;
+
+    u8g2.clearBuffer(); // Clear display buffer
+
+    // Outlines for joysticks
+    u8g2.drawCircle(20, 32, 20);
+    u8g2.drawCircle(106, 32, 20);  
+    
+    // Left joystick dot
+    if (j1Btn) u8g2.drawDisc(drawJ1X, drawJ1Y, 4);
+    else u8g2.drawCircle(drawJ1X, drawJ1Y, 4);
+
+    // Right joystick dot
+    if (j2Btn) u8g2.drawDisc(drawJ2X, drawJ2Y, 4);
+    else u8g2.drawCircle(drawJ2X, drawJ2Y, 4);
+
+    // Graph frames
+    u8g2.drawFrame(46, 27, 6, 36);   
+    u8g2.drawFrame(56, 27, 6, 36);
+    u8g2.drawFrame(66, 27, 6, 36);
+    u8g2.drawFrame(76, 27, 6, 36);
+
+    // Graph bars
+    u8g2.drawBox(46, 63 - h4, 6, h4); // RV4 bar
+    u8g2.drawBox(56, 63 - h3, 6, h3); // RV3 bar
+    u8g2.drawBox(66, 63 - h1, 6, h1); // RV1 bar
+    u8g2.drawBox(76, 63 - h2, 6, h2); // RV2 bar
+
+    // Top buttons
+    if (btn1) u8g2.drawDisc(51, 8, 4); else u8g2.drawCircle(51, 8, 4);
+    if (btn2) u8g2.drawDisc(64, 8, 4); else u8g2.drawCircle(64, 8, 4);
+    if (btn3) u8g2.drawDisc(77, 8, 4); else u8g2.drawCircle(77, 8, 4);
+
+    u8g2.sendBuffer(); // Send buffer to display
+    }
+}
+</code></pre>
+
+                </div>
+            </div>
+
+            <p>
+                <strong>Kód vizualizační aplikace:</strong>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">Python</span>
+                        <span class="language-label">visualisation.py</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+               
+                <div class="code-content">
+
+<pre><code class="language-python">import socket
+import math
+from vpython import *
+
+# UDP setup
+UDP_IP = "0.0.0.0"
+UDP_PORT = 5005
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
+sock.setblocking(False)
+
+# Hexapod dimensions [mm]
+L_COXA = 48.0
+L_FEMUR = 75.0
+L_TIBIA = 112.0
+BASE_RADIUS = 78.0
+
+# 3D scene setup
+scene = canvas(
+    title = 'Hexapod inverse kinematics visualisation',
+    width = 1200,
+    height = 800,
+    background = color.gray(0.2),
+    shadows = False
+)
+scene.up = vector(0, 0, 1)
+scene.forward = vector(-1, -1, -1)
+
+# Body
+body = cylinder(pos = vector(0, 0, -10), axis = vector(0, 0, 20), radius = BASE_RADIUS, 
+color = color.white, opacity = 0.8)
+
+class Leg:
+    def __init__(self, index):
+        # Leg anchor position around the body
+        self.alpha = math.radians(30.0 + index * 60.0)
+        self.anchor_pos = vector(BASE_RADIUS * math.cos(self.alpha), BASE_RADIUS * math.sin(self.alpha), 0)
+        
+        # Leg segments and joints
+        self.joint_base = sphere(pos = self.anchor_pos, radius = 8, color = color.yellow)
+        self.coxa = cylinder(pos = self.anchor_pos, axis = vector(L_COXA, 0, 0), radius = 5, color = color.red)
+        self.joint_femur = sphere(pos = self.coxa.pos + self.coxa.axis, radius = 6, color = color.yellow)
+        self.femur = cylinder(pos = self.joint_femur.pos, axis = vector(L_FEMUR, 0, 0), radius = 4, color = color.green)
+        self.joint_tibia = sphere(pos = self.femur.pos + self.femur.axis, radius = 5, color = color.yellow)
+        self.tibia = cylinder(pos = self.joint_tibia.pos, axis = vector(L_TIBIA, 0, 0), radius = 3, color = color.blue)
+        self.foot = sphere(pos = self.tibia.pos + self.tibia.axis, radius = 6, color = color.orange)
+        
+    def update(self, coxa_angle_deg, femur_angle_deg, tibia_angle_deg):
+        t1 = math.radians(coxa_angle_deg)
+        t2 = math.radians(femur_angle_deg)
+        t3 = math.radians(tibia_angle_deg)
+        
+        # Coxa
+        coxa_dir = vector(1, 0, 0).rotate(angle = self.alpha + t1, axis = vector(0, 0, 1))
+        self.coxa.axis = coxa_dir * L_COXA
+        
+        # Femur and tibia joint axis
+        joint_axis = vector(0, 0, 1).cross(coxa_dir)
+        
+        # Femur
+        femur_dir = coxa_dir.rotate(angle = -t2, axis = joint_axis)
+        self.joint_femur.pos = self.anchor_pos + self.coxa.axis
+        self.femur.pos = self.joint_femur.pos
+        self.femur.axis = femur_dir * L_FEMUR
+        
+        # Tibia
+        tibia_dir = femur_dir.rotate(angle=t3, axis=joint_axis)
+        self.joint_tibia.pos = self.femur.pos + self.femur.axis
+        self.tibia.pos = self.joint_tibia.pos
+        self.tibia.axis = tibia_dir * L_TIBIA
+        
+        self.foot.pos = self.tibia.pos + self.tibia.axis
+
+legs = [Leg(i) for i in range(6)]
+
+print("Waiting for data from Raspberry Pi.")
+
+while True:
+    rate(30)  # 30 FPS
+    
+    # Throw away old data, process the latest
+    latest_data = None
+    while True:
+        try:
+            data, _ = sock.recvfrom(1024)
+            latest_data = data
+        except BlockingIOError: # Empty buffer
+            break
+        except Exception as e:
+            print(f"Socket error: {e}")
+            break
+    
+    if latest_data:
+        try:
+            text = latest_data.decode('utf-8').strip()
+            values = list(map(float, text.split(',')))
+            if len(values) == 18:
+                
+                # Update legs
+                for i in range(6):
+                    legs[i].update(values[i*3], values[i*3+1], values[i*3+2])
+            
+            else:
+                print(f"Invalid number of values: {len(values)}")
+        except Exception as e:
+            print(f"Data processing error: {e}")
+</code></pre>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // vsechny bloky kodu
+            const codeContainers = document.querySelectorAll('.code-container');
+        
+            codeContainers.forEach(container => {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                codeContent.classList.add('collapsed');
+                toggleBtn.textContent = '▶\uFE0E';
+        
+                // prepinani viditelnosti
+                toggleBtn.addEventListener('click', () => {
+                    codeContent.classList.toggle('collapsed');
+                    
+                    // zmena ikony
+                    if (codeContent.classList.contains('collapsed')) {
+                        toggleBtn.textContent = '▶\uFE0E'; 
+                    } else {
+                        toggleBtn.textContent = '▼\uFE0E';
+                    }
+                });
+        
+                // kopirovani
+                copyBtn.addEventListener('click', () => {
+                    const textToCopy = codeBlock.innerText;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // vizualni zpetna vazba
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Zkopírováno';
+                        copyBtn.style.color = '#28a745';
+                        
+                        // navrat do puvodniho stavu
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('chyba ', err);
+                        copyBtn.textContent = 'Chyba!';
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-makefile.min.js"></script>
+
+</body>
+</html>

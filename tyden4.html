@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html" class="active">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>4. týden: Kinetické struktury</h1>
+            <p>
+                Během čtvrtého týdne bylo úkolem navrhnout a s využitím <strong>3D tisku a/nebo laserového vyřezávání</strong> vyrobit <strong>kinetickou strukturu</strong>.<br><br>
+            </p>
+
+            <h2>Tvorba planetové převodovky</h2>
+
+            <p>
+                Protože jsem si chtěl vyzkoušet návrh mechanismů s ozubenými koly, rozhodl jsem se tento týden postavit 
+                <a href="https://en.wikipedia.org/wiki/Epicyclic_gearing" target="_blank"><strong>planetovou převodovku</strong></a>.
+            </p>
+
+            <img src="media/PlanetaryGearboxGif.gif" alt="Gif planetové převodovky" class="project-image">
+
+            <p>
+                Pro správné fungování převodovky musí mezi počtem zubů a rozměry <strong>centrálního</strong>, <strong>korunového</strong> a <strong>planetových kol</strong> platit jisté matematické vztahy. 
+                K výpočtu těchto parametrů jsem použil nástroj 
+                <a href="https://geargenerator.com/beta/#lwT6dRv6qQDbtiZwyaaSoulczIY0mmA81cwu71" target="_blank"><strong>Gear Generator 2 beta</strong></a>. 
+                <strong>Modul zubů</strong> (jejich velikost) jsem zvolil tak, aby se kola dobře tiskla a mechanismus nebyl zbytečně rozměrný.
+                Výsledný převod je <strong>1:5</strong>.
+            </p>
+
+            <img src="media/NavrhKolecek.JPG" alt="Parametry v Gear Generator 2 beta" class="project-image">
+
+            <p>
+                3D model jsem vytvořil v programu <strong>Fusion 360</strong> s využitím doplňku <strong>Spur Gear</strong> (UTILITIES -> ADD-INS -> Scripts and Add-ins -> Spur Gear). 
+                Ten po aktivaci přidává do menu SOLID -> CREATE generátor ozubených kol. 
+                Pro každé kolo jsem pak založil samostatný <strong>náčrt (sketch)</strong> a pomocí funkce <strong>Project</strong> jsem do něj přenesl obrys kola.
+            </p>
+
+            <img src="media/SpurGearSettings.JPG" alt="Fusion Spur Gear generátor - nastavení" class="project-image">
+            <img src="media/GearsSketch.JPG" alt="Sketch ozubených kol" class="project-image">
+
+            <p>
+                Hladký chod mechanismu zajišťuje celkem <strong>pět ložisek</strong>. 
+                Tři z nich umožňují plynulou rotaci <strong>planetových kol</strong> na <strong>unášeči</strong>. 
+                Zbylá dvě jsou uložena ve vrchní a spodní polovině unášeče, což zaručuje hladký pohyb mezi ním a hřídelí centrálního kola. 
+                Horní a spodní část unášeče drží pohromadě tři <strong>šrouby M3 &times; 8</strong>.
+                Stejný typ šroubů jsem použil pro připevnění páky k centrálnímu kolu.
+                Centrální hřídel spojuje šroub <strong>M3 &times; 18</strong> a korunové kolo šrouby <strong>M3 &times; 4</strong>.
+                Pro všechny tyto <strong>M3 šrouby</strong> jsem použil otvory o průměru <strong>3 mm</strong>.
+            </p>
+
+            <img src="media/FinalModel.JPG" alt="Kompletní model převodovky" class="project-image">
+
+            <p>
+                Aby se ozubená kola nezasekávala, bylo nutné přidat <strong>vůli (backlash)</strong>. 
+                Protože jsem však měl od původních kol již odvozenou další geometrii, 
+                nemohl jsem kola jednoduše smazat a nechat vygenerovat nová s nastaveným backlashem. 
+                Takový postup by vedl k rozpadu vazeb v celém modelu, proto bylo nutné upravit stávající kola.
+            </p>
+
+            <p>
+                Generátor Spur Gear funguje tak, že vytvoří kružnici, 
+                na ní jeden zub a ten následně pomocí funkce <strong>Circular Pattern</strong> zkopíruje po obvodu. 
+                Pokusil jsem se v časové ose vrátit před toto kopírování a zub zmenšit pomocí nástroje <strong>Offset Face</strong>. 
+                Fusion 360 však poté při návratu v čase vpřed hlásil chybu.
+            </p>
+
+            <img src="media/AddingBacklash.JPG" alt="Neúspěšný pokus o přidání vůle" class="project-image">
+            
+            <p>
+                Musel jsem tedy zvolit hrubou sílu: manuálně jsem označil všechny zuby a zmenšil je pomocí <strong>Offset Face</strong> hromadně. 
+                Po dvou zkušebních výtiscích se jako ideální hodnota offsetu ukázalo <strong>0,3 mm</strong>.
+            </p>
+
+            <img src="media/AddingBacklash2.JPG" alt="Úspěšný pokus o přidání vůle" class="project-image">
+
+            <p>
+                Hotové modely jsem vyexportoval z Fusionu (Utilities -> 3D print) do <strong>formátu 3MF</strong> a naslicoval v programu <strong>Bambu Studio</strong>. 
+                Jako materiál jsem vybral <strong>PLA</strong> a tiskl jsem na tiskárně <strong>Bambu Lab A1 Mini</strong> s <strong>0,4 mm tryskou</strong> při následujícím nastavení:
+            </p>
+            
+            <ul>
+                <li><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</li>
+                <li><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</li>
+                <li><strong>Bed temperature (teplota podložky):</strong> 65 °C</li>
+                <li><strong>Wall loops (perimetry):</strong> 2</li>
+                <li><strong>Sparse infill density (hustota výplně):</strong> 15 %</li>
+                <li><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</li>
+                <li><strong>Outer wall speed (rychlost vnější stěny):</strong> 60 mm/s</li>
+            </ul>
+            
+            <p>
+                Zbylá nastavení jsem ponechal na výchozích hodnotách vybraného tiskového profilu.
+            </p>
+
+            <p>
+                Kvůli přesahům u otvorů pro hlavy šroubů bylo nutné model při tisku podepřít. Zvolil jsem následující nastavení podpor:
+            </p>
+
+            <ul>
+                <li><strong>Type (typ):</strong> Tree (auto)</li>
+                <li><strong>Top Z distance (mezera v ose Z):</strong> 0,25 mm</li>
+            </ul>
+
+            <p>
+                Ostatní nastavení podpor zůstalo výchozí.
+            </p>
+
+            <img src="media/PrintPlate1.JPG" alt="Díly v Bambu Studiu 1" class="project-image">
+            <img src="media/PrintPlate2.JPG" alt="Díly v Bambu Studiu 2" class="project-image">
+            <img src="media/GearboxParts.JPG" alt="Vytisklé díly" class="project-image">
+
+            <p>
+                Díky správné volbě parametru <strong>Top Z distance</strong> šly podpěry odstranit velmi snadno.
+                Při finální montáži jsem pro trvalejší a pevnější spoje použil <strong>lepidlo na plasty</strong>.
+            </p>
+
+            <img src="media/OpenGearbox.JPG" alt="Sestavování převodovky" class="project-image">
+            <img src="media/Final1.JPG" alt="Převodovka zezadu" class="project-image">
+            <img src="media/Final2.JPG" alt="Převodovka zepředu" class="project-image">
+            <img src="media/FinalGearboxGif.gif" alt="Gif hotové převodovky" class="project-image">
+
+        </main>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html" class="active">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>6. týden: Senzory a vstupní zařízení</h1>
+            <p>
+                Během šestého týdne bylo úkolem použít nějaký <strong>senzor pro měření fyzikální veličiny</strong> pomocí <strong>Arduina</strong>.<br><br>
+            </p>
+
+            <h2>Měření teploty a hloubky</h2>
+
+            <p>
+                Doma jsem měl nevyužitý <strong>senzor teploty</strong> a <strong>senzor absolutního tlaku</strong>, tak jsem se rozhodl postavit přístroj na měření <strong>teploty kapaliny</strong> a <strong>hloubky ponoření</strong> sondy. 
+                Mozkem zařízení je <strong>Arduino Nano</strong> napájené z počítače přes <strong>USB</strong>. 
+                Naměřená data se zobrazují na <strong>OLED displeji</strong> a zároveň se ukládají na <strong>SD kartu</strong> pro pozdější zpracování a tvorbu grafů. 
+                Měření a zápis dat lze bezpečně ukončit stisknutím <strong>tlačítka</strong>.
+            </p>
+            
+            <h3>Zapojení</h3>
+
+            <p>
+                <strong>Seznam použitých součástek:</strong>
+            </p>
+            <ul>
+                <li>Univerzální nepájivé pole</li>
+                <li>Arduino Nano (klon)</li>
+                <li>Vodotěsný teploměr DS18B20</li>
+                <li>4,7kΩ rezistor</li>
+                <li>MPRLS - tlakový senzor 172kPa I2C 3-5V - Adafruit 3965</li>
+                <li>I2C OLED displej 0,96" bílý 128 &times; 64</li>
+                <li>MicroSD Card modul SPI</li>
+                <li>32 GB MicroSD karta Lexar</li>
+                <li>MicroSD adaptér Kingston</li>
+                <li>Čtečka paměťových karet SanDisk</li>
+                <li>Tlačítko TC-1212T (12 &times; 12 &times; 7.3 mm)</li>
+                <li>LEGO trubička</li>
+            </ul>
+
+            <img src="media/Soucastky6.JPG" alt="Fotka použitých součástek" class="project-image">
+            <img src="media/SDkartaPrislusentsvi.JPG" alt="SDkarta a její adaptéry" class="project-image">
+
+            <p>
+                Teplotní sonda využívá jednovodičovou sběrnici <strong>OneWire</strong>. 
+                Pro její správné fungování je nutné zapojit <strong>4,7kΩ pull-up rezistor</strong> mezi napájecí a datový pin. 
+                Senzor tlaku <strong>MPRLS</strong> a <strong>OLED displej</strong> komunikují přes protokol <strong>I2C</strong> (dva vodiče - datový SDA a hodinový SCL). 
+                Modul čtečky <strong>SD karet</strong> je připojen přes rozhraní <strong>SPI</strong> (čtyři vodiče - data do karty MOSI, data z karty MISO, hodinový signál SCK a Chip Select CS).
+            </p>
+
+            <p>
+                Zapojení jsem navrhl v programu <strong>KiCAD</strong>. 
+                Součástky jako <strong>Arduino Nano</strong> (<code>Arduino_Nano_Every</code> z knihovny <code>MCU_Module</code>), 
+                teplotní senzor <strong>DS18B20</strong> (<code>DS18B20</code>), tlačítko (<code>SW_Push</code>) 
+                a rezistor (<code>R</code>) jsou již součástí základních knihoven programu. 
+                Symboly pro ostatní moduly lze stáhnout z internetu, případně je ve schématu nahradit standardními 
+                <strong>kolíkovými lištami</strong> (např. <code>Conn_01x04_Socket</code> pro OLED displej).
+            </p>
+            
+            <img src="media/Schema6.JPG" alt="Schema projektu v programu KiCAD" class="project-image">
+
+            <p>
+                Teplotní sonda se standardně prodává s několikametrovým kabelem. 
+                Pro snadnější zapojení do <strong>nepájivého pole</strong> (breadboardu) jsem kabel zkrátil a na jeho konce připájel <strong>kolíkové piny</strong>.
+            </p>
+
+            <img src="media/SentorTeplotyDratky.JPG" alt="Zkrácený teplotní senzor a drátky" class="project-image">
+            <img src="media/SenzorTeplotySpajeny.JPG" alt="Teplotní senzor s připájenými drátky" class="project-image">
+
+            <p>
+                Poté jsem obvod zapojil podle připraveného <strong>schématu</strong>.
+            </p>
+
+            <img src="media/Breadboard.JPG" alt="Projekt zapojený na breadboardu" class="project-image">
+
+            <h3>Kód</h3>
+
+            <p>
+                Kód je napsán v prostředí <strong>Arduino IDE</strong>. 
+                Program v pravidelných <strong>800ms intervalech</strong> vyčítá hodnoty teploty z <strong>teplotní sondy</strong> a absolutního tlaku z <strong>I2C senzoru</strong>. 
+                Z naměřeného tlaku a referenční hodnoty pak vypočítává <strong>hloubku ponoru</strong> podle vzorce:
+            </p>  
+
+            <img src="media/Vzorec.JPG" alt="Vzorec pro výpočet hloubky z tlaku" class="project-image-noborder">
+
+            <ul>
+                <li><i>h</i> - hloubka ponoření [m]</li>
+                <li><i>P</i> - tlak naměřený pod hladinou [Pa]</li>
+                <li><i>P</i><sub>ref</sub> - referenční atmosférický tlak na hladině [Pa]</li>
+                <li><i>&rho;</i> - hustota kapaliny [kg/m&sup3;]</li>
+                <li><i>g</i> - tíhové zrychlení [m/s&sup2;]</li>
+            </ul>
+
+            <p>
+                Získaná data se průběžně zobrazují na <strong>OLED displeji</strong> a ukládají do <strong>CSV souboru</strong> na <strong>SD kartu</strong>. 
+                Stiskem <strong>tlačítka</strong> lze měření a zápis na kartu bezpečně ukončit.
+            </p>
+
+            <p>
+                <strong>Použité knihovny:</strong>
+            </p>
+            <ul>
+                <li>Wire - sběrnice I2C pro senzor tlaku a OLED displej</li>
+                <li>Adafruit_MPRLS - senzor tlaku</li>
+                <li>OneWire - sběrnice 1-Wire pro teplotní senzor</li>
+                <li>SPI - sběrnice SPI pro čtečku SD karet</li>
+                <li>SD - modul čtečky SD karet</li>
+                <li>U8x8lib - OLED displej</li>
+            </ul>
+
+            <p>
+                Kód v Arduinu:
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">mereni_teploty_hloubky.ino</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+                
+                <div class="code-content">
+
+<pre><code class="language-cpp">#include &lt;Wire.h&gt;
+#include &lt;Adafruit_MPRLS.h&gt;
+#include &lt;OneWire.h&gt;
+#include &lt;SPI.h&gt;
+#include &lt;SD.h&gt;
+#include &lt;U8x8lib.h&gt;
+
+#define ONE_WIRE_BUS 2
+#define BUTTON_PIN 3
+#define CHIP_SELECT_SD 10
+
+// inicializace periferii
+OneWire oneWire(ONE_WIRE_BUS);
+Adafruit_MPRLS mprls = Adafruit_MPRLS(-1, -1);
+U8X8_SSD1306_128X64_NONAME_HW_I2C display(/* reset=*/ U8X8_PIN_NONE);
+
+// merene hodnoty
+float referencePressure = 0.0;
+float currentTempC = 0.0;
+float currentDepth_m = 0.0;
+
+// rizeni behu
+bool isRunning = true;
+bool lastButtonState = HIGH;
+unsigned long lastSensorReadTime = 0;
+
+// sd karta a data
+bool sdReady = false;
+unsigned long sampleCount = 0;
+
+void updateDisplay();
+
+void setup() {
+    pinMode(BUTTON_PIN, INPUT_PULLUP);
+
+    // oled displej
+    display.begin();
+    display.setPowerSave(0);
+    display.setFont(u8x8_font_courB18_2x3_r);
+    display.clear();
+
+    // senzor tlaku
+    if (!mprls.begin()) {
+    display.print("err tlak");
+    delay(2000);
+    display.clear();
+    }
+
+    // sd karta
+    if (SD.begin(CHIP_SELECT_SD)) {
+    sdReady = true;
+    if (SD.exists("data.csv")) SD.remove("data.csv");
+    
+    // hlavicka csv
+    File dataFile = SD.open("data.csv", FILE_WRITE);
+    if (dataFile) {
+        dataFile.println(F("vzorec,teplota,hloubka"));
+        dataFile.close();
+    }
+    } else {
+    display.print("err sd");
+    delay(2000);
+    display.clear();
+    }
+
+    // kalibrace tlaku
+    delay(500);
+    referencePressure = mprls.readPressure();
+
+    // start prevodu teploty
+    oneWire.reset();
+    oneWire.skip();
+    oneWire.write(0x44);
+
+    updateDisplay();
+}
+
+void loop() {
+    // cteni tlacitka
+    bool currentButtonState = digitalRead(BUTTON_PIN);
+    
+    // detekce stisku pro zastaveni
+    if (currentButtonState == LOW && lastButtonState == HIGH) {
+    isRunning = false;
+    display.clear();
+    display.setCursor(0, 2);
+    display.print("STOP");
+    delay(50);
+    }
+    lastButtonState = currentButtonState;
+
+    // periodicke mereni
+    if (isRunning && (millis() - lastSensorReadTime >= 800)) {
+    lastSensorReadTime = millis();
+    sampleCount++;
+
+    // vycteni teploty
+    oneWire.reset();
+    oneWire.skip();
+    oneWire.write(0xBE);
+    int16_t raw = oneWire.read() | (oneWire.read() << 8);
+    currentTempC = (float)raw / 16.0;
+
+    // novy prevod
+    oneWire.reset();
+    oneWire.skip();
+    oneWire.write(0x44);
+
+    // vypocet hloubky
+    float currentPressure = mprls.readPressure();
+    currentDepth_m = ((currentPressure - referencePressure) * 100.0) / 9810.0;
+    if (currentDepth_m < 0) currentDepth_m = 0;
+
+    // ulozeni na sd
+    if (sdReady) {
+        File dataFile = SD.open("data.csv", FILE_WRITE);
+        if (dataFile) {
+        dataFile.print(sampleCount);
+        dataFile.print(',');
+        dataFile.print(currentTempC, 1);
+        dataFile.print(',');
+        dataFile.println(currentDepth_m, 3);
+        dataFile.close();
+        }
+    }
+
+    updateDisplay();
+    }
+}
+
+void updateDisplay() {
+    display.clear();
+    
+    // radek 1: teplota
+    display.setCursor(0, 0);
+    display.print(currentTempC, 1);
+    display.print(" C");
+
+    // radek 2: hloubka
+    display.setCursor(0, 4);
+    int displayDepth_mm = currentDepth_m * 1000;
+    display.print(displayDepth_mm);
+    display.print(" mm");
+}
+</code></pre>
+                </div>
+            </div>
+
+            <p>
+                Pro následné zpracování dat na počítači jsem vytvořil <strong>Python skript</strong>. 
+                Ten načte soubor <code>DATA.csv</code>, převede hodnoty hloubky z metrů na <strong>milimetry</strong> a na data aplikuje <strong>klouzavý průměr</strong> (s oknem o velikosti 5 vzorků), čímž se vyhladí <strong>šum měření</strong>. 
+                Nakonec pomocí knihovny <strong>Matplotlib</strong> vykreslí grafy pro <strong>teplotu</strong> a <strong>hloubku</strong>.
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">Python</span>
+                        <span class="language-label">zpracovani_dat.py</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+                
+                <div class="code-content">            
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import pandas as pd
+
+window_size = 5
+
+# nacteni dat z DATA.csv
+try:
+    df = pd.read_csv('DATA.csv')
+except FileNotFoundError:
+    print("DATA.csv nebyl nalezen.")
+    exit()
+
+# prevod hloubky z metru na milimetry
+df['hloubka_mm'] = df['hloubka'] * 1000
+
+# vypocet klouzaveho prumeru pro teplotu i převedenou hloubku
+df['temp_avg'] = df['teplota'].rolling(window=window_size, center=True).mean()
+df['depth_avg_mm'] = df['hloubka_mm'].rolling(window=window_size, center=True).mean()
+
+# vytvoreni platna pro grafy
+fig, (ax_temp, ax_depth) = plt.subplots(1, 2, figsize=(14, 6))
+
+# vykresleni teploty
+ax_temp.plot(df['vzorec'], df['teplota'], 'b-', alpha=0.3, label='Původní data')
+ax_temp.plot(df['vzorec'], df['temp_avg'], 'b-', linewidth=2, label=f'Průměr (n = {window_size})')
+ax_temp.set_title('Teplota')
+ax_temp.set_xlabel('Číslo vzorku')
+ax_temp.set_ylabel('Teplota (°C)')
+ax_temp.grid(True, linestyle='--', alpha=0.7)
+ax_temp.legend()
+
+# vykresleni hloubky
+ax_depth.plot(df['vzorec'], df['hloubka_mm'], 'r-', alpha=0.3, label='Původní data')
+ax_depth.plot(df['vzorec'], df['depth_avg_mm'], 'r-', linewidth=2, label=f'Průměr (n = {window_size})')
+ax_depth.set_title('Hloubka')
+ax_depth.set_xlabel('Číslo vzorku')
+ax_depth.set_ylabel('Hloubka (mm)')
+ax_depth.grid(True, linestyle='--', alpha=0.7)
+ax_depth.legend()
+
+# finalni uprava a zobrazeni
+plt.tight_layout()
+plt.show()
+</code></pre>
+            </div>
+        </div>
+
+        <h3>Měření hloubky a teploty vody ve sklenici</h3>
+
+        <p>
+            Funkčnost přístroje jsem otestoval ve sklenici s teplou vodou. 
+            Měření hloubky je velmi <strong>přesné</strong> (s odchylkou zhruba do ±2 mm). 
+            Zjistil jsem však, že po vytažení z vody zůstává konec <strong>měřicí trubičky</strong> zaplněn několika milimetry vody. 
+            Pokud se trubička před dalším měřením <strong>nevyfoukne</strong>, dojde ke špatnému stanovení <strong>referenčního atmosférického tlaku</strong> při kalibraci a všechny následně měřené hodnoty jsou pak <strong>posunuté</strong>.
+        </p>
+
+        <img src="media/Displej.JPG" alt="Displej zobrazující měřené hodnoty" class="project-image">
+        <img src="media/MereniSetup.JPG" alt="Sondy ve skleničce vody" class="project-image">
+        <img src="media/Grafy.png" alt="Grafy hloubky a teploty" class="project-image">
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // vsechny bloky kodu
+            const codeContainers = document.querySelectorAll('.code-container');
+        
+            codeContainers.forEach(container => {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                codeContent.classList.add('collapsed');
+                toggleBtn.textContent = '▶\uFE0E';
+        
+                // prepinani viditelnosti
+                toggleBtn.addEventListener('click', () => {
+                    codeContent.classList.toggle('collapsed');
+                    
+                    // zmena ikony (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                    if (codeContent.classList.contains('collapsed')) {
+                        toggleBtn.textContent = '▶\uFE0E'; 
+                    } else {
+                        toggleBtn.textContent = '▼\uFE0E';
+                    }
+                });
+        
+                // kopirovani
+                copyBtn.addEventListener('click', () => {
+                    const textToCopy = codeBlock.innerText;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // vizualni zpetna vazba
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Zkopírováno';
+                        copyBtn.style.color = '#28a745';
+                        
+                        // navrat do puvodniho stavu
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('chyba ', err);
+                        copyBtn.textContent = 'Chyba!';
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+</body>
+</html>

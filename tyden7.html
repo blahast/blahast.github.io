@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html" class="active">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>7. týden: Aktuátory a výstupní zařízení</h1>
+            <p>
+                Během sedmého týdne bylo úkolem připojit nějaké <strong>výstupní zařízení</strong> a <strong>změřit jeho spotřebu</strong>.<br><br>
+            </p>
+
+            <h2>Serva a elektronika hexapoda</h2>
+                
+            <p>
+                V rámci práce na závěrečném projektu jsem se tento týden zaměřil na <strong>zapojení veškeré elektroniky hexapoda</strong> a <strong>kalibraci servomotorů</strong>. 
+                Zatímco ve třetím týdnu semestru jsem postavil první patro těla robota, 
+                tento týden jsem na něj přimontoval prostřední patro s elektronikou a <strong>zprovoznil serva</strong>.
+            </p>
+            <p>
+                Mozkem robota bude <strong>Raspberry Pi 5</strong>. 
+                Pohyb bude zajišťovat <strong>osmnáct servomotorů</strong>: dvanáct typu <strong>MG996R</strong> pro klouby <strong>coxa</strong> a <strong>tibia</strong> 
+                a šest typu <strong>TD-8120MG</strong> pro <strong>femur</strong>. 
+                K řízení serv pomocí <strong>PWM signálu</strong> použiji dva moduly <strong>PCA9685</strong>. 
+                Celý projekt bude napájen z <strong>3S Li-Pol baterie</strong> s kapacitou <strong>4200 mAh</strong>.
+            </p>
+            <p>
+                Napájení pro Raspberry Pi a pro aktuátory je odděleno pomocí <strong>UBECu</strong> a <strong>Buck měniče</strong>. 
+                Obě tyto napájecí větve bude navíc možné nezávisle odpojit pomocí <strong>kolébkových přepínačů</strong>. 
+                Pro základní signalizaci stavu bude hexapod využívat <strong>piezobzučák</strong>.
+            </p>
+            
+            <h3>Zapojení a elektronika</h3>
+
+            <p>
+                <strong>Seznam použitých součástek:</strong>
+            </p>
+
+            <ul>
+                <li><strong>Raspberry Pi 5</strong> - 8 GB RAM</li>
+                <li><strong>Buck měnič</strong> 9-35 V na 5 V / 5 A - DC-DC (dočasné řešení)</li>
+                <li>Sunrise <strong>UBEC 20 A</strong></li>
+                <li><strong>Li-Pol baterie</strong> 4200 mAh 3S 35C (70C krátkodobě) BH Power</li>
+                <li>2&times; <strong>Kolébkový přepínač</strong> 2pól. / 3pin 20 A / 12 V DC</li>
+                <li>2&times; I2C modulový <strong>driver PCA9685</strong></li>
+                <li>12&times; <strong>servo MG996R</strong> (13 kg&sdot;cm, 180 stupňů)</li>
+                <li>6&times; <strong>servo TD-8120MG</strong> (20 kg&sdot;cm, 180 stupňů)</li>
+                <li><strong>Piezobzučák</strong> 23 mm SFM-20B 3-24 V / 12 mA</li>
+                <li><strong>T-Dean konektory</strong> (male i female)</li>
+                <li><strong>Dupont</strong> propojovací kabely</li>
+                <li><strong>Oplet na kabely</strong> o průměru 8 mm</li>
+                <li><strong>Stahovací pásky</strong> 150 &times; 2,5 mm</li>
+                <li>Sada <strong>smršťovacích bužírek</strong></li>
+                <li>Sada <strong>M2-M4 šroubků a matic</strong></li>
+                <li>18&times; <strong>kuličkové ložisko</strong> 6 &times; 19 &times; 6 mm</li>
+            </ul>
+
+            <p>
+                Schéma zapojení jsem navrhl v programu <strong>KiCAD</strong>. 
+                Symboly pro součástky jako <strong>Raspberry Pi</strong> (knihovna <code>MCU_Module</code> nebo <code>Connector</code>), 
+                kolébkový přepínač (<code>SW_SPST</code>) a baterie (<code>Battery</code>) jsou již součástí základních knihoven programu. 
+                Symboly pro specifičtější moduly lze stáhnout z internetu, případně je ve schématu nahradit standardními 
+                <strong>kolíkovými lištami</strong> (např. <code>Conn_01x03_Socket</code> pro serva).
+            </p>
+
+            <img src="media/HexapodSchema.JPG" alt="Schéma elektroniky hexapoda v KiCADu" class="project-image">
+
+            <h3>Montážní deska</h3>
+
+            <p>
+                Většina elektroniky je umístěna v <strong>prostředním patře</strong> těla hexapoda. 
+                Bylo tedy nezbytné navrhnout montážní desku, ke které jednotlivé moduly buď přišroubuji, nebo zafixuji pomocí stahovacích pásek. 
+                Desku jsem modeloval v programu <strong>Fusion 360</strong>.
+            </p>
+            <p>
+                Raspberry Pi, jeho měnič napětí a bzučák se k desce uchycují pomocí <strong>šroubů M2</strong> (v desce jsou pro ně připraveny otvory o průměru 2 mm). 
+                Měnič napětí pro serva a rozdvojovací konektor baterie jsou fixovány <strong>stahovacími páskami</strong> provlečenými otvory o rozměrech 5 &times; 2 mm. 
+                V desce jsem také vytvořil otvory pro protažení kabelů od Raspberry Pi a baterie do spodního patra k modulům PCA9685. 
+                Kolébkové přepínače se vtlačí do výřezů o rozměrech 27 &times; 12 mm.
+                Obě patra těla jsou nakonec spojena pomocí <strong>šroubů M3 &times; 8 mm</strong> a matek zapuštěných do tištěných dílů.
+            </p>
+
+            <img src="media/ModelProstrednihoPatra.JPG" alt="Model patra pro elektroniku ve Fusion 360" class="project-image">
+
+            <p>
+                Hotový model jsem vyexportoval z Fusionu (přes <strong>Utilities -> 3D print</strong>) do <strong>formátu 3MF</strong> a naslicoval v programu <strong>Bambu Studio</strong>. 
+                Jako materiál jsem zvolil <strong>PLA</strong> a tiskl jsem na tiskárně <strong>Bambu Lab A1 Mini</strong> s <strong>0,4 mm tryskou</strong> při následujícím nastavení:
+            </p>
+            
+            <ul>
+                <li><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</li>
+                <li><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</li>
+                <li><strong>Bed temperature (teplota podložky):</strong> 65 °C</li>
+                <li><strong>Wall loops (perimetry):</strong> 4</li>
+                <li><strong>Sparse infill density (hustota výplně):</strong> 20 %</li>
+                <li><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</li>
+                <li><strong>Outer wall speed (rychlost vnější stěny):</strong> 60 mm/s</li>
+            </ul>
+            
+            <p>
+                Zbylá nastavení zůstala na výchozích hodnotách tiskového profilu. 
+                Pro správné vytištění otvoru na kolébkový spínač bylo nutné vygenerovat podpěry. 
+                Zvolil jsem tyto parametry:
+            </p>
+
+            <ul>
+                <li><strong>Type (typ):</strong> Tree (auto)</li>
+                <li><strong>Top Z distance (mezera v ose Z):</strong> 0,2 mm</li>
+            </ul>
+
+            <img src="media/ProstrediPatroBambuStudio.JPG" alt="Model prostředního patra v Bambu Studiu" class="project-image">
+            <img src="media/ProstrediPatro.JPG" alt="Vytisklé prostřední patro" class="project-image">
+
+            <p>
+                Abych mohl napájení rozdělit na dvě zmíněné větve, musel jsem spájet vlastní <strong>rozdvojovací konektor</strong>:
+            </p>
+
+            <img src="media/JednotliveKonektory.JPG" alt="Dílčí konektory pro tvorbu rozdvojovacího" class="project-image">
+            <img src="media/RozdvojovaciKonektor.JPG" alt="Hotový rozdvojovací konektor" class="project-image">
+
+            <p>
+                Jednotlivé moduly jsem pak připevnil k desce a vše propojil a spájel podle dříve vytvořeného schématu.
+            </p>
+
+            <img src="media/OsazeneProstredniPatroShora.JPG" alt="Prostredni patro se součástkami a moduly shora" class="project-image">
+            <img src="media/OsazeneProstredniPatroZdola.jpg" alt="Prostredni patro se součástkami a moduly zdola" class="project-image">
+
+            <h3>Kalibrace servomotorů</h3>
+
+            <p>
+                Protože budu serva řídit pomocí <strong>PWM signálu o frekvenci 50 Hz</strong> z modulů <strong>PCA9685</strong>, musel jsem nejdříve zjistit, 
+                jaká šířka pulzu odpovídá jakému úhlu. 
+                V ideálním světě by stačilo změřit krajní hodnoty pro 0 a 180 stupňů a zbytek dopočítat.
+                V praxi ale <strong>převodní charakteristika serv není dokonalá přímka</strong>, takže by tento přístup přinesl velké nepřesnosti.
+            </p>
+
+            <p>
+                Zvolil jsem proto přesnější metodu. Rozsah serva (<strong>0 až 180 stupňů</strong>) jsem rozdělil na <strong>čtyři segmenty po 45 stupních</strong>.
+                U každého z pěti kalibračních bodů jsem změřil délku pulzu a jednotlivé segmenty jsem následně <strong>nahradil přímkami</strong>.
+                Výsledek je aproximace převodní charakteristiky v rozsahu 0 až 180 stupňů pomocí čtyř úseček.
+                Tento proces jsem musel provést pro všech 18 motorů, protože každý kus má mírně odlišnou charakteristiku.
+            </p>
+
+            <p>
+                Pro usnadnění kalibrace jsem si vytiskl jednoduchý nástroj.
+                Jeho první díl se nasadí na tělo serva a zafixuje v otvorech pro šrouby, druhý díl se přichytí k hřídeli.
+            </p>
+
+            <img src="media/KalibracniNastroj.JPG" alt="Kalibrační nástroj pro serva" class="project-image">
+            <img src="media/KalibracniNastrojNaServu.JPG" alt="Kalibrační nástroj na servu" class="project-image">
+
+            <p>
+                K samotnému měření používám následující kód. 
+                Využívá knihovnu <code><strong>wiringPiI2C</strong></code> pro komunikaci s PCA9685 přes sběrnici <strong>I2C</strong>. 
+                Program umožňuje ručně upravovat šířku PWM pulzu stiskem kláves <code>+</code> a <code>-</code>, 
+                případně přímým zadáním číselné hodnoty. 
+                Naměřené hodnoty si průběžně zapisuji do tabulky.
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">kalibrace_serv.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+                
+                <div class="code-content">
+
+<pre><code class="language-c">#define _DEFAULT_SOURCE
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;wiringPiI2C.h&gt;
+
+#define PCA9685_ADDR      0x41 // i2c adresa modulu
+#define MODE1             0x00
+#define PRESCALE          0xFE // registr pro frekvenci
+#define LED0_ON_L         0x06
+
+#define CHANNEL           3
+
+void pca9685_set_pwm(int fd, int channel, int on, int off); // ovladani serva
+void pca9685_init(int fd); // zakladni nastaveni modulu
+
+int main() { 
+    int fd = wiringPiI2CSetup(PCA9685_ADDR); // inicializace i2c
+    if (fd < 0) {
+        printf("ERROR: Failed to open I2C.\n");
+        return 1;
+    }
+
+    pca9685_init(fd);
+
+    int pwm = 0;
+    char ch;
+
+    while (1) {
+        ch = getchar();
+
+        if (ch == '+') {
+            pwm++;
+            printf("PWM: %d\n", pwm);
+        } else if (ch == '-') {
+            pwm--;
+            printf("PWM: %d\n", pwm);
+        } else if (ch >= '0' && ch <= '9') {
+            ungetc(ch, stdin); // vrati znak pro nacteni celeho cisla
+            scanf("%d", &pwm);
+            printf("PWM: %d\n", pwm);
+        }
+
+        pca9685_set_pwm(fd, CHANNEL, 0, pwm); // vypsani hodnoty
+
+        usleep(100000);
+    }
+
+    return 0;
+}
+
+void pca9685_set_pwm(int fd, int channel, int on, int off) {
+    int reg = LED0_ON_L + 4 * channel; // vyber registr
+    wiringPiI2CWriteReg8(fd, reg, on & 0xFF); // start pulzu (dolni bajt)
+    wiringPiI2CWriteReg8(fd, reg + 1, on >> 8); // start pulzu (horni bajt)
+    wiringPiI2CWriteReg8(fd, reg + 2, off & 0xFF); // konec pulzu (dolni bajt)
+    wiringPiI2CWriteReg8(fd, reg + 3, off >> 8); // konec pulzu (horni bajt)
+}
+
+void pca9685_init(int fd) {
+    wiringPiI2CWriteReg8(fd, MODE1, 0x10); // spanek pro zmenu frekvence
+    wiringPiI2CWriteReg8(fd, PRESCALE, 121); // nastaveni na 50 Hz
+    wiringPiI2CWriteReg8(fd, MODE1, 0x00); // probuzeni
+    usleep(1000);
+    wiringPiI2CWriteReg8(fd, MODE1, 0xA1); // auto-increment registru
+}
+</code></pre>
+                </div>
+            </div>
+
+            <p>
+                Tabulka naměřených hodnot pak vypadá takto:
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">kalibracni_tabulka.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+                
+                <div class="code-content">
+
+<pre><code class="language-c">// PWM values for 0, 45, 90, 135, 180 deg
+static const float servo_calibration[NUM_OF_LEGS][JOINTS_PER_LEG][CAL_POINTS] = {
+    // Leg 0 - L1
+    {
+        {119.f, 208.f, 307.f, 403.f, 504.f}, // L11
+        {114.f, 212.f, 315.f, 420.f, 521.f}, // L12
+        {109.f, 205.f, 308.f, 406.f, 501.f}  // L13
+    },
+
+    // Leg 1 - L2
+    {
+        {115.f, 210.f, 311.f, 411.f, 508.f}, // L21
+        {104.f, 206.f, 313.f, 417.f, 514.f}, // L22
+        {112.f, 206.f, 310.f, 414.f, 510.f}  // L23
+    },
+
+    // Leg 2 - L3
+    {
+        {110.f, 205.f, 310.f, 415.f, 511.f}, // L31
+        {104.f, 206.f, 315.f, 418.f, 515.f}, // L32
+        { 98.f, 191.f, 293.f, 397.f, 493.f}  // L33
+    },
+
+    // Leg 3 - P3
+    {
+        {109.f, 201.f, 299.f, 395.f, 490.f}, // P31
+        { 96.f, 196.f, 298.f, 400.f, 496.f}, // P32
+        {104.f, 197.f, 293.f, 390.f, 490.f}  // P33
+    },
+
+    // Leg 4 - P2
+    {
+        {106.f, 200.f, 300.f, 398.f, 494.f}, // P21
+        {111.f, 211.f, 310.f, 412.f, 508.f}, // P22
+        {102.f, 195.f, 295.f, 394.f, 489.f}  // P23
+    },
+
+    // Leg 5 - P1
+    {
+        {111.f, 203.f, 300.f, 399.f, 494.f}, // P11
+        {100.f, 200.f, 301.f, 402.f, 500.f}, // P12
+        {118.f, 207.f, 307.f, 403.f, 502.f}  // P13
+    }
+};
+</code></pre>
+                </div>
+            </div>
+
+            <h3>Femur</h3>
+
+            <p>
+                Abych mohl zkalibrovaná serva upevnit k tělu, musel jsem vytvořit prostřední článek nohou – <strong>femur</strong>. 
+                Hmotnost robota by neměla ležet pouze na hřídelích servomotorů, 
+                proto jsem na jejich spodní stranu umístil opěrné <strong>kuličkové ložisko</strong>,
+                které převezme část mechanické zátěže.
+            </p>
+            <p>
+                Pro úsporu místa a lepší uchycení jsem ze serv odstranil původní spodní plastový kryt. 
+                Místo něj jsem navrhl kryt nový, který již obsahuje lůžko pro ložisko a je navíc přímo integrován do samotného dílu femuru. 
+                Servo je k femuru připevněno původními dlouhými šrouby, které dříve držely odmontovaný kryt.
+                Aby se při pohybu drátky nepoškodily, jsou vedeny <strong>vnitřkem femuru</strong> a následně skryty v kabelovém opletu, 
+                který ústí do těla robota.
+            </p>
+
+            <img src="media/ModelFemuruShora.JPG" alt="Model femuru ve Fusion 360 shora." class="project-image">
+            <img src="media/ModelFemuruZdola.JPG" alt="Model femuru ve Fusion 360 zdola." class="project-image">
+
+            <p>
+                Femur jsem tiskl se stejným nastavením jako desku pro elektroniku.
+            </p>
+
+            <img src="media/FemurBambuStudio.JPG" alt="Model femuru v Bambu Studiu" class="project-image">
+            <img src="media/VytiskleFemury.JPG" alt="Vytisklé femury" class="project-image">
+            <img src="media/FemurSPodporami.JPG" alt="Femur zespodu s viditelnými podporami" class="project-image">
+            <img src="media/FemurBezPodpor.JPG" alt="Femur zespodu s odstraněnými podporami" class="project-image">
+            <img src="media/FemurSeServy.JPG" alt="Femur s přimontovanými servy" class="project-image">
+            <img src="media/HexapodSFemurem.JPG" alt="Tělo hexapoda s femury" class="project-image">
+            <img src="media/HexapodSFemuremAElektronikou.jpg" alt="Tělo hexapoda s femury a s elektronikou" class="project-image">
+
+            <h3>Kód na ovládání serv</h3>
+
+            <p>
+                Následující kód je ukázkou toho, jak lze po kalibraci ovládat serva zadáním úhlu:
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C</span>
+                        <span class="language-label">ovladani_serv.c</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+                
+                <div class="code-content">
+
+<pre><code class="language-c">#define _DEFAULT_SOURCE
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+#include &lt;wiringPiI2C.h&gt;
+
+#define PCA9685_ADDR 0x40
+#define CHANNEL      0
+
+// pole pro aproximaci
+static const float CAL_PWM[5] = {114.f, 212.f, 315.f, 420.f, 521.f};
+static const float CAL_ANGLES[5] = {0.f, 45.f, 90.f, 135.f, 180.f};
+
+// init pca9685 na 50hz
+void pca9685_init(int fd) {
+    wiringPiI2CWriteReg8(fd, 0x01, 0x04); // rezim 2
+    wiringPiI2CWriteReg8(fd, 0x00, 0x10); // uspat pro nastaveni
+    wiringPiI2CWriteReg8(fd, 0xFE, 121);  // prescale 50hz
+    wiringPiI2CWriteReg8(fd, 0x00, 0x21); // probudit
+    usleep(1000);
+    wiringPiI2CWriteReg8(fd, 0x00, 0xA1); // restart
+}
+
+// zapis pwm na kanal
+void pca9685_set_pwm(int fd, int channel, int pwm) {
+    int base = 0x06 + 4 * channel; // zakladni registr
+    wiringPiI2CWriteReg8(fd, base + 0, 0);
+    wiringPiI2CWriteReg8(fd, base + 1, 0);
+    wiringPiI2CWriteReg8(fd, base + 2, pwm & 0xFF);
+    wiringPiI2CWriteReg8(fd, base + 3, (pwm >> 8) & 0x0F);
+}
+
+// prepocet uhlu pomoci 5 segmentu
+int angle_to_pwm(float angle) {
+    if (angle <= CAL_ANGLES[0]) return (int)roundf(CAL_PWM[0]);
+    if (angle >= CAL_ANGLES[4]) return (int)roundf(CAL_PWM[4]);
+
+    // nalezni spravny segment
+    int i = (int)(angle / 45.0f);
+    if (i > 3) i = 3;
+
+    // linearni interpolace v segmentu
+    float t = (angle - CAL_ANGLES[i]) / 45.0f;
+    float pwm = CAL_PWM[i] + t * (CAL_PWM[i+1] - CAL_PWM[i]);
+
+    return (int)roundf(pwm);
+}
+
+int main() {
+    int fd = wiringPiI2CSetup(PCA9685_ADDR);
+    if (fd < 0) {
+        printf("ERROR: Nelze otevřít I2C sběrnici.\n");
+        return 1;
+    }
+
+    pca9685_init(fd);
+    float angle;
+
+    printf("Zadejte úhel (0 - 180):\n");
+
+    // vstup
+    while (scanf("%f", &angle) == 1) {
+        // orezani uhlu
+        if (angle < 0) angle = 0;
+        if (angle > 180) angle = 180;
+
+        // prepocet na pwm pomoci interpolace
+        int pwm = angle_to_pwm(angle);
+        
+        pca9685_set_pwm(fd, CHANNEL, pwm);
+        printf("Uhel: %.2f -> PWM: %d\n", angle, pwm);
+    }
+
+    return 0;
+}
+</code></pre>
+            </div>
+        </div>
+
+        <h3>Měření spotřeby hexapoda</h3>
+
+            <p>
+                K měření spotřeby hexapoda jsem použil čínský laboratorní zdroj napětí <strong>YIHUA 3010D-III (30 V / 10 A)</strong>.
+                Když jsem odpojil napájení pro serva, naměřil jsem odběr <strong>0,39 A při napětí 11,5 V</strong>.
+                Přes elektrický výkon si tedy můžeme spočítat, že do napájecí větve pro Raspberry Pi 5 teče při minimální zátěži zhruba <strong>0,9 A při 5 V</strong>.
+                Při současném pohybu všech serv vyskočil maximální naměřený proud na <strong>2,5 A při 12 V</strong>.
+                Z toho vyplývá, že do napájecí větve serv teče zhruba <strong>4 A při 6 V</strong>.
+            </p>
+
+            <p>
+                Ačkoliv se tyto hodnoty pravděpodobně blíží realitě, je důležité zmínit, že zachycují <strong>pouze průměrný odběr</strong>.
+                Serva totiž neodebírají proud konstantně, ale v <strong> pulzech</strong>.
+                Displej zdroje tyto špičky nedokáže zaznamenat a ukazuje pouze vyhlazenou průměrnou hodnotu.
+            </p>
+
+            <img src="media/MereniSpotreby.JPG" alt="Měření spotřeby hexapoda pomocí zdroje YIHUA 3010D-III" class="project-image">
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // vsechny bloky kodu
+            const codeContainers = document.querySelectorAll('.code-container');
+        
+            codeContainers.forEach(container => {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                codeContent.classList.add('collapsed');
+                toggleBtn.textContent = '▶\uFE0E';
+        
+                // prepinani viditelnosti
+                toggleBtn.addEventListener('click', () => {
+                    codeContent.classList.toggle('collapsed');
+                    
+                    // zmena ikony (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                    if (codeContent.classList.contains('collapsed')) {
+                        toggleBtn.textContent = '▶\uFE0E'; 
+                    } else {
+                        toggleBtn.textContent = '▼\uFE0E';
+                    }
+                });
+        
+                // kopirovani
+                copyBtn.addEventListener('click', () => {
+                    const textToCopy = codeBlock.innerText;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // vizualni zpetna vazba
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Zkopírováno';
+                        copyBtn.style.color = '#28a745';
+                        
+                        // navrat do puvodniho stavu
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('chyba ', err);
+                        copyBtn.textContent = 'Chyba!';
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+
+</body>
+</html>

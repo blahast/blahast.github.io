@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html" class="active">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>5. týden: Výroba elektroniky</h1>
+
+            <p>
+                Během pátého týdne bylo úkolem vytvořit <strong>elektronický obvod</strong>, který bude provádět nějakou akci (alespoň blikat).
+                Podmínkou bylo, že se pro propojení součástek <strong>nesmí použít nepájivé kontaktní pole</strong>.<br><br>
+            </p>
+
+            <h2>Dálkové ovládání hexapoda</h2>
+
+            <p>
+                Tento týden jsem se rozhodl sestrojit <strong>dálkové ovládání</strong> k mému závěrečnému projektu - 
+                <strong>hexapodovi</strong>. Cílem bylo navrhnout kontroler, 
+                který mi poskytne kontrolu nad všemi pohyby robota. 
+                Ovladač by měl umožňovat následující:
+            </p>
+
+            <ul>
+                <li><strong>pohyb ve všech směrech</strong>,</li>
+                <li><strong>otáčení těla</strong>,</li>
+                <li><strong>frekvenci chůze</strong>,</li>
+                <li><strong>výšku kroku</strong>,</li>
+                <li>přepínání mezi různými <strong>vzory chůze (gaity)</strong>,</li>
+                <li>náklony těla (<strong>roll, pitch a yaw</strong>),</li>
+                <li><strong>posuny těla</strong> doleva, doprava, nahoru a dolů (bez odlepení nohou od země),</li>
+                <li><strong>postavení</strong> a <strong>posazení</strong> robota,</li>
+                <li><strong>vypnutí</strong> robota.</li>
+            </ul>
+
+            <p>
+                Mozkem ovladače bude <strong>Arduino Mega 2560 PRO</strong>. 
+                Ke komunikaci s <strong>Raspberry Pi 5</strong>, které se nachází v hexapodovi, 
+                použiji <strong>Bluetooth modul</strong>. 
+                Nastavené hodnoty se budou zobrazovat na <strong>OLED displeji</strong>. 
+                Zařízení je napájeno třemi <strong>AA bateriemi</strong>, jejichž napětí zvyšuji na 5 V pomocí <strong>step-up modulu</strong>. 
+                Celý tento projekt jsem se rozhodl integrovat na <strong>vlastní DPS</strong> (desku plošných spojů).
+            </p>
+
+            <h3>Návrh DPS v programu KiCAD</h3>
+            
+            <p>
+                Desku jsem navrhoval v bezplatném programu <strong>KiCAD</strong>. 
+                Prvním krokem byla tvorba <strong>schématu</strong>, kde se definují vývody použitých součástek a jejich propojení. 
+                Mnohé součástky má KiCAD v základu (tlačítka, rezistory, potenciometry), 
+                pro jiné je nutné schéma vytvořit nebo stáhnout. 
+                Schéma Arduina jsem stáhl z <a href="https://github.com/Alarm-Siren/arduino-kicad-library" target="_blank">tohoto GitHub repozitáře</a>.
+            </p>
+
+            <p>
+                Pro zjednodušení jsem schémata složitějších modulů (joystick, Bluetooth, měnič napětí) nahradil standardními 
+                <strong>kolíkovými lištami</strong> (např. <code>Conn_01x05_Socket</code> pro joystick). 
+                Spoje k Arduinu jsem volil tak, aby byly vývody fyzicky blízko u sebe, což mi později velmi usnadnilo trasování desky. 
+                Jelikož logika Bluetooth modulu funguje na <strong>3,3 V</strong>, 
+                bylo navíc nutné napětí z Arduina snížit pomocí napěťového děliče.
+            </p>
+
+            <img src="media/SchemaOvladace.JPG" alt="Schéma projektu v KiCAD" class="project-image">
+
+            <p>
+                Druhým krokem byl samotný návrh <strong>fyzické desky (v Editoru DPS)</strong>. 
+                Zde je nutné každému symbolu přiřadit <strong>pouzdro (footprint)</strong>, které definuje rozměry součástky, 
+                rozteče vývodů a montážní otvory, a následně mezi jednotlivými piny nakreslit vodivé spoje.
+                Pouzdro joysticku jsem tvořil manuálně podle technického nákresu.
+                Pouzdro Arduina se nacházelo ve stejném GitHub repozitáři jako jeho schéma a
+                pouzdra kolíkových lišt, tlačítek, potenciometrů a rezistorů již KiCAD obsahuje.
+            </p>
+
+            <img src="media/RozmeryJoysticku.jpg" alt="Rozměry Joysticku ze stránky Drátek.cz" class="project-image-noborder">
+
+            <p>
+                Zvolil jsem šířku spojů <strong>0,8 mm</strong> a izolační mezeru <strong>0,5 mm</strong>. 
+                Protože jsem vyráběl pouze <strong>jednovrstvou DPS</strong> (kde se cesty nesmí křížit), byl proces poměrně složitý. 
+                Abych si ušetřil trasování zemnících spojů, využil jsem funkci <strong>rozlité mědi (rozlitá zem)</strong>. 
+                Zbytkové "ostrovy" země, které se s hlavní plochou nespojily, 
+                jsem vyřešil pomocí <strong>jumperů</strong> (propojení drátkem), které jsem připájel z vrchní strany desky.
+                Jelikož měď rychle odvádí teplo, použil jsem pro usnadnění pájení spojů připojených k zemi 
+                <strong>termální odlehčení</strong> s krčky o šířce 0,65 mm s mezerou 0,65 mm.
+            </p>
+
+            <img src="media/SpodníVrstvaDPS.JPG" alt="Spodní frézovaná vrstva DPS" class="project-image">
+            <img src="media/HorniVrstvaDPS.JPG" alt="Horní nefrézovaná vrstva DPS" class="project-image">
+
+            <h3>Výroba DPS na CNC frézce</h3>
+
+            <p>
+                Z KiCADu jsem vyexportoval výrobní data (<strong>.gbr</strong> pro cesty a ořez, <strong>.drl</strong> pro vrty). 
+                Příprava frézování (rychlost, hloubka...) a nastavení nástrojů probíhaly v softwaru <strong>MakeraCAM</strong>. 
+                Protože se frézuje spodní strana desky, musela být data zrcadlově převrácena. 
+                Za obrovskou pomoc a předání zkušeností v této fázi projektu bych rád <strong>poděkoval panu Ing. Krištofu Pučejdlovi</strong>.
+            </p>
+
+            <img src="media/MakeraCAM.JPG" alt="Fotka z MakeraCAM" class="project-image">
+
+            <p>
+                K výrobě posloužila školní CNC frézka <strong>Carvera Air</strong>. 
+                Desku <strong>kuprextitu</strong> (15 &times; 10 cm) jsme k podložce zafixovali oboustrannou lepicí páskou.
+            </p>
+
+            <img src="media/OboustrannaPaskaNaFreze.JPG" alt="Oboustranná lepicí páska na podkladu" class="project-image">
+            <img src="media/CarveraAir.JPG" alt="Stroj Makera Carvera Air s přilepenou kuprextitovou destičkou" class="project-image">
+
+            <p>
+                Výroba probíhala ve čtyřech krocích: vyvrtání malých otvorů a předvrtání těch větších,
+                vyfrézování měděných spojů, rozšíření otvorů větším vrtákem a na závěr vyříznutí vnějšího obrysu desky.
+            </p>
+
+            <img src="media/FrezaOtvory.JPG" alt="Cuprextit ve frézce s vyvrtanými otvory" class="project-image">
+            <img src="media/FrezovaniSpoju.JPG" alt="Cuprextit ve frézce s vyfrézovanými spoji" class="project-image">
+            <img src="media/DPS.JPG" alt="Hotová DPS" class="project-image">
+
+            <h3>Osazování součástkami a pájení</h3>
+
+            <p><strong>Seznam použitých součástek:</strong></p>
+
+            <ul>
+                <li><strong>Arduino Mega 2560 PRO</strong> (ATmega2560)</li>
+                <li>I2C <strong>OLED displej 1,3"</strong> (bílý, 128 &times; 64 px)</li>
+                <li>2&times; <strong>KY-023 Joystick</strong> s tlačítkem</li>
+                <li>3&times; <strong>Tlačítko TC-1212T</strong> (12 &times; 12 &times; 7.3 mm)</li>
+                <li>4&times; Vertikální <strong>potenciometr RV09 10k</strong></li>
+                <li><strong>Bluetooth modul HC-05</strong></li>
+                <li><strong>Step-up DC-DC měnič</strong> (z 1-5 V na 5 V, 500 mA)</li>
+                <li>Držák na 3&times; <strong>AA baterie</strong> + baterie samotné</li>
+                <li><strong>Kolébkový přepínač</strong> (10 A AC)</li>
+                <li>Sada malých <strong>M2 šroubků</strong> (délka 4 až 20 mm)</li>
+                <li><strong>Dutinkové a kolíkové lišty</strong></li>
+            </ul>
+
+            <img src="media/Soucastky.JPG" alt="Fotka použitých součástek" class="project-image">
+
+            <p>
+                Pro pájení jsem použil 16 let starou sadu <strong>ROTHENBERGER</strong> od dědy. 
+                Nástroj s velkým hrotem a hrubou pájkou (1,5 mm) nebyl na drobnou elektroniku vůbec vhodný. 
+                Největší a téměř fatální chybou však bylo použití tavidla z této sady. 
+                Bylo to totiž instalatérské tavidlo, které je <strong>elektricky vodivé.</strong>
+            </p>
+
+            <img src="media/PajeckaAPrislusenstvi.JPG" alt="Pájecí sada" class="project-image">
+
+            <p>
+                Součástky (tlačítka, rezistory, potenciometry) jsem pájel přímo do desky. 
+                Moduly a displej se zasouvají do předem připájených dutinkových lišt, takže je lze kdykoliv vyjmout.
+                Joysticky jsou drženy nad deskou pomocí <strong>4 mm vysokých spacerů</strong> tištěných na 3D tiskárně, 
+                které se následně prošroubují <strong>M2 &times; 8mm</strong> šroubky a na druhé straně desky upevní maticí. 
+                Stejným způsobem je displej držen ve výšce <strong>16 mm</strong> pomocí šroubků <strong>M2 &times; 20mm</strong>.
+                Pro upevnění držáku baterek jsem v DPS navrhl dva otvory pro přišroubování, nakonec jsem ale použil <strong>tavné lepidlo</strong>.
+            </p>
+
+            <img src="media/Piny.JPG" alt="Hromádka zkrácených lišt" class="project-image">
+            <img src="media/NenapajeneArduino.JPG" alt="Arduino bez napájených pinů" class="project-image">
+            <img src="media/NapajeneArduino.JPG" alt="Arduino s napájenými piny" class="project-image">
+            <img src="media/OsazeneDPS1.JPG" alt="Hotové DPS zeshora" class="project-image">
+            <img src="media/OsazeneDPS2.JPG" alt="Hotové DPS zespodu" class="project-image">
+            <img src="media/OsazeneDPS3.JPG" alt="Hotové DPS zezadu" class="project-image">
+
+            <p>
+                Během manipulace s deskou před přišroubováním joysticků se mi bohužel podařilo jeden joystick odtrhnout i s měděnými cestami. 
+                Spoje jsem musel nahradit drátky.
+            </p>
+
+            <img src="media/UtrzeneSpoje.JPG" alt="Utržené měděné cestičky" class="project-image">
+            <img src="media/OpraveneSpoje.JPG" alt="Opravené DPS" class="project-image">
+
+            <h3>Problémy s tavidlem</h3>
+            <p>
+                Po prvním zapojení se Arduino chovalo naprosto nevyzpytatelně. 
+                Napětí na analogových vstupech kolísalo mezi 1 až 3 volty, když mělo být 5. 
+                Postupně zhasínaly různé moduly, až přestaly svítit i indikační LED přímo na Arduinu.
+                Po hodinách zoufalého debugování jsem zjistil příčinu: 
+                <strong>vodivé zbytky tavidla tvořily zkraty a parazitní napěťové děliče</strong>.
+            </p>
+
+            <p>
+                Následoval drastický pokus o záchranu projektu.
+                Celou desku i s připájenými součástkami jsem polil <strong>99% isopropylalkoholem</strong> a vydrhnul kartáčkem. 
+                Arduino si navíc prošlo půlhodinovou koupelí v horké vodě s Jarem. 
+                Po důkladném vysušení fénem obvod <strong>zázračně ožil a plně funguje</strong> 
+                (až na tlačítko v pravém joysticku, kde se při čištění utrhl opravný drátek).
+            </p>
+
+            <h3>CAD návrh</h3>
+            <p>
+                Krabičku jsem modeloval ve <strong>Fusion 360</strong> s ohledem na příjemné držení v rukou a co nejmenší rozměry. 
+                DPS má v rozích otvory o průměru 2 mm, díky čemuž ji lze v krabičce uchytit pomocí čtyř <strong>M2 &times; 6 mm</strong> šroubků. 
+                Zespodu krabičky je otvor o rozměrech <strong>20 &times; 12,5 mm</strong>, do kterého je zatlačen kolébkový spínač.
+                Víko bylo nutné ladit na několik pokusů, aby všechny otvory perfektně lícovaly s ovládacími prvky. 
+                Abych viděl na LED měniče napětí a Bluetooth modulu, udělal jsem na obou stranách krytu otvory. 
+                Prázdné místo na krytu jsem vyplnil <strong>logem ČVUT</strong>, 
+                které jsem pomocí funkce <strong>Canvas</strong> vložil do roviny krytu a obkreslil pomocí <strong>Fit Point Spline</strong>. 
+                Víko je ke krabičce připevněno pomocí čtyř <strong>M2 &times; 8 mm</strong> šroubků.
+            </p>
+
+            <img src="media/SketchKrabicky.JPG" alt="Sketch krabičky ve Fusion 360" class="project-image">
+            <img src="media/ModelKrabicky.JPG" alt="Model krabičky ve Fusion 360" class="project-image">
+            <img src="media/SketchKrytu.JPG" alt="Sketch krytu ovládání ve Fusion 360" class="project-image">
+            <img src="media/LogoSketch.JPG" alt="Tvorba loga ČVUT na krytu" class="project-image">
+            <img src="media/OvladaniModel.JPG" alt="Model krytu ovládání ve Fusion 360" class="project-image">
+
+            <p>
+                Jelikož se tlačítka a potenciometry nacházejí pod úrovní víka, bylo nutné vymodelovat <strong>nástavce</strong>. 
+                Knoflíky pro tlačítka jsem stáhl z 
+                <a href="https://www.printables.com/model/367373-tactile-switch-push-button-cap-12x12" target="_blank">GrabCAD</a> 
+                a následně jsem je ve Fusion 360 prodloužil na 16 mm.
+                Nástavec na potenciometry jsem tvořil sám. 
+                Do potenciometru zapadne díky kruhovému otvoru o průměru 6,1 mm, ve kterém je příčka o tloušťce 0,9 mm.
+            </p>
+
+            <img src="media/TlacitkoModel.JPG" alt="Model nasazovacího knoflíku na tlačítko" class="project-image">
+            <img src="media/KroutitkoModel.JPG" alt="Model Nástavce na potenciometr" class="project-image">
+
+            <h3>3D tisk</h3>
+            <p>
+                Hotové modely jsem vyexportoval z Fusionu (Utilities -> 3D print) do <strong>formátu 3MF</strong> a naslicoval v programu <strong>Bambu Studio</strong>. 
+                Jako materiál jsem vybral <strong>PLA</strong> a tiskl jsem na tiskárně <strong>Bambu Lab A1 Mini</strong> s <strong>0,4 mm tryskou</strong> při následujícím nastavení:
+            </p>
+            
+            <ul>
+                <li><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</li>
+                <li><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</li>
+                <li><strong>Bed temperature (teplota podložky):</strong> 65 °C</li>
+                <li><strong>Wall loops (perimetry):</strong> 2</li>
+                <li><strong>Sparse infill density (hustota výplně):</strong> 15 %</li>
+                <li><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</li>
+                <li><strong>Outer wall speed (rychlost vnější stěny):</strong> 60 mm/s</li>
+            </ul>
+            
+            <p>
+                Zbylá nastavení jsem ponechal na výchozích hodnotách vybraného tiskového profilu.
+            </p>
+
+            <p>
+                Pro otvor kolébkového spínače bylo potřeba vygenerovat podpěry. Zvolil jsem následující nastavení podpěr:
+            </p>
+
+            <ul>
+                <li><strong>Type (typ):</strong> Tree (auto)</li>
+                <li><strong>Top Z distance (mezera v ose Z):</strong> 0,25 mm</li>
+            </ul>
+
+            <p>
+                Ostatní nastavení podpěr zůstalo výchozí.
+            </p>
+
+            <img src="media/KrytBambuStudio.JPG" alt="Model krytu v Bambu Studiu" class="project-image">
+            <img src="media/KrabickaBambuStadiu.JPG" alt="Model krabicky v Bambu Studiu" class="project-image">
+            <img src="media/CudlikyKroutitkaBambuStudio.JPG" alt="Modely knoflíků a násady na potenciometry v Bambu Studiu" class="project-image">
+            <img src="media/VytisklaKrabicka.JPG" alt="Vytištěná krabička" class="project-image">
+            <img src="media/KrytNaTiskarne.JPG" alt="Vytištěný kryt" class="project-image">
+            <img src="media/ElektronikaVKrabicce.JPG" alt="Elektronika zasazená do krabičky" class="project-image">
+
+            <h3>Programování (Arduino IDE)</h3>
+            <p>
+                Kód se stará o vizualizaci vstupů na OLED displeji, k čemuž používá  knihovnu <strong>U8g2</strong>. 
+                Pohyb joysticků je znázorněn kruhy, které se při stisku vyplní. 
+                Stav tlačítek je v horní části a potenciometry jsou zobrazeny jako čtyři sloupcové grafy uprostřed.
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">kontroler.ino</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+                
+                <div class="code-content">            
+
+<pre><code class="language-c">#include &lt;U8g2lib.h&gt; // knihovna pro oled
+#include &lt;Wire.h&gt;    // sbernice i2c
+
+// objekt displeje
+U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+
+// piny tlacitek
+const int pinSW1 = 27;
+const int pinSW2 = 5;
+const int pinSW3 = 3;
+
+// piny potenciometru
+const int pinRV1 = A0;
+const int pinRV2 = A1;
+const int pinRV3 = A14;
+const int pinRV4 = A12;
+
+// levy joystick
+const int joy1X = A10;
+const int joy1Y = A8;
+const int joy1Btn = A6;
+
+// pravy joystick
+const int joy2X = A7;
+const int joy2Y = A5;
+const int joy2Btn = A3;
+
+void setup() {
+    delay(50); // kratka pauza
+
+    // pullup odpory pro tlacitka
+    pinMode(pinSW1, INPUT_PULLUP);
+    pinMode(pinSW2, INPUT_PULLUP);
+    pinMode(pinSW3, INPUT_PULLUP);
+    pinMode(joy1Btn, INPUT_PULLUP);
+    pinMode(joy2Btn, INPUT_PULLUP);
+
+    u8g2.setBusClock(400000); // rychle i2c
+    u8g2.begin();             // start displeje
+}
+
+void loop() {
+    // cteni potenciometru
+    unsigned int valRV1 = analogRead(pinRV1);
+    unsigned int valRV2 = analogRead(pinRV2);        // normalni smer
+    unsigned int valRV3 = 1023 - analogRead(pinRV3); // obracena hodnota
+    unsigned int valRV4 = analogRead(pinRV4);
+
+    // cteni stisku tlacitek
+    bool btn1 = !digitalRead(pinSW1);
+    bool btn2 = !digitalRead(pinSW2);
+    bool btn3 = !digitalRead(pinSW3);
+    bool j1Btn = !digitalRead(joy1Btn);
+    bool j2Btn = !digitalRead(joy2Btn);
+
+    // osy joy 1 inverzni
+    long dX1 = 512 - analogRead(joy1X); 
+    long dY1 = 512 - analogRead(joy1Y);
+    
+    long distSq1 = dX1 * dX1 + dY1 * dY1; // ctverec vzdalenosti
+    
+    if (distSq1 > 262144L) { // orez do kruhu
+    long dist1 = sqrt(distSq1);
+    dX1 = (dX1 * 512) / dist1;
+    dY1 = (dY1 * 512) / dist1;
+    }
+    
+    // pozice joy 1 v pixelech
+    int drawJ1X = 20 + (dX1 / 32); 
+    int drawJ1Y = 32 + (dY1 / 32);
+
+    // osy joy 2 normalni
+    long dX2 = analogRead(joy2X) - 512;
+    long dY2 = analogRead(joy2Y) - 512;
+    
+    long distSq2 = dX2 * dX2 + dY2 * dY2; // ctverec vzdalenosti
+    
+    if (distSq2 > 262144L) { // orez do kruhu
+    long dist2 = sqrt(distSq2);
+    dX2 = (dX2 * 512) / dist2;
+    dY2 = (dY2 * 512) / dist2;
+    }
+    
+    // pozice joy 2 v pixelech
+    int drawJ2X = 106 + (dX2 / 32); 
+    int drawJ2Y = 32 + (dY2 / 32);
+
+    u8g2.clearBuffer(); // vymaz pameti displeje
+
+    // obrysy obou joysticku
+    u8g2.drawCircle(20, 32, 20);   
+    u8g2.drawCircle(106, 32, 20);  
+    
+    // tecka leveho joysticku plna pri stisku
+    if (j1Btn) u8g2.drawDisc(drawJ1X, drawJ1Y, 4);
+    else u8g2.drawCircle(drawJ1X, drawJ1Y, 4);
+
+    // tecka praveho joysticku plna pri stisku
+    if (j2Btn) u8g2.drawDisc(drawJ2X, drawJ2Y, 4);
+    else u8g2.drawCircle(drawJ2X, drawJ2Y, 4);
+
+    // ramecky pro grafy
+    u8g2.drawFrame(46, 27, 6, 36);   
+    u8g2.drawFrame(56, 27, 6, 36);
+    u8g2.drawFrame(66, 27, 6, 36);
+    u8g2.drawFrame(76, 27, 6, 36);
+
+    // prevod hodnot na pixely
+    int h1 = (valRV1 * 36) >> 10;
+    int h2 = (valRV2 * 36) >> 10;
+    int h3 = (valRV3 * 36) >> 10;
+    int h4 = (valRV4 * 36) >> 10;
+
+    // sloupce grafu zleva doprava
+    u8g2.drawBox(46, 63 - h4, 6, h4); // sloupec rv4
+    u8g2.drawBox(56, 63 - h3, 6, h3); // sloupec rv3
+    u8g2.drawBox(66, 63 - h1, 6, h1); // sloupec rv1
+    u8g2.drawBox(76, 63 - h2, 6, h2); // sloupec rv2
+
+    // vykresleni hornich tlacitek
+    if (btn1) u8g2.drawDisc(51, 8, 4); else u8g2.drawCircle(51, 8, 4);
+    if (btn2) u8g2.drawDisc(64, 8, 4); else u8g2.drawCircle(64, 8, 4);
+    if (btn3) u8g2.drawDisc(77, 8, 4); else u8g2.drawCircle(77, 8, 4);
+
+    u8g2.sendBuffer(); // zapis na displej
+}
+</code></pre>
+                </div>
+            </div>
+
+            <p>
+                A nakonec fotka hotového dálkového ovládání pro hexapoda:
+            </p>
+
+            <img src="media/HotoveOvladani.JPG" alt="Hotový model dálkového ovládání" class="project-image">
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // vsechny bloky kodu
+            const codeContainers = document.querySelectorAll('.code-container');
+        
+            codeContainers.forEach(container => {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                codeContent.classList.add('collapsed');
+                toggleBtn.textContent = '▶\uFE0E';
+        
+                // prepinani viditelnosti
+                toggleBtn.addEventListener('click', () => {
+                    codeContent.classList.toggle('collapsed');
+                    
+                    // zmena ikony (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                    if (codeContent.classList.contains('collapsed')) {
+                        toggleBtn.textContent = '▶\uFE0E'; 
+                    } else {
+                        toggleBtn.textContent = '▼\uFE0E';
+                    }
+                });
+        
+                // kopirovani
+                copyBtn.addEventListener('click', () => {
+                    const textToCopy = codeBlock.innerText;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // vizualni zpetna vazba
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Zkopírováno';
+                        copyBtn.style.color = '#28a745';
+                        
+                        // navrat do puvodniho stavu
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('chyba ', err);
+                        copyBtn.textContent = 'Chyba!';
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+
+</body>
+</html>

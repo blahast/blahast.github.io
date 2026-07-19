@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html" class="active">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>2. týden: 2D návrh a řezání</h1>
+            <p>
+                Během druhého týdne bylo úkolem vyřezat <strong>samolepku na řezacím plotru</strong> a navrhnout a vyřezat na <strong>laserové řezačce stavebnici z kartonu</strong>.<br><br>
+            </p>
+
+            <h2>Tvorba samolepky</h2>
+
+            <p>
+                Rozhodl jsem se vytvořit samolepku 
+                <a href="https://www.hradeckralove.org/hradec-kralove-ma-novou-vizualni-identitu/d-83915" target="_blank">nového loga</a>
+                mého rodného města, Hradce Králové. Pro tvorbu vektorové grafiky jsem použil program <strong>Fusion 360</strong>.
+            </p>
+        
+            <p>
+                Nejprve jsem pomocí funkce <strong>Canvas</strong> vložil obrázek loga do pracovního prostoru. 
+                Aby rozměry samolepky odpovídaly realitě, využil jsem funkci <strong>Calibrate</strong> (kliknout pravým tlačítkem na Canvas v browseru). 
+                Stačilo vybrat dva body na logu a zadat jejich skutečnou vzdálenost, čímž se celý obrázek změnil na požadované rozměry.
+            </p>
+        
+            <img src="media/KalibraceObrazku.JPG" alt="Kalibrace loga ve Fusion 360" class="project-image">
+        
+            <p>
+                V rovině obrázku jsem vytvořil nový náčrt, ve kterém jsem logo obkreslil. Použil jsem k tomu následující nástroje:
+            </p>
+
+            <ul>
+                <li><strong>Line</strong> - pro rovné úsečky</li>
+                <li><strong>Circle</strong> - pro kružnice</li>
+                <li><strong>Three Point Arc</strong> - pro půlkružnice a zaoblené části písmene G</li>
+            </ul>
+
+            <p>
+                Původně jsem písmeno G obkrselil pomocí nástroje <strong>Fit Point spline</strong>, musel jsem ho však nahradit tříbodovými oblouky. 
+                Při exportu do formátu <strong>.dxf</strong> a následném importování do programu <strong>Inkscape</strong> se totiž spline křivky nezobrazovaly.
+                Jelikož tvar písmene G není tvořen přesnými kružnicemi, není obkreslení přesné.
+            </p>
+        
+            <br>
+
+            <img src="media/SketchObrazku.JPG" alt="Obkreslování loga ve Fusion 360" class="project-image">
+        
+            <p>
+                Jelikož bude samolepka tříbarevná, vytvořil jsem tři samostatné náčrty pojmenované podle barev. 
+                Do každého z nich jsem z původního náčrtu promítnul funkcí <strong>Project</strong> pouze ty křivky, které ohraničují danou barvu.
+                Jednotlivé barvy jsem následně exportoval ve formátu <strong>.dxf</strong>.
+            </p>
+        
+            <img src="media/ExportDXF.JPG" alt="Export do formátu DXF" class="project-image">
+
+            <p>
+                Soubory jsem přenesl do školního počítače, ale <strong>Silhouette Studio</strong> původní <strong>.dxf</strong> z <strong>Fusion 360</strong> deformovalo.
+                Problém vyřešilo otevření souborů v <strong>Inkscape</strong> a jejich opětovný export do <strong>.dxf</strong>.
+                Po importu bylo pouze nutné opravit měřítko, aby rozměry odpovídaly návrhu (import změnil rozměry, předchozí úprava velikosti Canvasu byla tedy zbytečná).
+            </p>
+                
+            <p>
+                Vinylovou fólii jsem upevnil na adhezní řezací podložku a vložil do plotru.
+            </p>
+            
+            <img src="media/PlotrSFolii.jpg" alt="Řezání na plotru" class="project-image">
+            <p style="font-size: 0.9em; color: gray;">
+            <em>Poznámka: Obrázek zapůjčen od <a href="https://b222_b3b35jvc.pages.fel.cvut.cz/pechasim/weeks/week2/week2.html" target="_blank">Šimona Pecháčka</a>.</em>
+            </p>
+
+            <p>
+                Po dokončení řezu jsem ze samolepky odstranil přebytečný materiál a pomocí transferové fólie jsem přenesl logo na víko notebooku. 
+                Kvůli nedostupnosti bílé fólie jsem nakonec vytvořil pouze dvoubarevnou variantu.
+            </p>
+                
+            <img src="media/PrenaseniSamolepky.jpg" alt="Přenos samolepky" class="project-image">
+                
+            <img src="media/FinalSamolepka.jpg" alt="Finální výsledek na notebooku" class="project-image">
+
+
+
+            <br><br>
+            <h2>Stavebnice z kartonu</h2>
+
+            <p>
+                Abych se držel tématu mého závěrečného projektu, dal jsem si za úkol vytvořit stavebnici <strong>hexapoda</strong>.
+                K vytvoření vektorové grafiky jsem opět použil <strong>Sketch</strong> ve <strong>Fusion 360</strong>.
+            </p>
+
+            <p>
+                Kvůli neznámé tloušťce kartonu a pro účely procvičení jsem parametrizoval všechny klíčové rozměry. 
+                Aby model na změny parametrů reagoval správně, udělal jsem všechny náčrty <strong>plně definované (fully constrained)</strong>. 
+                Díky tomu lze nyní snadno upravovat rozměry otvorů, délky článků nohou i velikost základny.
+            </p>
+
+            <img src="media/Parametry.JPG" alt="Tabulka parametrů" class="project-image">
+
+            <img src="media/SketchLaser.JPG" alt="Sketch dílů hexapoda" class="project-image">
+
+            <p>
+                Hotové náčrty jsem exportoval do formátu <strong>.dxf</strong> a následně je upravil v programu <strong>Inkscape</strong> podle 
+                <a href="https://youtu.be/SyvYOC2yWU4?si=QTFaIHLjedb-zAEk" target="_blank">tutoriálu Filipa Korfa</a>. 
+            </p>
+                
+            <p>
+                Při prvním pokusu o řezání stroj vynechal polovinu dílů. 
+                Problém vyřešilo označení všech objektů a použití funkce <strong>Zrušit seskupení</strong>.
+                Pro řezání kartonu jsem nakonec použil nastavení: <strong>výkon 45 %, rychlost 100 %, frekvence 500 Hz</strong>.
+                Po několika zkušebních řezech jsem šířku spojovacích otvorů zvolil <strong>2,4 mm</strong>.
+            </p>
+                
+            <img src="media/FinalHexapod.jpg" alt="Finální sestavený hexapod z kartonu" class="project-image">
+
+        </main>
+
+    </div>
+
+</body>
+</html>

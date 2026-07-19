@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html" class="active">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>13. týden: Formování a odlévání</h1>
+
+            <p>
+                Během třináctého týdne bylo úkolem <strong>vyrobit formu</strong> pro nějaký malý předmět a následně z ní <strong>vytvořit odlitek</strong>.
+            </p>
+
+            <h2>Silikonové „botičky“ pro hexapoda</h2>
+
+            <p>
+                Během <a href="tyden9.html" target="_blank">9. týdne</a>, kdy jsme se věnovali CNC obrábění,
+                jsem z materiálu POM-C vyfrézoval dvoudílnou formičku pro odlévání <strong>silikonových návleků</strong> na nohy mého hexapoda. 
+                Návleky by měly <strong>zlepšit přilnavost</strong> k povrchu, což hexapodovi umožní stabilnější pohyb bez podkluzování.
+                Jelikož má hexapod šest nohou, bylo jich nutné odlít celkem šest.
+            </p>
+
+            <p>
+                Silikon se nalévá do velkého otvoru ve spodní části formy.
+                Prostřední kolík ve vrchní části pak zasahuje do dutiny se silikonem a slouží k vytvoření <strong>vnitřního otvoru</strong> v návleku (pro nasunutí na nohu robota).
+                Přebytečný silikon může odtékat <strong>čtyřmi kanálky</strong>.
+            </p>
+
+            <img src="media/HotovaFormaRozlozena.JPG" alt="Rozložená hotová forma." class="project-image">
+            <img src="media/HotovaFormaSlozena.JPG" alt="Složená hotová forma." class="project-image">
+
+            <p>
+                Výsledný odlitek by měl vypadat takto:
+            </p>
+
+            <img src="media/Boticka.JPG" alt="Příklad silikonového návleku" class="project-image">
+
+            <br>
+
+            <h3>Výběr materiálu</h3>
+
+            <p>
+                Pro návleky jsem použil dvousložkový silikon <strong>Ecoflex 00-35 FAST</strong>. 
+                Jedná se o tekutou silikonovou pryž, která po smíchání obou složek v <strong>poměru 1:1</strong> vytvrzuje při pokojové teplotě už za zhruba <strong>5 minut</strong>. 
+                Takzvaný „pot life“ (doba, po kterou je silikon tekutý a dá se s ním pracovat) je jen asi <strong>2,5 minuty</strong>.
+            </p>
+
+            <p>
+                Tento silikon je po vytvrdnutí <strong>velmi měkký a pružný</strong>. 
+                Díky tomu na hladké podlaze prakticky neklouže a zároveň <strong>tlumí nárazy a vibrace</strong>,
+                které by se při chůzi hexapoda přenášely do servomotorů, což jim může prodloužit životnost. 
+                Měkkost materiálu má ale i svou nevýhodu - na drsnějším povrchu se může silikon poměrně rychle <strong>ošoupat nebo natrhnout</strong>. 
+                Spolehlivějším řešením by mohlo být použití tvrdšího silikonu, případně vytisknutí návleků z flexibilního filamentu (TPU).
+            </p>
+
+            <img src="media/SlozkySilikonu.JPG" alt="Složky A a B." class="project-image">
+
+            <h3>Příprava a postup odlévání</h3>
+
+            <p>
+                Forma spotřebuje na jeden návlek zhruba <strong>1 ml silikonu</strong>. 
+                Jelikož by se takto malá množství (0,5 ml od každé složky) velmi těžko odměřovala a následně přelévala do formy, 
+                využíval jsem zbytky po spolužácích, kteří si typicky připravili více silikonu, než nakonec potřebovali (těžko se to odhaduje).
+            </p>
+
+            <p>
+                Před samotným odměřováním je důležité <strong>promíchat jednotlivé složky v jejich lahvích</strong>. 
+                V silikonu se totiž mohou tvořit hrudky. 
+                Promícháním se zajistí hladká a homogenní konzistence, což je důležité pro správné vytvrdnutí.
+            </p>
+
+            <p>
+                Míchání obou složek probíhalo v průhledném plastovém kelímku na jedno použití umístěném na váze.
+                Po přidání druhé složky se směs důkladně promíchala dřevěnou špachtlí. 
+                Je důležité <strong>míchat v celém objemu</strong> kelímku a občas <strong>setřít silikon ze stěn i ode dna</strong>, aby se obě složky dobře spojily. 
+                Během práce jsem si všiml, že při příliš agresivním míchání, které narušovalo hladinu směsi, obsahoval výsledný odlitek <strong>výrazně více bublinek</strong>. 
+                Kvůli rychlému vytvrzování bylo navíc nutné pracovat svižně.
+            </p>
+
+            <p>
+                Následně se silikon opatrně nalil do formy.
+                Byli jsme instruováni, abychom silikon lili <strong>vždy jen na jedno místo</strong> a nechali ho, ať se do zbytku formy rozlije sám. 
+                Silikon se tímto způsobem rovnoměrně šíří od jednoho bodu a přirozeně vytlačuje vzduch před sebou ven.
+                Tím se <strong>minimalizuje vznik bublinek</strong>.
+            </p>
+
+            <img src="media/OdmerovaniSlozek.JPG" alt="Odměřování složek na váze." class="project-image">
+            <img src="media/NalevaniDoFormy.JPG" alt="Nalévání silikonu do forem." class="project-image">
+            <img src="media/ZalitySpodekFormy.JPG" alt="Spodní část formy zalitá silikonem." class="project-image">
+
+            <p>
+                Po zaplnění dutiny ve spodní části formy jsem do ní zasadil vrchní díl a formu jsem svrchu zatížil. 
+                Jelikož je objem formy malý, většinou jsem silikonu nalil o něco více.
+                Po přitlačení vrchní části tak přebytečný materiál <strong>vytekl odtokovými kanálky</strong>, 
+                přičemž část zatekla i do otvorů pro vodicí kolíky.
+            </p>
+
+            <img src="media/ZalitaUzavrenaForma.JPG" alt="Uzavřená forma se silikonem." class="project-image">
+
+            <h3>Vyjmutí odlitku a finální úpravy</h3>
+
+            <p>
+                Když zhruba po pěti minutách silikon ztvrdnul, formička byla slepená a nešla snadno otevřít. 
+                Uchytil jsem tedy jednu část <strong>do svěráku</strong> a druhou jsem opatrně vykroutil ven.
+            </p>
+
+            <img src="media/SlepenaFormaVeSveraku.JPG" alt="Slepená forma uchycená ve svěráku." class="project-image">
+
+            <img src="media/RozdelenaForma.JPG" alt="Rozdělaná forma." class="project-image">
+
+            <img src="media/NeupravenyOdlitek.JPG" alt="Odlitek vyjmutý z formy." class="project-image">
+
+            <p>
+                Po úspěšném vyjmutí z formy jsem kancelářskými nůžkami <strong>zastřihnul okraje</strong> a odstranil zbytky silikonu z odtokových kanálků.
+            </p>
+
+            <img src="media/UpraveneOdlitky.JPG" alt="Silikonové návleky po úpravě." class="project-image">
+
+            <p>
+                Průměr části nohy hexapoda, na kterou se návlek navléká, jsem záměrně navrhl <strong>o milimetr větší</strong>, než je vnitřní průměr botičky. 
+                Díky tomuto přesahu a tření návleky na nohách robota <strong>drží i bez použití lepidla</strong>.
+            </p>
+
+            <p>
+                Bohužel se ukázalo, že jsou botičky <strong>příliš měkké</strong> a velmi snadno se <strong>deformují</strong>. 
+                Noha se tak po došlápnutí může v bodě kontaktu s podložkou mírně vychylovat, což by vnášelo nepřesnosti do výpočtů inverzní kinematiky.
+                Zároveň se na nich již po krátkém testování chůze objevily <strong>známky opotřebení</strong>.
+                Dočasně proto využiji návleky pořízené na AliExpressu a v budoucnu si pravděpodobně odliji <strong>nové z tvrdšího silikonu</strong>.
+            </p>
+
+            <img src="media/NavlekNaHexapodovi.JPG" alt="Silikonový návlek na noze hexapoda." class="project-image">
+
+        </main>
+
+    </div>
+
+</body>
+</html>

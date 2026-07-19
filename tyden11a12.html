@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11. a 12. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html" class="active">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>11. a 12. týden: Počítačem řízený stroj</h1>
+
+            <p>
+                Během jedenáctého a dvanáctého týdne bylo úkolem <strong>v týmu</strong> navrhnout a postavit <strong>stroj řízený počítačem</strong>.
+            </p>
+
+            <p>
+                Níže popisuji, jak jsem k našemu stroji přispěl já. 
+                Pokud vás zajímá projekt jako celek, nahlédněte do <a href="https://aa-3ee2c9.pages.fel.cvut.cz/" target="_blank">hlavní dokumentace týmu AA</a>.
+            </p>
+
+            <h2>Kreslení světlem</h2>
+
+            <p>
+                Rozhodli jsme se vytvořit <strong>stroj pro kreslení světlem</strong>. 
+                Takové zařízení pohybuje <strong>světelným zdrojem</strong> (např. LED), čímž ve vzduchu vytváří různé vzory a obrazce. 
+                Ty se následně zachytí fotoaparátem v režimu <strong>dlouhé expozice</strong>, který díky delšímu sběru světla zaznamená světelné stopy.
+            </p>
+
+            <img src="media/TymovyProjekt.jpg" alt="Výsledek naší týmové práce." class="project-image">
+
+            <p>
+                Zvolili jsme obdélníkovou konstrukci se <strong>dvěma osami pohybu</strong> (X a Y). 
+                Pohyb LED zajistí <strong>čtyři navijáky</strong> umístěné v rozích konstrukce, které budou synchronně navíjet a odvíjet lanka s uchycenou LED.
+            </p>
+
+            <h2>Navijáky</h2>
+
+            <p>
+                Společně s <a href="https://pospiad7-9c8471.pages.fel.cvut.cz/" target="_blank">Adamem Pospíšilem</a> 
+                jsme dostali za úkol tyto <strong>navijáky navrhnout a postavit</strong>. 
+                Hlavními výzvami byly: zajistit předvídatelné navíjení tuhého ocelového lanka 
+                a zároveň přes toto lanko <strong>napájet pohyblivou LED</strong>.
+                Abychom umožnili přenos elektrického proudu z pevné části na rotující naviják, 
+                museli jsme vyrobit vlastní <strong>rotační sběrač</strong>.
+            </p>
+
+            <p>
+                Jako pohon jsme využili čtyři krokové motory <strong>NEMA 17</strong> ve dvou variantách:
+                dva silnější <strong>(0,4 Nm)</strong> a dva slabší <strong>(0,28 Nm)</strong>. 
+                Silnější motory umístíme do horních rohů konstrukce, kde se očekává větší tah lanka při zvedání, zatímco slabší motory přijdou do spodních rohů. 
+                Podle hrubých výpočtů by oba typy motorů měly zvládnout požadovanou zátěž i bez nutnosti použití převodů.
+            </p>
+
+            <h3>Návrh držáku navijáku</h3>
+
+            <p>
+                Držák musí být <strong>dostatečně pevný</strong>, aby unesl hmotnost motoru s navijákem,
+                ale také aby odolal <strong>tahu lanka</strong>. 
+                Ocelové lanko je totiž poměrně tuhé a musí být neustále napínáno dvěma protilehlými navijáky, jinak by hrozilo jeho vymotání.
+            </p>
+
+            <p>
+                Díly jsme modelovali v programu <strong>Fusion 360</strong>. 
+                Krokové motory se k držáku uchytí pomocí čtyř šroubů <strong>M3 &times; 12 mm</strong>. 
+                Při návrhu úchytu motoru jsme vycházeli z následujících nákresů:
+            </p>
+
+            <img src="media/MotorRozmeryZepredu.JPG" alt="Rozměry krokového motoru zepředu." class="project-image-noborder">
+            <img src="media/MotorRozmeryZboku.JPG" alt="Rozměry krokového motoru z boku." class="project-image-noborder">
+
+            <p>
+                Kromě samotného motoru s navijákem ponese držák také <strong>měděný plíšek</strong>.
+                Ten poslouží jako zmíněný <strong>sběrač pro přenos elektrického proudu</strong> na navíjející se lanko.
+            </p>
+
+            <p>
+                Držák se k hliníkovým profilům konstrukce (o průřezu 20 &times; 20 mm) připevní pomocí <strong>dvou šroubů M4</strong>. 
+                Ty projdou předvrtanými otvory v profilech a na druhé straně se zajistí maticemi. 
+                Abychom nebyli zcela závislí na přesnosti vyvrtaných otvorů, navrhli jsme držák s <strong>podélnými drážkami pro šrouby</strong>. 
+                Ty umožní drobný posuv a jemné doladění finální polohy.
+            </p>
+
+            <img src="media/ModelDrzaku.JPG" alt="Návrh držáku v programu Fusion 360." class="project-image-noborder">
+
+            <h3>Návrh navijáku a sběrače</h3>
+
+            <p>
+                Při návrhu navijáku jsme museli vyřešit několik překážek. 
+                První z nich bylo <strong>rovnoměrné skládání lanka</strong>. 
+                Pro přesné řízení pohybu LED je důležité znát <strong>aktuální průměr navijáku</strong>, ten se ale s každou nově navinutou vrstvou lanka zvětšuje. 
+            </p>
+            
+            <p>
+                Prvním zvažovaným řešením byl naviják ve tvaru dlouhého válce se spirálovitou drážkou, do které by se lanko namotávalo vždy do jedné vrstvy. 
+                Takový naviják by ale byl <strong>zbytečně velký</strong> a tuhé ocelové lanko by se do něj špatně navádělo. 
+                Druhou variantou byl naviják s 1 mm širokou a cca 3 cm hlubokou drážkou, kde by každá otočka tvořila novou vrstvu. 
+                I v tomto případě by byl naviják velký a navádění lanka do takto úzké štěrbiny by bylo obtížné. 
+            </p>
+            
+            <p>
+                Nakonec jsme se rozhodli pro naviják s drážkou <strong>širokou 3,2 mm a hlubokou 1 cm</strong>. 
+                Do jedné vrstvy se tak bezpečně vejdou <strong>tři otočky lanka</strong>. 
+                Softwarovou kompenzaci zvětšujícího se průměru vyřešíme na základě experimentálního zjištění,
+                kolik otoček se průměrně do jedné vrstvy vejde.
+            </p>
+
+            <p>
+                Vnitřní průměr navijáku jsme stanovili na 4,5 mm, což je dostatečně velké na to, aby se kolem něj dalo tuhé lanko ohnout. 
+                Pro snazší navádění lanka jsme <strong>okraje drážky navijáku zkosili</strong>. 
+                Konec lanka se provléká otvorem z drážky až na zadní stranu navijáku, kde je zajištěn třemi šroubky. 
+                Tyto šroubky navíc slouží ke spojení obou polovin navijáku k sobě.
+            </p>
+
+            <p>
+                Po vnějším obvodu navijáku nalepíme <strong>hliníkovou lepicí pásku</strong>, kterou přehneme přes hranu až pod zmíněné tři šroubky. 
+                Ty tak přitlačí ocelové lanko k hliníkové fólii, čímž se vytvoří <strong>vodivé spojení</strong>. 
+                Na držák se následně upevní měděný plíšek (široký 7,5 mm a dlouhý 6 cm) ohnutý tak,
+                aby zvenčí na dvou místech <strong>pružně doléhal na hliníkovou pásku</strong>.
+            </p>
+
+            <p>
+                Naviják se pak připevní k hřídeli krokového motoru pomocí šroubku M3 a závitové vložky.
+            </p>
+
+            <img src="media/ModelNavijakuShora.JPG" alt="Model navijáku shora." class="project-image-noborder">
+            <img src="media/ModelNavijakuZdola.JPG" alt="Model navijáku zdola." class="project-image-noborder">
+            <img src="media/ModelCelehoNavijaku.JPG" alt="Model celého navijáku." class="project-image-noborder">
+
+            <h3>3D tisk</h3>
+
+            <p>
+                Hotové modely jsme z Fusionu 360 vyexportovali do <strong>formátu 3MF</strong> (přes <em>Utilities -> 3D print</em>) a připravili pro tisk v programu <strong>Bambu Studio</strong>. 
+                Jelikož jsme měli k dispozici převážně jen zbytky různých filamentů, tiskli jsme z materiálů <strong>PLA a PETG</strong> o různých barvách. 
+                Tisk probíhal na školní 3D tiskárně <strong>Bambu Lab A1 Mini s 0,4 mm tryskou</strong> s následujícím nastavením:
+            </p>
+            
+            <ul>
+                <li><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</li>
+                <li><strong>Nozzle temperature (teplota trysky):</strong> 210 °C pro PLA, 240 °C pro PETG</li>
+                <li><strong>Bed temperature (teplota podložky):</strong> 65 °C pro PLA, 70 °C pro PETG</li>
+                <li><strong>Wall loops (perimetry):</strong> 4</li>
+                <li><strong>Sparse infill density (hustota výplně):</strong> 25 %</li>
+                <li><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</li>
+                <li><strong>Outer wall speed (rychlost vnější stěny):</strong> 100 mm/s</li>
+            </ul>
+            
+            <p>
+                Zbylá nastavení jsme ponechali na výchozích hodnotách vybraného tiskového profilu.
+            </p>
+
+            <p>
+                Pro otvory zapuštěných hlaviček šroubků, které drží pohromadě naviják, bylo nutné <strong>využít podpěry</strong>. 
+                Nastavili jsme je následovně:
+            </p>
+
+            <ul>
+                <li><strong>Type (typ):</strong> Tree (auto)</li>
+                <li><strong>Top Z distance (mezera v ose Z):</strong> 0,25 mm</li>
+            </ul>
+
+            <p>
+                Ostatní parametry podpěr zůstaly výchozí.
+            </p>
+
+            <img src="media/DrzakBS.JPG" alt="Držák v Bambu Studiu." class="project-image">
+            <img src="media/NavijakBS.JPG" alt="Naviják v Bambu Studiu." class="project-image">
+
+            <p>
+                Během tisku se objevil problém s <strong>nekvalitně vytištěnými převisy</strong> u navijáku. 
+                Hrubý povrch zasahoval i do míst, kam se měla lepit hliníková páska, kde je potřeba <strong>dokonale rovný podklad</strong>. 
+                Tato místa jsme proto zabrousili brusným papírem a zbývající problémové díly jsme raději vytiskli na tiskárně Prusa při <strong>poloviční rychlosti</strong>.
+            </p>
+
+            <img src="media/VytiskleDrzaky.JPG" alt="Vytištěné držáky na tiskárně." class="project-image">
+
+            <h3>Sestavení</h3>
+
+            <p>
+                Ve spěchu jsem bohužel nechal vytisknout všechny navijáky stejné, ačkoliv měly být v <strong>zrcadlově převrácených párech</strong>.
+                Ve dvou dílech bylo tedy nutné <strong>vyvrtat nový otvor</strong> pro protažení lanka.
+            </p>
+
+            <img src="media/VrtaniNovychDrazek.JPG" alt="Vrtání nových drážek pro lanko." class="project-image">
+            <img src="media/NoveDrazky.JPG" alt="Vyvrtané nové drážky pro lanko." class="project-image">
+
+            <p>
+                Jelikož pájecí hrot pro instalaci závitových vložek nebyl dostatečně dlouhý, bylo třeba být kreativní.
+                Vložku jsem zčásti prošrouboval a hrot páječky jsem přikládal ke šroubku, který <strong>přenášel teplo k vložce</strong>.
+            </p>
+
+            <img src="media/InstalaceZavitoveVlozky.JPG" alt="Instalace závitových vložek pomocí páječky ve stojanu." class="project-image">
+
+            <p>
+                Následně se navijáky odmastily isopropylalkoholem a Adam je <strong>polepil hliníkovou fólií</strong>.
+            </p>
+
+            <img src="media/NavijakPredPolepenim.JPG" alt="Naviják s nepřilepenou hliníkovou páskou." class="project-image">
+            <img src="media/Navijak.JPG" alt="Sestavený naviják." class="project-image">
+
+            <img src="media/Dily.JPG" alt="Hromada vytištěných a napůl sestavených dílů." class="project-image">
+            <img src="media/NavijakyBezPlisku.JPG" alt="Sestavené navijáky bez sběračů." class="project-image">
+
+            <p>
+                Sběrač vznikl z <strong>měděného plíšku</strong>, který byl nejdřív kancelářskými nůžkami rozstřižen podélně na dvě poloviny
+                široké 7,5 mm a následně nastříhán na délku 6 cm.
+            </p>
+
+            <img src="media/NavijakSPliskem.JPG" alt="Sestavený naviják se sběračem." class="project-image">
+
+            <h2>Mé vedlejší činnosti</h2>
+
+            <p>
+                Kromě práce na navijácích jsem se podílel na:
+            </p>
+            <ul>
+                <li>sestavení Fusion návrhů ostatních členů týmu do jedné <strong>finální sestavy</strong>,</li>
+                <li><strong>3D tisku</strong> ostatních dílů,</li>
+                <li><strong>pájení</strong> dlouhých kabelů krokových motorů,</li>
+                <li>různých dalších maličkostech.</li>
+            </ul>
+
+            <img src="media/SpajeneKabely.JPG" alt="Prodloužené kabely krokových motorů." class="project-image">
+            <img src="media/SestavenyRam.JPG" alt="Sestavený rám ve Fusion 360." class="project-image-noborder">
+
+        </main>
+
+    </div>
+
+</body>
+</html>

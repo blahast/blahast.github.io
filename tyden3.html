@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html" class="active">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>3. týden: 3D skenování a 3D tisk</h1>
+            <p>
+                Během třetího týdne bylo úkolem <strong>naskenovat nějaký objekt</strong> pomocí fotogrammetrie nebo 3D skeneru a
+                <strong>vymodelovat objekt</strong>, který by se těžko vyráběl subtraktivní metodou.<br><br>
+            </p>
+
+            <h2>3D skenování</h2>
+
+            <p>
+                Mým cílem bylo naskenovat objekt, jehož digitální model využiji ve svém závěrečném projektu. 
+                Zvolil jsem tedy <strong>servo MG996R</strong> spolu s nasazovací pákou, u kterých potřebuji znát přesné rozměry.
+            </p>
+
+            <img src="media/Servo.JPG" alt="Servo MG996R" class="project-image">
+
+            <p>
+                K měření jsem využil školní 3D skener <strong>EinScan-SE</strong>. Protože tento přístroj má potíže při 
+                snímání černých objektů, nastříkal jsem povrch serva <strong>bílým skenovacím sprejem</strong>.
+                Ten je sice snadno stíratelný, což usnadňuje čištění, ale vyžaduje opatrnou manipulaci při schnutí a při přenosu na skener.
+            </p>
+
+            <img src="media/ServoSken.JPG" alt="Nastříkané servo MG996R na skeneru" class="project-image">
+
+            <p>
+                V ovládacím softwaru jsem nastavil skenování s automatickou rotací objektu. Použil jsem nastavení: <strong>rychlost 10, 8 snímků na jednu otočku</strong>. 
+                Vzhledem ke geometrické jednoduchosti modelu jsem zvolil metodu <strong>Turntable Alignment</strong>, která zarovnává data podle úhlu otočení podložky. 
+                Při každém pokusu se však objevila stejná chyba - nové skeny byly vůči těm předchozím, vzniklým v rámci stejné otočky, špatně zarovnány. 
+                Nepomohla změna orientace serva, kalibrace přístroje ani přepnutí na metodu <strong>Feature Alignment</strong>.
+            </p>
+
+            <p>
+                Zpětně mě napadá, že by problém možná vyřešilo použití metody <strong>Feature Alignment</strong> a přidání nějakého geometricky složitějšího objektu,
+                díky čemuž by skener získal záchtné body pro zarovnání skenů. Tento objekt bych následně v postprocesingu odstranil. 
+            </p>
+
+            <img src="media/DeformovaneServo.JPG" alt="Deformovaný point cloud serva" class="project-image">
+
+            <p>
+                Jako záložní variantu jsem si připravil holicí strojek <strong>OneBlade</strong>. 
+                Jeho model plánuji využít pro návrh a tisk vlastního stojánku. Černé části jsem opět opatřil křídovým nástřikem. 
+                Problémy se špatným zarovnáním se však bohužel opakovaly i u tohoto objektu.
+            </p>
+
+            <img src="media/StrojekStrikani.JPG" alt="Nastříkávání strojku" class="project-image">
+            <img src="media/StrojekDeformace.JPG" alt="Deformovany point cloud strojku" class="project-image">
+
+            <p>
+                Přesunul jsem se proto k jinému pracovišti (skener č. 4) a zvolil nový objekt – <strong>sluchátko</strong>. 
+                Tento sken se vydařil hned napoprvé. V postprocesingu jsem pomocí klávesy Shift ručně odstranil 
+                přebytečné body (šum) v okolí objektu. Při převodu <strong>point cloudu</strong> na <strong>mesh</strong> 
+                jsem zvolil střední kvalitu a režim <strong>watertight mesh</strong> (uzavřený model).
+            </p>
+
+            <img src="media/SluchatkoPoints.JPG" alt="Point cloud sluchatka" class="project-image">
+            <img src="media/SluchatkoMesh.JPG" alt="Mesh sluchátka" class="project-image">
+
+            <p>
+                Zbývající čas jsem využil ke skenování <strong>kalkulačky</strong>. Vrátil jsem se k původnímu stanovišti, 
+                ale tentokrát jsem nevyužil automatické otáčení. Kalkulačku jsem polohoval manuálně pomocí 
+                stojánku a každý snímek spouštěl samostatně.
+            </p>
+
+            <img src="media/KalkulackaSken.JPG" alt="Kalkulačka na držáku při skenování" class="project-image">
+
+            <p>
+                Tento postup byl úspěšný a jednotlivé vrstvy na sebe přesně navazovaly. 
+                Případné artefakty (šum, držák zachycený ve skenu) jsem průběžně odmazával.
+                Celkem jsem provedl 20 skenů z různých úhlů, dokud nebyl model kompletní a bez děr. 
+                Výsledný <strong>mesh</strong> jsem opět generoval ve střední kvalitě jako uzavřený objekt.
+            </p>
+
+            <img src="media/KalkulackaPoints.JPG" alt="Point cloud kalkulačky" class="project-image">
+            <img src="media/KalkulackaZepredu.JPG" alt="Mesh kalkulačky zepředu" class="project-image">
+            <img src="media/KalkulackaZezadu.JPG" alt="Mesh kalkulačky zezadu" class="project-image">
+
+            <br><br>
+
+            <h2>3D tisk - Stojan pro hexapoda</h2>
+
+            <p>
+                Úkol z tohoto týdne jsem se rozhodl využít k rozpracování svého závěrečného projektu - <strong>hexapoda</strong>. 
+                Prvním krokem bylo vytvoření <strong>stojanu</strong>. 
+                Ten mi umožní robota bezpečně programovat a testovat, aniž by se jeho nohy dotýkaly země a hrozilo poškození. 
+                Aby byl stojan stabilní a nepřevrhl se, tvoří jeho základnu <strong>pětikilový kovový kotouč</strong>, 
+                ze kterého vychází <strong>21 cm dlouhá kovová tyč</strong>.
+            </p>
+
+            <img src="media/CinkaATyc.JPG" alt="Činka s tyčí" class="project-image">
+
+            <p>
+                Bylo nutné navrhnout tři plastové díly: jeden pro fixaci tyče v čince a dva pro horní část, která bude sloužit jako samotný držák hexapoda. 
+                K modelování jsem použil <strong>Fusion 360</strong>. U každého dílu jsem začínal tvorbou náčrtu (sketch). 
+                Využíval jsem <strong>parametrické modelování</strong> a dával jsem si pozor na to, 
+                aby byl každý náčrt <strong>plně definovaný</strong> (fully constrained). 
+                Díky tomu mohu v budoucnu snadno měnit klíčové rozměry stojanu. 
+            </p>
+
+            <p>
+                Před tiskem rozměrnějších dílů doporučuji provést malý <strong>testovací tisk</strong>, abyste ověřili správné tolerance otvorů pro šrouby. 
+                Jelikož už ale mám tiskárnu otestovanou z dřívějška, tento krok jsem přeskočil. 
+                Pro <strong>šrouby M3</strong> spojující horní dva díly jsem použil průměr otvoru <strong>3 mm</strong>. 
+                Během prvního tisku horního držáku jsem udělal fixační zobáčky stejně velké jako otvory v základně hexapoda
+                a díly tak do sebe nezapadaly. 
+                Před druhým tiskem jsem proto zobáčky pomocí funkce <strong>Offset Face</strong> o <strong>0,15 mm zmenšil</strong>.
+            </p>
+
+            <img src="media/StojanSketch.JPG" alt="Model stojanu s viditelnými náčrty ve Fusion 360" class="project-image">
+
+            <p>
+                Hotové modely jsem exportoval (Utilities -> 3D print) do <strong>formátu 3MF</strong> a připravil k tisku v <strong>Bambu Studiu</strong>. 
+                Jako materiál jsem zvolil <strong>PLA</strong>. Tiskl jsem na 3D tiskárně <strong>Bambu Lab A1 Mini</strong> s tryskou o průměru <strong>0,4 mm</strong> a s následujícím nastavením:
+            </p>
+            
+            <ul>
+                <li><strong>Profil:</strong> 0.20 mm Standard @BBL A1M</li>
+                <li><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</li>
+                <li><strong>Bed temperature (teplota podložky):</strong> 65 °C</li>
+                <li><strong>Wall loops (perimetry):</strong> 4</li>
+                <li><strong>Sparse infill density (hustota výplně):</strong> 20 %</li>
+                <li><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</li>
+                <li><strong>Outer wall speed (rychlost tisku vnější stěny):</strong> 60 mm/s</li>
+            </ul>
+            
+            <p>
+                Zbylá nastavení jsem nechal na výchozích hodnotách vybraného tiskového profilu.
+            </p>
+
+            <img src="media/StojanTisk.JPG" alt="Díly stojanu v Bambu Studiu v režimu náhledu" class="project-image">
+            <img src="media/TiskarnaSDily.JPG" alt="Vytištěné díly na podložce tiskárny" class="project-image">
+
+            <p>  
+                Po sestavení měl spodní plastový díl v otvoru činky drobnou vůli. 
+                Vyřešil jsem to tak, že jsem stěny otvoru vyložil igelitovým sáčkem a díl jsem do něj zatlačil pomocí svěráku. 
+                Igelit vyplnil volný prostor a stojan teď drží velmi pevně. 
+                Horní dva díly jsem sešrouboval pomocí <strong>šroubů M3 &times; 8 mm</strong>.
+            </p>
+
+            <img src="media/HotovyStojan.JPG" alt="Hotový sestavený stojan" class="project-image">
+
+            <br><br>
+
+            <h2>3D tisk - Základna a část nohy hexapoda</h2>
+
+            <p>  
+                Po dokončení stojanu jsem se přesunul k výrobě <strong>spodní části základny</strong> a <strong>kyčelních kloubů</strong> samotného robota. 
+                Základna má <strong>šestiúhelníkový půdorys</strong> a je navržena tak, aby se přesně vešla na tiskovou plochu o rozměrech <strong>18 × 18 cm</strong>. 
+                Kromě mechanické pevnosti musí mít dostatek prostoru pro baterii, dva PWM moduly <strong>PCA9685</strong> 
+                pro řízení motorů a šest servomotorů <strong>MG996R</strong>, které budou zajišťovat horizontální pohyb nohou.
+            </p>
+
+            <p>  
+                Aby celá hmotnost robota neležela pouze na hřídelích servomotorů, umístil jsem na jejich spodní stranu opěrné <strong>ložisko</strong>, které převezme část zátěže. 
+                Pro úsporu místa a lepší uchycení serva jsem odstranil jeho původní spodní kryt. 
+                Místo něj jsem navrhl kryt nový, který již obsahuje prostor pro ložisko a je přímo integrován do těla základny. 
+                Servo je k základně upevněno přes dlouhé šrouby, které držely jeho původní kryt. 
+                Moduly PCA9685 jsem přišrouboval pomocí <strong>šroubů M2 &times; 8 mm</strong> do otvorů o průměru <strong>2 mm</strong>.
+            </p>
+
+            <img src="media/RozebraneServo.JPG" alt="Servo MG996R se sundaným zadním krytem" class="project-image">
+
+            <p>  
+                Při tvorbě náčrtu šestiúhelníkové základny ve <strong>Fusion 360</strong> jsem pracoval pouze na jedné šestině modelu. 
+                Tu jsem následně pětkrát zkopíroval kolem středové osy pomocí nástroje <strong>Circular Pattern</strong>.
+            </p>
+
+            <img src="media/ZakladnaSketch.JPG" alt="Náčrt základny hexapoda" class="project-image">
+            <img src="media/Zakladna.JPG" alt="3D model základny hexapoda (pohled shora)" class="project-image">
+            <img src="media/Zakladna2.JPG" alt="3D model základny hexapoda (pohled zespodu)" class="project-image">
+
+            <p>  
+                Základnu jsem tiskl se stejnými parametry jako stojan. Kvůli složitější geometrii jsem používal <strong>podpěry</strong>. 
+                Nastavil jsem je takto:
+            </p>
+
+            <ul>
+                <li><strong>Type:</strong> Tree (auto)</li>
+                <li><strong>Top Z distance (mezera v ose Z):</strong> 0.25 mm</li>
+            </ul>
+
+            <p>
+                Ostatní parametry u podpor zůstaly výchozí.
+            </p>
+                        
+            <img src="media/ZakladnaPrint.JPG" alt="Základna připravená k tisku v Bambu Studiu" class="project-image">
+            <img src="media/ZakladnaNaTiskarne.JPG" alt="Vytištěná základna na tiskové podložce" class="project-image">
+
+            <p>  
+                Odstraňování stromových podpor pomocí malých štípacích kleští a skalpelu mi zabralo zhruba <strong>dvacet minut</strong>. 
+                Zanechaly po sobě hrubší povrch, což však nevadí, jelikož byly zespodu robota a většina hrubého povrchu je překryta ložisky.
+            </p>
+
+            <img src="media/OdstranenePodpery.JPG" alt="Detail odstraněných podpor na spodní straně základny" class="project-image">
+            <img src="media/ZakladnaZespodu.JPG" alt="Základna s osazeným servem, ložiskem a baterií (pohled zespodu)" class="project-image">
+
+            <p>
+                Díl tvořící <strong>kyčel robota</strong> je navržen tak, 
+                aby servomotor držel ze dvou stran - shora je přišroubován k hřídeli a zespodu se opírá o zmíněné ložisko, 
+                díky čemuž není veškerá zátěž na hřídeli. 
+                Pro lepší přenos krouticího momentu má v sobě tento díl otvor ve tvaru nasazovací páky serva. 
+                Původně jsem chtěl model páky získat 3D skenováním, ale jak jsem psal výše, to se bohužel nepovedlo. 
+                Model jsem tedy stáhl z internetu a pomocí nástroje <strong>Project</strong> jsem do horního dílu kyčle promítnul jeho obrys. 
+                Pomocí funkce <strong>Offset Face</strong> jsem vytvořil několik testovacích dílů s různými vůlemi a vytiskl je.
+                Páka nejlépe zapadala do otvoru s offsetem <strong>0,17 mm</strong>.
+            </p>
+
+            <p>
+                Jednotlivé části nohy jsou navzájem spojeny pomocí <strong>šroubů M2 &times; 12 mm</strong> a matek zapuštěných do plastových dílů. 
+                Tyto díly jsem tiskl bez podpor se stejným nastavením jako v předchozích případech.
+            </p>
+
+            <img src="media/NohaSketch.JPG" alt="Náčrt kyčle hexapoda ve Fusion 360" class="project-image">
+            <img src="media/NohaFusion.JPG" alt="Finální 3D model kyčle" class="project-image">
+            <img src="media/DilyNohy.JPG" alt="Vytištěné plastové díly pro nohy robota" class="project-image">
+
+            <p>  
+                A tady je fotka výsledku:
+            </p>
+
+            <img src="media/HotovaZakladnaStojan.JPG" alt="Částečně sestavený hexapod upevněný na pracovním stojanu" class="project-image">
+
+        </main>
+
+    </div>
+
+</body>
+</html>

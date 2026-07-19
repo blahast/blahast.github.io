@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html" class="active">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>9. týden: Malé 'velké' CNC obrábění</h1>
+            <p>
+                Během devátého týdne bylo úkolem vytvořit <strong>2.5D model</strong> a následně ho vyfrézovat z materiálu <strong>POM&#8209;C</strong>.
+            </p>
+
+            <h2>Forma na silikonové „botičky“ pro hexapoda</h2>
+
+            <p>
+                Tento týden jsem se rozhodl vyrobit formu pro odlévání <strong>silikonových návleků</strong> na nohy hexapoda. 
+                Tyto návleky by měly <strong>zlepšit přilnavost</strong> k povrchu, což hexapodovi umožní stabilnější pohyb bez podkluzování. 
+                Výsledný návlek by měl vypadat takto:
+            </p>
+
+            <img src="media/Boticka.JPG" alt="Příklad silikonového návleku" class="project-image">
+
+            <h3>Návrh modelu</h3>
+
+            <p>
+                Formu jsem navrhl v programu <strong>Fusion 360</strong>. Skládá se ze <strong>dvou částí</strong>, 
+                které do sebe zapadají pomocí čtyř vodicích kolíků umístěných v rozích. 
+                Silikon se bude nalévat do velkého otvoru ve spodní části formy. 
+                Prostřední kolík ve vrchní části pak zasahuje do dutiny se silikonem a slouží k vytvoření <strong>vnitřního otvoru</strong> v návleku (pro nasunutí na nohu robota). 
+                Přebytečný silikon může odtékat <strong>čtyřmi kanálky</strong>.
+            </p>
+
+            <p>
+                Rozměry formy jsou navrženy tak, aby vnitřní otvor v silikonovém návleku měřil na délku <strong>13 mm</strong> a měl průměr <strong>6 mm</strong>. 
+                Celková výška "botičky" bude <strong>16 mm</strong> s tloušťkou stěn <strong>2 mm</strong>.
+            </p>
+
+            <p>
+                Aby vrchní díl s kolíky zapadl do otvorů ve spodním dílu a pevně v nich držel, bylo nutné zvolit <strong>vhodnou vůli</strong>. 
+                Průměr otvorů jsem proto nastavil na <strong>6 mm</strong> a průměr kolíků na <strong>5,85 mm</strong>. 
+                Tento design kolíků se však ukázal jako <strong>nevhodný</strong> a obě části formy do sebe zpočátku nezapadaly. 
+                Vůle totiž byla <strong>příliš malá</strong> a navíc fréza zanechala kolíky na začátku užší než u základny. 
+                To mohlo být způsobeno <strong>ohýbáním materiálu</strong> během frézování. 
+                Příště bych zvolil <strong>větší vůli</strong> a <strong>kratší kolíky</strong>.
+            </p>
+
+            <img src="media/SketchFormy.JPG" alt="Sketch formy ve Fusion 360." class="project-image">
+
+            <img src="media/ModelFormy.JPG" alt="3D model formy ve Fusion 360." class="project-image">
+
+            <h3>Návrh procesu frézování</h3>
+
+            <p>
+                Proces frézování jsem připravil v pracovním prostředí <strong>Manufacture</strong> ve Fusion 360. 
+                Prvním krokem bylo stažení <a href="https://github.com/Carvera-Community/Carvera_Community_Profiles/releases" target="_blank">Fusion Machine Files, Tool Files a Post Processoru</a> 
+                pro frézku <strong>Makera Carvera Air</strong>, na které budu formu vyrábět. 
+                Tyto soubory slouží pro přesnou simulaci frézování, správné vygenerování <strong>G-kódu</strong> a obsahují parametry použitých fréz. 
+                Na odkazované stránce se kromě samotných souborů nachází i návod k jejich importu do Fusionu.
+            </p>
+
+            <p>Stažené soubory:</p>
+            <ul>
+                <li><strong>Post processor:</strong> Carvera.cps</li>
+                <li><strong>Definice stroje:</strong> Makera.Carvera.Air.3-axis.Community.Version.1.4.2.f3d</li>
+                <li><strong>Definice nástrojů:</strong> caveraTools_032226.zip</li>
+            </ul>
+
+            <p>
+                Z knihovny nástrojů jsem využíval převážně frézu <strong>3.175 mm flat (Spiral O 3.175*25 mm)</strong> s přednastaveným profilem pro plast (<em>Plastic</em>). 
+                V tomto profilu jsem upravil <strong>Spindle speed</strong> (otáčky vřetene) na <strong>12000 rpm</strong> a <strong>Ramp feedrate</strong> na <strong>600 mm/min</strong>. 
+                Ostatní rychlosti zůstaly beze změny. 
+                Pro vytvoření chamferů (srážení hran) jsem použil nástroj <strong>3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</strong>.
+            </p>
+
+            <p>
+                Druhým krokem bylo nastavení v menu <strong>Setup</strong>. Zde jsem použil následující parametry:
+            </p>
+
+            <ul>
+                <li><strong>Machine:</strong> .f3d soubor stažený v předchozím kroku.</li>
+                <li><strong>Setup:</strong> Milling (frézování).</li>
+                <li>
+                    <strong>Work Coordinate System:</strong> Zde je nutné definovat počátek a orientaci souřadnicového systému. 
+                    Orientaci jsem zvolil shodnou s mým modelem (<em>Model Orientation</em>) a počátek jsem umístil do <strong>levého předního spodního rohu</strong> bloku materiálu.
+                </li>
+                <li>
+                    <strong>Stock (Polotovar):</strong> Velikost materiálu jsem nastavil podle reálných rozměrů poskytnuté desky POM-C - <strong>110 &times; 105 &times; 22 mm</strong>. 
+                    Model formy jsem umístil k levému přednímu kraji desky s odsazením <strong>5 mm od okrajů</strong>. 
+                    Jelikož se výška materiálu v praxi liší zhruba o ± 0,5 mm a povrch nemusí být dokonale rovný, zarovnal jsem model ke spodnímu okraji desky. 
+                    Vrchní cca <strong>2 mm se odfrézují</strong>, díky čemuž budou dotykové plochy obou částí formy rovné.
+                </li>
+                <li>
+                    <strong>Part Position:</strong> Levý přední spodní roh desky jsem umístil do levého předního rohu pracovního prostoru frézky.
+                </li>
+                <li>Zbylá nastavení zůstala na <strong>výchozích hodnotách</strong>.</li>
+            </ul>
+
+            <img src="media/CarveraModel.JPG" alt="Model formy v pracovním prostředí Manufacture." class="project-image">
+
+            <p>
+                Třetím krokem byl návrh samotných frézovacích operací. 
+                Začal jsem 2D operací <strong>Face</strong>, která zarovná horní plochy formy tím, že odebere vrchních cca 2 mm materiálu. 
+                Nastavení operace Face bylo následující:
+            </p>
+
+            <ul>
+                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
+                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
+                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
+                <li><strong>Feed height:</strong> 2 mm from Top height</li>
+                <li><strong>Top height:</strong> 0 mm from Stock height</li>
+                <li><strong>Bottom height:</strong> 0 mm from Model top</li>
+                <li><strong>Stepover:</strong> 3 mm</li>
+                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+            </ul>
+
+            <img src="media/OperaceFace.JPG" alt="Deska materiálu po simulaci operace FaceH a FaceS." class="project-image">
+
+            <p>
+                Pro odstranění materiálu kolem kolíků, vytvoření čtyř odtokových drážek a vyfrézování hlavní dutiny formy 
+                jsem použil 2D operaci <strong>Pocket</strong> s tímto nastavením:
+            </p>
+
+            <ul>
+                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
+                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
+                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
+                <li><strong>Feed height:</strong> 2 mm from Top height</li>
+                <li><strong>Top height:</strong> 0 mm from Stock top</li>
+                <li><strong>Bottom height:</strong> 0 mm from Selected contour(s)</li>
+                <li><strong>Maximum Stepover:</strong> 3 mm</li>
+                <li><strong>Multiple Depths:</strong> Ano</li>
+                <li><strong>Maximum Roughing Stepdown:</strong> 3 mm</li>
+                <li><strong>Stock to Leave:</strong> Ne</li>
+                <li><strong>Lead-In a Lead-Out:</strong> Ne</li>
+                <li><strong>Ramp type:</strong> Helix</li>
+                <li><strong>Ramp Angle:</strong> 5 deg</li>
+                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+            </ul>
+
+            <img src="media/KolikyPocket.JPG" alt="Deska materiálu po simulaci operace 2D PocketHKoliky." class="project-image">
+            <img src="media/DrazkyPocket.JPG" alt="Deska materiálu po simulaci operace 2D PocketSDrazky." class="project-image">
+            <img src="media/FormaPocket.JPG" alt="Deska materiálu po simulaci operace 2D PocketSForma." class="project-image">
+
+            <p>
+                Pro správný tvar silikonové botičky bylo nutné <strong>zaoblit dno</strong> hlavního otvoru formy. 
+                Jelikož jsem neměl k dispozici frézu s kulovým koncem (ball nose), musel jsem si vystačit s <strong>aproximací zaoblení</strong>. 
+                K tomu posloužila 3D operace <strong>Contour</strong> a standardní plochá fréza, která povrch vytvořila množstvím drobných kruhových řezů:
+            </p>
+
+            <ul>
+                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
+                <li><strong>Clearance height:</strong> 10 mm from Retract height</li>
+                <li><strong>Retract height:</strong> 5 mm from Stock top</li>
+                <li><strong>Top height:</strong> 0 mm from Selection</li>
+                <li><strong>Bottom height:</strong> 0 mm from Model bottom</li>
+                <li><strong>Maximum Stepdown</strong> (horizontální krok pro zjemnění oblouku): <strong>0.05 mm</strong></li>
+                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+            </ul>
+
+            <img src="media/ObloukContour.JPG" alt="Deska materiálu po simulaci operace ContourSOblouk." class="project-image">
+
+            <p>
+                Čtveřici otvorů pro vodicí kolíky jsem vytvořil pomocí 2D operace <strong>Bore</strong> s tímto nastavením:
+            </p>
+
+            <ul>
+                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
+                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
+                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
+                <li><strong>Feed height:</strong> 2 mm from Top height</li>
+                <li><strong>Top height:</strong> 0 mm from Hole top</li>
+                <li><strong>Bottom height:</strong> 0 mm from Hole bottom</li>
+                <li><strong>Ramp Angle:</strong> 5 deg</li>
+                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+            </ul>
+
+            <img src="media/OtvoryBore.JPG" alt="Deska materiálu po simulaci operace BoreSDirky." class="project-image">
+
+            <p>
+                Vyříznutí obrysů formy z bloku materiálu jsem provedl pomocí 2D operace <strong>Contour</strong>. 
+                Důležité bylo zapnout můstky (Tabs), aby se díl na konci frézování neuvolnil a nepoškodil nástroj.
+            </p>
+
+            <ul>
+                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
+                <li><strong>Tabs</strong> (můstky přidržující obrobek): <strong>Ano</strong></li>
+                <li><strong>Tab Width:</strong> 3.175 mm</li>
+                <li><strong>Tab Height:</strong> 1 mm</li>
+                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
+                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
+                <li><strong>Feed height:</strong> 2 mm from Top height</li>
+                <li><strong>Top height:</strong> 0 mm from Stock top</li>
+                <li><strong>Bottom height:</strong> 0 mm from Selected contour(s)</li>
+                <li><strong>Multiple Depths:</strong> Ano</li>
+                <li><strong>Maximum Roughing Stepdown:</strong> 3 mm</li>
+                <li><strong>Ramping Angle:</strong> 5 deg</li>
+                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+            </ul>
+
+            <img src="media/ObrysContour.JPG" alt="Deska materiálu po simulaci operací 2D ContourH a 2D ContourS." class="project-image">
+            
+            <p>
+                Poslední operací byl 2D <strong>Chamfer</strong> pro mírné zkosení špiček vodicích kolíků, což usnadní jejich zasouvání do spodní části formy:
+            </p>
+
+            <ul>
+                <li><strong>Tool:</strong> 3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</li>
+                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
+                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
+                <li><strong>Feed height:</strong> 2 mm from Top height</li>
+                <li><strong>Top height:</strong> 0 mm from Stock top</li>
+                <li><strong>Bottom height:</strong> 0 mm from Selected contour(s)</li>
+                <li><strong>Chamfer Width:</strong> 0.5 mm</li>
+                <li><strong>Chamfer Tip Offset:</strong> 0.3 mm</li>
+                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+            </ul>
+
+            <img src="media/KolikyChamfer.JPG" alt="Deska materiálu po simulaci operace 2D ChamferH." class="project-image">
+
+            <p>
+                <strong>Seznam operací a ukázka simulace:</strong>
+            </p>
+
+            <img src="media/Operace.JPG" alt="Seznam operací frézování." class="project-image">
+
+            <video class="project-image" controls muted playsinline aria-label="Simulace frézování ve Fusion 360.">
+                <source src="media/FormaSimulace.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
+
+            <h3>Frézování</h3>
+
+            <p>
+                K výrobě posloužila školní frézka <strong>Makera Carvera Air</strong>. 
+                Mezi podložku stroje a blok plastu <strong>POM-C</strong> jsem umístil <strong>obětní destičku (spoil board)</strong>,
+                která chrání podložku před zaříznutím nástroje. 
+                Polotovar jsem zafixoval pomocí <strong>dvou šroubovacích upínek</strong>.
+            </p>
+
+            <img src="media/FrezaAUchytky.JPG" alt="Fréza Makera Carvera Air a úchytky na frézovaný materiál." class="project-image">
+            <img src="media/UchycenaDeska.JPG" alt="Materiál uchycený na frézovacím stolu." class="project-image">
+
+            <p>
+                Pomocí dříve nainstalovaného post processoru jsem vygeneroval <strong>.cnc soubor</strong> (G-kód). 
+                Ten jsem přes flash disk přenesl do počítače připojeného k frézce a načetl jej do softwaru <strong>Carvera Controller</strong>, přes který se stroj řídí.
+            </p>
+
+            <img src="media/CarveraController.JPG" alt="Program Carvera Controller na školním počítači." class="project-image">
+            <img src="media/Bity.JPG" alt="Bity použité při frézování formy." class="project-image">
+            <img src="media/HotovyFace.JPG" alt="Materiál po dokončení operace Face." class="project-image">
+            <img src="media/HotoveOtvory.JPG" alt="Materiál po dokončení operací Pocket a Bore." class="project-image">
+            <img src="media/HotoveContour.JPG" alt="Materiál po dokončení operace Contour a Chamfer." class="project-image">
+
+            <h3>Dokončovací operace (Post-processing)</h3>
+
+            <p>
+                Formu jsem z plastové desky uvolnil přecvaknutím můstků pomocí <strong>malých štípaček</strong>. 
+                Zbytky materiálu a drobné nepřesnosti na hranách jsem následně začistil <strong>jemným brusným papírem</strong>.
+            </p>
+
+            <img src="media/FormaVyndanaZDesky.JPG" alt="Forma po odlomení z desky." class="project-image">
+            <img src="media/ObrousenaForma.JPG" alt="Forma po obroušení." class="project-image">
+
+            <p>
+                Jak jsem zmiňoval v úvodu, vyfrézované díly do sebe nezapadaly. 
+                Rozhodl jsem se proto vodicí otvory zvětšit pomocí <strong>6 mm vrtáku</strong>. 
+                Po tomto kroku se do sebe formy daly zasunout, ale jen do poloviny délky kolíků (protože kolíky byly směrem k základně širší). 
+                Otvory jsem tedy zhruba do poloviny jejich hloubky ještě rozšířil <strong>8 mm vrtákem</strong>.
+            </p>
+            
+            <p>
+                Nyní už do sebe díly zapadají velmi dobře a při zasouvání kladou příjemný lehký odpor až v posledních třech milimetrech rozsahu. 
+                K tomu však dochází pouze v <strong>jedné konkrétní orientaci</strong> dílů formy. 
+                Správné natočení dílů jsem označil vyvrtáním malého <strong>značkovacího otvoru</strong> na boku obou polovin. 
+                Jedinou vadou zůstalo <strong>poškrábání povrchu</strong> od upnutí do svěráku během ručního převrtávání děr.
+            </p>
+
+            <img src="media/Vrtak.JPG" alt="Vrtačka pro zvětšení otvorů ve stojanu." class="project-image">
+
+            <p>
+                <strong>Výsledná forma:</strong>
+            </p>
+
+            <img src="media/HotovaFormaRozlozena.JPG" alt="Rozložená hotová forma." class="project-image">
+
+            <img src="media/HotovaFormaSlozena.JPG" alt="Složená hotová forma." class="project-image">
+
+        </main>
+
+    </div>
+
+</body>
+</html>

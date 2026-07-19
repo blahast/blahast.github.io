@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. týden | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="omne.html">O mně</a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="tyden1.html" class="active">1. týden</a>
+            <a href="tyden2.html">2. týden</a>
+            <a href="tyden3.html">3. týden</a>
+            <a href="tyden4.html">4. týden</a>
+            <a href="tyden5.html">5. týden</a>
+            <a href="tyden6.html">6. týden</a>
+            <a href="tyden7.html">7. týden</a>
+            <a href="tyden8.html">8. týden</a>
+            <a href="tyden9.html">9. týden</a>
+            <a href="tyden10.html">10. týden</a>
+            <a href="tyden11a12.html">11. a 12. týden</a>
+            <a href="tyden13.html">13. týden</a>
+            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+        </aside>
+
+        <main class="content">
+            <h1>1. týden: Úvod a dokumentace</h1>
+            <p>
+                Během prvního týdne bylo úkolem vytvořit si <strong>osobní stránky</strong> a představit <strong>prvotní ideu závěrečného projektu</strong>.<br><br>
+            </p>
+
+            <h2>Tvorba webových stránek</h2>
+            
+            <p>
+                Vzhledem k tomu, že s tvorbou webů nemám žádné předchozí zkušenosti, nebylo mým cílem vytvořit nic přehnaně komplexního. 
+                Zvolil jsem radši <strong>minimalistický a přehledný design</strong>.
+            </p>
+
+            <p>
+                Začal jsem se <a href="https://gitlab.com/pages/plain-html" target="_blank">základním návodem</a> pro <strong>GitLab Pages</strong>
+                a následně jsem zhlédl několik úvodních videí na YouTube, abych pochopil základy <strong>HTML</strong> a <strong>CSS</strong>.
+                Při psaní kódu jsem využíval umělou inteligenci (Gemini). 
+                Snažil jsem se však kód slepě nekopírovat, ale pochopit ho, a používat AI spíše jako nástroj pro efektivnější práci.
+            </p>
+
+            <p>
+                Pro lepší udržitelnost jsem se snažil projekt logicky strukturovat. 
+                Zatímco <strong>HTML</strong> soubory tvoří samotný obsah stránek, jejich vzhled je dán souborem <strong>style.css</strong>.
+                Všechny obrázky jsem přesunul do samostatné složky <strong>media</strong>.
+            </p>
+            
+            <img src="media/Struktura.JPG" alt="Struktura webu" class="project-image">
+
+            <p>
+                Jelikož by celková velikost webu neměla přesáhnout <strong>100 MB</strong> a plánuji nahrávat velké množství obrázků a videí,
+                bude nutné <strong>všechna média komprimovat</strong>.
+                Fotografie z iPhonu, které mívají několik megabajtů, 
+                budu zmenšovat pomocí aplikace <strong>Výstřižky ve Windows</strong> -
+                ta je dokáže zmenšit na <strong>100 až 300 kB bez viditelné ztráty kvality</strong>.
+                Videa pak budu upravovat v bezplatném programu <strong>Shotcut</strong>.
+            </p>
+            
+            <p>
+                Ke každému projektu budu přikládat jeho <strong>zdrojový kód</strong>.
+                Pro lepší čitelnost a přehlednost využívám knihovnu <strong>Prism.js</strong>,
+                která <strong>zvýrazňuje syntax</strong>. Kód tak vypadá podobně jako např. ve VS Code.
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <span class="lang-badge">HTML</span>
+                        <span class="language-label">vkladani_kodu.html</span>
+                    </div>
+                    <button class="copy-btn">Kopírovat</button>
+                </div>
+                
+                <div class="code-content">
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="cs"&gt;
+&lt;head&gt;
+    &lt;!-- ... --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;div class="code-container"&gt;
+        &lt;div class="code-header"&gt;
+            &lt;div class="code-info"&gt;
+                &lt;button class="toggle-btn" title="Rozbalit/Sbalit kód"&gt;▼&lt;/button&gt;
+                &lt;span class="lang-badge"&gt;HTML&lt;/span&gt;
+                &lt;span class="language-label"&gt;vkladani_kodu.html&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;button class="copy-btn"&gt;Kopírovat&lt;/button&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="code-content"&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;
+&lt;!-- Zdrojový kód --&gt;
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- ... --&gt;
+
+    &lt;script&gt;
+        document.addEventListener('DOMContentLoaded', () =&gt; {
+            const codeContainers = document.querySelectorAll('.code-container');
+            
+            codeContainers.forEach(container =&gt; {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                codeContent.classList.add('collapsed');
+                toggleBtn.textContent = '▶\uFE0E';
+        
+                toggleBtn.addEventListener('click', () =&gt; {
+                    codeContent.classList.toggle('collapsed');
+                    
+                    if (codeContent.classList.contains('collapsed')) {
+                        toggleBtn.textContent = '▶\uFE0E'; 
+                    } else {
+                        toggleBtn.textContent = '▼\uFE0E';
+                    }
+                });
+        
+                copyBtn.addEventListener('click', () =&gt; {
+                    const textToCopy = codeBlock.innerText;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() =&gt; {
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Zkopírováno';
+                        copyBtn.style.color = '#28a745';
+                        
+                        setTimeout(() =&gt; {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.color = '';
+                        }, 2000);
+                    }).catch(err =&gt; {
+                        console.error('chyba ', err);
+                        copyBtn.textContent = 'Chyba!';
+                    });
+                });
+            });
+        });
+    &lt;/script&gt;
+    
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
+            <h2>Prvotní idea závěrečného projektu</h2>
+
+            <p>
+                Jako závěrečný projekt se pokusím postavit <strong>hexapoda</strong>, tedy <strong>šestinohého robota</strong>.
+                Tento projekt plánuji již delší dobu, jsem tedy rád, že mám konečně záminku ho zrealizovat.
+            </p>
+                
+            <img src="media/HexapodRender.PNG" alt="3D render návrhu hexapoda" class="project-image-noborder">
+            
+            <p>
+                Mým hlavním cílem je vytvořit <strong>hexapoda</strong> postaveného na <strong>Raspberry Pi 5</strong>, který bude splňovat následující:
+            </p>
+            
+            <ul>
+                <li><strong>Chůze v libovolném směru</strong> bez nutnosti otáčet tělo, tedy <strong>"krabí" chůze</strong>.</li>
+                <li>Možnost přepnout mód chůze na <strong>pohyb dopředu a dozadu s běžným zatáčením</strong>.</li>
+                <li>Možnost přepínání mezi <strong>různými vzory chůze (gaity)</strong>.</li>
+                <li><strong>Náklon těla ve třech osách</strong> (roll, pitch, yaw) a jeho <strong>posun ve třech osách</strong> (x, y, z).</li>
+                <li>Schopnost provádět všechny výše zmíněné náklony a posuny <strong>současně, a to i během chůze</strong>.</li>
+                <li>Možnost konstrukci vytisknout na 3D tiskárně <strong>Bambu Lab A1 mini</strong> (tisková plocha 180 &times; 180 mm).</li>
+                <li>K robotovi chci navíc sestrojit <strong>dálkový ovladač</strong>, který bude postavený na <strong>Arduinu</strong> a bude komunikovat přes <strong>Bluetooth</strong>.</li>
+            </ul>
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // vsechny bloky kodu
+            const codeContainers = document.querySelectorAll('.code-container');
+        
+            codeContainers.forEach(container => {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
+                codeContent.classList.add('collapsed');
+                toggleBtn.textContent = '▶\uFE0E';
+        
+                // prepinani viditelnosti
+                toggleBtn.addEventListener('click', () => {
+                    codeContent.classList.toggle('collapsed');
+                    
+                    // zmena ikony
+                    if (codeContent.classList.contains('collapsed')) {
+                        toggleBtn.textContent = '▶\uFE0E'; 
+                    } else {
+                        toggleBtn.textContent = '▼\uFE0E';
+                    }
+                });
+        
+                // kopirovani
+                copyBtn.addEventListener('click', () => {
+                    const textToCopy = codeBlock.innerText;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // vizualni zpetna vazba
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Zkopírováno';
+                        copyBtn.style.color = '#28a745';
+                        
+                        // navrat do puvodniho stavu
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('chyba ', err);
+                        copyBtn.textContent = 'Chyba!';
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+
+</body>
+</html>
