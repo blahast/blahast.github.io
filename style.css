@@ -1,4 +1,3 @@
-/* CSS Variables for easy theming */
 :root {
     --bg-main: #f9f9f9;
     --bg-card: #fff;
@@ -583,9 +582,31 @@ code {
     .grid {
         grid-template-columns: 1fr;
     }
-    h1 {
-        font-size: 2rem;
+    
+    /* Zmenšení nadpisů na mobilu */
+    h1 { font-size: 1.8rem; margin: 0 0 15px; }
+    h2 { font-size: 1.3rem; margin: 20px 0 10px; }
+    h3 { font-size: 1.15rem; margin: 15px 0 10px; }
+    h4 { font-size: 1rem; margin: 15px 0 5px; }
+    
+    /* Zmenšení textu, řádkování a mezer pro lepší hustotu na mobilu */
+    p, li, .description {
+        font-size: 0.95rem; /* Zmenšení z 1.1rem */
+        line-height: 1.5;   /* Užší řádkování (původně 1.8) */
+        margin-bottom: 12px; /* Menší mezery mezi odstavci */
     }
+    
+    /* U seznamů zmenšíme i to velké odsazení zleva */
+    ul, ol {
+        padding-left: 25px; 
+        margin-bottom: 15px;
+    }
+    
+    .content {
+        padding: 15px; /* Zmenšení vnitřního okraje obsahu pro více místa */
+    }
+
+    /* Původní styly pro tlačítka ke stažení */
     .file-container {
         flex-direction: column;
         align-items: flex-start;
