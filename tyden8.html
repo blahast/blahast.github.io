@@ -65,8 +65,8 @@
                 Raspberry Pi bude odesílat svůj <strong>aktuální stav do počítače</strong> prostřednictvím protokolu <strong>UDP</strong>.
             </p>
 
-            <img src="media/HexapodSFemuremAElektronikou.jpg" alt="Tělo hexapoda s femury a s elektronikou" class="project-image">
-            <img src="media/HotoveOvladani.JPG" alt="Hotový model dálkového ovládání" class="project-image">
+            <img src="media/JVC/HexapodSFemuremAElektronikou.jpg" alt="Tělo hexapoda s femury a s elektronikou" class="project-image" loading="lazy">
+            <img src="media/JVC/HotoveOvladani.JPG" alt="Hotový model dálkového ovládání" class="project-image" loading="lazy">
 
             <br><br>
 
@@ -424,7 +424,7 @@ void* bluetooth_thread(void* arg) {
                 <li><strong>Tibia (holeň):</strong> Třetí kloub opět s <strong>vodorovnou osou rotace</strong>. Společně s femurem tvoří <strong>dvoučlánkové rameno</strong>.</li>
             </ul>
 
-            <img src="media/CoxaFemurTibia.JPG" alt="Model hexapoda s označenými články nohou" class="project-image">
+            <img src="media/JVC/CoxaFemurTibia.JPG" alt="Model hexapoda s označenými články nohou" class="project-image" loading="lazy">
 
             <p>
                 Při výpočtech budeme pracovat v <strong>souřadnicovém systému hexapoda</strong>,
@@ -515,13 +515,13 @@ static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, 
                 </div>
             </div>
 
-            <video class="project-video-ik" controls muted playsinline aria-label="Hexapod posouvající tělo.">
-                <source src="media/PosunyTela.mp4" type="video/mp4">
+            <video class="project-video-ik" controls muted playsinline preload="metadata" aria-label="Hexapod posouvající tělo.">
+                <source src="media/JVC/PosunyTela.mp4" type="video/mp4" loading="lazy">
                 Váš prohlížeč nepodporuje přehrávání videa.
             </video>
 
-            <video class="project-video-ik" controls muted playsinline aria-label="Hexapod naklánějící tělo.">
-                <source src="media/NaklonyTela.mp4" type="video/mp4">
+            <video class="project-video-ik" controls muted playsinline preload="metadata" aria-label="Hexapod naklánějící tělo.">
+                <source src="media/JVC/NaklonyTela.mp4" type="video/mp4" loading="lazy">
                 Váš prohlížeč nepodporuje přehrávání videa.
             </video>
 
@@ -533,7 +533,7 @@ static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, 
 
             <h3>1. Výpočet úhlu coxa</h3>
 
-            <img src="media/ShoraIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda shora" class="project-image-noborder">
+            <img src="media/JVC/ShoraIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda shora" class="project-image-noborder" loading="lazy">
 
             <p class="math-display">
                 $$x_c = R_b \cdot \cos(\alpha_{offset})$$
@@ -566,7 +566,7 @@ static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, 
 
             <h3>2. Výpočet úhlů femur a tibia</h3>
 
-            <img src="media/ZbokuIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda zboku" class="project-image-noborder">
+            <img src="media/JVC/ZbokuIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda zboku" class="project-image-noborder" loading="lazy">
 
             <p class="math-display">
                 $$\rho = \sqrt{\Delta x^2 + \Delta y^2} - L_{coxa}$$
@@ -676,8 +676,8 @@ static bool ik_angles_from_body_target(float x_ee, float y_ee, float z_ee, int l
                 </div>
             </div>
 
-            <video class="project-video-ikfinal" controls muted playsinline aria-label="Ukázka dálkového ovládání hexapoda.">
-                <source src="media/HexapodDalkove.mp4" type="video/mp4">
+            <video class="project-video-ikfinal" controls muted playsinline preload="metadata" aria-label="Ukázka dálkového ovládání hexapoda.">
+                <source src="media/JVC/HexapodDalkove.mp4" type="video/mp4" loading="lazy">
                 Váš prohlížeč nepodporuje přehrávání videa.
             </video>
 
@@ -921,8 +921,8 @@ while True:
                 </div>
             </div>
             
-            <video class="project-image" controls muted playsinline aria-label="Zobrazení pohybů hexapoda v aplikaci.">
-                <source src="media/HexapodVirtualne.mp4" type="video/mp4">
+            <video class="project-image" controls muted playsinline preload="metadata" aria-label="Zobrazení pohybů hexapoda v aplikaci.">
+                <source src="media/JVC/HexapodVirtualne.mp4" type="video/mp4">
                 Váš prohlížeč nepodporuje přehrávání videa.
             </video>
 
