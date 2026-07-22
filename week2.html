@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. týden / Week 2 | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Přepnout tmavý režim / Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html" class="active">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
+        </aside>
+
+        <main class="content">
+            <h1>
+                <span class="cs-lang">2. týden: 2D návrh a řezání</span>
+                <span class="en-lang">Week 2: 2D design and cutting</span>
+            </h1>
+            <p>
+                <span class="cs-lang">Během druhého týdne bylo úkolem vyřezat <strong>samolepku na řezacím plotru</strong> a navrhnout a vyřezat na <strong>laserové řezačce stavebnici z kartonu</strong>.<br><br></span>
+                <span class="en-lang">During the second week, the task was to cut a <strong>sticker on a cutting plotter</strong> and design and cut a <strong>cardboard construction kit on a laser cutter</strong>.<br><br></span>
+            </p>
+
+            <h2>
+                <span class="cs-lang">Tvorba samolepky</span>
+                <span class="en-lang">Creating a sticker</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Rozhodl jsem se vytvořit samolepku <a href="https://www.hradeckralove.org/hradec-kralove-ma-novou-vizualni-identitu/d-83915" target="_blank">nového loga</a> mého rodného města, Hradce Králové. Pro tvorbu vektorové grafiky jsem použil program <strong>Fusion 360</strong>.</span>
+                <span class="en-lang">I decided to create a sticker of the <a href="https://www.hradeckralove.org/hradec-kralove-ma-novou-vizualni-identitu/d-83915" target="_blank">new logo</a> of my hometown, Hradec Králové. To create the vector graphics, I used <strong>Fusion 360</strong>.</span>
+            </p>
+        
+            <p>
+                <span class="cs-lang">Nejprve jsem pomocí funkce <strong>Canvas</strong> vložil obrázek loga do pracovního prostoru. Aby rozměry samolepky odpovídaly realitě, využil jsem funkci <strong>Calibrate</strong> (kliknout pravým tlačítkem na Canvas v browseru). Stačilo vybrat dva body na logu a zadat jejich skutečnou vzdálenost, čímž se celý obrázek změnil na požadované rozměry.</span>
+                <span class="en-lang">First, I inserted the logo image into the workspace using the <strong>Canvas</strong> function. To ensure the sticker dimensions matched reality, I used the <strong>Calibrate</strong> function (right-click on Canvas in the browser). I just had to select two points on the logo and enter their actual distance, which resized the entire image to the desired dimensions.</span>
+            </p>
+        
+            <img src="media/JVC/KalibraceObrazku.JPG" alt="Kalibrace loga ve Fusion 360" class="project-image" loading="lazy">
+        
+            <p>
+                <span class="cs-lang">V rovině obrázku jsem vytvořil nový náčrt, ve kterém jsem logo obkreslil. Použil jsem k tomu následující nástroje:</span>
+                <span class="en-lang">I created a new sketch on the image plane, where I traced the logo. I used the following tools for this:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="cs-lang"><strong>Line</strong> - pro rovné úsečky</span>
+                    <span class="en-lang"><strong>Line</strong> - for straight line segments</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Circle</strong> - pro kružnice</span>
+                    <span class="en-lang"><strong>Circle</strong> - for circles</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Three Point Arc</strong> - pro půlkružnice a zaoblené části písmene G</span>
+                    <span class="en-lang"><strong>Three Point Arc</strong> - for semicircles and the rounded parts of the letter G</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="cs-lang">Původně jsem písmeno G obkrselil pomocí nástroje <strong>Fit Point spline</strong>, musel jsem ho však nahradit tříbodovými oblouky. Při exportu do formátu <strong>.dxf</strong> a následném importování do programu <strong>Inkscape</strong> se totiž spline křivky nezobrazovaly. Jelikož tvar písmene G není tvořen přesnými kružnicemi, není obkreslení přesné.</span>
+                <span class="en-lang">Originally, I traced the letter G using the <strong>Fit Point spline</strong> tool, but I had to replace it with three-point arcs. The reason was that spline curves did not display when exported to the <strong>.dxf</strong> format and subsequently imported into <strong>Inkscape</strong>. Since the shape of the letter G is not formed by exact circles, the tracing is not precise.</span>
+            </p>
+        
+            <br>
+
+            <img src="media/JVC/SketchObrazku.JPG" alt="Obkreslování loga ve Fusion 360" class="project-image" loading="lazy">
+        
+            <p>
+                <span class="cs-lang">Jelikož bude samolepka tříbarevná, vytvořil jsem tři samostatné náčrty pojmenované podle barev. Do každého z nich jsem z původního náčrtu promítnul funkcí <strong>Project</strong> pouze ty křivky, které ohraničují danou barvu. Jednotlivé barvy jsem následně exportoval ve formátu <strong>.dxf</strong>.</span>
+                <span class="en-lang">Since the sticker will have three colors, I created three separate sketches named after the colors. In each of them, I projected from the original sketch using the <strong>Project</strong> function only the curves that bound that specific color. I then exported each color individually in the <strong>.dxf</strong> format.</span>
+            </p>
+        
+            <img src="media/JVC/ExportDXF.JPG" alt="Export do formátu DXF" class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Soubory jsem přenesl do školního počítače, ale <strong>Silhouette Studio</strong> původní <strong>.dxf</strong> z <strong>Fusion 360</strong> deformovalo. Problém vyřešilo otevření souborů v <strong>Inkscape</strong> a jejich opětovný export do <strong>.dxf</strong>. Po importu bylo pouze nutné opravit měřítko, aby rozměry odpovídaly návrhu (import změnil rozměry, předchozí úprava velikosti Canvasu byla tedy zbytečná).</span>
+                <span class="en-lang">I transferred the files to the school computer, but <strong>Silhouette Studio</strong> deformed the original <strong>.dxf</strong> files from <strong>Fusion 360</strong>. The problem was solved by opening the files in <strong>Inkscape</strong> and exporting them to <strong>.dxf</strong> again. After importing, I only had to fix the scale so that the dimensions matched the design (the import had changed the dimensions, making the previous Canvas resizing useless).</span>
+            </p>
+                
+            <p>
+                <span class="cs-lang">Vinylovou fólii jsem upevnil na adhezní řezací podložku a vložil do plotru.</span>
+                <span class="en-lang">I attached the vinyl foil to the adhesive cutting mat and loaded it into the plotter.</span>
+            </p>
+            
+            <img src="media/JVC/PlotrSFolii.jpg" alt="Řezání na plotru" class="project-image" loading="lazy">
+            <p style="font-size: 0.9em; color: gray;">
+                <span class="cs-lang"><em>Poznámka: Obrázek zapůjčen od <a href="https://b222_b3b35jvc.pages.fel.cvut.cz/pechasim/weeks/week2/week2.html" target="_blank">Šimona Pecháčka</a>.</em></span>
+                <span class="en-lang"><em>Note: Image borrowed from <a href="https://b222_b3b35jvc.pages.fel.cvut.cz/pechasim/weeks/week2/week2.html" target="_blank">Šimon Pecháček</a>.</em></span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Po dokončení řezu jsem ze samolepky odstranil přebytečný materiál a pomocí transferové fólie jsem přenesl logo na víko notebooku. Kvůli nedostupnosti bílé fólie jsem nakonec vytvořil pouze dvoubarevnou variantu.</span>
+                <span class="en-lang">After the cut was finished, I removed the excess material from the sticker and transferred the logo onto the laptop lid using transfer tape. Due to the unavailability of white foil, I ended up creating only a two-color version.</span>
+            </p>
+                
+            <img src="media/JVC/PrenaseniSamolepky.jpg" alt="Přenos samolepky" class="project-image" loading="lazy">
+                
+            <img src="media/JVC/FinalSamolepka.jpg" alt="Finální výsledek na notebooku" class="project-image" loading="lazy">
+
+
+
+            <br><br>
+            <h2>
+                <span class="cs-lang">Stavebnice z kartonu</span>
+                <span class="en-lang">Cardboard construction kit</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Abych se držel tématu mého závěrečného projektu, dal jsem si za úkol vytvořit stavebnici <strong>hexapoda</strong>. K vytvoření vektorové grafiky jsem opět použil <strong>Sketch</strong> ve <strong>Fusion 360</strong>.</span>
+                <span class="en-lang">To stick to the theme of my final project, I set myself the task of creating a <strong>hexapod</strong> construction kit. I used <strong>Sketch</strong> in <strong>Fusion 360</strong> again to create the vector graphics.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Kvůli neznámé tloušťce kartonu a pro účely procvičení jsem parametrizoval všechny klíčové rozměry. Aby model na změny parametrů reagoval správně, udělal jsem všechny náčrty <strong>plně definované (fully constrained)</strong>. Díky tomu lze nyní snadno upravovat rozměry otvorů, délky článků nohou i velikost základny.</span>
+                <span class="en-lang">Due to the unknown thickness of the cardboard and for practice purposes, I parameterized all key dimensions. To ensure the model responded correctly to parameter changes, I made all sketches <strong>fully constrained</strong>. Thanks to this, it is now easy to adjust the dimensions of the holes, the lengths of the leg segments, and the size of the base.</span>
+            </p>
+
+            <img src="media/JVC/Parametry.JPG" alt="Tabulka parametrů" class="project-image" loading="lazy">
+
+            <img src="media/JVC/SketchLaser.JPG" alt="Sketch dílů hexapoda" class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Hotové náčrty jsem exportoval do formátu <strong>.dxf</strong> a následně je upravil v programu <strong>Inkscape</strong> podle <a href="https://youtu.be/SyvYOC2yWU4?si=QTFaIHLjedb-zAEk" target="_blank">tutoriálu Filipa Korfa</a>.</span>
+                <span class="en-lang">I exported the finished sketches to the <strong>.dxf</strong> format and then modified them in <strong>Inkscape</strong> following <a href="https://youtu.be/SyvYOC2yWU4?si=QTFaIHLjedb-zAEk" target="_blank">Filip Korf's tutorial</a>.</span>
+            </p>
+                
+            <p>
+                <span class="cs-lang">Při prvním pokusu o řezání stroj vynechal polovinu dílů. Problém vyřešilo označení všech objektů a použití funkce <strong>Zrušit seskupení</strong>. Pro řezání kartonu jsem nakonec použil nastavení: <strong>výkon 45 %, rychlost 100 %, frekvence 500 Hz</strong>. Po několika zkušebních řezech jsem šířku spojovacích otvorů zvolil <strong>2,4 mm</strong>.</span>
+                <span class="en-lang">During the first cutting attempt, the machine skipped half of the parts. The problem was solved by selecting all objects and using the <strong>Ungroup</strong> function. I eventually used the following settings for cutting the cardboard: <strong>power 45%, speed 100%, frequency 500 Hz</strong>. After a few test cuts, I chose a width of <strong>2.4 mm</strong> for the connecting slots.</span>
+            </p>
+                
+            <img src="media/JVC/FinalHexapod.jpg" alt="Finální sestavený hexapod z kartonu" class="project-image" loading="lazy">
+
+        </main>
+
+    </div>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.textContent = '🌙';
+            }
+        });
+
+        const langBtn = document.getElementById('lang-toggle');
+
+        if (localStorage.getItem('lang') === 'en') {
+            document.body.classList.add('lang-en');
+            langBtn.textContent = 'CS';
+        }
+
+        langBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lang-en');
+            
+            if (document.body.classList.contains('lang-en')) {
+                localStorage.setItem('lang', 'en');
+                langBtn.textContent = 'CS';
+            } else {
+                localStorage.setItem('lang', 'cs');
+                langBtn.textContent = 'EN';
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -3,90 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jak vyrobit (téměř) cokoliv | Štěpán Blaha</title>
+    <title>Maker Portfolio | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="active">Domů</a>
-        <a href="omne.html">O mně</a>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Přepnout tmavý režim / Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        
+        <a href="index.html" class="active">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
     </nav>
 
     <div class="container">
-        <h1>Jak vyrobit (téměř) cokoliv | Štěpán Blaha</h1>
+        <h1>
+            <span class="cs-lang">Jak vyrobit (téměř) cokoliv | Štěpán Blaha</span>
+            <span class="en-lang">How to Make (Almost) Anything | Štěpán Blaha</span>
+        </h1>
         <p class="description">
-            Vítejte! Tato stránka slouží jako dokumentace mých projektů vzniklých v rámci předmětu Jak vyrobit (téměř) cokoliv na ČVUT FEL. 
-            Každý týden zde sdílím celý postup od prvního nápadu až po hotový výrobek.
+            <span class="cs-lang">
+                Vítejte! Tato stránka slouží jako dokumentace mých projektů vzniklých v rámci předmětu Jak vyrobit (téměř) cokoliv na ČVUT FEL. 
+                Každý týden zde sdílím celý postup od prvního nápadu až po hotový výrobek.
+            </span>
+            <span class="en-lang">
+                Welcome! This page serves as documentation of my projects created during the How to Make (Almost) Anything course at CTU FEE. 
+                Every week I share the entire process here, from the initial idea to the finished product.
+            </span>
         </p>
 
         <div class="grid">
-            <a href="tyden1.html" class="card">
-                <span class="week-number">1. týden</span>
-                <span class="week-title">Úvod a dokumentace</span>
+            <a href="week1.html" class="card">
+                <span class="week-number cs-lang">1. týden</span>
+                <span class="week-number en-lang">Week 1</span>
+                <span class="week-title cs-lang">Úvod a dokumentace</span>
+                <span class="week-title en-lang">Introduction and documentation</span>
             </a>
 
-            <a href="tyden2.html" class="card">
-                <span class="week-number">2. týden</span>
-                <span class="week-title">2D návrh a řezání</span>
+            <a href="week2.html" class="card">
+                <span class="week-number cs-lang">2. týden</span>
+                <span class="week-number en-lang">Week 2</span>
+                <span class="week-title cs-lang">2D návrh a řezání</span>
+                <span class="week-title en-lang">2D design and cutting</span>
             </a>
 
-            <a href="tyden3.html" class="card">
-                <span class="week-number">3. týden</span>
-                <span class="week-title">3D tisk a skenování</span>
+            <a href="week3.html" class="card">
+                <span class="week-number cs-lang">3. týden</span>
+                <span class="week-number en-lang">Week 3</span>
+                <span class="week-title cs-lang">3D tisk a skenování</span>
+                <span class="week-title en-lang">3D printing and scanning</span>
             </a>
 
-            <a href="tyden4.html" class="card">
-                <span class="week-number">4. týden</span>
-                <span class="week-title">Kinetické struktury</span>
+            <a href="week4.html" class="card">
+                <span class="week-number cs-lang">4. týden</span>
+                <span class="week-number en-lang">Week 4</span>
+                <span class="week-title cs-lang">Kinetické struktury</span>
+                <span class="week-title en-lang">Kinetic structures</span>
             </a>
 
-            <a href="tyden5.html" class="card">
-                <span class="week-number">5. týden</span>
-                <span class="week-title">Výroba elektroniky</span>
+            <a href="week5.html" class="card">
+                <span class="week-number cs-lang">5. týden</span>
+                <span class="week-number en-lang">Week 5</span>
+                <span class="week-title cs-lang">Výroba elektroniky</span>
+                <span class="week-title en-lang">Electronics production</span>
             </a>
 
-            <a href="tyden6.html" class="card">
-                <span class="week-number">6. týden</span>
-                <span class="week-title">Senzory a vstupní zařízení</span>
+            <a href="week6.html" class="card">
+                <span class="week-number cs-lang">6. týden</span>
+                <span class="week-number en-lang">Week 6</span>
+                <span class="week-title cs-lang">Senzory a vstupní zařízení</span>
+                <span class="week-title en-lang">Sensors and input devices</span>
             </a>
 
-            <a href="tyden7.html" class="card">
-                <span class="week-number">7. týden</span>
-                <span class="week-title">Aktuátory a výstupní zařízení</span>
+            <a href="week7.html" class="card">
+                <span class="week-number cs-lang">7. týden</span>
+                <span class="week-number en-lang">Week 7</span>
+                <span class="week-title cs-lang">Aktuátory a výstupní zařízení</span>
+                <span class="week-title en-lang">Actuators and output devices</span>
             </a>
 
-            <a href="tyden8.html" class="card">
-                <span class="week-number">8. týden</span>
-                <span class="week-title">Propojování drátové a bezdrátové, programování aplikace</span>
+            <a href="week8.html" class="card">
+                <span class="week-number cs-lang">8. týden</span>
+                <span class="week-number en-lang">Week 8</span>
+                <span class="week-title cs-lang">Propojování drátové a bezdrátové, programování aplikace</span>
+                <span class="week-title en-lang">Wired and wireless networking, application programming</span>
             </a>
 
-            <a href="tyden9.html" class="card">
-                <span class="week-number">9. týden</span>
-                <span class="week-title">Malé 'velké' CNC obrábění</span>
+            <a href="week9.html" class="card">
+                <span class="week-number cs-lang">9. týden</span>
+                <span class="week-number en-lang">Week 9</span>
+                <span class="week-title cs-lang">Malé 'velké' CNC obrábění</span>
+                <span class="week-title en-lang">Small 'big' CNC machining</span>
             </a>
 
-            <a href="tyden10.html" class="card">
-                <span class="week-number">10. týden</span>
-                <span class="week-title">Wildcard</span>
+            <a href="week10.html" class="card">
+                <span class="week-number cs-lang">10. týden</span>
+                <span class="week-number en-lang">Week 10</span>
+                <span class="week-title cs-lang">Wildcard</span>
+                <span class="week-title en-lang">Wildcard</span>
             </a>
 
-            <a href="tyden11a12.html" class="card">
-                <span class="week-number">11. a 12. týden</span>
-                <span class="week-title">Počítačem řízený stroj</span>
+            <a href="week11-12.html" class="card">
+                <span class="week-number cs-lang">11. a 12. týden</span>
+                <span class="week-number en-lang">Week 11 and 12</span>
+                <span class="week-title cs-lang">Počítačem řízený stroj</span>
+                <span class="week-title en-lang">Computer-controlled machine</span>
             </a>
 
-            <a href="tyden13.html" class="card">
-                <span class="week-number">13. týden</span>
-                <span class="week-title">Formování a odlévání</span>
+            <a href="week13.html" class="card">
+                <span class="week-number cs-lang">13. týden</span>
+                <span class="week-number en-lang">Week 13</span>
+                <span class="week-title cs-lang">Formování a odlévání</span>
+                <span class="week-title en-lang">Molding and casting</span>
             </a>
         </div>
 
-        <a href="zaverecny_projekt.html" class="final-project">
-            Závěrečný projekt
+        <a href="final-project.html" class="final-project">
+            <span class="cs-lang">Závěrečný projekt - hexapod</span>
+            <span class="en-lang">Final Project - Hexapod</span>
         </a>
 
     </div>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.textContent = '🌙';
+            }
+        });
+
+        const langBtn = document.getElementById('lang-toggle');
+
+        if (localStorage.getItem('lang') === 'en') {
+            document.body.classList.add('lang-en');
+            langBtn.textContent = 'CS';
+        }
+
+        langBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lang-en');
+            
+            if (document.body.classList.contains('lang-en')) {
+                localStorage.setItem('lang', 'en');
+                langBtn.textContent = 'CS';
+            } else {
+                localStorage.setItem('lang', 'cs');
+                langBtn.textContent = 'EN';
+            }
+        });
+    </script>
 
 </body>
 </html>

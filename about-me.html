@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About me | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Přepnout tmavý režim / Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html" class="active">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
+        </aside>
+
+        <main class="content">
+            <h1>
+                <span class="cs-lang">O mně | Štěpán Blaha</span>
+                <span class="en-lang">About me | Štěpán Blaha</span>
+            </h1>
+
+            <p>
+                <span class="cs-lang">Ahoj, jmenuji se Štěpán Blaha a pocházím z Hradce Králové. Jsem studentem druhého ročníku bakalářského programu Kybernetika a robotika na ČVUT FEL v Praze.</span>
+                <span class="en-lang">Hi, my name is Štěpán Blaha and I come from Hradec Králové, Czech Republic. I am a second-year student in the Cybernetics and Robotics bachelor's program at CTU FEE in Prague.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">O bastlení jsem se začal více zajímat v posledním ročníku gymnázia. V té době vznikl můj dodnes nejoblíbenější projekt - dálkově ovládaná ponorka. Když jsem ji stavěl, neměl jsem ještě 3D tiskárnu, chyběly mi zkušenosti s elektronikou a s programováním jsem teprve začínal.</span>
+                <span class="en-lang">I became more interested in tinkering during my last year of high school. At that time, my favorite project to date was created - a remote-controlled submarine. When I was building it, I didn't have a 3D printer yet, I lacked experience with electronics, and I was just starting out with programming.</span>
+            </p>
+
+            <img src="media/JVC/Ponorka.jpg" alt="Projekt ponorka" class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Od té doby jsem zrealizoval spoustu dalších nápadů, včetně například malé robotické ruky, hexapoda nebo FPV drona. Zkušenosti z těchto projektů mě výrazně posunuly a zdokonalil jsem se především ve 3D modelování, 3D tisku a programování.</span>
+                <span class="en-lang">Since then, I have realized many other ideas, including a small robotic arm, a hexapod, and an FPV drone. The experience gained from these projects has pushed me significantly forward, and I have improved mainly in 3D modeling, 3D printing, and programming.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Když se zrovna nevěnuji škole nebo vlastním projektům, rád si zajdu do posilovny, zahraju si něco na počítači a baví mě lyžování.</span>
+                <span class="en-lang">When I'm not focusing on school or my own projects, I like to go to the gym, play computer games, and I enjoy skiing.</span>
+            </p>
+
+            <h2 class="contact-heading">
+                <span class="cs-lang">Kontakt</span>
+                <span class="en-lang">Contact</span>
+            </h2>
+
+            <p>
+                <a href="mailto:blahast2@cvut.cz" style="color: #0066cc; font-weight: bold; text-decoration: none;">blahast2@cvut.cz</a>
+            </p>
+        </main>
+
+    </div>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.textContent = '🌙';
+            }
+        });
+
+        const langBtn = document.getElementById('lang-toggle');
+
+        if (localStorage.getItem('lang') === 'en') {
+            document.body.classList.add('lang-en');
+            langBtn.textContent = 'CS';
+        }
+
+        langBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lang-en');
+            
+            if (document.body.classList.contains('lang-en')) {
+                localStorage.setItem('lang', 'en');
+                langBtn.textContent = 'CS';
+            } else {
+                localStorage.setItem('lang', 'cs');
+                langBtn.textContent = 'EN';
+            }
+        });
+    </script>
+
+</body>
+</html>
