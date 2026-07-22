@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8. týden | Štěpán Blaha</title>
+    <title>Week 8 | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
@@ -20,49 +20,111 @@
 <body>
 
     <nav>
-        <a href="index.html">Domů</a>
-        <a href="omne.html">O mně</a>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
     </nav>
 
     <div class="main-wrapper">
         
         <aside class="sidebar">
-            <a href="tyden1.html">1. týden</a>
-            <a href="tyden2.html">2. týden</a>
-            <a href="tyden3.html">3. týden</a>
-            <a href="tyden4.html">4. týden</a>
-            <a href="tyden5.html">5. týden</a>
-            <a href="tyden6.html">6. týden</a>
-            <a href="tyden7.html">7. týden</a>
-            <a href="tyden8.html" class="active">8. týden</a>
-            <a href="tyden9.html">9. týden</a>
-            <a href="tyden10.html">10. týden</a>
-            <a href="tyden11a12.html">11. a 12. týden</a>
-            <a href="tyden13.html">13. týden</a>
-            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html" class="active">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
         </aside>
 
         <main class="content">
-            <h1>8. týden: Propojování drátové a bezdrátové, programování aplikace</h1>
+            <h1>
+                <span class="cs-lang">8. týden: Propojování drátové a bezdrátové, programování aplikace</span>
+                <span class="en-lang">Week 8: Wired and Wireless Connectivity, Application Programming</span>
+            </h1>
             
-            <p>Během osmého týdne bylo úkolem:</p>
+            <p>
+                <span class="cs-lang">Během osmého týdne bylo úkolem:</span>
+                <span class="en-lang">During the eighth week, the task was to:</span>
+            </p>
             <ul>
-                <li><strong>Ovládat obvod</strong> přes <strong>lokální bezdrátovou síť</strong>.</li>
-                <li><strong>Vytvořit aplikaci</strong>, která bude fungovat jako uživatelské rozhraní pro komunikaci se vstupním nebo výstupním zařízením.</li>
+                <li>
+                    <span class="cs-lang"><strong>Ovládat obvod</strong> přes <strong>lokální bezdrátovou síť</strong>.</span>
+                    <span class="en-lang"><strong>Control a circuit</strong> over a <strong>local wireless network</strong>.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Vytvořit aplikaci</strong>, která bude fungovat jako uživatelské rozhraní pro komunikaci se vstupním nebo výstupním zařízením.</span>
+                    <span class="en-lang"><strong>Create an application</strong> that will function as a user interface for communication with an input or output device.</span>
+                </li>
             </ul>
 
-            <h2>Dálkové ovládání a vizualizace stavu hexapoda</h2>
+            <h2>
+                <span class="cs-lang">Dálkové ovládání a vizualizace stavu hexapoda</span>
+                <span class="en-lang">Hexapod remote control and status visualization</span>
+            </h2>
 
             <p>
-                V předchozích týdnech jsem postavil <strong>funkční základ hexapoda</strong> (zbývá už jen kryt elektroniky a poslední články nohou)
-                a <strong>Bluetooth dálkové ovládání</strong>. 
-                Cílem tohoto týdne bylo implementovat <strong>inverzní kinematiku</strong>, 
-                zprovoznit <strong>komunikaci</strong> mezi robotem a ovladačem a vytvořit <strong>PC aplikaci pro vizualizaci</strong> pohybů robota.
+                <span class="cs-lang">V předchozích týdnech jsem postavil <strong>funkční základ hexapoda</strong> (zbývá už jen kryt elektroniky a poslední články nohou) a <strong>Bluetooth dálkové ovládání</strong>. Cílem tohoto týdne bylo implementovat <strong>inverzní kinematiku</strong>, zprovoznit <strong>komunikaci</strong> mezi robotem a ovladačem a vytvořit <strong>PC aplikaci pro vizualizaci</strong> pohybů robota.</span>
+                <span class="en-lang">In previous weeks, I built the <strong>functional base of the hexapod</strong> (only the electronics cover and the last leg segments remain) and a <strong>Bluetooth remote control</strong>. The goal of this week was to implement <strong>inverse kinematics</strong>, get the <strong>communication</strong> between the robot and the controller working, and create a <strong>PC application to visualize</strong> the robot's movements.</span>
             </p>
 
             <p>
-                <strong>Arduino</strong> v ovladači bude s <strong>Raspberry Pi 5</strong> v hexapodovi komunikovat pomocí <strong>Bluetooth</strong> a 
-                Raspberry Pi bude odesílat svůj <strong>aktuální stav do počítače</strong> prostřednictvím protokolu <strong>UDP</strong>.
+                <span class="cs-lang"><strong>Arduino</strong> v ovladači bude s <strong>Raspberry Pi 5</strong> v hexapodovi komunikovat pomocí <strong>Bluetooth</strong> a Raspberry Pi bude odesílat svůj <strong>aktuální stav do počítače</strong> prostřednictvím protokolu <strong>UDP</strong>.</span>
+                <span class="en-lang">The <strong>Arduino</strong> in the controller will communicate with the <strong>Raspberry Pi 5</strong> in the hexapod via <strong>Bluetooth</strong>, and the Raspberry Pi will send its <strong>current state to the computer</strong> via the <strong>UDP</strong> protocol.</span>
             </p>
 
             <img src="media/JVC/HexapodSFemuremAElektronikou.jpg" alt="Tělo hexapoda s femury a s elektronikou" class="project-image" loading="lazy">
@@ -70,48 +132,71 @@
 
             <br><br>
 
-            <h3>Dálkové ovládání hexapoda</h3>
+            <h3>
+                <span class="cs-lang">Dálkové ovládání hexapoda</span>
+                <span class="en-lang">Hexapod remote control</span>
+            </h3>
                 
             <p>
-                Dálkové ovládání aktuálně poskytuje kontrolu nad <strong>náklony těla</strong> (roll, pitch a yaw)
-                a jeho <strong>posuny ve třech osách</strong> (x, y, z).
-                K tomu využívám <strong>pravý joystick</strong> (včetně jeho tlačítka) a <strong>oba pravé potenciometry</strong>.
+                <span class="cs-lang">Dálkové ovládání aktuálně poskytuje kontrolu nad <strong>náklony těla</strong> (roll, pitch a yaw) a jeho <strong>posuny ve třech osách</strong> (x, y, z). K tomu využívám <strong>pravý joystick</strong> (včetně jeho tlačítka) a <strong>oba pravé potenciometry</strong>.</span>
+                <span class="en-lang">The remote control currently provides control over <strong>body tilts</strong> (roll, pitch, and yaw) and its <strong>translations in three axes</strong> (x, y, z). To do this, I use the <strong>right joystick</strong> (including its button) and <strong>both right potentiometers</strong>.</span>
             </p>
 
             <p>
-                Výchozí režim joysticku ovládá <strong>posuny těla</strong> v osách X a Y. 
-                Po stisknutí tlačítka joysticku se režim přepne na <strong>ovládání náklonů</strong> (pitch a roll).
-                Potenciometry pak slouží k nastavení <strong>výšky těla</strong> (posun v ose Z) a <strong>rotace</strong> (yaw - otáčení kolem osy Z).
+                <span class="cs-lang">Výchozí režim joysticku ovládá <strong>posuny těla</strong> v osách X a Y. Po stisknutí tlačítka joysticku se režim přepne na <strong>ovládání náklonů</strong> (pitch a roll). Potenciometry pak slouží k nastavení <strong>výšky těla</strong> (posun v ose Z) a <strong>rotace</strong> (yaw - otáčení kolem osy Z).</span>
+                <span class="en-lang">The default joystick mode controls <strong>body translations</strong> in the X and Y axes. After pressing the joystick button, the mode switches to <strong>tilt control</strong> (pitch and roll). The potentiometers then serve to adjust the <strong>body height</strong> (translation in the Z axis) and <strong>rotation</strong> (yaw - rotation around the Z axis).</span>
             </p>
 
             <p>
-                Komunikace mezi Arduinem (ovladač) a Raspberry Pi 5 (hexapod) probíhá <strong>jednosměrně</strong> přes <strong>sériovou linku</strong>
-                a Bluetooth modul <strong>HC-05</strong> pomocí <strong>vlastního protokolu</strong>.
-                Na Raspberry Pi běží vlákno <code>bluetooth_thread</code>, 
-                které <strong>paralelně</strong> s hlavní smyčkou čte a zpracovává příchozí data.
+                <span class="cs-lang">Komunikace mezi Arduinem (ovladač) a Raspberry Pi 5 (hexapod) probíhá <strong>jednosměrně</strong> přes <strong>sériovou linku</strong> a Bluetooth modul <strong>HC-05</strong> pomocí <strong>vlastního protokolu</strong>. Na Raspberry Pi běží vlákno <code>bluetooth_thread</code>, které <strong>paralelně</strong> s hlavní smyčkou čte a zpracovává příchozí data.</span>
+                <span class="en-lang">Communication between the Arduino (controller) and the Raspberry Pi 5 (hexapod) is <strong>one-way</strong> over a <strong>serial link</strong> and the <strong>HC-05</strong> Bluetooth module using a <strong>custom protocol</strong>. A <code>bluetooth_thread</code> thread runs on the Raspberry Pi, which reads and processes incoming data <strong>in parallel</strong> with the main loop.</span>
             </p>
 
-            <p><strong>Formát datového paketu:</strong></p>
+            <p>
+                <span class="cs-lang"><strong>Formát datového paketu:</strong></span>
+                <span class="en-lang"><strong>Data packet format:</strong></span>
+            </p>
             <ul>
-                <li><strong>Byte 0:</strong> <code>0xAA</code> - <strong>Startovací byte</strong> (hlavička), podle které RPi identifikuje začátek paketu.</li>
-                <li><strong>Byte 1:</strong> <code>0x11</code> (17 desítkově) - <strong>Délka užitečných dat</strong> (payload).</li>
-                <li><strong>Byte 2 až 17:</strong> <strong>Analogová data</strong> z potenciometrů a joysticků (osm 16bitových hodnot odesílaných ve formátu Little Endian).</li>
-                <li><strong>Byte 18:</strong> <strong>Bitmaska tlačítek</strong> (1 byte). Jednotlivé bity reprezentují stav pěti tlačítek.</li>
-                <li><strong>Byte 19:</strong> <strong>Kontrolní součet</strong> (Checksum).</li>
+                <li>
+                    <span class="cs-lang"><strong>Byte 0:</strong> <code>0xAA</code> - <strong>Startovací byte</strong> (hlavička), podle které RPi identifikuje začátek paketu.</span>
+                    <span class="en-lang"><strong>Byte 0:</strong> <code>0xAA</code> - <strong>Start byte</strong> (header), by which the RPi identifies the beginning of the packet.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Byte 1:</strong> <code>0x11</code> (17 desítkově) - <strong>Délka užitečných dat</strong> (payload).</span>
+                    <span class="en-lang"><strong>Byte 1:</strong> <code>0x11</code> (17 decimal) - <strong>Payload length</strong>.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Byte 2 až 17:</strong> <strong>Analogová data</strong> z potenciometrů a joysticků (osm 16bitových hodnot odesílaných ve formátu Little Endian).</span>
+                    <span class="en-lang"><strong>Bytes 2 to 17:</strong> <strong>Analog data</strong> from potentiometers and joysticks (eight 16-bit values sent in Little Endian format).</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Byte 18:</strong> <strong>Bitmaska tlačítek</strong> (1 byte). Jednotlivé bity reprezentují stav pěti tlačítek.</span>
+                    <span class="en-lang"><strong>Byte 18:</strong> <strong>Button bitmask</strong> (1 byte). Individual bits represent the state of the five buttons.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Byte 19:</strong> <strong>Kontrolní součet</strong> (Checksum).</span>
+                    <span class="en-lang"><strong>Byte 19:</strong> <strong>Checksum</strong>.</span>
+                </li>
             </ul>
 
-            <p><strong>Relevantní výtažky z kódu</strong> (kompletní kód je na konci stránky):</p>
+            <p>
+                <span class="cs-lang"><strong>Relevantní výtažky z kódu</strong> (kompletní kód je na konci stránky):</span>
+                <span class="en-lang"><strong>Relevant code excerpts</strong> (complete code is at the bottom of the page):</span>
+            </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C++</span>
-                        <span class="language-label">HexapodRemoteControl.ino</span>
+                        <span class="language-label">hexapod_remote_control.ino</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-cpp">// Send data frame
@@ -179,13 +264,16 @@ void loop() {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">bluetooth_thread.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-c">#pragma once
@@ -210,13 +298,16 @@ void* bluetooth_thread(void* arg);
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">bluetooth_thread.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-c">#include &lt;stdint.h&gt;
@@ -408,40 +499,50 @@ void* bluetooth_thread(void* arg) {
 
             <br><br>
 
-            <h2 id="hexapod-inverzni-kinematika">Inverzní kinematika</h2>
+            <h2 id="hexapod-inverzni-kinematika">
+                <span class="cs-lang">Inverzní kinematika</span>
+                <span class="en-lang">Inverse kinematics</span>
+            </h2>
 
             <p>
-                Zatímco <strong>dopředná kinematika</strong> řeší otázku:
-                <em>„Když nastavím tyto úhly v kloubech, kde skončí špička nohy?“</em>,
-                <strong>inverzní kinematika</strong> funguje přesně naopak.
-                Ptá se: <em>„Pokud chci špičku nohy umístit do těchto souřadnic, jaké úhly musím nastavit v jednotlivých kloubech?“</em>
+                <span class="cs-lang">Zatímco <strong>dopředná kinematika</strong> řeší otázku: <em>„Když nastavím tyto úhly v kloubech, kde skončí špička nohy?“</em>, <strong>inverzní kinematika</strong> funguje přesně naopak. Ptá se: <em>„Pokud chci špičku nohy umístit do těchto souřadnic, jaké úhly musím nastavit v jednotlivých kloubech?“</em></span>
+                <span class="en-lang">While <strong>forward kinematics</strong> answers the question: <em>"If I set these angles in the joints, where will the tip of the leg end up?"</em>, <strong>inverse kinematics</strong> works exactly the opposite way. It asks: <em>"If I want to place the tip of the leg at these coordinates, what angles must I set in the individual joints?"</em></span>
             </p>
 
-            <p><strong>Noha robota se skládá ze tří kloubů a tří článků:</strong></p>
+            <p>
+                <span class="cs-lang"><strong>Noha robota se skládá ze tří kloubů a tří článků:</strong></span>
+                <span class="en-lang"><strong>The robot's leg consists of three joints and three segments:</strong></span>
+            </p>
             <ul>
-                <li><strong>Coxa (kyčel):</strong> Nejbližší kloub k tělu robota se <strong>svislou osou rotace</strong>. Zajišťuje pohyb celé nohy <strong>vlevo a vpravo</strong>.</li>
-                <li><strong>Femur (stehno):</strong> Druhý kloub od těla s <strong>vodorovnou osou rotace</strong>. Slouží ke <strong>zvedání a spouštění</strong> nohy.</li>
-                <li><strong>Tibia (holeň):</strong> Třetí kloub opět s <strong>vodorovnou osou rotace</strong>. Společně s femurem tvoří <strong>dvoučlánkové rameno</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Coxa (kyčel):</strong> Nejbližší kloub k tělu robota se <strong>svislou osou rotace</strong>. Zajišťuje pohyb celé nohy <strong>vlevo a vpravo</strong>.</span>
+                    <span class="en-lang"><strong>Coxa (hip):</strong> The joint closest to the robot's body with a <strong>vertical axis of rotation</strong>. It provides movement of the entire leg <strong>left and right</strong>.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Femur (stehno):</strong> Druhý kloub od těla s <strong>vodorovnou osou rotace</strong>. Slouží ke <strong>zvedání a spouštění</strong> nohy.</span>
+                    <span class="en-lang"><strong>Femur (thigh):</strong> The second joint from the body with a <strong>horizontal axis of rotation</strong>. It is used to <strong>lift and lower</strong> the leg.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Tibia (holeň):</strong> Třetí kloub opět s <strong>vodorovnou osou rotace</strong>. Společně s femurem tvoří <strong>dvoučlánkové rameno</strong>.</span>
+                    <span class="en-lang"><strong>Tibia (shin):</strong> The third joint, again with a <strong>horizontal axis of rotation</strong>. Together with the femur, it forms a <strong>two-segment arm</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/CoxaFemurTibia.JPG" alt="Model hexapoda s označenými články nohou" class="project-image" loading="lazy">
 
             <p>
-                Při výpočtech budeme pracovat v <strong>souřadnicovém systému hexapoda</strong>,
-                jehož počátek (0, 0, 0) leží ve <strong>středu jeho těla</strong>.
-                Vstupem algoritmu inverzní kinematiky jsou požadované cílové pozice pro špičky jednotlivých nohou právě v tomto souřadnicovém systému.
+                <span class="cs-lang">Při výpočtech budeme pracovat v <strong>souřadnicovém systému hexapoda</strong>, jehož počátek (0, 0, 0) leží ve <strong>středu jeho těla</strong>. Vstupem algoritmu inverzní kinematiky jsou požadované cílové pozice pro špičky jednotlivých nohou právě v tomto souřadnicovém systému.</span>
+                <span class="en-lang">In the calculations, we will work in the <strong>hexapod's coordinate system</strong>, whose origin (0, 0, 0) lies at the <strong>center of its body</strong>. The input to the inverse kinematics algorithm is the desired target positions for the tips of the individual legs precisely in this coordinate system.</span>
             </p>
 
             <p>
-                <strong>Prvním krokem</strong> výpočtu je aplikace <strong>posunů těla</strong>.
-                Pokud chceme posunout tělo vůči zemi (zatímco nohy pevně stojí na podložce),
-                z pohledu těla se <strong>posouvá samotná zem v opačném směru</strong>. Stačí tedy od koncových bodů všech nohou <strong>odečíst požadovaný vektor posunu</strong> těla.
+                <span class="cs-lang"><strong>Prvním krokem</strong> výpočtu je aplikace <strong>posunů těla</strong>. Pokud chceme posunout tělo vůči zemi (zatímco nohy pevně stojí na podložce), z pohledu těla se <strong>posouvá samotná zem v opačném směru</strong>. Stačí tedy od koncových bodů všech nohou <strong>odečíst požadovaný vektor posunu</strong> těla.</span>
+                <span class="en-lang">The <strong>first step</strong> of the calculation is the application of <strong>body translations</strong>. If we want to translate the body relative to the ground (while the legs stand firmly on the surface), from the body's perspective, <strong>the ground itself moves in the opposite direction</strong>. So it is sufficient to <strong>subtract the desired body translation vector</strong> from the end points of all legs.</span>
             </p>
 
             <p>
-                <strong>Druhým krokem</strong> je aplikace <strong>náklonů těla</strong>, u kterých platí stejný princip.
-                Chceme-li tělo naklonit, zatímco nohy drží pevnou pozici, z pohledu těla se <strong>zem naklání na opačnou stranu</strong>.
-                Koncové body nohou proto přenásobíme <strong>rotačními maticemi s opačným úhlem</strong> kolem os procházejících středem hexapoda.
+                <span class="cs-lang"><strong>Druhým krokem</strong> je aplikace <strong>náklonů těla</strong>, u kterých platí stejný princip. Chceme-li tělo naklonit, zatímco nohy drží pevnou pozici, z pohledu těla se <strong>zem naklání na opačnou stranu</strong>. Koncové body nohou proto přenásobíme <strong>rotačními maticemi s opačným úhlem</strong> kolem os procházejících středem hexapoda.</span>
+                <span class="en-lang">The <strong>second step</strong> is the application of <strong>body tilts</strong>, for which the same principle applies. If we want to tilt the body while the legs hold a fixed position, from the body's perspective, <strong>the ground tilts to the opposite side</strong>. We therefore multiply the leg end points by <strong>rotation matrices with the opposite angle</strong> around axes passing through the center of the hexapod.</span>
             </p>
 
             <p class="math-display">
@@ -461,25 +562,49 @@ void* bluetooth_thread(void* arg) {
             </p>
 
             <ul>
-                <li><strong>$x_{ee}, y_{ee}, z_{ee}$:</strong> Výsledné souřadnice špičky nohy (koncového efektoru - <em>end effector</em>) po zohlednění posunů a náklonů těla.</li>
-                <li><strong>$x_0, y_0, z_0$:</strong> Původní souřadnice špičky nohy před provedením posunů a náklonů.</li>
-                <li><strong>$t_x, t_y, t_z$:</strong> Složky vektoru, který udává <strong>posun těla</strong> vůči zemi.</li>
-                <li><strong>$\phi, \theta, \psi$:</strong> Úhly udávající <strong>náklon těla</strong> (roll, pitch, yaw).</li>
-                <li><strong>$\mathbf{R_x}(-\phi)$:</strong> Rotační matice kolem osy X o úhel $-\phi$ (roll - náklon do stran).</li>
-                <li><strong>$\mathbf{R_y}(-\theta)$:</strong> Rotační matice kolem osy Y o úhel $-\theta$ (pitch - náklon dopředu a dozadu).</li>
-                <li><strong>$\mathbf{R_z}(-\psi)$:</strong> Rotační matice kolem osy Z o úhel $-\psi$ (yaw - natáčení do stran).</li>
+                <li>
+                    <span class="cs-lang"><strong>$x_{ee}, y_{ee}, z_{ee}$:</strong> Výsledné souřadnice špičky nohy (koncového efektoru - <em>end effector</em>) po zohlednění posunů a náklonů těla.</span>
+                    <span class="en-lang"><strong>$x_{ee}, y_{ee}, z_{ee}$:</strong> Resulting coordinates of the leg tip (end effector) after accounting for body translations and tilts.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$x_0, y_0, z_0$:</strong> Původní souřadnice špičky nohy před provedením posunů a náklonů.</span>
+                    <span class="en-lang"><strong>$x_0, y_0, z_0$:</strong> Original coordinates of the leg tip before applying translations and tilts.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$t_x, t_y, t_z$:</strong> Složky vektoru, který udává <strong>posun těla</strong> vůči zemi.</span>
+                    <span class="en-lang"><strong>$t_x, t_y, t_z$:</strong> Components of the vector that specify the <strong>body translation</strong> relative to the ground.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\phi, \theta, \psi$:</strong> Úhly udávající <strong>náklon těla</strong> (roll, pitch, yaw).</span>
+                    <span class="en-lang"><strong>$\phi, \theta, \psi$:</strong> Angles specifying the <strong>body tilt</strong> (roll, pitch, yaw).</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\mathbf{R_x}(-\phi)$:</strong> Rotační matice kolem osy X o úhel $-\phi$ (roll - náklon do stran).</span>
+                    <span class="en-lang"><strong>$\mathbf{R_x}(-\phi)$:</strong> Rotation matrix around the X axis by angle $-\phi$ (roll - side-to-side tilt).</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\mathbf{R_y}(-\theta)$:</strong> Rotační matice kolem osy Y o úhel $-\theta$ (pitch - náklon dopředu a dozadu).</span>
+                    <span class="en-lang"><strong>$\mathbf{R_y}(-\theta)$:</strong> Rotation matrix around the Y axis by angle $-\theta$ (pitch - forward and backward tilt).</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\mathbf{R_z}(-\psi)$:</strong> Rotační matice kolem osy Z o úhel $-\psi$ (yaw - natáčení do stran).</span>
+                    <span class="en-lang"><strong>$\mathbf{R_z}(-\psi)$:</strong> Rotation matrix around the Z axis by angle $-\psi$ (yaw - turning side to side).</span>
+                </li>
             </ul>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">motion.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-c">// Translate by (-tx,-ty,-tz) and rotate point by -yaw (psi), -pitch (theta), -roll(phi)
@@ -517,21 +642,25 @@ static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, 
 
             <video class="project-video-ik" controls muted playsinline preload="metadata" aria-label="Hexapod posouvající tělo.">
                 <source src="media/JVC/PosunyTela.mp4" type="video/mp4" loading="lazy">
-                Váš prohlížeč nepodporuje přehrávání videa.
+                <span class="cs-lang">Váš prohlížeč nepodporuje přehrávání videa.</span>
+                <span class="en-lang">Your browser does not support video playback.</span>
             </video>
 
             <video class="project-video-ik" controls muted playsinline preload="metadata" aria-label="Hexapod naklánějící tělo.">
                 <source src="media/JVC/NaklonyTela.mp4" type="video/mp4" loading="lazy">
-                Váš prohlížeč nepodporuje přehrávání videa.
+                <span class="cs-lang">Váš prohlížeč nepodporuje přehrávání videa.</span>
+                <span class="en-lang">Your browser does not support video playback.</span>
             </video>
 
             <p>
-                Nyní máme spočítané <strong>nové polohy nohou</strong> zohledňující posuny i náklony. 
-                <strong>Třetím krokem</strong> je samotný <strong>výpočet úhlů</strong> v jednotlivých kloubech.
-                Zde lze postupovat podle následujících rovnic.
+                <span class="cs-lang">Nyní máme spočítané <strong>nové polohy nohou</strong> zohledňující posuny i náklony. <strong>Třetím krokem</strong> je samotný <strong>výpočet úhlů</strong> v jednotlivých kloubech. Zde lze postupovat podle následujících rovnic.</span>
+                <span class="en-lang">We now have calculated <strong>new leg positions</strong> taking into account translations and tilts. The <strong>third step</strong> is the actual <strong>calculation of angles</strong> in the individual joints. Here we can proceed according to the following equations.</span>
             </p>
 
-            <h3>1. Výpočet úhlu coxa</h3>
+            <h3>
+                <span class="cs-lang">1. Výpočet úhlu coxa</span>
+                <span class="en-lang">1. Coxa angle calculation</span>
+            </h3>
 
             <img src="media/JVC/ShoraIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda shora" class="project-image-noborder" loading="lazy">
 
@@ -556,15 +685,36 @@ static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, 
             </p>
 
             <ul>
-                <li><strong>$x_c, y_c$:</strong> Souřadnice bodu, kde je noha uchycena k tělu robota (kloub coxa).</li>
-                <li><strong>$R_b$:</strong> Poloměr těla robota (vzdálenost od středu těla ke kloubu coxa).</li>
-                <li><strong>$\alpha_{offset}$:</strong> Úhlový offset konkrétní nohy vůči středové ose těla robota.</li>
-                <li><strong>$x_{ee}, y_{ee}$:</strong> Požadované souřadnice špičky nohy.</li>
-                <li><strong>$\Delta x, \Delta y$:</strong> Vzdálenost mezi špičkou nohy a kloubem coxa v ose X a Y.</li>
-                <li><strong>$\theta_{coxa}$:</strong> Výsledný úhel natočení pro servo v prvním kloubu (coxa). Funkce <code>atan2</code> vrací úhel ve správném kvadrantu.</li>
+                <li>
+                    <span class="cs-lang"><strong>$x_c, y_c$:</strong> Souřadnice bodu, kde je noha uchycena k tělu robota (kloub coxa).</span>
+                    <span class="en-lang"><strong>$x_c, y_c$:</strong> Coordinates of the point where the leg is attached to the robot's body (coxa joint).</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$R_b$:</strong> Poloměr těla robota (vzdálenost od středu těla ke kloubu coxa).</span>
+                    <span class="en-lang"><strong>$R_b$:</strong> Radius of the robot's body (distance from the center of the body to the coxa joint).</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\alpha_{offset}$:</strong> Úhlový offset konkrétní nohy vůči středové ose těla robota.</span>
+                    <span class="en-lang"><strong>$\alpha_{offset}$:</strong> Angular offset of a specific leg relative to the central axis of the robot's body.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$x_{ee}, y_{ee}$:</strong> Požadované souřadnice špičky nohy.</span>
+                    <span class="en-lang"><strong>$x_{ee}, y_{ee}$:</strong> Desired coordinates of the leg tip.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\Delta x, \Delta y$:</strong> Vzdálenost mezi špičkou nohy a kloubem coxa v ose X a Y.</span>
+                    <span class="en-lang"><strong>$\Delta x, \Delta y$:</strong> Distance between the leg tip and the coxa joint in the X and Y axes.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\theta_{coxa}$:</strong> Výsledný úhel natočení pro servo v prvním kloubu (coxa). Funkce <code>atan2</code> vrací úhel ve správném kvadrantu.</span>
+                    <span class="en-lang"><strong>$\theta_{coxa}$:</strong> The resulting rotation angle for the servo in the first joint (coxa). The <code>atan2</code> function returns the angle in the correct quadrant.</span>
+                </li>
             </ul>
 
-            <h3>2. Výpočet úhlů femur a tibia</h3>
+            <h3>
+                <span class="cs-lang">2. Výpočet úhlů femur a tibia</span>
+                <span class="en-lang">2. Femur and tibia angle calculation</span>
+            </h3>
 
             <img src="media/JVC/ZbokuIK.JPG" alt="Návod na 2D inverzní kinematiku nohy hexapoda zboku" class="project-image-noborder" loading="lazy">
 
@@ -597,27 +747,57 @@ static inline void rotate_neg_rpy_and_translate(const float x0, const float y0, 
             </p>
 
             <ul>
-                <li><strong>$L_{coxa}, L_{femur}, L_{tibia}$:</strong> Délky jednotlivých částí nohy.</li>
-                <li><strong>$\rho$:</strong> Horizontální vzdálenost od druhého kloubu (femur) ke špičce nohy.</li>
-                <li><strong>$z_{ee}$:</strong> Vertikální poloha špičky nohy.</li>
-                <li><strong>$R$:</strong> Přímá vzdálenost od kloubu femur ke špičce nohy.</li>
-                <li><strong>$\gamma$:</strong> Vnitřní úhel mezi segmenty femur a tibia.</li>
-                <li><strong>$\theta_{tibia}$:</strong> Výsledný úhel pro kloub tibia (s mechanickým offsetem $\theta_{offset}$).</li>
-                <li><strong>$\alpha$:</strong> Vnitřní úhel mezi segmentem femur a pomyslnou spojnicí $R$.</li>
-                <li><strong>$\beta$:</strong> Úhel zdvihu špičky nohy vůči horizontální rovině kloubu femur.</li>
-                <li><strong>$\theta_{femur}$:</strong> Výsledný úhel pro kloub femur.</li>
+                <li>
+                    <span class="cs-lang"><strong>$L_{coxa}, L_{femur}, L_{tibia}$:</strong> Délky jednotlivých částí nohy.</span>
+                    <span class="en-lang"><strong>$L_{coxa}, L_{femur}, L_{tibia}$:</strong> Lengths of the individual leg segments.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\rho$:</strong> Horizontální vzdálenost od druhého kloubu (femur) ke špičce nohy.</span>
+                    <span class="en-lang"><strong>$\rho$:</strong> Horizontal distance from the second joint (femur) to the tip of the leg.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$z_{ee}$:</strong> Vertikální poloha špičky nohy.</span>
+                    <span class="en-lang"><strong>$z_{ee}$:</strong> Vertical position of the leg tip.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$R$:</strong> Přímá vzdálenost od kloubu femur ke špičce nohy.</span>
+                    <span class="en-lang"><strong>$R$:</strong> Direct distance from the femur joint to the tip of the leg.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\gamma$:</strong> Vnitřní úhel mezi segmenty femur a tibia.</span>
+                    <span class="en-lang"><strong>$\gamma$:</strong> Internal angle between the femur and tibia segments.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\theta_{tibia}$:</strong> Výsledný úhel pro kloub tibia (s mechanickým offsetem $\theta_{offset}$).</span>
+                    <span class="en-lang"><strong>$\theta_{tibia}$:</strong> The resulting angle for the tibia joint (with a mechanical offset $\theta_{offset}$).</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\alpha$:</strong> Vnitřní úhel mezi segmentem femur a pomyslnou spojnicí $R$.</span>
+                    <span class="en-lang"><strong>$\alpha$:</strong> Internal angle between the femur segment and the imaginary line $R$.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\beta$:</strong> Úhel zdvihu špičky nohy vůči horizontální rovině kloubu femur.</span>
+                    <span class="en-lang"><strong>$\beta$:</strong> Elevation angle of the leg tip relative to the horizontal plane of the femur joint.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$\theta_{femur}$:</strong> Výsledný úhel pro kloub femur.</span>
+                    <span class="en-lang"><strong>$\theta_{femur}$:</strong> The resulting angle for the femur joint.</span>
+                </li>
             </ul>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">motion.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-c">// Inverse kinematics for one leg
@@ -678,54 +858,59 @@ static bool ik_angles_from_body_target(float x_ee, float y_ee, float z_ee, int l
 
             <video class="project-video-ikfinal" controls muted playsinline preload="metadata" aria-label="Ukázka dálkového ovládání hexapoda.">
                 <source src="media/JVC/HexapodDalkove.mp4" type="video/mp4" loading="lazy">
-                Váš prohlížeč nepodporuje přehrávání videa.
+                <span class="cs-lang">Váš prohlížeč nepodporuje přehrávání videa.</span>
+                <span class="en-lang">Your browser does not support video playback.</span>
             </video>
 
             <br><br>
 
-            <h3>Vizualizace stavu hexapoda</h3>
+            <h3>
+                <span class="cs-lang">Vizualizace stavu hexapoda</span>
+                <span class="en-lang">Hexapod status visualization</span>
+            </h3>
                 
             <p>
-                Pro komunikaci mezi hexapodem a aplikací v počítači používám <strong>UDP socket</strong>.
-                Tento protokol nevytváří trvalé spojení a nekontroluje, zda data v pořádku dorazila - paket se prostě „vystřelí“ do sítě.
-                Pro tyto účely to však nevadí.
-                Pokud se paket po cestě ztratí, za zlomek sekundy dorazí nový.
+                <span class="cs-lang">Pro komunikaci mezi hexapodem a aplikací v počítači používám <strong>UDP socket</strong>. Tento protokol nevytváří trvalé spojení a nekontroluje, zda data v pořádku dorazila - paket se prostě „vystřelí“ do sítě. Pro tyto účely to však nevadí. Pokud se paket po cestě ztratí, za zlomek sekundy dorazí nový.</span>
+                <span class="en-lang">For communication between the hexapod and the PC application, I use a <strong>UDP socket</strong>. This protocol does not create a persistent connection and does not check whether data arrived successfully - the packet is simply "fired" into the network. For these purposes, however, it does not matter. If a packet gets lost along the way, a new one will arrive in a fraction of a second.</span>
             </p>
 
-            <p><strong>Přenos a zpracování dat funguje v následujících krocích:</strong></p>
+            <p>
+                <span class="cs-lang"><strong>Přenos a zpracování dat funguje v následujících krocích:</strong></span>
+                <span class="en-lang"><strong>Data transmission and processing work in the following steps:</strong></span>
+            </p>
             <ul>
                 <li>
-                    <strong>Odesílání (Raspberry Pi):</strong> Výstupem algoritmu inverzní kinematiky jsou <strong>úhly v jednotlivých kloubech</strong> (celkem 18 hodnot). 
-                    Ty se pomocí <code>snprintf</code> zformátují do jednoho <strong>textového řetězce</strong>,
-                    kde jsou čísla oddělena čárkou (např. <code>15.0,45.2,-10.1...</code>). 
-                    Tento řetězec se následně naslepo odešle na pevně nastavenou <strong>IP adresu počítače a port 5005</strong>.
+                    <span class="cs-lang"><strong>Odesílání (Raspberry Pi):</strong> Výstupem algoritmu inverzní kinematiky jsou <strong>úhly v jednotlivých kloubech</strong> (celkem 18 hodnot). Ty se pomocí <code>snprintf</code> zformátují do jednoho <strong>textového řetězce</strong>, kde jsou čísla oddělena čárkou (např. <code>15.0,45.2,-10.1...</code>). Tento řetězec se následně naslepo odešle na pevně nastavenou <strong>IP adresu počítače a port 5005</strong>.</span>
+                    <span class="en-lang"><strong>Sending (Raspberry Pi):</strong> The output of the inverse kinematics algorithm is the <strong>angles in individual joints</strong> (18 values in total). These are formatted using <code>snprintf</code> into a single <strong>text string</strong>, where numbers are separated by commas (e.g., <code>15.0,45.2,-10.1...</code>). This string is then blindly sent to a hardcoded <strong>PC IP address and port 5005</strong>.</span>
                 </li>
                 <li>
-                    <strong>Příjem (PC):</strong> Čtení dat je v aplikaci nastaveno na <strong>neblokující režim</strong>,
-                    aby program nezamrzl při čekání na zprávy. 
-                    Jelikož hlavní smyčka hexapoda odesílá data s frekvencí <strong>50 Hz</strong>,
-                    zatímco vizualizace se překresluje při <strong>30 Hz</strong>, 
-                    jsou všechna starší data ve frontě <strong>zahozena</strong>
-                    a skript použije jen <strong>nejnovější paket</strong>.
+                    <span class="cs-lang"><strong>Příjem (PC):</strong> Čtení dat je v aplikaci nastaveno na <strong>neblokující režim</strong>, aby program nezamrzl při čekání na zprávy. Jelikož hlavní smyčka hexapoda odesílá data s frekvencí <strong>50 Hz</strong>, zatímco vizualizace se překresluje při <strong>30 Hz</strong>, jsou všechna starší data ve frontě <strong>zahozena</strong> a skript použije jen <strong>nejnovější paket</strong>.</span>
+                    <span class="en-lang"><strong>Receiving (PC):</strong> Data reading in the application is set to <strong>non-blocking mode</strong> so the program does not freeze while waiting for messages. Since the hexapod's main loop sends data at a frequency of <strong>50 Hz</strong>, while the visualization redraws at <strong>30 Hz</strong>, all older data in the queue is <strong>discarded</strong> and the script uses only the <strong>newest packet</strong>.</span>
                 </li>
                 <li>
-                    <strong>Dekódování:</strong> Přijatá data se dekódují z bytů na text a rozdělením podle čárek (<code>.split(',')</code>) 
-                    z nich aplikace získá zpět <strong>seznam osmnácti úhlů</strong>.
+                    <span class="cs-lang"><strong>Dekódování:</strong> Přijatá data se dekódují z bytů na text a rozdělením podle čárek (<code>.split(',')</code>) z nich aplikace získá zpět <strong>seznam osmnácti úhlů</strong>.</span>
+                    <span class="en-lang"><strong>Decoding:</strong> Received data is decoded from bytes to text, and by splitting it by commas (<code>.split(',')</code>) the application gets back a <strong>list of eighteen angles</strong>.</span>
                 </li>
             </ul>
 
-            <p><strong>Relevantní výtažky z kódu</strong> (kompletní kód je na konci stránky):</p>
+            <p>
+                <span class="cs-lang"><strong>Relevantní výtažky z kódu</strong> (kompletní kód je na konci stránky):</span>
+                <span class="en-lang"><strong>Relevant code excerpts</strong> (complete code is at the bottom of the page):</span>
+            </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">main.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-c">#include &lt;arpa/inet.h&gt;
@@ -771,13 +956,16 @@ int main(void) {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">Python</span>
                         <span class="language-label">visualisation.py</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-python">import socket
@@ -816,22 +1004,23 @@ while True:
             </div>
 
             <p>
-                K zobrazení 3D modelu používá Python skript knihovnu <strong>VPython</strong>.
-                Články nohou v ní reprezentuji <strong>válci</strong> a klouby <strong>koulemi</strong>.
-                Skript následně pomocí <strong>dopředné kinematiky</strong> řetězí rotace a posuny.
-                Tím <strong>skládá nohu dílek po dílku</strong> od těla ven směrem ke špičce.
+                <span class="cs-lang">K zobrazení 3D modelu používá Python skript knihovnu <strong>VPython</strong>. Články nohou v ní reprezentuji <strong>válci</strong> a klouby <strong>koulemi</strong>. Skript následně pomocí <strong>dopředné kinematiky</strong> řetězí rotace a posuny. Tím <strong>skládá nohu dílek po dílku</strong> od těla ven směrem ke špičce.</span>
+                <span class="en-lang">The Python script uses the <strong>VPython</strong> library to display the 3D model. I represent leg segments as <strong>cylinders</strong> and joints as <strong>spheres</strong>. The script then chains rotations and translations using <strong>forward kinematics</strong>. This <strong>assembles the leg piece by piece</strong> outwards from the body towards the tip.</span>
             </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">Python</span>
                         <span class="language-label">visualisation.py</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
-               
+                
                 <div class="code-content">
 
 <pre><code class="language-python">import math
@@ -923,23 +1112,31 @@ while True:
             
             <video class="project-image" controls muted playsinline preload="metadata" aria-label="Zobrazení pohybů hexapoda v aplikaci.">
                 <source src="media/JVC/HexapodVirtualne.mp4" type="video/mp4">
-                Váš prohlížeč nepodporuje přehrávání videa.
+                <span class="cs-lang">Váš prohlížeč nepodporuje přehrávání videa.</span>
+                <span class="en-lang">Your browser does not support video playback.</span>
             </video>
 
-            <h3>Kompletní kód projektu</h3>
+            <h3>
+                <span class="cs-lang">Kompletní kód projektu</span>
+                <span class="en-lang">Complete code</span>
+            </h3>
 
             <p>
-                <strong>Kód hexapoda:</strong>
+                <span class="cs-lang"><strong>Kód hexapoda:</strong></span>
+                <span class="en-lang"><strong>Hexapod code:</strong></span>
             </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">Make</span>
                         <span class="language-label">Makefile</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -971,11 +1168,14 @@ clean:
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">shared.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -1014,11 +1214,14 @@ extern const float min_yaw; extern const float max_yaw; // [rad]
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">main.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -1202,11 +1405,14 @@ int main(void) {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">bluetooth_thread.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -1233,11 +1439,14 @@ void* bluetooth_thread(void* arg);
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">bluetooth_thread.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -1572,11 +1781,14 @@ void* bluetooth_thread(void* arg) {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">motion.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -1632,11 +1844,14 @@ void set_initial_foot_targets(void); // Set target leg positions to initial
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">motion.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -1964,11 +2179,14 @@ void inverse_kinematics(void)
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">servo.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2048,11 +2266,14 @@ void move_leg(int l); // Moves servos of one leg
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">servo.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                     <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2291,11 +2512,14 @@ void move_leg(int l) {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">PCA9685.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2324,11 +2548,14 @@ void pca9685_channel_full_off(int fd, int channel); // Sets LEDx_OFF_H bit4 - FU
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">PCA9685.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2438,11 +2665,14 @@ void pca9685_channel_full_off(int fd, int channel) {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">animation.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2466,11 +2696,14 @@ void interpolate_legs_and_offsets(const Vector3 end_targets[NUM_OF_LEGS]);
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">animation.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2563,11 +2796,14 @@ void interpolate_legs_and_offsets(const Vector3 end_targets[NUM_OF_LEGS]) {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">mathUtils.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2599,11 +2835,14 @@ float smooth_interpolation(float start, float end, float t, int deg);
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">mathUtils.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2668,11 +2907,14 @@ float smooth_interpolation(float start, float end, float t, int deg) {
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">vector.h</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2697,11 +2939,14 @@ Vector3 Vector3_scale(Vector3 v, float s); // Scales vector by a scalar
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C</span>
                         <span class="language-label">vector.c</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -2734,17 +2979,21 @@ Vector3 Vector3_scale(Vector3 v, float s) {
             </div>
 
             <p>
-                <strong>Kód dálkového ovládání:</strong>
+                <span class="cs-lang"><strong>Kód dálkového ovládání:</strong></span>
+                <span class="en-lang"><strong>Remote control code:</strong></span>
             </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C++</span>
-                        <span class="language-label">HexapodRemoteControl.ino</span>
+                        <span class="language-label">hexapod_remote_control.ino</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -3017,17 +3266,21 @@ void loop() {
             </div>
 
             <p>
-                <strong>Kód vizualizační aplikace:</strong>
+                <span class="cs-lang"><strong>Kód vizualizační aplikace:</strong></span>
+                <span class="en-lang"><strong>Visualization app code:</strong></span>
             </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">Python</span>
                         <span class="language-label">visualisation.py</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                
                 <div class="code-content">
@@ -3149,7 +3402,6 @@ while True:
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // vsechny bloky kodu
             const codeContainers = document.querySelectorAll('.code-container');
         
             codeContainers.forEach(container => {
@@ -3158,43 +3410,71 @@ while True:
                 const codeContent = container.querySelector('.code-content');
                 const codeBlock = container.querySelector('code');
         
-                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
-                codeContent.classList.add('collapsed');
-                toggleBtn.textContent = '▶\uFE0E';
-        
-                // prepinani viditelnosti
-                toggleBtn.addEventListener('click', () => {
-                    codeContent.classList.toggle('collapsed');
-                    
-                    // zmena ikony
-                    if (codeContent.classList.contains('collapsed')) {
-                        toggleBtn.textContent = '▶\uFE0E'; 
-                    } else {
-                        toggleBtn.textContent = '▼\uFE0E';
-                    }
-                });
-        
-                // kopirovani
-                copyBtn.addEventListener('click', () => {
-                    const textToCopy = codeBlock.innerText;
-                    
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        // vizualni zpetna vazba
-                        const originalText = copyBtn.textContent;
-                        copyBtn.textContent = 'Zkopírováno';
-                        copyBtn.style.color = '#28a745';
+                if(codeContent && toggleBtn && copyBtn) {
+                    codeContent.classList.add('collapsed');
+                    toggleBtn.textContent = '▶\uFE0E';
+            
+                    toggleBtn.addEventListener('click', () => {
+                        codeContent.classList.toggle('collapsed');
                         
-                        // navrat do puvodniho stavu
-                        setTimeout(() => {
-                            copyBtn.textContent = originalText;
-                            copyBtn.style.color = '';
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('chyba ', err);
-                        copyBtn.textContent = 'Chyba!';
+                        if (codeContent.classList.contains('collapsed')) {
+                            toggleBtn.textContent = '▶\uFE0E'; 
+                        } else {
+                            toggleBtn.textContent = '▼\uFE0E';
+                        }
                     });
-                });
+            
+                    copyBtn.addEventListener('click', () => {
+                        const textToCopy = codeBlock.innerText;
+                        
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalText = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<span class="cs-lang">Zkopírováno</span><span class="en-lang">Copied</span>';
+                            copyBtn.style.color = '#28a745';
+                            
+                            setTimeout(() => {
+                                copyBtn.innerHTML = originalText;
+                                copyBtn.style.color = '';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('chyba ', err);
+                            copyBtn.innerHTML = '<span class="cs-lang">Chyba!</span><span class="en-lang">Error!</span>';
+                        });
+                    });
+                }
             });
+        });
+
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.textContent = '🌙';
+            }
+        });
+
+        const langBtn = document.getElementById('lang-toggle');
+        if (localStorage.getItem('lang') === 'en') {
+            document.body.classList.add('lang-en');
+            langBtn.textContent = 'CS';
+        }
+        langBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lang-en');
+            if (document.body.classList.contains('lang-en')) {
+                localStorage.setItem('lang', 'en');
+                langBtn.textContent = 'CS';
+            } else {
+                localStorage.setItem('lang', 'cs');
+                langBtn.textContent = 'EN';
+            }
         });
     </script>
 

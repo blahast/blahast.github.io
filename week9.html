@@ -3,166 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9. týden | Štěpán Blaha</title>
+    <title>Week 9 | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="index.html">Domů</a>
-        <a href="omne.html">O mně</a>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
     </nav>
 
     <div class="main-wrapper">
         
         <aside class="sidebar">
-            <a href="tyden1.html">1. týden</a>
-            <a href="tyden2.html">2. týden</a>
-            <a href="tyden3.html">3. týden</a>
-            <a href="tyden4.html">4. týden</a>
-            <a href="tyden5.html">5. týden</a>
-            <a href="tyden6.html">6. týden</a>
-            <a href="tyden7.html">7. týden</a>
-            <a href="tyden8.html">8. týden</a>
-            <a href="tyden9.html" class="active">9. týden</a>
-            <a href="tyden10.html">10. týden</a>
-            <a href="tyden11a12.html">11. a 12. týden</a>
-            <a href="tyden13.html">13. týden</a>
-            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html" class="active">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
         </aside>
 
         <main class="content">
-            <h1>9. týden: Malé 'velké' CNC obrábění</h1>
+            <h1>
+                <span class="cs-lang">9. týden: Malé 'velké' CNC obrábění</span>
+                <span class="en-lang">Week 9: Small 'Big' CNC Machining</span>
+            </h1>
             <p>
-                Během devátého týdne bylo úkolem vytvořit <strong>2.5D model</strong> a následně ho vyfrézovat z materiálu <strong>POM&#8209;C</strong>.
+                <span class="cs-lang">Během devátého týdne bylo úkolem vytvořit <strong>2.5D model</strong> a následně ho vyfrézovat z materiálu <strong>POM&#8209;C</strong>.</span>
+                <span class="en-lang">During the ninth week, the task was to create a <strong>2.5D model</strong> and then mill it from <strong>POM&#8209;C</strong> material.</span>
             </p>
 
-            <h2>Forma na silikonové „botičky“ pro hexapoda</h2>
+            <h2>
+                <span class="cs-lang">Forma na silikonové „botičky“ pro hexapoda</span>
+                <span class="en-lang">Mold for silicone "shoes" for the hexapod</span>
+            </h2>
 
             <p>
-                Tento týden jsem se rozhodl vyrobit formu pro odlévání <strong>silikonových návleků</strong> na nohy hexapoda. 
-                Tyto návleky by měly <strong>zlepšit přilnavost</strong> k povrchu, což hexapodovi umožní stabilnější pohyb bez podkluzování. 
-                Výsledný návlek by měl vypadat takto:
+                <span class="cs-lang">Tento týden jsem se rozhodl vyrobit formu pro odlévání <strong>silikonových návleků</strong> na nohy hexapoda. Tyto návleky by měly <strong>zlepšit přilnavost</strong> k povrchu, což hexapodovi umožní stabilnější pohyb bez podkluzování. Výsledný návlek by měl vypadat takto:</span>
+                <span class="en-lang">This week I decided to make a mold for casting <strong>silicone sleeves</strong> for the hexapod's legs. These sleeves should <strong>improve grip</strong> on the surface, allowing the hexapod more stable movement without slipping. The resulting sleeve should look like this:</span>
             </p>
 
             <img src="media/JVC/Boticka.JPG" alt="Příklad silikonového návleku" class="project-image" loading="lazy">
 
-            <h3>Návrh modelu</h3>
+            <h3>
+                <span class="cs-lang">Návrh modelu</span>
+                <span class="en-lang">Model design</span>
+            </h3>
 
             <p>
-                Formu jsem navrhl v programu <strong>Fusion 360</strong>. Skládá se ze <strong>dvou částí</strong>, 
-                které do sebe zapadají pomocí čtyř vodicích kolíků umístěných v rozích. 
-                Silikon se bude nalévat do velkého otvoru ve spodní části formy. 
-                Prostřední kolík ve vrchní části pak zasahuje do dutiny se silikonem a slouží k vytvoření <strong>vnitřního otvoru</strong> v návleku (pro nasunutí na nohu robota). 
-                Přebytečný silikon může odtékat <strong>čtyřmi kanálky</strong>.
+                <span class="cs-lang">Formu jsem navrhl v programu <strong>Fusion 360</strong>. Skládá se ze <strong>dvou částí</strong>, které do sebe zapadají pomocí čtyř vodicích kolíků umístěných v rozích. Silikon se bude nalévat do velkého otvoru ve spodní části formy. Prostřední kolík ve vrchní části pak zasahuje do dutiny se silikonem a slouží k vytvoření <strong>vnitřního otvoru</strong> v návleku (pro nasunutí na nohu robota). Přebytečný silikon může odtékat <strong>čtyřmi kanálky</strong>.</span>
+                <span class="en-lang">I designed the mold in <strong>Fusion 360</strong>. It consists of <strong>two parts</strong> that fit together using four guide pins located in the corners. The silicone will be poured into a large hole in the bottom part of the mold. The middle pin in the top part extends into the silicone cavity and serves to create the <strong>inner hole</strong> in the sleeve (to slide onto the robot's leg). Excess silicone can flow out through <strong>four channels</strong>.</span>
             </p>
 
             <p>
-                Rozměry formy jsou navrženy tak, aby vnitřní otvor v silikonovém návleku měřil na délku <strong>13 mm</strong> a měl průměr <strong>6 mm</strong>. 
-                Celková výška "botičky" bude <strong>16 mm</strong> s tloušťkou stěn <strong>2 mm</strong>.
+                <span class="cs-lang">Rozměry formy jsou navrženy tak, aby vnitřní otvor v silikonovém návleku měřil na délku <strong>13 mm</strong> a měl průměr <strong>6 mm</strong>. Celková výška "botičky" bude <strong>16 mm</strong> s tloušťkou stěn <strong>2 mm</strong>.</span>
+                <span class="en-lang">The dimensions of the mold are designed so that the inner hole in the silicone sleeve measures <strong>13 mm</strong> in length and <strong>6 mm</strong> in diameter. The total height of the "shoe" will be <strong>16 mm</strong> with a wall thickness of <strong>2 mm</strong>.</span>
             </p>
 
             <p>
-                Aby vrchní díl s kolíky zapadl do otvorů ve spodním dílu a pevně v nich držel, bylo nutné zvolit <strong>vhodnou vůli</strong>. 
-                Průměr otvorů jsem proto nastavil na <strong>6 mm</strong> a průměr kolíků na <strong>5,85 mm</strong>. 
-                Tento design kolíků se však ukázal jako <strong>nevhodný</strong> a obě části formy do sebe zpočátku nezapadaly. 
-                Vůle totiž byla <strong>příliš malá</strong> a navíc fréza zanechala kolíky na začátku užší než u základny. 
-                To mohlo být způsobeno <strong>ohýbáním materiálu</strong> během frézování. 
-                Příště bych zvolil <strong>větší vůli</strong> a <strong>kratší kolíky</strong>.
+                <span class="cs-lang">Aby vrchní díl s kolíky zapadl do otvorů ve spodním dílu a pevně v nich držel, bylo nutné zvolit <strong>vhodnou vůli</strong>. Průměr otvorů jsem proto nastavil na <strong>6 mm</strong> a průměr kolíků na <strong>5,85 mm</strong>. Tento design kolíků se však ukázal jako <strong>nevhodný</strong> a obě části formy do sebe zpočátku nezapadaly. Vůle totiž byla <strong>příliš malá</strong> a navíc fréza zanechala kolíky na začátku užší než u základny. To mohlo být způsobeno <strong>ohýbáním materiálu</strong> během frézování. Příště bych zvolil <strong>větší vůli</strong> a <strong>kratší kolíky</strong>.</span>
+                <span class="en-lang">For the top part with pins to fit into the holes in the bottom part and hold firmly, it was necessary to choose a <strong>suitable clearance</strong>. Therefore, I set the hole diameter to <strong>6 mm</strong> and the pin diameter to <strong>5.85 mm</strong>. However, this pin design proved <strong>unsuitable</strong>, and initially, the two parts of the mold did not fit together. The clearance was <strong>too small</strong>, and moreover, the milling cutter left the pins narrower at the tip than at the base. This could have been caused by <strong>material bending</strong> during milling. Next time, I would choose a <strong>larger clearance</strong> and <strong>shorter pins</strong>.</span>
             </p>
 
             <img src="media/JVC/SketchFormy.JPG" alt="Sketch formy ve Fusion 360." class="project-image" loading="lazy">
 
             <img src="media/JVC/ModelFormy.JPG" alt="3D model formy ve Fusion 360." class="project-image" loading="lazy">
 
-            <h3>Návrh procesu frézování</h3>
+            <h3>
+                <span class="cs-lang">Návrh procesu frézování</span>
+                <span class="en-lang">Milling process design</span>
+            </h3>
 
             <p>
-                Proces frézování jsem připravil v pracovním prostředí <strong>Manufacture</strong> ve Fusion 360. 
-                Prvním krokem bylo stažení <a href="https://github.com/Carvera-Community/Carvera_Community_Profiles/releases" target="_blank">Fusion Machine Files, Tool Files a Post Processoru</a> 
-                pro frézku <strong>Makera Carvera Air</strong>, na které budu formu vyrábět. 
-                Tyto soubory slouží pro přesnou simulaci frézování, správné vygenerování <strong>G-kódu</strong> a obsahují parametry použitých fréz. 
-                Na odkazované stránce se kromě samotných souborů nachází i návod k jejich importu do Fusionu.
+                <span class="cs-lang">Proces frézování jsem připravil v pracovním prostředí <strong>Manufacture</strong> ve Fusion 360. Prvním krokem bylo stažení <a href="https://github.com/Carvera-Community/Carvera_Community_Profiles/releases" target="_blank">Fusion Machine Files, Tool Files a Post Processoru</a> pro frézku <strong>Makera Carvera Air</strong>, na které budu formu vyrábět. Tyto soubory slouží pro přesnou simulaci frézování, správné vygenerování <strong>G-kódu</strong> a obsahují parametry použitých fréz. Na odkazované stránce se kromě samotných souborů nachází i návod k jejich importu do Fusionu.</span>
+                <span class="en-lang">I prepared the milling process in the <strong>Manufacture</strong> workspace in Fusion 360. The first step was downloading the <a href="https://github.com/Carvera-Community/Carvera_Community_Profiles/releases" target="_blank">Fusion Machine Files, Tool Files and Post Processor</a> for the <strong>Makera Carvera Air</strong> milling machine, on which I will make the mold. These files serve for accurate milling simulation, correct generation of <strong>G-code</strong>, and contain the parameters of the used milling cutters. On the linked page, besides the files themselves, there are also instructions for importing them into Fusion.</span>
             </p>
 
-            <p>Stažené soubory:</p>
+            <p>
+                <span class="cs-lang">Stažené soubory:</span>
+                <span class="en-lang">Downloaded files:</span>
+            </p>
             <ul>
-                <li><strong>Post processor:</strong> Carvera.cps</li>
-                <li><strong>Definice stroje:</strong> Makera.Carvera.Air.3-axis.Community.Version.1.4.2.f3d</li>
-                <li><strong>Definice nástrojů:</strong> caveraTools_032226.zip</li>
+                <li>
+                    <span class="cs-lang"><strong>Post processor:</strong> Carvera.cps</span>
+                    <span class="en-lang"><strong>Post processor:</strong> Carvera.cps</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Definice stroje:</strong> Makera.Carvera.Air.3-axis.Community.Version.1.4.2.f3d</span>
+                    <span class="en-lang"><strong>Machine definition:</strong> Makera.Carvera.Air.3-axis.Community.Version.1.4.2.f3d</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Definice nástrojů:</strong> caveraTools_032226.zip</span>
+                    <span class="en-lang"><strong>Tool definition:</strong> caveraTools_032226.zip</span>
+                </li>
             </ul>
 
             <p>
-                Z knihovny nástrojů jsem využíval převážně frézu <strong>3.175 mm flat (Spiral O 3.175*25 mm)</strong> s přednastaveným profilem pro plast (<em>Plastic</em>). 
-                V tomto profilu jsem upravil <strong>Spindle speed</strong> (otáčky vřetene) na <strong>12000 rpm</strong> a <strong>Ramp feedrate</strong> na <strong>600 mm/min</strong>. 
-                Ostatní rychlosti zůstaly beze změny. 
-                Pro vytvoření chamferů (srážení hran) jsem použil nástroj <strong>3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</strong>.
+                <span class="cs-lang">Z knihovny nástrojů jsem využíval převážně frézu <strong>3.175 mm flat (Spiral O 3.175*25 mm)</strong> s přednastaveným profilem pro plast (<em>Plastic</em>). V tomto profilu jsem upravil <strong>Spindle speed</strong> (otáčky vřetene) na <strong>12000 rpm</strong> a <strong>Ramp feedrate</strong> na <strong>600 mm/min</strong>. Ostatní rychlosti zůstaly beze změny. Pro vytvoření chamferů (srážení hran) jsem použil nástroj <strong>3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</strong>.</span>
+                <span class="en-lang">From the tool library, I mostly used the <strong>3.175 mm flat (Spiral O 3.175*25 mm)</strong> end mill with a preset profile for plastic (<em>Plastic</em>). In this profile, I adjusted the <strong>Spindle speed</strong> to <strong>12000 rpm</strong> and the <strong>Ramp feedrate</strong> to <strong>600 mm/min</strong>. The other speeds remained unchanged. To create chamfers, I used the <strong>3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</strong> tool.</span>
             </p>
 
             <p>
-                Druhým krokem bylo nastavení v menu <strong>Setup</strong>. Zde jsem použil následující parametry:
+                <span class="cs-lang">Druhým krokem bylo nastavení v menu <strong>Setup</strong>. Zde jsem použil následující parametry:</span>
+                <span class="en-lang">The second step was setting up the <strong>Setup</strong> menu. Here I used the following parameters:</span>
             </p>
 
             <ul>
-                <li><strong>Machine:</strong> .f3d soubor stažený v předchozím kroku.</li>
-                <li><strong>Setup:</strong> Milling (frézování).</li>
                 <li>
-                    <strong>Work Coordinate System:</strong> Zde je nutné definovat počátek a orientaci souřadnicového systému. 
-                    Orientaci jsem zvolil shodnou s mým modelem (<em>Model Orientation</em>) a počátek jsem umístil do <strong>levého předního spodního rohu</strong> bloku materiálu.
+                    <span class="cs-lang"><strong>Machine:</strong> .f3d soubor stažený v předchozím kroku.</span>
+                    <span class="en-lang"><strong>Machine:</strong> The .f3d file downloaded in the previous step.</span>
                 </li>
                 <li>
-                    <strong>Stock (Polotovar):</strong> Velikost materiálu jsem nastavil podle reálných rozměrů poskytnuté desky POM-C - <strong>110 &times; 105 &times; 22 mm</strong>. 
-                    Model formy jsem umístil k levému přednímu kraji desky s odsazením <strong>5 mm od okrajů</strong>. 
-                    Jelikož se výška materiálu v praxi liší zhruba o ± 0,5 mm a povrch nemusí být dokonale rovný, zarovnal jsem model ke spodnímu okraji desky. 
-                    Vrchní cca <strong>2 mm se odfrézují</strong>, díky čemuž budou dotykové plochy obou částí formy rovné.
+                    <span class="cs-lang"><strong>Setup:</strong> Milling (frézování).</span>
+                    <span class="en-lang"><strong>Setup:</strong> Milling.</span>
                 </li>
                 <li>
-                    <strong>Part Position:</strong> Levý přední spodní roh desky jsem umístil do levého předního rohu pracovního prostoru frézky.
+                    <span class="cs-lang"><strong>Work Coordinate System:</strong> Zde je nutné definovat počátek a orientaci souřadnicového systému. Orientaci jsem zvolil shodnou s mým modelem (<em>Model Orientation</em>) a počátek jsem umístil do <strong>levého předního spodního rohu</strong> bloku materiálu.</span>
+                    <span class="en-lang"><strong>Work Coordinate System:</strong> Here it is necessary to define the origin and orientation of the coordinate system. I chose an orientation identical to my model (<em>Model Orientation</em>) and placed the origin in the <strong>left front bottom corner</strong> of the material block.</span>
                 </li>
-                <li>Zbylá nastavení zůstala na <strong>výchozích hodnotách</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Stock (Polotovar):</strong> Velikost materiálu jsem nastavil podle reálných rozměrů poskytnuté desky POM-C - <strong>110 &times; 105 &times; 22 mm</strong>. Model formy jsem umístil k levému přednímu kraji desky s odsazením <strong>5 mm od okrajů</strong>. Jelikož se výška materiálu v praxi liší zhruba o ± 0,5 mm a povrch nemusí být dokonale rovný, zarovnal jsem model ke spodnímu okraji desky. Vrchní cca <strong>2 mm se odfrézují</strong>, díky čemuž budou dotykové plochy obou částí formy rovné.</span>
+                    <span class="en-lang"><strong>Stock:</strong> I set the material size according to the real dimensions of the provided POM-C board - <strong>110 &times; 105 &times; 22 mm</strong>. I placed the mold model at the front left edge of the board with a <strong>5 mm offset from the edges</strong>. Since the material height in practice varies by about ± 0.5 mm and the surface may not be perfectly flat, I aligned the model to the bottom edge of the board. The top approximately <strong>2 mm will be milled off</strong>, making the contact surfaces of both mold parts perfectly flat.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Part Position:</strong> Levý přední spodní roh desky jsem umístil do levého předního rohu pracovního prostoru frézky.</span>
+                    <span class="en-lang"><strong>Part Position:</strong> I placed the left front bottom corner of the board into the left front corner of the milling machine's workspace.</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zbylá nastavení zůstala na <strong>výchozích hodnotách</strong>.</span>
+                    <span class="en-lang">The remaining settings were left at their <strong>default values</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/CarveraModel.JPG" alt="Model formy v pracovním prostředí Manufacture." class="project-image" loading="lazy">
 
             <p>
-                Třetím krokem byl návrh samotných frézovacích operací. 
-                Začal jsem 2D operací <strong>Face</strong>, která zarovná horní plochy formy tím, že odebere vrchních cca 2 mm materiálu. 
-                Nastavení operace Face bylo následující:
+                <span class="cs-lang">Třetím krokem byl návrh samotných frézovacích operací. Začal jsem 2D operací <strong>Face</strong>, která zarovná horní plochy formy tím, že odebere vrchních cca 2 mm materiálu. Nastavení operace Face bylo následující:</span>
+                <span class="en-lang">The third step was designing the milling operations themselves. I started with a 2D <strong>Face</strong> operation, which flattens the top surfaces of the mold by removing the top approx. 2 mm of material. The Face operation settings were as follows:</span>
             </p>
 
             <ul>
-                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
-                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
-                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
-                <li><strong>Feed height:</strong> 2 mm from Top height</li>
-                <li><strong>Top height:</strong> 0 mm from Stock height</li>
-                <li><strong>Bottom height:</strong> 0 mm from Model top</li>
-                <li><strong>Stepover:</strong> 3 mm</li>
-                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                    <span class="en-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                    <span class="en-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                    <span class="en-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                    <span class="en-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top height:</strong> 0 mm from Stock height</span>
+                    <span class="en-lang"><strong>Top height:</strong> 0 mm from Stock height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bottom height:</strong> 0 mm from Model top</span>
+                    <span class="en-lang"><strong>Bottom height:</strong> 0 mm from Model top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Stepover:</strong> 3 mm</span>
+                    <span class="en-lang"><strong>Stepover:</strong> 3 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</span>
+                    <span class="en-lang">I left the remaining settings at their <strong>default values</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/OperaceFace.JPG" alt="Deska materiálu po simulaci operace FaceH a FaceS." class="project-image" loading="lazy">
 
             <p>
-                Pro odstranění materiálu kolem kolíků, vytvoření čtyř odtokových drážek a vyfrézování hlavní dutiny formy 
-                jsem použil 2D operaci <strong>Pocket</strong> s tímto nastavením:
+                <span class="cs-lang">Pro odstranění materiálu kolem kolíků, vytvoření čtyř odtokových drážek a vyfrézování hlavní dutiny formy jsem použil 2D operaci <strong>Pocket</strong> s tímto nastavením:</span>
+                <span class="en-lang">To remove material around the pins, create four drainage channels, and mill the main cavity of the mold, I used a 2D <strong>Pocket</strong> operation with these settings:</span>
             </p>
 
             <ul>
-                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
-                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
-                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
-                <li><strong>Feed height:</strong> 2 mm from Top height</li>
-                <li><strong>Top height:</strong> 0 mm from Stock top</li>
-                <li><strong>Bottom height:</strong> 0 mm from Selected contour(s)</li>
-                <li><strong>Maximum Stepover:</strong> 3 mm</li>
-                <li><strong>Multiple Depths:</strong> Ano</li>
-                <li><strong>Maximum Roughing Stepdown:</strong> 3 mm</li>
-                <li><strong>Stock to Leave:</strong> Ne</li>
-                <li><strong>Lead-In a Lead-Out:</strong> Ne</li>
-                <li><strong>Ramp type:</strong> Helix</li>
-                <li><strong>Ramp Angle:</strong> 5 deg</li>
-                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                    <span class="en-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                    <span class="en-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                    <span class="en-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                    <span class="en-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top height:</strong> 0 mm from Stock top</span>
+                    <span class="en-lang"><strong>Top height:</strong> 0 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bottom height:</strong> 0 mm from Selected contour(s)</span>
+                    <span class="en-lang"><strong>Bottom height:</strong> 0 mm from Selected contour(s)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Maximum Stepover:</strong> 3 mm</span>
+                    <span class="en-lang"><strong>Maximum Stepover:</strong> 3 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Multiple Depths:</strong> Ano</span>
+                    <span class="en-lang"><strong>Multiple Depths:</strong> Yes</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Maximum Roughing Stepdown:</strong> 3 mm</span>
+                    <span class="en-lang"><strong>Maximum Roughing Stepdown:</strong> 3 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Stock to Leave:</strong> Ne</span>
+                    <span class="en-lang"><strong>Stock to Leave:</strong> No</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Lead-In a Lead-Out:</strong> Ne</span>
+                    <span class="en-lang"><strong>Lead-In and Lead-Out:</strong> No</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Ramp type:</strong> Helix</span>
+                    <span class="en-lang"><strong>Ramp type:</strong> Helix</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Ramp Angle:</strong> 5 deg</span>
+                    <span class="en-lang"><strong>Ramp Angle:</strong> 5 deg</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</span>
+                    <span class="en-lang">I left the remaining settings at their <strong>default values</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/KolikyPocket.JPG" alt="Deska materiálu po simulaci operace 2D PocketHKoliky." class="project-image" loading="lazy">
@@ -170,107 +305,222 @@
             <img src="media/JVC/FormaPocket.JPG" alt="Deska materiálu po simulaci operace 2D PocketSForma." class="project-image" loading="lazy">
 
             <p>
-                Pro správný tvar silikonové botičky bylo nutné <strong>zaoblit dno</strong> hlavního otvoru formy. 
-                Jelikož jsem neměl k dispozici frézu s kulovým koncem (ball nose), musel jsem si vystačit s <strong>aproximací zaoblení</strong>. 
-                K tomu posloužila 3D operace <strong>Contour</strong> a standardní plochá fréza, která povrch vytvořila množstvím drobných kruhových řezů:
+                <span class="cs-lang">Pro správný tvar silikonové botičky bylo nutné <strong>zaoblit dno</strong> hlavního otvoru formy. Jelikož jsem neměl k dispozici frézu s kulovým koncem (ball nose), musel jsem si vystačit s <strong>aproximací zaoblení</strong>. K tomu posloužila 3D operace <strong>Contour</strong> a standardní plochá fréza, která povrch vytvořila množstvím drobných kruhových řezů:</span>
+                <span class="en-lang">For the correct shape of the silicone shoe, it was necessary to <strong>round the bottom</strong> of the main hole of the mold. Since I didn't have a ball nose end mill available, I had to make do with an <strong>approximation of the rounding</strong>. A 3D <strong>Contour</strong> operation and a standard flat end mill, which created the surface with a number of small circular cuts, served this purpose:</span>
             </p>
 
             <ul>
-                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
-                <li><strong>Clearance height:</strong> 10 mm from Retract height</li>
-                <li><strong>Retract height:</strong> 5 mm from Stock top</li>
-                <li><strong>Top height:</strong> 0 mm from Selection</li>
-                <li><strong>Bottom height:</strong> 0 mm from Model bottom</li>
-                <li><strong>Maximum Stepdown</strong> (horizontální krok pro zjemnění oblouku): <strong>0.05 mm</strong></li>
-                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                    <span class="en-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Clearance height:</strong> 10 mm from Retract height</span>
+                    <span class="en-lang"><strong>Clearance height:</strong> 10 mm from Retract height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Retract height:</strong> 5 mm from Stock top</span>
+                    <span class="en-lang"><strong>Retract height:</strong> 5 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top height:</strong> 0 mm from Selection</span>
+                    <span class="en-lang"><strong>Top height:</strong> 0 mm from Selection</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bottom height:</strong> 0 mm from Model bottom</span>
+                    <span class="en-lang"><strong>Bottom height:</strong> 0 mm from Model bottom</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Maximum Stepdown</strong> (horizontální krok pro zjemnění oblouku): <strong>0.05 mm</strong></span>
+                    <span class="en-lang"><strong>Maximum Stepdown</strong> (horizontal step to smoothen the arc): <strong>0.05 mm</strong></span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</span>
+                    <span class="en-lang">I left the remaining settings at their <strong>default values</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/ObloukContour.JPG" alt="Deska materiálu po simulaci operace ContourSOblouk." class="project-image" loading="lazy">
 
             <p>
-                Čtveřici otvorů pro vodicí kolíky jsem vytvořil pomocí 2D operace <strong>Bore</strong> s tímto nastavením:
+                <span class="cs-lang">Čtveřici otvorů pro vodicí kolíky jsem vytvořil pomocí 2D operace <strong>Bore</strong> s tímto nastavením:</span>
+                <span class="en-lang">I created the four guide pin holes using a 2D <strong>Bore</strong> operation with the following settings:</span>
             </p>
 
             <ul>
-                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
-                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
-                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
-                <li><strong>Feed height:</strong> 2 mm from Top height</li>
-                <li><strong>Top height:</strong> 0 mm from Hole top</li>
-                <li><strong>Bottom height:</strong> 0 mm from Hole bottom</li>
-                <li><strong>Ramp Angle:</strong> 5 deg</li>
-                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                    <span class="en-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                    <span class="en-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                    <span class="en-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                    <span class="en-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top height:</strong> 0 mm from Hole top</span>
+                    <span class="en-lang"><strong>Top height:</strong> 0 mm from Hole top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bottom height:</strong> 0 mm from Hole bottom</span>
+                    <span class="en-lang"><strong>Bottom height:</strong> 0 mm from Hole bottom</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Ramp Angle:</strong> 5 deg</span>
+                    <span class="en-lang"><strong>Ramp Angle:</strong> 5 deg</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</span>
+                    <span class="en-lang">I left the remaining settings at their <strong>default values</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/OtvoryBore.JPG" alt="Deska materiálu po simulaci operace BoreSDirky." class="project-image" loading="lazy">
 
             <p>
-                Vyříznutí obrysů formy z bloku materiálu jsem provedl pomocí 2D operace <strong>Contour</strong>. 
-                Důležité bylo zapnout můstky (Tabs), aby se díl na konci frézování neuvolnil a nepoškodil nástroj.
+                <span class="cs-lang">Vyříznutí obrysů formy z bloku materiálu jsem provedl pomocí 2D operace <strong>Contour</strong>. Důležité bylo zapnout můstky (Tabs), aby se díl na konci frézování neuvolnil a nepoškodil nástroj.</span>
+                <span class="en-lang">I cut out the mold outlines from the material block using a 2D <strong>Contour</strong> operation. It was important to enable tabs so the part wouldn't come loose at the end of milling and damage the tool.</span>
             </p>
 
             <ul>
-                <li><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</li>
-                <li><strong>Tabs</strong> (můstky přidržující obrobek): <strong>Ano</strong></li>
-                <li><strong>Tab Width:</strong> 3.175 mm</li>
-                <li><strong>Tab Height:</strong> 1 mm</li>
-                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
-                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
-                <li><strong>Feed height:</strong> 2 mm from Top height</li>
-                <li><strong>Top height:</strong> 0 mm from Stock top</li>
-                <li><strong>Bottom height:</strong> 0 mm from Selected contour(s)</li>
-                <li><strong>Multiple Depths:</strong> Ano</li>
-                <li><strong>Maximum Roughing Stepdown:</strong> 3 mm</li>
-                <li><strong>Ramping Angle:</strong> 5 deg</li>
-                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                    <span class="en-lang"><strong>Tool:</strong> 3.175 mm flat (Spiral O 3.175*25 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Tabs</strong> (můstky přidržující obrobek): <strong>Ano</strong></span>
+                    <span class="en-lang"><strong>Tabs</strong> (bridges holding the workpiece): <strong>Yes</strong></span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Tab Width:</strong> 3.175 mm</span>
+                    <span class="en-lang"><strong>Tab Width:</strong> 3.175 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Tab Height:</strong> 1 mm</span>
+                    <span class="en-lang"><strong>Tab Height:</strong> 1 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                    <span class="en-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                    <span class="en-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                    <span class="en-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top height:</strong> 0 mm from Stock top</span>
+                    <span class="en-lang"><strong>Top height:</strong> 0 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bottom height:</strong> 0 mm from Selected contour(s)</span>
+                    <span class="en-lang"><strong>Bottom height:</strong> 0 mm from Selected contour(s)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Multiple Depths:</strong> Ano</span>
+                    <span class="en-lang"><strong>Multiple Depths:</strong> Yes</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Maximum Roughing Stepdown:</strong> 3 mm</span>
+                    <span class="en-lang"><strong>Maximum Roughing Stepdown:</strong> 3 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Ramping Angle:</strong> 5 deg</span>
+                    <span class="en-lang"><strong>Ramping Angle:</strong> 5 deg</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</span>
+                    <span class="en-lang">I left the remaining settings at their <strong>default values</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/ObrysContour.JPG" alt="Deska materiálu po simulaci operací 2D ContourH a 2D ContourS." class="project-image" loading="lazy">
             
             <p>
-                Poslední operací byl 2D <strong>Chamfer</strong> pro mírné zkosení špiček vodicích kolíků, což usnadní jejich zasouvání do spodní části formy:
+                <span class="cs-lang">Poslední operací byl 2D <strong>Chamfer</strong> pro mírné zkosení špiček vodicích kolíků, což usnadní jejich zasouvání do spodní části formy:</span>
+                <span class="en-lang">The last operation was a 2D <strong>Chamfer</strong> to slightly bevel the tips of the guide pins, which will make them easier to insert into the bottom part of the mold:</span>
             </p>
 
             <ul>
-                <li><strong>Tool:</strong> 3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</li>
-                <li><strong>Clearance height:</strong> 3 mm from Retract height</li>
-                <li><strong>Retract height:</strong> 2 mm from Stock top</li>
-                <li><strong>Feed height:</strong> 2 mm from Top height</li>
-                <li><strong>Top height:</strong> 0 mm from Stock top</li>
-                <li><strong>Bottom height:</strong> 0 mm from Selected contour(s)</li>
-                <li><strong>Chamfer Width:</strong> 0.5 mm</li>
-                <li><strong>Chamfer Tip Offset:</strong> 0.3 mm</li>
-                <li>Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</li>
+                <li>
+                    <span class="cs-lang"><strong>Tool:</strong> 3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</span>
+                    <span class="en-lang"><strong>Tool:</strong> 3.175 mm 45º chamfer (Chamfering Bit - 1/8" Shank)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                    <span class="en-lang"><strong>Clearance height:</strong> 3 mm from Retract height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                    <span class="en-lang"><strong>Retract height:</strong> 2 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                    <span class="en-lang"><strong>Feed height:</strong> 2 mm from Top height</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top height:</strong> 0 mm from Stock top</span>
+                    <span class="en-lang"><strong>Top height:</strong> 0 mm from Stock top</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bottom height:</strong> 0 mm from Selected contour(s)</span>
+                    <span class="en-lang"><strong>Bottom height:</strong> 0 mm from Selected contour(s)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Chamfer Width:</strong> 0.5 mm</span>
+                    <span class="en-lang"><strong>Chamfer Width:</strong> 0.5 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Chamfer Tip Offset:</strong> 0.3 mm</span>
+                    <span class="en-lang"><strong>Chamfer Tip Offset:</strong> 0.3 mm</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zbylé nastavení jsem nechal na <strong>výchozích hodnotách</strong>.</span>
+                    <span class="en-lang">I left the remaining settings at their <strong>default values</strong>.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/KolikyChamfer.JPG" alt="Deska materiálu po simulaci operace 2D ChamferH." class="project-image" loading="lazy">
 
             <p>
-                <strong>Seznam operací a ukázka simulace:</strong>
+                <span class="cs-lang"><strong>Seznam operací a ukázka simulace:</strong></span>
+                <span class="en-lang"><strong>List of operations and simulation:</strong></span>
             </p>
 
             <img src="media/JVC/Operace.JPG" alt="Seznam operací frézování." class="project-image" loading="lazy">
 
             <video class="project-image" controls muted playsinline preload="metadata" aria-label="Simulace frézování ve Fusion 360.">
                 <source src="media/JVC/FormaSimulace.mp4" type="video/mp4">
-                Váš prohlížeč nepodporuje přehrávání videa.
+                <span class="cs-lang">Váš prohlížeč nepodporuje přehrávání videa.</span>
+                <span class="en-lang">Your browser does not support video playback.</span>
             </video>
 
-            <h3>Frézování</h3>
+            <h3>
+                <span class="cs-lang">Frézování</span>
+                <span class="en-lang">Milling</span>
+            </h3>
 
             <p>
-                K výrobě posloužila školní frézka <strong>Makera Carvera Air</strong>. 
-                Mezi podložku stroje a blok plastu <strong>POM-C</strong> jsem umístil <strong>obětní destičku (spoil board)</strong>,
-                která chrání podložku před zaříznutím nástroje. 
-                Polotovar jsem zafixoval pomocí <strong>dvou šroubovacích upínek</strong>.
+                <span class="cs-lang">K výrobě posloužila školní frézka <strong>Makera Carvera Air</strong>. Mezi podložku stroje a blok plastu <strong>POM-C</strong> jsem umístil <strong>obětní destičku (spoil board)</strong>, která chrání podložku před zaříznutím nástroje. Polotovar jsem zafixoval pomocí <strong>dvou šroubovacích upínek</strong>.</span>
+                <span class="en-lang">The school's <strong>Makera Carvera Air</strong> milling machine was used for production. I placed a <strong>spoil board</strong> between the machine bed and the <strong>POM-C</strong> plastic block to protect the bed from the tool cutting into it. I secured the stock using <strong>two screw clamps</strong>.</span>
             </p>
 
             <img src="media/JVC/FrezaAUchytky.JPG" alt="Fréza Makera Carvera Air a úchytky na frézovaný materiál." class="project-image" loading="lazy">
             <img src="media/JVC/UchycenaDeska.JPG" alt="Materiál uchycený na frézovacím stolu." class="project-image" loading="lazy">
 
             <p>
-                Pomocí dříve nainstalovaného post processoru jsem vygeneroval <strong>.cnc soubor</strong> (G-kód). 
-                Ten jsem přes flash disk přenesl do počítače připojeného k frézce a načetl jej do softwaru <strong>Carvera Controller</strong>, přes který se stroj řídí.
+                <span class="cs-lang">Pomocí dříve nainstalovaného post processoru jsem vygeneroval <strong>.cnc soubor</strong> (G-kód). Ten jsem přes flash disk přenesl do počítače připojeného k frézce a načetl jej do softwaru <strong>Carvera Controller</strong>, přes který se stroj řídí.</span>
+                <span class="en-lang">Using the previously installed post processor, I generated a <strong>.cnc file</strong> (G-code). I transferred this via a flash drive to the computer connected to the milling machine and loaded it into the <strong>Carvera Controller</strong> software, through which the machine is operated.</span>
             </p>
 
             <img src="media/JVC/CarveraController.JPG" alt="Program Carvera Controller na školním počítači." class="project-image" loading="lazy">
@@ -279,34 +529,34 @@
             <img src="media/JVC/HotoveOtvory.JPG" alt="Materiál po dokončení operací Pocket a Bore." class="project-image" loading="lazy">
             <img src="media/JVC/HotoveContour.JPG" alt="Materiál po dokončení operace Contour a Chamfer." class="project-image" loading="lazy">
 
-            <h3>Dokončovací operace (Post-processing)</h3>
+            <h3>
+                <span class="cs-lang">Dokončovací operace (post-processing)</span>
+                <span class="en-lang">Finishing operations (post-processing)</span>
+            </h3>
 
             <p>
-                Formu jsem z plastové desky uvolnil přecvaknutím můstků pomocí <strong>malých štípaček</strong>. 
-                Zbytky materiálu a drobné nepřesnosti na hranách jsem následně začistil <strong>jemným brusným papírem</strong>.
+                <span class="cs-lang">Formu jsem z plastové desky uvolnil přecvaknutím můstků pomocí <strong>malých štípaček</strong>. Zbytky materiálu a drobné nepřesnosti na hranách jsem následně začistil <strong>jemným brusným papírem</strong>.</span>
+                <span class="en-lang">I released the mold from the plastic board by snapping the tabs using <strong>small wire cutters</strong>. I then cleaned up the remaining material and minor inaccuracies on the edges with <strong>fine sandpaper</strong>.</span>
             </p>
 
             <img src="media/JVC/FormaVyndanaZDesky.JPG" alt="Forma po odlomení z desky." class="project-image" loading="lazy">
             <img src="media/JVC/ObrousenaForma.JPG" alt="Forma po obroušení." class="project-image" loading="lazy">
 
             <p>
-                Jak jsem zmiňoval v úvodu, vyfrézované díly do sebe nezapadaly. 
-                Rozhodl jsem se proto vodicí otvory zvětšit pomocí <strong>6 mm vrtáku</strong>. 
-                Po tomto kroku se do sebe formy daly zasunout, ale jen do poloviny délky kolíků (protože kolíky byly směrem k základně širší). 
-                Otvory jsem tedy zhruba do poloviny jejich hloubky ještě rozšířil <strong>8 mm vrtákem</strong>.
+                <span class="cs-lang">Jak jsem zmiňoval v úvodu, vyfrézované díly do sebe nezapadaly. Rozhodl jsem se proto vodicí otvory zvětšit pomocí <strong>6 mm vrtáku</strong>. Po tomto kroku se do sebe formy daly zasunout, ale jen do poloviny délky kolíků (protože kolíky byly směrem k základně širší). Otvory jsem tedy zhruba do poloviny jejich hloubky ještě rozšířil <strong>8 mm vrtákem</strong>.</span>
+                <span class="en-lang">As I mentioned in the introduction, the milled parts did not fit together. Therefore, I decided to enlarge the guide holes using a <strong>6 mm drill bit</strong>. After this step, the molds could be inserted into each other, but only up to half the length of the pins (because the pins were wider towards the base). So I widened the holes up to about half their depth with an <strong>8 mm drill bit</strong>.</span>
             </p>
             
             <p>
-                Nyní už do sebe díly zapadají velmi dobře a při zasouvání kladou příjemný lehký odpor až v posledních třech milimetrech rozsahu. 
-                K tomu však dochází pouze v <strong>jedné konkrétní orientaci</strong> dílů formy. 
-                Správné natočení dílů jsem označil vyvrtáním malého <strong>značkovacího otvoru</strong> na boku obou polovin. 
-                Jedinou vadou zůstalo <strong>poškrábání povrchu</strong> od upnutí do svěráku během ručního převrtávání děr.
+                <span class="cs-lang">Nyní už do sebe díly zapadají velmi dobře a při zasouvání kladou příjemný lehký odpor až v posledních třech milimetrech rozsahu. K tomu však dochází pouze v <strong>jedné konkrétní orientaci</strong> dílů formy. Správné natočení dílů jsem označil vyvrtáním malého <strong>značkovacího otvoru</strong> na boku obou polovin. Jedinou vadou zůstalo <strong>poškrábání povrchu</strong> od upnutí do svěráku během ručního převrtávání děr.</span>
+                <span class="en-lang">Now the parts fit together very well and offer a pleasant, slight resistance when inserted, up until the last three millimeters of the range. However, this only happens in <strong>one specific orientation</strong> of the mold parts. I marked the correct alignment of the parts by drilling a small <strong>marker hole</strong> on the side of both halves. The only flaw remaining was the <strong>scratching of the surface</strong> from clamping it in the vise during the manual redrilling of the holes.</span>
             </p>
 
             <img src="media/JVC/Vrtak.JPG" alt="Vrtačka pro zvětšení otvorů ve stojanu." class="project-image" loading="lazy">
 
             <p>
-                <strong>Výsledná forma:</strong>
+                <span class="cs-lang"><strong>Výsledná forma:</strong></span>
+                <span class="en-lang"><strong>The resulting mold:</strong></span>
             </p>
 
             <img src="media/JVC/HotovaFormaRozlozena.JPG" alt="Rozložená hotová forma." class="project-image" loading="lazy">
@@ -317,5 +567,44 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeBtn = document.getElementById('theme-toggle');
+            
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeBtn.textContent = '☀️';
+            }
+            
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.textContent = '🌙';
+                }
+            });
+
+            const langBtn = document.getElementById('lang-toggle');
+            
+            if (localStorage.getItem('lang') === 'en') {
+                document.body.classList.add('lang-en');
+                langBtn.textContent = 'CS';
+            }
+            
+            langBtn.addEventListener('click', () => {
+                document.body.classList.toggle('lang-en');
+                if (document.body.classList.contains('lang-en')) {
+                    localStorage.setItem('lang', 'en');
+                    langBtn.textContent = 'CS';
+                } else {
+                    localStorage.setItem('lang', 'cs');
+                    langBtn.textContent = 'EN';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -3,181 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5. týden | Štěpán Blaha</title>
+    <title>Week 5 | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 </head>
 <body>
 
     <nav>
-        <a href="index.html">Domů</a>
-        <a href="omne.html">O mně</a>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
     </nav>
 
     <div class="main-wrapper">
         
         <aside class="sidebar">
-            <a href="tyden1.html">1. týden</a>
-            <a href="tyden2.html">2. týden</a>
-            <a href="tyden3.html">3. týden</a>
-            <a href="tyden4.html">4. týden</a>
-            <a href="tyden5.html" class="active">5. týden</a>
-            <a href="tyden6.html">6. týden</a>
-            <a href="tyden7.html">7. týden</a>
-            <a href="tyden8.html">8. týden</a>
-            <a href="tyden9.html">9. týden</a>
-            <a href="tyden10.html">10. týden</a>
-            <a href="tyden11a12.html">11. a 12. týden</a>
-            <a href="tyden13.html">13. týden</a>
-            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html" class="active">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
         </aside>
 
         <main class="content">
-            <h1>5. týden: Výroba elektroniky</h1>
+            <h1>
+                <span class="cs-lang">5. týden: Výroba elektroniky</span>
+                <span class="en-lang">Week 5: Electronics Production</span>
+            </h1>
 
             <p>
-                Během pátého týdne bylo úkolem vytvořit <strong>elektronický obvod</strong>, který bude provádět nějakou akci (alespoň blikat).
-                Podmínkou bylo, že se pro propojení součástek <strong>nesmí použít nepájivé kontaktní pole</strong>.<br><br>
+                <span class="cs-lang">Během pátého týdne bylo úkolem vytvořit <strong>elektronický obvod</strong>, který bude provádět nějakou akci (alespoň blikat). Podmínkou bylo, že se pro propojení součástek <strong>nesmí použít nepájivé kontaktní pole</strong>.<br><br></span>
+                <span class="en-lang">During the fifth week, the task was to create an <strong>electronic circuit</strong> that performs some action (at least blinking). The condition was that a <strong>solderless breadboard must not be used</strong> to connect the components.<br><br></span>
             </p>
 
-            <h2>Dálkové ovládání hexapoda</h2>
+            <h2>
+                <span class="cs-lang">Dálkové ovládání hexapoda</span>
+                <span class="en-lang">Hexapod remote control</span>
+            </h2>
 
             <p>
-                Tento týden jsem se rozhodl sestrojit <strong>dálkové ovládání</strong> k mému závěrečnému projektu - 
-                <strong>hexapodovi</strong>. Cílem bylo navrhnout kontroler, 
-                který mi poskytne kontrolu nad všemi pohyby robota. 
-                Ovladač by měl umožňovat následující:
+                <span class="cs-lang">Tento týden jsem se rozhodl sestrojit <strong>dálkové ovládání</strong> k mému závěrečnému projektu - <strong>hexapodovi</strong>. Cílem bylo navrhnout kontroler, který mi poskytne kontrolu nad všemi pohyby robota. Ovladač by měl umožňovat následující:</span>
+                <span class="en-lang">This week I decided to build a <strong>remote control</strong> for my final project - the <strong>hexapod</strong>. The goal was to design a controller that gives me control over all the robot's movements. The controller should allow the following:</span>
             </p>
 
             <ul>
-                <li><strong>pohyb ve všech směrech</strong>,</li>
-                <li><strong>otáčení těla</strong>,</li>
-                <li><strong>frekvenci chůze</strong>,</li>
-                <li><strong>výšku kroku</strong>,</li>
-                <li>přepínání mezi různými <strong>vzory chůze (gaity)</strong>,</li>
-                <li>náklony těla (<strong>roll, pitch a yaw</strong>),</li>
-                <li><strong>posuny těla</strong> doleva, doprava, nahoru a dolů (bez odlepení nohou od země),</li>
-                <li><strong>postavení</strong> a <strong>posazení</strong> robota,</li>
-                <li><strong>vypnutí</strong> robota.</li>
+                <li>
+                    <span class="cs-lang"><strong>pohyb ve všech směrech</strong>,</span>
+                    <span class="en-lang"><strong>movement in all directions</strong>,</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>otáčení těla</strong>,</span>
+                    <span class="en-lang"><strong>body rotation</strong>,</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>frekvenci chůze</strong>,</span>
+                    <span class="en-lang"><strong>walking frequency</strong>,</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>výšku kroku</strong>,</span>
+                    <span class="en-lang"><strong>step height</strong>,</span>
+                </li>
+                <li>
+                    <span class="cs-lang">přepínání mezi různými <strong>vzory chůze (gaity)</strong>,</span>
+                    <span class="en-lang">switching between different <strong>walking patterns (gaits)</strong>,</span>
+                </li>
+                <li>
+                    <span class="cs-lang">náklony těla (<strong>roll, pitch a yaw</strong>),</span>
+                    <span class="en-lang">body tilts (<strong>roll, pitch, and yaw</strong>),</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>posuny těla</strong> doleva, doprava, nahoru a dolů (bez odlepení nohou od země),</span>
+                    <span class="en-lang"><strong>body translations</strong> left, right, up, and down (without lifting the legs off the ground),</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>postavení</strong> a <strong>posazení</strong> robota,</span>
+                    <span class="en-lang"><strong>standing up</strong> and <strong>sitting down</strong> the robot,</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>vypnutí</strong> robota.</span>
+                    <span class="en-lang"><strong>turning off</strong> the robot.</span>
+                </li>
             </ul>
 
             <p>
-                Mozkem ovladače bude <strong>Arduino Mega 2560 PRO</strong>. 
-                Ke komunikaci s <strong>Raspberry Pi 5</strong>, které se nachází v hexapodovi, 
-                použiji <strong>Bluetooth modul</strong>. 
-                Nastavené hodnoty se budou zobrazovat na <strong>OLED displeji</strong>. 
-                Zařízení je napájeno třemi <strong>AA bateriemi</strong>, jejichž napětí zvyšuji na 5 V pomocí <strong>step-up modulu</strong>. 
-                Celý tento projekt jsem se rozhodl integrovat na <strong>vlastní DPS</strong> (desku plošných spojů).
+                <span class="cs-lang">Mozkem ovladače bude <strong>Arduino Mega 2560 PRO</strong>. Ke komunikaci s <strong>Raspberry Pi 5</strong>, které se nachází v hexapodovi, použiji <strong>Bluetooth modul</strong>. Nastavené hodnoty se budou zobrazovat na <strong>OLED displeji</strong>. Zařízení je napájeno třemi <strong>AA bateriemi</strong>, jejichž napětí zvyšuji na 5 V pomocí <strong>step-up modulu</strong>. Celý tento projekt jsem se rozhodl integrovat na <strong>vlastní DPS</strong> (desku plošných spojů).</span>
+                <span class="en-lang">The brain of the controller will be an <strong>Arduino Mega 2560 PRO</strong>. To communicate with the <strong>Raspberry Pi 5</strong> located in the hexapod, I will use a <strong>Bluetooth module</strong>. The set values will be displayed on an <strong>OLED display</strong>. The device is powered by three <strong>AA batteries</strong>, whose voltage I step up to 5 V using a <strong>step-up module</strong>. I decided to integrate this entire project onto a <strong>custom PCB</strong> (printed circuit board).</span>
             </p>
 
-            <h3>Návrh DPS v programu KiCAD</h3>
+            <h3>
+                <span class="cs-lang">Návrh DPS v programu KiCAD</span>
+                <span class="en-lang">PCB design in KiCAD</span>
+            </h3>
             
             <p>
-                Desku jsem navrhoval v bezplatném programu <strong>KiCAD</strong>. 
-                Prvním krokem byla tvorba <strong>schématu</strong>, kde se definují vývody použitých součástek a jejich propojení. 
-                Mnohé součástky má KiCAD v základu (tlačítka, rezistory, potenciometry), 
-                pro jiné je nutné schéma vytvořit nebo stáhnout. 
-                Schéma Arduina jsem stáhl z <a href="https://github.com/Alarm-Siren/arduino-kicad-library" target="_blank">tohoto GitHub repozitáře</a>.
+                <span class="cs-lang">Desku jsem navrhoval v bezplatném programu <strong>KiCAD</strong>. Prvním krokem byla tvorba <strong>schématu</strong>, kde se definují vývody použitých součástek a jejich propojení. Mnohé součástky má KiCAD v základu (tlačítka, rezistory, potenciometry), pro jiné je nutné schéma vytvořit nebo stáhnout. Schéma Arduina jsem stáhl z <a href="https://github.com/Alarm-Siren/arduino-kicad-library" target="_blank">tohoto GitHub repozitáře</a>.</span>
+                <span class="en-lang">I designed the board in the free <strong>KiCAD</strong> program. The first step was to create a <strong>schematic</strong>, where the pins of the used components and their connections are defined. KiCAD has many components by default (buttons, resistors, potentiometers), for others it is necessary to create or download the schematic. I downloaded the Arduino schematic from <a href="https://github.com/Alarm-Siren/arduino-kicad-library" target="_blank">this GitHub repository</a>.</span>
             </p>
 
             <p>
-                Pro zjednodušení jsem schémata složitějších modulů (joystick, Bluetooth, měnič napětí) nahradil standardními 
-                <strong>kolíkovými lištami</strong> (např. <code>Conn_01x05_Socket</code> pro joystick). 
-                Spoje k Arduinu jsem volil tak, aby byly vývody fyzicky blízko u sebe, což mi později velmi usnadnilo trasování desky. 
-                Jelikož logika Bluetooth modulu funguje na <strong>3,3 V</strong>, 
-                bylo navíc nutné napětí z Arduina snížit pomocí napěťového děliče.
+                <span class="cs-lang">Pro zjednodušení jsem schémata složitějších modulů (joystick, Bluetooth, měnič napětí) nahradil standardními <strong>kolíkovými lištami</strong> (např. <code>Conn_01x05_Socket</code> pro joystick). Spoje k Arduinu jsem volil tak, aby byly vývody fyzicky blízko u sebe, což mi později velmi usnadnilo trasování desky. Jelikož logika Bluetooth modulu funguje na <strong>3,3 V</strong>, bylo navíc nutné napětí z Arduina snížit pomocí napěťového děliče.</span>
+                <span class="en-lang">For simplicity, I replaced the schematics of more complex modules (joystick, Bluetooth, voltage converter) with standard <strong>pin headers</strong> (e.g., <code>Conn_01x05_Socket</code> for the joystick). I chose the connections to the Arduino so that the pins were physically close to each other, which made routing the board much easier later. Since the logic of the Bluetooth module operates at <strong>3.3 V</strong>, it was also necessary to reduce the voltage from the Arduino using a voltage divider.</span>
             </p>
 
             <img src="media/JVC/SchemaOvladace.JPG" alt="Schéma projektu v KiCAD" class="project-image" loading="lazy">
 
             <p>
-                Druhým krokem byl samotný návrh <strong>fyzické desky (v Editoru DPS)</strong>. 
-                Zde je nutné každému symbolu přiřadit <strong>pouzdro (footprint)</strong>, které definuje rozměry součástky, 
-                rozteče vývodů a montážní otvory, a následně mezi jednotlivými piny nakreslit vodivé spoje.
-                Pouzdro joysticku jsem tvořil manuálně podle technického nákresu.
-                Pouzdro Arduina se nacházelo ve stejném GitHub repozitáři jako jeho schéma a
-                pouzdra kolíkových lišt, tlačítek, potenciometrů a rezistorů již KiCAD obsahuje.
+                <span class="cs-lang">Druhým krokem byl samotný návrh <strong>fyzické desky (v Editoru DPS)</strong>. Zde je nutné každému symbolu přiřadit <strong>pouzdro (footprint)</strong>, které definuje rozměry součástky, rozteče vývodů a montážní otvory, a následně mezi jednotlivými piny nakreslit vodivé spoje. Pouzdro joysticku jsem tvořil manuálně podle technického nákresu. Pouzdro Arduina se nacházelo ve stejném GitHub repozitáři jako jeho schéma a pouzdra kolíkových lišt, tlačítek, potenciometrů a rezistorů již KiCAD obsahuje.</span>
+                <span class="en-lang">The second step was the actual design of the <strong>physical board (in the PCB Editor)</strong>. Here it is necessary to assign a <strong>footprint</strong> to each symbol, which defines the dimensions of the component, pin spacing, and mounting holes, and then draw conductive traces between the individual pins. I created the joystick footprint manually according to the technical drawing. The Arduino footprint was located in the same GitHub repository as its schematic, and the footprints for pin headers, buttons, potentiometers, and resistors are already included in KiCAD.</span>
             </p>
 
             <img src="media/JVC/RozmeryJoysticku.jpg" alt="Rozměry Joysticku ze stránky Drátek.cz" class="project-image-noborder" loading="lazy">
 
             <p>
-                Zvolil jsem šířku spojů <strong>0,8 mm</strong> a izolační mezeru <strong>0,5 mm</strong>. 
-                Protože jsem vyráběl pouze <strong>jednovrstvou DPS</strong> (kde se cesty nesmí křížit), byl proces poměrně složitý. 
-                Abych si ušetřil trasování zemnících spojů, využil jsem funkci <strong>rozlité mědi (rozlitá zem)</strong>. 
-                Zbytkové "ostrovy" země, které se s hlavní plochou nespojily, 
-                jsem vyřešil pomocí <strong>jumperů</strong> (propojení drátkem), které jsem připájel z vrchní strany desky.
-                Jelikož měď rychle odvádí teplo, použil jsem pro usnadnění pájení spojů připojených k zemi 
-                <strong>termální odlehčení</strong> s krčky o šířce 0,65 mm s mezerou 0,65 mm.
+                <span class="cs-lang">Zvolil jsem šířku spojů <strong>0,8 mm</strong> a izolační mezeru <strong>0,5 mm</strong>. Protože jsem vyráběl pouze <strong>jednovrstvou DPS</strong> (kde se cesty nesmí křížit), byl proces poměrně složitý. Abych si ušetřil trasování zemnících spojů, využil jsem funkci <strong>rozlité mědi (rozlitá zem)</strong>. Zbytkové "ostrovy" země, které se s hlavní plochou nespojily, jsem vyřešil pomocí <strong>jumperů</strong> (propojení drátkem), které jsem připájel z vrchní strany desky. Jelikož měď rychle odvádí teplo, použil jsem pro usnadnění pájení spojů připojených k zemi <strong>termální odlehčení</strong> s krčky o šířce 0,65 mm s mezerou 0,65 mm.</span>
+                <span class="en-lang">I chose a trace width of <strong>0.8 mm</strong> and an isolation gap of <strong>0.5 mm</strong>. Since I was only making a <strong>single-layer PCB</strong> (where traces cannot cross), the process was quite complex. To save myself from routing ground traces, I used the <strong>copper pour (ground pour)</strong> feature. I resolved the residual "islands" of ground that did not connect to the main plane using <strong>jumpers</strong> (wire connections), which I soldered from the top side of the board. Since copper conducts heat away quickly, I used <strong>thermal reliefs</strong> with 0.65 mm spoke width and 0.65 mm gap to make soldering the ground-connected joints easier.</span>
             </p>
 
-            <img src="media/JVC/SpodníVrstvaDPS.JPG" alt="Spodní frézovaná vrstva DPS" class="project-image" loading="lazy">
+            <img src="media/JVC/SpodniVrstvaDPS.JPG" alt="Spodní frézovaná vrstva DPS" class="project-image" loading="lazy">
             <img src="media/JVC/HorniVrstvaDPS.JPG" alt="Horní nefrézovaná vrstva DPS" class="project-image" loading="lazy">
 
-            <h3>Výroba DPS na CNC frézce</h3>
+            <h3>
+                <span class="cs-lang">Výroba DPS na CNC frézce</span>
+                <span class="en-lang">PCB manufacturing on a CNC milling machine</span>
+            </h3>
 
             <p>
-                Z KiCADu jsem vyexportoval výrobní data (<strong>.gbr</strong> pro cesty a ořez, <strong>.drl</strong> pro vrty). 
-                Příprava frézování (rychlost, hloubka...) a nastavení nástrojů probíhaly v softwaru <strong>MakeraCAM</strong>. 
-                Protože se frézuje spodní strana desky, musela být data zrcadlově převrácena. 
-                Za obrovskou pomoc a předání zkušeností v této fázi projektu bych rád <strong>poděkoval panu Ing. Krištofu Pučejdlovi</strong>.
+                <span class="cs-lang">Z KiCADu jsem vyexportoval výrobní data (<strong>.gbr</strong> pro cesty a ořez, <strong>.drl</strong> pro vrty). Příprava frézování (rychlost, hloubka...) a nastavení nástrojů probíhaly v softwaru <strong>MakeraCAM</strong>. Protože se frézuje spodní strana desky, musela být data zrcadlově převrácena. Za obrovskou pomoc a předání zkušeností v této fázi projektu bych rád <strong>poděkoval panu Ing. Krištofu Pučejdlovi</strong>.</span>
+                <span class="en-lang">I exported the manufacturing data from KiCAD (<strong>.gbr</strong> for traces and edge cuts, <strong>.drl</strong> for drills). The milling preparation (speed, depth...) and tool setup took place in the <strong>MakeraCAM</strong> software. Because the bottom side of the board is milled, the data had to be mirrored. For the enormous help and sharing of experience in this phase of the project, I would like to <strong>thank Ing. Krištof Pučejdl</strong>.</span>
             </p>
 
             <img src="media/JVC/MakeraCAM.JPG" alt="Fotka z MakeraCAM" class="project-image" loading="lazy">
 
             <p>
-                K výrobě posloužila školní CNC frézka <strong>Carvera Air</strong>. 
-                Desku <strong>kuprextitu</strong> (15 &times; 10 cm) jsme k podložce zafixovali oboustrannou lepicí páskou.
+                <span class="cs-lang">K výrobě posloužila školní CNC frézka <strong>Carvera Air</strong>. Desku <strong>kuprextitu</strong> (15 &times; 10 cm) jsme k podložce zafixovali oboustrannou lepicí páskou.</span>
+                <span class="en-lang">The school's <strong>Carvera Air</strong> CNC milling machine was used for production. We fixed a <strong>copper-clad laminate</strong> board (15 &times; 10 cm) to the bed using double-sided adhesive tape.</span>
             </p>
 
             <img src="media/JVC/OboustrannaPaskaNaFreze.JPG" alt="Oboustranná lepicí páska na podkladu" class="project-image" loading="lazy">
             <img src="media/JVC/CarveraAir.JPG" alt="Stroj Makera Carvera Air s přilepenou kuprextitovou destičkou" class="project-image" loading="lazy">
 
             <p>
-                Výroba probíhala ve čtyřech krocích: vyvrtání malých otvorů a předvrtání těch větších,
-                vyfrézování měděných spojů, rozšíření otvorů větším vrtákem a na závěr vyříznutí vnějšího obrysu desky.
+                <span class="cs-lang">Výroba probíhala ve čtyřech krocích: vyvrtání malých otvorů a předvrtání těch větších, vyfrézování měděných spojů, rozšíření otvorů větším vrtákem a na závěr vyříznutí vnějšího obrysu desky.</span>
+                <span class="en-lang">The production took place in four steps: drilling small holes and pre-drilling larger ones, milling the copper traces, expanding the holes with a larger drill bit, and finally cutting out the outer contour of the board.</span>
             </p>
 
             <img src="media/JVC/FrezaOtvory.JPG" alt="Cuprextit ve frézce s vyvrtanými otvory" class="project-image" loading="lazy">
             <img src="media/JVC/FrezovaniSpoju.JPG" alt="Cuprextit ve frézce s vyfrézovanými spoji" class="project-image" loading="lazy">
             <img src="media/JVC/DPS.JPG" alt="Hotová DPS" class="project-image" loading="lazy">
 
-            <h3>Osazování součástkami a pájení</h3>
+            <h3>
+                <span class="cs-lang">Osazování součástkami a pájení</span>
+                <span class="en-lang">Component assembly and soldering</span>
+            </h3>
 
-            <p><strong>Seznam použitých součástek:</strong></p>
+            <p>
+                <span class="cs-lang"><strong>Seznam použitých součástek:</strong></span>
+                <span class="en-lang"><strong>List of used components:</strong></span>
+            </p>
 
             <ul>
-                <li><strong>Arduino Mega 2560 PRO</strong> (ATmega2560)</li>
-                <li>I2C <strong>OLED displej 1,3"</strong> (bílý, 128 &times; 64 px)</li>
-                <li>2&times; <strong>KY-023 Joystick</strong> s tlačítkem</li>
-                <li>3&times; <strong>Tlačítko TC-1212T</strong> (12 &times; 12 &times; 7.3 mm)</li>
-                <li>4&times; Vertikální <strong>potenciometr RV09 10k</strong></li>
-                <li><strong>Bluetooth modul HC-05</strong></li>
-                <li><strong>Step-up DC-DC měnič</strong> (z 1-5 V na 5 V, 500 mA)</li>
-                <li>Držák na 3&times; <strong>AA baterie</strong> + baterie samotné</li>
-                <li><strong>Kolébkový přepínač</strong> (10 A AC)</li>
-                <li>Sada malých <strong>M2 šroubků</strong> (délka 4 až 20 mm)</li>
-                <li><strong>Dutinkové a kolíkové lišty</strong></li>
+                <li>
+                    <span class="cs-lang"><strong>Arduino Mega 2560 PRO</strong> (ATmega2560)</span>
+                    <span class="en-lang"><strong>Arduino Mega 2560 PRO</strong> (ATmega2560)</span>
+                </li>
+                <li>
+                    <span class="cs-lang">I2C <strong>OLED displej 1,3"</strong> (bílý, 128 &times; 64 px)</span>
+                    <span class="en-lang">I2C <strong>OLED display 1.3"</strong> (white, 128 &times; 64 px)</span>
+                </li>
+                <li>
+                    <span class="cs-lang">2&times; <strong>KY-023 Joystick</strong> s tlačítkem</span>
+                    <span class="en-lang">2&times; <strong>KY-023 Joystick</strong> with button</span>
+                </li>
+                <li>
+                    <span class="cs-lang">3&times; <strong>Tlačítko TC-1212T</strong> (12 &times; 12 &times; 7.3 mm)</span>
+                    <span class="en-lang">3&times; <strong>TC-1212T Button</strong> (12 &times; 12 &times; 7.3 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang">4&times; Vertikální <strong>potenciometr RV09 10k</strong></span>
+                    <span class="en-lang">4&times; Vertical <strong>potentiometer RV09 10k</strong></span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bluetooth modul HC-05</strong></span>
+                    <span class="en-lang"><strong>Bluetooth module HC-05</strong></span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Step-up DC-DC měnič</strong> (z 1-5 V na 5 V, 500 mA)</span>
+                    <span class="en-lang"><strong>Step-up DC-DC converter</strong> (from 1-5 V to 5 V, 500 mA)</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Držák na 3&times; <strong>AA baterie</strong> + baterie samotné</span>
+                    <span class="en-lang">Holder for 3&times; <strong>AA batteries</strong> + the batteries themselves</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Kolébkový přepínač</strong> (10 A AC)</span>
+                    <span class="en-lang"><strong>Rocker switch</strong> (10 A AC)</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Sada malých <strong>M2 šroubků</strong> (délka 4 až 20 mm)</span>
+                    <span class="en-lang">Set of small <strong>M2 screws</strong> (length 4 to 20 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Dutinkové a kolíkové lišty</strong></span>
+                    <span class="en-lang"><strong>Female and male pin headers</strong></span>
+                </li>
             </ul>
 
             <img src="media/JVC/Soucastky.JPG" alt="Fotka použitých součástek" class="project-image" loading="lazy">
 
             <p>
-                Pro pájení jsem použil 16 let starou sadu <strong>ROTHENBERGER</strong> od dědy. 
-                Nástroj s velkým hrotem a hrubou pájkou (1,5 mm) nebyl na drobnou elektroniku vůbec vhodný. 
-                Největší a téměř fatální chybou však bylo použití tavidla z této sady. 
-                Bylo to totiž instalatérské tavidlo, které je <strong>elektricky vodivé.</strong>
+                <span class="cs-lang">Pro pájení jsem použil 16 let starou sadu <strong>ROTHENBERGER</strong> od dědy. Nástroj s velkým hrotem a hrubou pájkou (1,5 mm) nebyl na drobnou elektroniku vůbec vhodný. Největší a téměř fatální chybou však bylo použití tavidla z této sady. Bylo to totiž instalatérské tavidlo, které je <strong>elektricky vodivé.</strong></span>
+                <span class="en-lang">For soldering, I used a 16-year-old <strong>ROTHENBERGER</strong> set from my grandfather. A tool with a large tip and thick solder (1.5 mm) was not suitable for tiny electronics at all. However, the biggest and almost fatal mistake was using the flux from this set. It was plumbing flux, which is <strong>electrically conductive.</strong></span>
             </p>
 
             <img src="media/JVC/PajeckaAPrislusenstvi.JPG" alt="Pájecí sada" class="project-image" loading="lazy">
 
             <p>
-                Součástky (tlačítka, rezistory, potenciometry) jsem pájel přímo do desky. 
-                Moduly a displej se zasouvají do předem připájených dutinkových lišt, takže je lze kdykoliv vyjmout.
-                Joysticky jsou drženy nad deskou pomocí <strong>4 mm vysokých spacerů</strong> tištěných na 3D tiskárně, 
-                které se následně prošroubují <strong>M2 &times; 8mm</strong> šroubky a na druhé straně desky upevní maticí. 
-                Stejným způsobem je displej držen ve výšce <strong>16 mm</strong> pomocí šroubků <strong>M2 &times; 20mm</strong>.
-                Pro upevnění držáku baterek jsem v DPS navrhl dva otvory pro přišroubování, nakonec jsem ale použil <strong>tavné lepidlo</strong>.
+                <span class="cs-lang">Součástky (tlačítka, rezistory, potenciometry) jsem pájel přímo do desky. Moduly a displej se zasouvají do předem připájených dutinkových lišt, takže je lze kdykoliv vyjmout. Joysticky jsou drženy nad deskou pomocí <strong>4 mm vysokých spacerů</strong> tištěných na 3D tiskárně, které se následně prošroubují <strong>M2 &times; 8mm</strong> šroubky a na druhé straně desky upevní maticí. Stejným způsobem je displej držen ve výšce <strong>16 mm</strong> pomocí šroubků <strong>M2 &times; 20mm</strong>. Pro upevnění držáku baterek jsem v DPS navrhl dva otvory pro přišroubování, nakonec jsem ale použil <strong>tavné lepidlo</strong>.</span>
+                <span class="en-lang">I soldered the components (buttons, resistors, potentiometers) directly to the board. The modules and display are plugged into pre-soldered female headers, so they can be removed at any time. The joysticks are held above the board by <strong>4 mm high spacers</strong> printed on a 3D printer, which are then screwed through with <strong>M2 &times; 8mm</strong> screws and secured with a nut on the other side of the board. In the same way, the display is held at a height of <strong>16 mm</strong> using <strong>M2 &times; 20mm</strong> screws. To attach the battery holder, I designed two screw holes in the PCB, but in the end I used <strong>hot melt adhesive</strong>.</span>
             </p>
 
             <img src="media/JVC/Piny.JPG" alt="Hromádka zkrácených lišt" class="project-image" loading="lazy">
@@ -188,40 +286,34 @@
             <img src="media/JVC/OsazeneDPS3.JPG" alt="Hotové DPS zezadu" class="project-image" loading="lazy">
 
             <p>
-                Během manipulace s deskou před přišroubováním joysticků se mi bohužel podařilo jeden joystick odtrhnout i s měděnými cestami. 
-                Spoje jsem musel nahradit drátky.
+                <span class="cs-lang">Během manipulace s deskou před přišroubováním joysticků se mi bohužel podařilo jeden joystick odtrhnout i s měděnými cestami. Spoje jsem musel nahradit drátky.</span>
+                <span class="en-lang">Unfortunately, while handling the board before screwing on the joysticks, I managed to rip off one joystick along with the copper traces. I had to replace the connections with wires.</span>
             </p>
 
             <img src="media/JVC/UtrzeneSpoje.JPG" alt="Utržené měděné cestičky" class="project-image" loading="lazy">
             <img src="media/JVC/OpraveneSpoje.JPG" alt="Opravené DPS" class="project-image" loading="lazy">
 
-            <h3>Problémy s tavidlem</h3>
+            <h3>
+                <span class="cs-lang">Problémy s tavidlem</span>
+                <span class="en-lang">Flux problems</span>
+            </h3>
             <p>
-                Po prvním zapojení se Arduino chovalo naprosto nevyzpytatelně. 
-                Napětí na analogových vstupech kolísalo mezi 1 až 3 volty, když mělo být 5. 
-                Postupně zhasínaly různé moduly, až přestaly svítit i indikační LED přímo na Arduinu.
-                Po hodinách zoufalého debugování jsem zjistil příčinu: 
-                <strong>vodivé zbytky tavidla tvořily zkraty a parazitní napěťové děliče</strong>.
+                <span class="cs-lang">Po prvním zapojení se Arduino chovalo naprosto nevyzpytatelně. Napětí na analogových vstupech kolísalo mezi 1 až 3 volty, když mělo být 5. Postupně zhasínaly různé moduly, až přestaly svítit i indikační LED přímo na Arduinu. Po hodinách zoufalého debugování jsem zjistil příčinu: <strong>vodivé zbytky tavidla tvořily zkraty a parazitní napěťové děliče</strong>.</span>
+                <span class="en-lang">After the first power-up, the Arduino behaved completely erratically. The voltage on the analog inputs fluctuated between 1 and 3 volts when it should have been 5. Various modules gradually turned off, until even the indicator LEDs directly on the Arduino stopped shining. After hours of desperate debugging, I found the cause: <strong>conductive flux residues were forming short circuits and parasitic voltage dividers</strong>.</span>
             </p>
 
             <p>
-                Následoval drastický pokus o záchranu projektu.
-                Celou desku i s připájenými součástkami jsem polil <strong>99% isopropylalkoholem</strong> a vydrhnul kartáčkem. 
-                Arduino si navíc prošlo půlhodinovou koupelí v horké vodě s Jarem. 
-                Po důkladném vysušení fénem obvod <strong>zázračně ožil a plně funguje</strong> 
-                (až na tlačítko v pravém joysticku, kde se při čištění utrhl opravný drátek).
+                <span class="cs-lang">Následoval drastický pokus o záchranu projektu. Celou desku i s připájenými součástkami jsem polil <strong>99% isopropylalkoholem</strong> a vydrhnul kartáčkem. Arduino si navíc prošlo půlhodinovou koupelí v horké vodě s Jarem. Po důkladném vysušení fénem obvod <strong>zázračně ožil a plně funguje</strong> (až na tlačítko v pravém joysticku, kde se při čištění utrhl opravný drátek).</span>
+                <span class="en-lang">A drastic attempt to save the project followed. I poured <strong>99% isopropyl alcohol</strong> over the entire board with the soldered components and scrubbed it with a brush. Furthermore, the Arduino went through a half-hour bath in hot water with dish soap. After thorough drying with a hair dryer, the circuit <strong>miraculously came back to life and works fully</strong> (except for the button in the right joystick, where a repair wire broke off during cleaning).</span>
             </p>
 
-            <h3>CAD návrh</h3>
+            <h3>
+                <span class="cs-lang">CAD návrh</span>
+                <span class="en-lang">CAD design</span>
+            </h3>
             <p>
-                Krabičku jsem modeloval ve <strong>Fusion 360</strong> s ohledem na příjemné držení v rukou a co nejmenší rozměry. 
-                DPS má v rozích otvory o průměru 2 mm, díky čemuž ji lze v krabičce uchytit pomocí čtyř <strong>M2 &times; 6 mm</strong> šroubků. 
-                Zespodu krabičky je otvor o rozměrech <strong>20 &times; 12,5 mm</strong>, do kterého je zatlačen kolébkový spínač.
-                Víko bylo nutné ladit na několik pokusů, aby všechny otvory perfektně lícovaly s ovládacími prvky. 
-                Abych viděl na LED měniče napětí a Bluetooth modulu, udělal jsem na obou stranách krytu otvory. 
-                Prázdné místo na krytu jsem vyplnil <strong>logem ČVUT</strong>, 
-                které jsem pomocí funkce <strong>Canvas</strong> vložil do roviny krytu a obkreslil pomocí <strong>Fit Point Spline</strong>. 
-                Víko je ke krabičce připevněno pomocí čtyř <strong>M2 &times; 8 mm</strong> šroubků.
+                <span class="cs-lang">Krabičku jsem modeloval ve <strong>Fusion 360</strong> s ohledem na příjemné držení v rukou a co nejmenší rozměry. DPS má v rozích otvory o průměru 2 mm, díky čemuž ji lze v krabičce uchytit pomocí čtyř <strong>M2 &times; 6 mm</strong> šroubků. Zespodu krabičky je otvor o rozměrech <strong>20 &times; 12,5 mm</strong>, do kterého je zatlačen kolébkový spínač. Víko bylo nutné ladit na několik pokusů, aby všechny otvory perfektně lícovaly s ovládacími prvky. Abych viděl na LED měniče napětí a Bluetooth modulu, udělal jsem na obou stranách krytu otvory. Prázdné místo na krytu jsem vyplnil <strong>logem ČVUT</strong>, které jsem pomocí funkce <strong>Canvas</strong> vložil do roviny krytu a obkreslil pomocí <strong>Fit Point Spline</strong>. Víko je ke krabičce připevněno pomocí čtyř <strong>M2 &times; 8 mm</strong> šroubků.</span>
+                <span class="en-lang">I modeled the case in <strong>Fusion 360</strong> with consideration for a comfortable grip and the smallest possible dimensions. The PCB has holes with a diameter of 2 mm in the corners, which allows it to be mounted in the case using four <strong>M2 &times; 6 mm</strong> screws. On the bottom of the case is a <strong>20 &times; 12.5 mm</strong> hole, into which the rocker switch is pressed. The lid had to be tuned over several attempts so that all holes perfectly aligned with the controls. To be able to see the LEDs of the voltage converter and the Bluetooth module, I made holes on both sides of the cover. I filled the empty space on the cover with the <strong>CTU logo</strong>, which I inserted into the cover plane using the <strong>Canvas</strong> function and traced using a <strong>Fit Point Spline</strong>. The lid is attached to the case using four <strong>M2 &times; 8 mm</strong> screws.</span>
             </p>
 
             <img src="media/JVC/SketchKrabicky.JPG" alt="Sketch krabičky ve Fusion 360" class="project-image" loading="lazy">
@@ -231,48 +323,77 @@
             <img src="media/JVC/OvladaniModel.JPG" alt="Model krytu ovládání ve Fusion 360" class="project-image" loading="lazy">
 
             <p>
-                Jelikož se tlačítka a potenciometry nacházejí pod úrovní víka, bylo nutné vymodelovat <strong>nástavce</strong>. 
-                Knoflíky pro tlačítka jsem stáhl z 
-                <a href="https://www.printables.com/model/367373-tactile-switch-push-button-cap-12x12" target="_blank">GrabCAD</a> 
-                a následně jsem je ve Fusion 360 prodloužil na 16 mm.
-                Nástavec na potenciometry jsem tvořil sám. 
-                Do potenciometru zapadne díky kruhovému otvoru o průměru 6,1 mm, ve kterém je příčka o tloušťce 0,9 mm.
+                <span class="cs-lang">Jelikož se tlačítka a potenciometry nacházejí pod úrovní víka, bylo nutné vymodelovat <strong>nástavce</strong>. Knoflíky pro tlačítka jsem stáhl z <a href="https://www.printables.com/model/367373-tactile-switch-push-button-cap-12x12" target="_blank">GrabCAD</a> a následně jsem je ve Fusion 360 prodloužil na 16 mm. Nástavec na potenciometry jsem tvořil sám. Do potenciometru zapadne díky kruhovému otvoru o průměru 6,1 mm, ve kterém je příčka o tloušťce 0,9 mm.</span>
+                <span class="en-lang">Since the buttons and potentiometers are located below the lid level, it was necessary to model <strong>extensions</strong>. I downloaded the button caps from <a href="https://www.printables.com/model/367373-tactile-switch-push-button-cap-12x12" target="_blank">GrabCAD</a> and then lengthened them to 16 mm in Fusion 360. I created the potentiometer extension myself. It fits onto the potentiometer thanks to a circular hole with a diameter of 6.1 mm, which contains a 0.9 mm thick crossbar.</span>
             </p>
 
             <img src="media/JVC/TlacitkoModel.JPG" alt="Model nasazovacího knoflíku na tlačítko" class="project-image" loading="lazy">
             <img src="media/JVC/KroutitkoModel.JPG" alt="Model Nástavce na potenciometr" class="project-image" loading="lazy">
 
-            <h3>3D tisk</h3>
+            <h3>
+                <span class="cs-lang">3D tisk</span>
+                <span class="en-lang">3D printing</span>
+            </h3>
             <p>
-                Hotové modely jsem vyexportoval z Fusionu (Utilities -> 3D print) do <strong>formátu 3MF</strong> a naslicoval v programu <strong>Bambu Studio</strong>. 
-                Jako materiál jsem vybral <strong>PLA</strong> a tiskl jsem na tiskárně <strong>Bambu Lab A1 Mini</strong> s <strong>0,4 mm tryskou</strong> při následujícím nastavení:
+                <span class="cs-lang">Hotové modely jsem vyexportoval z Fusionu (Utilities -> 3D print) do <strong>formátu 3MF</strong> a naslicoval v programu <strong>Bambu Studio</strong>. Jako materiál jsem vybral <strong>PLA</strong> a tiskl jsem na tiskárně <strong>Bambu Lab A1 Mini</strong> s <strong>0,4 mm tryskou</strong> při následujícím nastavení:</span>
+                <span class="en-lang">I exported the finished models from Fusion (Utilities -> 3D print) into the <strong>3MF format</strong> and sliced them in the <strong>Bambu Studio</strong> program. I chose <strong>PLA</strong> as the material and printed on the <strong>Bambu Lab A1 Mini</strong> printer with a <strong>0.4 mm nozzle</strong> using the following settings:</span>
             </p>
             
             <ul>
-                <li><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</li>
-                <li><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</li>
-                <li><strong>Bed temperature (teplota podložky):</strong> 65 °C</li>
-                <li><strong>Wall loops (perimetry):</strong> 2</li>
-                <li><strong>Sparse infill density (hustota výplně):</strong> 15 %</li>
-                <li><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</li>
-                <li><strong>Outer wall speed (rychlost vnější stěny):</strong> 60 mm/s</li>
+                <li>
+                    <span class="cs-lang"><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</span>
+                    <span class="en-lang"><strong>Profile:</strong> 0.20 mm Standard @BBL A1M</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</span>
+                    <span class="en-lang"><strong>Nozzle temperature:</strong> 210 °C</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bed temperature (teplota podložky):</strong> 65 °C</span>
+                    <span class="en-lang"><strong>Bed temperature:</strong> 65 °C</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Wall loops (perimetry):</strong> 2</span>
+                    <span class="en-lang"><strong>Wall loops:</strong> 2</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Sparse infill density (hustota výplně):</strong> 15 %</span>
+                    <span class="en-lang"><strong>Sparse infill density:</strong> 15 %</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</span>
+                    <span class="en-lang"><strong>Sparse infill pattern:</strong> Gyroid</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Outer wall speed (rychlost vnější stěny):</strong> 60 mm/s</span>
+                    <span class="en-lang"><strong>Outer wall speed:</strong> 60 mm/s</span>
+                </li>
             </ul>
             
             <p>
-                Zbylá nastavení jsem ponechal na výchozích hodnotách vybraného tiskového profilu.
+                <span class="cs-lang">Zbylá nastavení jsem ponechal na výchozích hodnotách vybraného tiskového profilu.</span>
+                <span class="en-lang">I left the remaining settings at the default values of the selected print profile.</span>
             </p>
 
             <p>
-                Pro otvor kolébkového spínače bylo potřeba vygenerovat podpěry. Zvolil jsem následující nastavení podpěr:
+                <span class="cs-lang">Pro otvor kolébkového spínače bylo potřeba vygenerovat podpěry. Zvolil jsem následující nastavení podpěr:</span>
+                <span class="en-lang">Supports needed to be generated for the rocker switch hole. I chose the following support settings:</span>
             </p>
 
             <ul>
-                <li><strong>Type (typ):</strong> Tree (auto)</li>
-                <li><strong>Top Z distance (mezera v ose Z):</strong> 0,25 mm</li>
+                <li>
+                    <span class="cs-lang"><strong>Type (typ):</strong> Tree (auto)</span>
+                    <span class="en-lang"><strong>Type:</strong> Tree (auto)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top Z distance (mezera v ose Z):</strong> 0,25 mm</span>
+                    <span class="en-lang"><strong>Top Z distance:</strong> 0.25 mm</span>
+                </li>
             </ul>
 
             <p>
-                Ostatní nastavení podpěr zůstalo výchozí.
+                <span class="cs-lang">Ostatní nastavení podpěr zůstalo výchozí.</span>
+                <span class="en-lang">Other support settings remained default.</span>
             </p>
 
             <img src="media/JVC/KrytBambuStudio.JPG" alt="Model krytu v Bambu Studiu" class="project-image" loading="lazy">
@@ -282,21 +403,26 @@
             <img src="media/JVC/KrytNaTiskarne.JPG" alt="Vytištěný kryt" class="project-image" loading="lazy">
             <img src="media/JVC/ElektronikaVKrabicce.JPG" alt="Elektronika zasazená do krabičky" class="project-image" loading="lazy">
 
-            <h3>Programování (Arduino IDE)</h3>
+            <h3>
+                <span class="cs-lang">Programování (Arduino IDE)</span>
+                <span class="en-lang">Programming (Arduino IDE)</span>
+            </h3>
             <p>
-                Kód se stará o vizualizaci vstupů na OLED displeji, k čemuž používá  knihovnu <strong>U8g2</strong>. 
-                Pohyb joysticků je znázorněn kruhy, které se při stisku vyplní. 
-                Stav tlačítek je v horní části a potenciometry jsou zobrazeny jako čtyři sloupcové grafy uprostřed.
+                <span class="cs-lang">Kód se stará o vizualizaci vstupů na OLED displeji, k čemuž používá  knihovnu <strong>U8g2</strong>. Pohyb joysticků je znázorněn kruhy, které se při stisku vyplní. Stav tlačítek je v horní části a potenciometry jsou zobrazeny jako čtyři sloupcové grafy uprostřed.</span>
+                <span class="en-lang">The code takes care of visualizing the inputs on the OLED display, for which it uses the <strong>U8g2</strong> library. The movement of the joysticks is represented by circles that fill up when pressed. The state of the buttons is at the top, and the potentiometers are displayed as four bar graphs in the middle.</span>
             </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C++</span>
-                        <span class="language-label">kontroler.ino</span>
+                        <span class="language-label">hexapod_remote_control.ino</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                 
                 <div class="code-content">            
@@ -432,7 +558,8 @@ void loop() {
             </div>
 
             <p>
-                A nakonec fotka hotového dálkového ovládání pro hexapoda:
+                <span class="cs-lang">A nakonec fotka hotového dálkového ovládání pro hexapoda:</span>
+                <span class="en-lang">And finally, a photo of the finished hexapod remote control:</span>
             </p>
 
             <img src="media/JVC/HotoveOvladani.JPG" alt="Hotový model dálkového ovládání" class="project-image" loading="lazy">
@@ -443,7 +570,6 @@ void loop() {
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // vsechny bloky kodu
             const codeContainers = document.querySelectorAll('.code-container');
         
             codeContainers.forEach(container => {
@@ -452,43 +578,71 @@ void loop() {
                 const codeContent = container.querySelector('.code-content');
                 const codeBlock = container.querySelector('code');
         
-                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
-                codeContent.classList.add('collapsed');
-                toggleBtn.textContent = '▶\uFE0E';
-        
-                // prepinani viditelnosti
-                toggleBtn.addEventListener('click', () => {
-                    codeContent.classList.toggle('collapsed');
-                    
-                    // zmena ikony (přidán znak \uFE0E pro ignorování emoji na mobilech)
-                    if (codeContent.classList.contains('collapsed')) {
-                        toggleBtn.textContent = '▶\uFE0E'; 
-                    } else {
-                        toggleBtn.textContent = '▼\uFE0E';
-                    }
-                });
-        
-                // kopirovani
-                copyBtn.addEventListener('click', () => {
-                    const textToCopy = codeBlock.innerText;
-                    
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        // vizualni zpetna vazba
-                        const originalText = copyBtn.textContent;
-                        copyBtn.textContent = 'Zkopírováno';
-                        copyBtn.style.color = '#28a745';
+                if(codeContent && toggleBtn && copyBtn) {
+                    codeContent.classList.add('collapsed');
+                    toggleBtn.textContent = '▶\uFE0E';
+            
+                    toggleBtn.addEventListener('click', () => {
+                        codeContent.classList.toggle('collapsed');
                         
-                        // navrat do puvodniho stavu
-                        setTimeout(() => {
-                            copyBtn.textContent = originalText;
-                            copyBtn.style.color = '';
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('chyba ', err);
-                        copyBtn.textContent = 'Chyba!';
+                        if (codeContent.classList.contains('collapsed')) {
+                            toggleBtn.textContent = '▶\uFE0E'; 
+                        } else {
+                            toggleBtn.textContent = '▼\uFE0E';
+                        }
                     });
-                });
+            
+                    copyBtn.addEventListener('click', () => {
+                        const textToCopy = codeBlock.innerText;
+                        
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalText = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<span class="cs-lang">Zkopírováno</span><span class="en-lang">Copied</span>';
+                            copyBtn.style.color = '#28a745';
+                            
+                            setTimeout(() => {
+                                copyBtn.innerHTML = originalText;
+                                copyBtn.style.color = '';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('chyba ', err);
+                            copyBtn.innerHTML = '<span class="cs-lang">Chyba!</span><span class="en-lang">Error!</span>';
+                        });
+                    });
+                }
             });
+        });
+
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.textContent = '🌙';
+            }
+        });
+
+        const langBtn = document.getElementById('lang-toggle');
+        if (localStorage.getItem('lang') === 'en') {
+            document.body.classList.add('lang-en');
+            langBtn.textContent = 'CS';
+        }
+        langBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lang-en');
+            if (document.body.classList.contains('lang-en')) {
+                localStorage.setItem('lang', 'en');
+                langBtn.textContent = 'CS';
+            } else {
+                localStorage.setItem('lang', 'cs');
+                langBtn.textContent = 'EN';
+            }
         });
     </script>
     

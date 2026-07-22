@@ -3,152 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6. týden | Štěpán Blaha</title>
+    <title>Week 6 | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 </head>
 <body>
 
     <nav>
-        <a href="index.html">Domů</a>
-        <a href="omne.html">O mně</a>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
     </nav>
 
     <div class="main-wrapper">
         
         <aside class="sidebar">
-            <a href="tyden1.html">1. týden</a>
-            <a href="tyden2.html">2. týden</a>
-            <a href="tyden3.html">3. týden</a>
-            <a href="tyden4.html">4. týden</a>
-            <a href="tyden5.html">5. týden</a>
-            <a href="tyden6.html" class="active">6. týden</a>
-            <a href="tyden7.html">7. týden</a>
-            <a href="tyden8.html">8. týden</a>
-            <a href="tyden9.html">9. týden</a>
-            <a href="tyden10.html">10. týden</a>
-            <a href="tyden11a12.html">11. a 12. týden</a>
-            <a href="tyden13.html">13. týden</a>
-            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html" class="active">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
         </aside>
 
         <main class="content">
-            <h1>6. týden: Senzory a vstupní zařízení</h1>
+            <h1>
+                <span class="cs-lang">6. týden: Senzory a vstupní zařízení</span>
+                <span class="en-lang">Week 6: Sensors and Input Devices</span>
+            </h1>
             <p>
-                Během šestého týdne bylo úkolem použít nějaký <strong>senzor pro měření fyzikální veličiny</strong> pomocí <strong>Arduina</strong>.<br><br>
+                <span class="cs-lang">Během šestého týdne bylo úkolem použít nějaký <strong>senzor pro měření fyzikální veličiny</strong> pomocí <strong>Arduina</strong>.<br><br></span>
+                <span class="en-lang">During the sixth week, the task was to use a <strong>sensor to measure a physical quantity</strong> using an <strong>Arduino</strong>.<br><br></span>
             </p>
 
-            <h2>Měření teploty a hloubky</h2>
+            <h2>
+                <span class="cs-lang">Měření teploty a hloubky</span>
+                <span class="en-lang">Temperature and depth measurement</span>
+            </h2>
 
             <p>
-                Doma jsem měl nevyužitý <strong>senzor teploty</strong> a <strong>senzor absolutního tlaku</strong>, tak jsem se rozhodl postavit přístroj na měření <strong>teploty kapaliny</strong> a <strong>hloubky ponoření</strong> sondy. 
-                Mozkem zařízení je <strong>Arduino Nano</strong> napájené z počítače přes <strong>USB</strong>. 
-                Naměřená data se zobrazují na <strong>OLED displeji</strong> a zároveň se ukládají na <strong>SD kartu</strong> pro pozdější zpracování a tvorbu grafů. 
-                Měření a zápis dat lze bezpečně ukončit stisknutím <strong>tlačítka</strong>.
+                <span class="cs-lang">Doma jsem měl nevyužitý <strong>senzor teploty</strong> a <strong>senzor absolutního tlaku</strong>, tak jsem se rozhodl postavit přístroj na měření <strong>teploty kapaliny</strong> a <strong>hloubky ponoření</strong> sondy. Mozkem zařízení je <strong>Arduino Nano</strong> napájené z počítače přes <strong>USB</strong>. Naměřená data se zobrazují na <strong>OLED displeji</strong> a zároveň se ukládají na <strong>SD kartu</strong> pro pozdější zpracování a tvorbu grafů. Měření a zápis dat lze bezpečně ukončit stisknutím <strong>tlačítka</strong>.</span>
+                <span class="en-lang">I had an unused <strong>temperature sensor</strong> and an <strong>absolute pressure sensor</strong> at home, so I decided to build a device for measuring <strong>liquid temperature</strong> and the <strong>immersion depth</strong> of the probe. The brain of the device is an <strong>Arduino Nano</strong> powered from a computer via <strong>USB</strong>. The measured data is displayed on an <strong>OLED display</strong> and simultaneously saved to an <strong>SD card</strong> for later processing and graph creation. Measurement and data recording can be safely terminated by pressing a <strong>button</strong>.</span>
             </p>
             
-            <h3>Zapojení</h3>
+            <h3>
+                <span class="cs-lang">Zapojení</span>
+                <span class="en-lang">Wiring</span>
+            </h3>
 
             <p>
-                <strong>Seznam použitých součástek:</strong>
+                <span class="cs-lang"><strong>Seznam použitých součástek:</strong></span>
+                <span class="en-lang"><strong>List of used components:</strong></span>
             </p>
             <ul>
-                <li>Univerzální nepájivé pole</li>
-                <li>Arduino Nano (klon)</li>
-                <li>Vodotěsný teploměr DS18B20</li>
-                <li>4,7kΩ rezistor</li>
-                <li>MPRLS - tlakový senzor 172kPa I2C 3-5V - Adafruit 3965</li>
-                <li>I2C OLED displej 0,96" bílý 128 &times; 64</li>
-                <li>MicroSD Card modul SPI</li>
-                <li>32 GB MicroSD karta Lexar</li>
-                <li>MicroSD adaptér Kingston</li>
-                <li>Čtečka paměťových karet SanDisk</li>
-                <li>Tlačítko TC-1212T (12 &times; 12 &times; 7.3 mm)</li>
-                <li>LEGO trubička</li>
+                <li>
+                    <span class="cs-lang">Univerzální nepájivé pole</span>
+                    <span class="en-lang">Universal breadboard</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Arduino Nano (klon)</span>
+                    <span class="en-lang">Arduino Nano (clone)</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Vodotěsný teploměr DS18B20</span>
+                    <span class="en-lang">Waterproof thermometer DS18B20</span>
+                </li>
+                <li>
+                    <span class="cs-lang">4,7kΩ rezistor</span>
+                    <span class="en-lang">4.7kΩ resistor</span>
+                </li>
+                <li>
+                    <span class="cs-lang">MPRLS - tlakový senzor 172kPa I2C 3-5V - Adafruit 3965</span>
+                    <span class="en-lang">MPRLS - pressure sensor 172kPa I2C 3-5V - Adafruit 3965</span>
+                </li>
+                <li>
+                    <span class="cs-lang">I2C OLED displej 0,96" bílý 128 &times; 64</span>
+                    <span class="en-lang">I2C OLED display 0.96" white 128 &times; 64</span>
+                </li>
+                <li>
+                    <span class="cs-lang">MicroSD Card modul SPI</span>
+                    <span class="en-lang">MicroSD Card module SPI</span>
+                </li>
+                <li>
+                    <span class="cs-lang">32 GB MicroSD karta Lexar</span>
+                    <span class="en-lang">32 GB MicroSD card Lexar</span>
+                </li>
+                <li>
+                    <span class="cs-lang">MicroSD adaptér Kingston</span>
+                    <span class="en-lang">MicroSD adapter Kingston</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Čtečka paměťových karet SanDisk</span>
+                    <span class="en-lang">Memory card reader SanDisk</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Tlačítko TC-1212T (12 &times; 12 &times; 7.3 mm)</span>
+                    <span class="en-lang">TC-1212T Button (12 &times; 12 &times; 7.3 mm)</span>
+                </li>
+                <li>
+                    <span class="cs-lang">LEGO trubička</span>
+                    <span class="en-lang">LEGO tube</span>
+                </li>
             </ul>
 
             <img src="media/JVC/Soucastky6.JPG" alt="Fotka použitých součástek" class="project-image" loading="lazy">
             <img src="media/JVC/SDkartaPrislusentsvi.JPG" alt="SDkarta a její adaptéry" class="project-image" loading="lazy">
 
             <p>
-                Teplotní sonda využívá jednovodičovou sběrnici <strong>OneWire</strong>. 
-                Pro její správné fungování je nutné zapojit <strong>4,7kΩ pull-up rezistor</strong> mezi napájecí a datový pin. 
-                Senzor tlaku <strong>MPRLS</strong> a <strong>OLED displej</strong> komunikují přes protokol <strong>I2C</strong> (dva vodiče - datový SDA a hodinový SCL). 
-                Modul čtečky <strong>SD karet</strong> je připojen přes rozhraní <strong>SPI</strong> (čtyři vodiče - data do karty MOSI, data z karty MISO, hodinový signál SCK a Chip Select CS).
+                <span class="cs-lang">Teplotní sonda využívá jednovodičovou sběrnici <strong>OneWire</strong>. Pro její správné fungování je nutné zapojit <strong>4,7kΩ pull-up rezistor</strong> mezi napájecí a datový pin. Senzor tlaku <strong>MPRLS</strong> a <strong>OLED displej</strong> komunikují přes protokol <strong>I2C</strong> (dva vodiče - datový SDA a hodinový SCL). Modul čtečky <strong>SD karet</strong> je připojen přes rozhraní <strong>SPI</strong> (čtyři vodiče - data do karty MOSI, data z karty MISO, hodinový signál SCK a Chip Select CS).</span>
+                <span class="en-lang">The temperature probe uses a <strong>OneWire</strong> single-wire bus. For its proper functioning, it is necessary to connect a <strong>4.7kΩ pull-up resistor</strong> between the power and data pins. The <strong>MPRLS</strong> pressure sensor and the <strong>OLED display</strong> communicate via the <strong>I2C</strong> protocol (two wires - data SDA and clock SCL). The <strong>SD card</strong> reader module is connected via the <strong>SPI</strong> interface (four wires - data to card MOSI, data from card MISO, clock signal SCK, and Chip Select CS).</span>
             </p>
 
             <p>
-                Zapojení jsem navrhl v programu <strong>KiCAD</strong>. 
-                Součástky jako <strong>Arduino Nano</strong> (<code>Arduino_Nano_Every</code> z knihovny <code>MCU_Module</code>), 
-                teplotní senzor <strong>DS18B20</strong> (<code>DS18B20</code>), tlačítko (<code>SW_Push</code>) 
-                a rezistor (<code>R</code>) jsou již součástí základních knihoven programu. 
-                Symboly pro ostatní moduly lze stáhnout z internetu, případně je ve schématu nahradit standardními 
-                <strong>kolíkovými lištami</strong> (např. <code>Conn_01x04_Socket</code> pro OLED displej).
+                <span class="cs-lang">Zapojení jsem navrhl v programu <strong>KiCAD</strong>. Součástky jako <strong>Arduino Nano</strong> (<code>Arduino_Nano_Every</code> z knihovny <code>MCU_Module</code>), teplotní senzor <strong>DS18B20</strong> (<code>DS18B20</code>), tlačítko (<code>SW_Push</code>) a rezistor (<code>R</code>) jsou již součástí základních knihoven programu. Symboly pro ostatní moduly lze stáhnout z internetu, případně je ve schématu nahradit standardními <strong>kolíkovými lištami</strong> (např. <code>Conn_01x04_Socket</code> pro OLED displej).</span>
+                <span class="en-lang">I designed the wiring in the <strong>KiCAD</strong> program. Components like the <strong>Arduino Nano</strong> (<code>Arduino_Nano_Every</code> from the <code>MCU_Module</code> library), the <strong>DS18B20</strong> temperature sensor (<code>DS18B20</code>), the button (<code>SW_Push</code>), and the resistor (<code>R</code>) are already part of the program's basic libraries. Symbols for other modules can be downloaded from the internet, or replaced in the schematic with standard <strong>pin headers</strong> (e.g., <code>Conn_01x04_Socket</code> for the OLED display).</span>
             </p>
             
             <img src="media/JVC/Schema6.JPG" alt="Schema projektu v programu KiCAD" class="project-image" loading="lazy">
 
             <p>
-                Teplotní sonda se standardně prodává s několikametrovým kabelem. 
-                Pro snadnější zapojení do <strong>nepájivého pole</strong> (breadboardu) jsem kabel zkrátil a na jeho konce připájel <strong>kolíkové piny</strong>.
+                <span class="cs-lang">Teplotní sonda se standardně prodává s několikametrovým kabelem. Pro snadnější zapojení do <strong>nepájivého pole</strong> (breadboardu) jsem kabel zkrátil a na jeho konce připájel <strong>kolíkové piny</strong>.</span>
+                <span class="en-lang">The temperature probe is normally sold with a several-meter-long cable. For easier connection to the <strong>breadboard</strong>, I shortened the cable and soldered <strong>header pins</strong> to its ends.</span>
             </p>
 
             <img src="media/JVC/SentorTeplotyDratky.JPG" alt="Zkrácený teplotní senzor a drátky" class="project-image" loading="lazy">
             <img src="media/JVC/SenzorTeplotySpajeny.JPG" alt="Teplotní senzor s připájenými drátky" class="project-image" loading="lazy">
 
             <p>
-                Poté jsem obvod zapojil podle připraveného <strong>schématu</strong>.
+                <span class="cs-lang">Poté jsem obvod zapojil podle připraveného <strong>schématu</strong>.</span>
+                <span class="en-lang">Then I wired the circuit according to the prepared <strong>schematic</strong>.</span>
             </p>
 
             <img src="media/JVC/Breadboard.JPG" alt="Projekt zapojený na breadboardu" class="project-image" loading="lazy">
 
-            <h3>Kód</h3>
+            <h3>
+                <span class="cs-lang">Kód</span>
+                <span class="en-lang">Code</span>
+            </h3>
 
             <p>
-                Kód je napsán v prostředí <strong>Arduino IDE</strong>. 
-                Program v pravidelných <strong>800ms intervalech</strong> vyčítá hodnoty teploty z <strong>teplotní sondy</strong> a absolutního tlaku z <strong>I2C senzoru</strong>. 
-                Z naměřeného tlaku a referenční hodnoty pak vypočítává <strong>hloubku ponoru</strong> podle vzorce:
+                <span class="cs-lang">Kód je napsán v prostředí <strong>Arduino IDE</strong>. Program v pravidelných <strong>800ms intervalech</strong> vyčítá hodnoty teploty z <strong>teplotní sondy</strong> a absolutního tlaku z <strong>I2C senzoru</strong>. Z naměřeného tlaku a referenční hodnoty pak vypočítává <strong>hloubku ponoru</strong> podle vzorce:</span>
+                <span class="en-lang">The code is written in the <strong>Arduino IDE</strong> environment. The program reads temperature values from the <strong>temperature probe</strong> and absolute pressure from the <strong>I2C sensor</strong> at regular <strong>800ms intervals</strong>. From the measured pressure and the reference value, it then calculates the <strong>immersion depth</strong> according to the formula:</span>
             </p>  
 
             <img src="media/JVC/Vzorec.JPG" alt="Vzorec pro výpočet hloubky z tlaku" class="project-image-noborder" loading="lazy">
 
             <ul>
-                <li><i>h</i> - hloubka ponoření [m]</li>
-                <li><i>P</i> - tlak naměřený pod hladinou [Pa]</li>
-                <li><i>P</i><sub>ref</sub> - referenční atmosférický tlak na hladině [Pa]</li>
-                <li><i>&rho;</i> - hustota kapaliny [kg/m&sup3;]</li>
-                <li><i>g</i> - tíhové zrychlení [m/s&sup2;]</li>
+                <li>
+                    <span class="cs-lang"><i>h</i> - hloubka ponoření [m]</span>
+                    <span class="en-lang"><i>h</i> - immersion depth [m]</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><i>P</i> - tlak naměřený pod hladinou [Pa]</span>
+                    <span class="en-lang"><i>P</i> - pressure measured below the surface [Pa]</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><i>P</i><sub>ref</sub> - referenční atmosférický tlak na hladině [Pa]</span>
+                    <span class="en-lang"><i>P</i><sub>ref</sub> - reference atmospheric pressure at the surface [Pa]</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><i>&rho;</i> - hustota kapaliny [kg/m&sup3;]</span>
+                    <span class="en-lang"><i>&rho;</i> - liquid density [kg/m&sup3;]</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><i>g</i> - tíhové zrychlení [m/s&sup2;]</span>
+                    <span class="en-lang"><i>g</i> - gravitational acceleration [m/s&sup2;]</span>
+                </li>
             </ul>
 
             <p>
-                Získaná data se průběžně zobrazují na <strong>OLED displeji</strong> a ukládají do <strong>CSV souboru</strong> na <strong>SD kartu</strong>. 
-                Stiskem <strong>tlačítka</strong> lze měření a zápis na kartu bezpečně ukončit.
+                <span class="cs-lang">Získaná data se průběžně zobrazují na <strong>OLED displeji</strong> a ukládají do <strong>CSV souboru</strong> na <strong>SD kartu</strong>. Stiskem <strong>tlačítka</strong> lze měření a zápis na kartu bezpečně ukončit.</span>
+                <span class="en-lang">The acquired data is continuously displayed on the <strong>OLED display</strong> and saved to a <strong>CSV file</strong> on the <strong>SD card</strong>. By pressing the <strong>button</strong>, measurement and saving to the card can be safely terminated.</span>
             </p>
 
             <p>
-                <strong>Použité knihovny:</strong>
+                <span class="cs-lang"><strong>Použité knihovny:</strong></span>
+                <span class="en-lang"><strong>Used libraries:</strong></span>
             </p>
             <ul>
-                <li>Wire - sběrnice I2C pro senzor tlaku a OLED displej</li>
-                <li>Adafruit_MPRLS - senzor tlaku</li>
-                <li>OneWire - sběrnice 1-Wire pro teplotní senzor</li>
-                <li>SPI - sběrnice SPI pro čtečku SD karet</li>
-                <li>SD - modul čtečky SD karet</li>
-                <li>U8x8lib - OLED displej</li>
+                <li>
+                    <span class="cs-lang">Wire - sběrnice I2C pro senzor tlaku a OLED displej</span>
+                    <span class="en-lang">Wire - I2C bus for the pressure sensor and OLED display</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Adafruit_MPRLS - senzor tlaku</span>
+                    <span class="en-lang">Adafruit_MPRLS - pressure sensor</span>
+                </li>
+                <li>
+                    <span class="cs-lang">OneWire - sběrnice 1-Wire pro teplotní senzor</span>
+                    <span class="en-lang">OneWire - 1-Wire bus for the temperature sensor</span>
+                </li>
+                <li>
+                    <span class="cs-lang">SPI - sběrnice SPI pro čtečku SD karet</span>
+                    <span class="en-lang">SPI - SPI bus for the SD card reader</span>
+                </li>
+                <li>
+                    <span class="cs-lang">SD - modul čtečky SD karet</span>
+                    <span class="en-lang">SD - SD card reader module</span>
+                </li>
+                <li>
+                    <span class="cs-lang">U8x8lib - OLED displej</span>
+                    <span class="en-lang">U8x8lib - OLED display</span>
+                </li>
             </ul>
 
             <p>
-                Kód v Arduinu:
+                <span class="cs-lang">Kód v Arduinu:</span>
+                <span class="en-lang">Code in Arduino:</span>
             </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">C++</span>
-                        <span class="language-label">mereni_teploty_hloubky.ino</span>
+                        <span class="language-label">measure_temperature_depth.ino</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                 
                 <div class="code-content">
@@ -302,19 +431,21 @@ void updateDisplay() {
             </div>
 
             <p>
-                Pro následné zpracování dat na počítači jsem vytvořil <strong>Python skript</strong>. 
-                Ten načte soubor <code>DATA.csv</code>, převede hodnoty hloubky z metrů na <strong>milimetry</strong> a na data aplikuje <strong>klouzavý průměr</strong> (s oknem o velikosti 5 vzorků), čímž se vyhladí <strong>šum měření</strong>. 
-                Nakonec pomocí knihovny <strong>Matplotlib</strong> vykreslí grafy pro <strong>teplotu</strong> a <strong>hloubku</strong>.
+                <span class="cs-lang">Pro následné zpracování dat na počítači jsem vytvořil <strong>Python skript</strong>. Ten načte soubor <code>DATA.csv</code>, převede hodnoty hloubky z metrů na <strong>milimetry</strong> a na data aplikuje <strong>klouzavý průměr</strong> (s oknem o velikosti 5 vzorků), čímž se vyhladí <strong>šum měření</strong>. Nakonec pomocí knihovny <strong>Matplotlib</strong> vykreslí grafy pro <strong>teplotu</strong> a <strong>hloubku</strong>.</span>
+                <span class="en-lang">For subsequent data processing on a computer, I created a <strong>Python script</strong>. It reads the <code>DATA.csv</code> file, converts depth values from meters to <strong>millimeters</strong>, and applies a <strong>moving average</strong> (with a window size of 5 samples) to the data, which smooths out the <strong>measurement noise</strong>. Finally, using the <strong>Matplotlib</strong> library, it plots graphs for <strong>temperature</strong> and <strong>depth</strong>.</span>
             </p>
 
             <div class="code-container">
                 <div class="code-header">
                     <div class="code-info">
-                        <button class="toggle-btn" title="Rozbalit/Sbalit kód">▼</button>
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
                         <span class="lang-badge">Python</span>
-                        <span class="language-label">zpracovani_dat.py</span>
+                        <span class="language-label">process_data.py</span>
                     </div>
-                    <button class="copy-btn">Kopírovat</button>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
                 </div>
                 
                 <div class="code-content">            
@@ -366,13 +497,14 @@ plt.show()
             </div>
         </div>
 
-        <h3>Měření hloubky a teploty vody ve sklenici</h3>
+        <h3>
+            <span class="cs-lang">Měření hloubky a teploty vody ve sklenici</span>
+            <span class="en-lang">Measuring the depth and temperature of water in a glass</span>
+        </h3>
 
         <p>
-            Funkčnost přístroje jsem otestoval ve sklenici s teplou vodou. 
-            Měření hloubky je velmi <strong>přesné</strong> (s odchylkou zhruba do ±2 mm). 
-            Zjistil jsem však, že po vytažení z vody zůstává konec <strong>měřicí trubičky</strong> zaplněn několika milimetry vody. 
-            Pokud se trubička před dalším měřením <strong>nevyfoukne</strong>, dojde ke špatnému stanovení <strong>referenčního atmosférického tlaku</strong> při kalibraci a všechny následně měřené hodnoty jsou pak <strong>posunuté</strong>.
+            <span class="cs-lang">Funkčnost přístroje jsem otestoval ve sklenici s teplou vodou. Měření hloubky je velmi <strong>přesné</strong> (s odchylkou zhruba do ±2 mm). Zjistil jsem však, že po vytažení z vody zůstává konec <strong>měřicí trubičky</strong> zaplněn několika milimetry vody. Pokud se trubička před dalším měřením <strong>nevyfoukne</strong>, dojde ke špatnému stanovení <strong>referenčního atmosférického tlaku</strong> při kalibraci a všechny následně měřené hodnoty jsou pak <strong>posunuté</strong>.</span>
+            <span class="en-lang">I tested the device's functionality in a glass of warm water. The depth measurement is very <strong>accurate</strong> (with a deviation of roughly up to ±2 mm). However, I found that after pulling it out of the water, the end of the <strong>measuring tube</strong> remains filled with a few millimeters of water. If the tube is not <strong>blown out</strong> before the next measurement, the <strong>reference atmospheric pressure</strong> is incorrectly determined during calibration, and all subsequently measured values are then <strong>shifted</strong>.</span>
         </p>
 
         <img src="media/JVC/Displej.JPG" alt="Displej zobrazující měřené hodnoty" class="project-image" loading="lazy">
@@ -388,7 +520,6 @@ plt.show()
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // vsechny bloky kodu
             const codeContainers = document.querySelectorAll('.code-container');
         
             codeContainers.forEach(container => {
@@ -397,43 +528,71 @@ plt.show()
                 const codeContent = container.querySelector('.code-content');
                 const codeBlock = container.querySelector('code');
         
-                // vychozi stav je zabaleny (přidán znak \uFE0E pro ignorování emoji na mobilech)
-                codeContent.classList.add('collapsed');
-                toggleBtn.textContent = '▶\uFE0E';
-        
-                // prepinani viditelnosti
-                toggleBtn.addEventListener('click', () => {
-                    codeContent.classList.toggle('collapsed');
-                    
-                    // zmena ikony (přidán znak \uFE0E pro ignorování emoji na mobilech)
-                    if (codeContent.classList.contains('collapsed')) {
-                        toggleBtn.textContent = '▶\uFE0E'; 
-                    } else {
-                        toggleBtn.textContent = '▼\uFE0E';
-                    }
-                });
-        
-                // kopirovani
-                copyBtn.addEventListener('click', () => {
-                    const textToCopy = codeBlock.innerText;
-                    
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        // vizualni zpetna vazba
-                        const originalText = copyBtn.textContent;
-                        copyBtn.textContent = 'Zkopírováno';
-                        copyBtn.style.color = '#28a745';
+                if(codeContent && toggleBtn && copyBtn) {
+                    codeContent.classList.add('collapsed');
+                    toggleBtn.textContent = '▶\uFE0E';
+            
+                    toggleBtn.addEventListener('click', () => {
+                        codeContent.classList.toggle('collapsed');
                         
-                        // navrat do puvodniho stavu
-                        setTimeout(() => {
-                            copyBtn.textContent = originalText;
-                            copyBtn.style.color = '';
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('chyba ', err);
-                        copyBtn.textContent = 'Chyba!';
+                        if (codeContent.classList.contains('collapsed')) {
+                            toggleBtn.textContent = '▶\uFE0E'; 
+                        } else {
+                            toggleBtn.textContent = '▼\uFE0E';
+                        }
                     });
-                });
+            
+                    copyBtn.addEventListener('click', () => {
+                        const textToCopy = codeBlock.innerText;
+                        
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalText = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<span class="cs-lang">Zkopírováno</span><span class="en-lang">Copied</span>';
+                            copyBtn.style.color = '#28a745';
+                            
+                            setTimeout(() => {
+                                copyBtn.innerHTML = originalText;
+                                copyBtn.style.color = '';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('chyba ', err);
+                            copyBtn.innerHTML = '<span class="cs-lang">Chyba!</span><span class="en-lang">Error!</span>';
+                        });
+                    });
+                }
             });
+        });
+
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.textContent = '🌙';
+            }
+        });
+
+        const langBtn = document.getElementById('lang-toggle');
+        if (localStorage.getItem('lang') === 'en') {
+            document.body.classList.add('lang-en');
+            langBtn.textContent = 'CS';
+        }
+        langBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lang-en');
+            if (document.body.classList.contains('lang-en')) {
+                localStorage.setItem('lang', 'en');
+                langBtn.textContent = 'CS';
+            } else {
+                localStorage.setItem('lang', 'cs');
+                langBtn.textContent = 'EN';
+            }
         });
     </script>
     

@@ -3,220 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>11. a 12. týden | Štěpán Blaha</title>
+    <title>Week 11 and 12 | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="index.html">Domů</a>
-        <a href="omne.html">O mně</a>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
     </nav>
 
     <div class="main-wrapper">
         
         <aside class="sidebar">
-            <a href="tyden1.html">1. týden</a>
-            <a href="tyden2.html">2. týden</a>
-            <a href="tyden3.html">3. týden</a>
-            <a href="tyden4.html">4. týden</a>
-            <a href="tyden5.html">5. týden</a>
-            <a href="tyden6.html">6. týden</a>
-            <a href="tyden7.html">7. týden</a>
-            <a href="tyden8.html">8. týden</a>
-            <a href="tyden9.html">9. týden</a>
-            <a href="tyden10.html">10. týden</a>
-            <a href="tyden11a12.html" class="active">11. a 12. týden</a>
-            <a href="tyden13.html">13. týden</a>
-            <a href="zaverecny_projekt.html">Závěrečný projekt</a>
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html" class="active">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
         </aside>
 
         <main class="content">
-            <h1>11. a 12. týden: Počítačem řízený stroj</h1>
+            <h1>
+                <span class="cs-lang">11. a 12. týden: Počítačem řízený stroj</span>
+                <span class="en-lang">Week 11 and 12: Computer-Controlled Machine</span>
+            </h1>
 
             <p>
-                Během jedenáctého a dvanáctého týdne bylo úkolem <strong>v týmu</strong> navrhnout a postavit <strong>stroj řízený počítačem</strong>.
+                <span class="cs-lang">Během jedenáctého a dvanáctého týdne bylo úkolem <strong>v týmu</strong> navrhnout a postavit <strong>stroj řízený počítačem</strong>.</span>
+                <span class="en-lang">During the eleventh and twelfth weeks, the task was to design and build a <strong>computer-controlled machine</strong> <strong>in a team</strong>.</span>
             </p>
 
             <p>
-                Níže popisuji, jak jsem k našemu stroji přispěl já. 
-                Pokud vás zajímá projekt jako celek, nahlédněte do <a href="https://aa-3ee2c9.pages.fel.cvut.cz/" target="_blank">hlavní dokumentace týmu AA</a>.
+                <span class="cs-lang">Níže popisuji, jak jsem k našemu stroji přispěl já. Pokud vás zajímá projekt jako celek, nahlédněte do <a href="https://aa-3ee2c9.pages.fel.cvut.cz/" target="_blank">hlavní dokumentace týmu AA</a>.</span>
+                <span class="en-lang">Below I describe how I contributed to our machine. If you are interested in the project as a whole, check out the <a href="https://aa-3ee2c9.pages.fel.cvut.cz/" target="_blank">main documentation of team AA</a>.</span>
             </p>
 
-            <h2>Kreslení světlem</h2>
+            <h2>
+                <span class="cs-lang">Kreslení světlem</span>
+                <span class="en-lang">Light drawing</span>
+            </h2>
 
             <p>
-                Rozhodli jsme se vytvořit <strong>stroj pro kreslení světlem</strong>. 
-                Takové zařízení pohybuje <strong>světelným zdrojem</strong> (např. LED), čímž ve vzduchu vytváří různé vzory a obrazce. 
-                Ty se následně zachytí fotoaparátem v režimu <strong>dlouhé expozice</strong>, který díky delšímu sběru světla zaznamená světelné stopy.
+                <span class="cs-lang">Rozhodli jsme se vytvořit <strong>stroj pro kreslení světlem</strong>. Takové zařízení pohybuje <strong>světelným zdrojem</strong> (např. LED), čímž ve vzduchu vytváří různé vzory a obrazce. Ty se následně zachytí fotoaparátem v režimu <strong>dlouhé expozice</strong>, který díky delšímu sběru světla zaznamená světelné stopy.</span>
+                <span class="en-lang">We decided to create a <strong>light drawing machine</strong>. Such a device moves a <strong>light source</strong> (e.g., LED), creating various patterns and shapes in the air. These are then captured by a camera in <strong>long exposure</strong> mode, which records the light trails by gathering light over a longer period.</span>
             </p>
 
-            <img src="media/JVC/TymovyProjekt.jpg" alt="Výsledek naší týmové práce." class="project-image loading="lazy"">
+            <img src="media/JVC/TymovyProjekt.jpg" alt="Výsledek naší týmové práce." class="project-image" loading="lazy">
 
             <p>
-                Zvolili jsme obdélníkovou konstrukci se <strong>dvěma osami pohybu</strong>. 
-                Pohyb LED zajistí <strong>čtyři navijáky</strong> umístěné v rozích konstrukce, které budou synchronně navíjet a odvíjet lanka s uchycenou LED.
+                <span class="cs-lang">Zvolili jsme obdélníkovou konstrukci se <strong>dvěma osami pohybu</strong>. Pohyb LED zajistí <strong>čtyři navijáky</strong> umístěné v rozích konstrukce, které budou synchronně navíjet a odvíjet lanka s uchycenou LED.</span>
+                <span class="en-lang">We opted for a rectangular frame with <strong>two axes of movement</strong>. The movement of the LED is handled by <strong>four winches</strong> located in the corners of the frame, which will synchronously wind and unwind cables holding the LED.</span>
             </p>
 
-            <h2>Navijáky</h2>
+            <h2>
+                <span class="cs-lang">Navijáky</span>
+                <span class="en-lang">Winches</span>
+            </h2>
 
             <p>
-                Společně s <a href="https://pospiad7-9c8471.pages.fel.cvut.cz/" target="_blank">Adamem Pospíšilem</a> 
-                jsme dostali za úkol tyto <strong>navijáky navrhnout a postavit</strong>. 
-                Hlavními výzvami byly: zajistit předvídatelné navíjení tuhého ocelového lanka 
-                a zároveň přes toto lanko <strong>napájet pohyblivou LED</strong>.
-                Abychom umožnili přenos elektrického proudu z pevné části na rotující naviják, 
-                museli jsme vyrobit vlastní <strong>rotační sběrač</strong>.
-            </p>
-
-            <p>
-                Jako pohon jsme využili čtyři krokové motory <strong>NEMA 17</strong> ve dvou variantách:
-                dva silnější <strong>(0,4 Nm)</strong> a dva slabší <strong>(0,28 Nm)</strong>. 
-                Silnější motory umístíme do horních rohů konstrukce, kde se očekává větší tah lanka při zvedání, zatímco slabší motory přijdou do spodních rohů. 
-                Podle hrubých výpočtů by oba typy motorů měly zvládnout požadovanou zátěž i bez nutnosti použití převodů.
-            </p>
-
-            <h3>Návrh držáku navijáku</h3>
-
-            <p>
-                Držák musí být <strong>dostatečně pevný</strong>, aby unesl hmotnost motoru s navijákem,
-                ale také aby odolal <strong>tahu lanka</strong>. 
-                Ocelové lanko je totiž poměrně tuhé a musí být neustále napínáno dvěma protilehlými navijáky, jinak by hrozilo jeho vymotání.
+                <span class="cs-lang">Společně s <a href="https://pospiad7-9c8471.pages.fel.cvut.cz/" target="_blank">Adamem Pospíšilem</a> jsme dostali za úkol tyto <strong>navijáky navrhnout a postavit</strong>. Hlavními výzvami byly: zajistit předvídatelné navíjení tuhého ocelového lanka a zároveň přes toto lanko <strong>napájet pohyblivou LED</strong>. Abychom umožnili přenos elektrického proudu z pevné části na rotující naviják, museli jsme vyrobit vlastní <strong>rotační sběrač</strong>.</span>
+                <span class="en-lang">Together with <a href="https://pospiad7-9c8471.pages.fel.cvut.cz/" target="_blank">Adam Pospíšil</a>, we were tasked with <strong>designing and building these winches</strong>. The main challenges were: ensuring predictable winding of a stiff steel wire and at the same time <strong>powering the moving LED</strong> through this wire. To allow the transfer of electrical current from the stationary part to the rotating winch, we had to manufacture our own <strong>rotary slip ring</strong>.</span>
             </p>
 
             <p>
-                Díly jsme modelovali v programu <strong>Fusion 360</strong>. 
-                Krokové motory se k držáku uchytí pomocí čtyř šroubů <strong>M3 &times; 12 mm</strong>. 
-                Při návrhu úchytu motoru jsme vycházeli z následujících nákresů:
+                <span class="cs-lang">Jako pohon jsme využili čtyři krokové motory <strong>NEMA 17</strong> ve dvou variantách: dva silnější <strong>(0,4 Nm)</strong> a dva slabší <strong>(0,28 Nm)</strong>. Silnější motory umístíme do horních rohů konstrukce, kde se očekává větší tah lanka při zvedání, zatímco slabší motory přijdou do spodních rohů. Podle hrubých výpočtů by oba typy motorů měly zvládnout požadovanou zátěž i bez nutnosti použití převodů.</span>
+                <span class="en-lang">For the drive, we used four <strong>NEMA 17</strong> stepper motors in two variants: two stronger ones <strong>(0.4 Nm)</strong> and two weaker ones <strong>(0.28 Nm)</strong>. We placed the stronger motors in the upper corners of the frame, where greater cable tension is expected when lifting, while the weaker motors go to the lower corners. According to rough calculations, both types of motors should handle the required load even without the need for gears.</span>
+            </p>
+
+            <h3>
+                <span class="cs-lang">Návrh držáku navijáku</span>
+                <span class="en-lang">Winch mount design</span>
+            </h3>
+
+            <p>
+                <span class="cs-lang">Držák musí být <strong>dostatečně pevný</strong>, aby unesl hmotnost motoru s navijákem, ale také aby odolal <strong>tahu lanka</strong>. Ocelové lanko je totiž poměrně tuhé a musí být neustále napínáno dvěma protilehlými navijáky, jinak by hrozilo jeho vymotání.</span>
+                <span class="en-lang">The mount must be <strong>sturdy enough</strong> to carry the weight of the motor with the winch, but also to withstand the <strong>pull of the cable</strong>. The steel cable is quite stiff and must be constantly kept in tension by two opposing winches, otherwise it would risk unspooling.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Díly jsme modelovali v programu <strong>Fusion 360</strong>. Krokové motory se k držáku uchytí pomocí čtyř šroubů <strong>M3 &times; 12 mm</strong>. Při návrhu úchytu motoru jsme vycházeli z následujících nákresů:</span>
+                <span class="en-lang">We modeled the parts in <strong>Fusion 360</strong>. The stepper motors are attached to the mount using four <strong>M3 &times; 12 mm</strong> screws. When designing the motor mount, we used the following diagrams as a reference:</span>
             </p>
 
             <img src="media/JVC/MotorRozmeryZepredu.JPG" alt="Rozměry krokového motoru zepředu." class="project-image-noborder" loading="lazy">
             <img src="media/JVC/MotorRozmeryZboku.JPG" alt="Rozměry krokového motoru z boku." class="project-image-noborder" loading="lazy">
 
             <p>
-                Kromě samotného motoru s navijákem ponese držák také <strong>měděný plíšek</strong>.
-                Ten poslouží jako zmíněný <strong>sběrač pro přenos elektrického proudu</strong> na navíjející se lanko.
+                <span class="cs-lang">Kromě samotného motoru s navijákem ponese držák také <strong>měděný plíšek</strong>. Ten poslouží jako zmíněný <strong>sběrač pro přenos elektrického proudu</strong> na navíjející se lanko.</span>
+                <span class="en-lang">Besides the motor with the winch itself, the mount will also hold a <strong>copper plate</strong>. This will serve as the aforementioned <strong>slip ring for transferring electrical current</strong> to the winding cable.</span>
             </p>
 
             <p>
-                Držák se k hliníkovým profilům konstrukce (o průřezu 20 &times; 20 mm) připevní pomocí <strong>dvou šroubů M4</strong>. 
-                Ty projdou předvrtanými otvory v profilech a na druhé straně se zajistí maticemi. 
-                Abychom nebyli zcela závislí na přesnosti vyvrtaných otvorů, navrhli jsme držák s <strong>podélnými drážkami pro šrouby</strong>. 
-                Ty umožní drobný posuv a jemné doladění finální polohy.
+                <span class="cs-lang">Držák se k hliníkovým profilům konstrukce (o průřezu 20 &times; 20 mm) připevní pomocí <strong>dvou šroubů M4</strong>. Ty projdou předvrtanými otvory v profilech a na druhé straně se zajistí maticemi. Abychom nebyli zcela závislí na přesnosti vyvrtaných otvorů, navrhli jsme držák s <strong>podélnými drážkami pro šrouby</strong>. Ty umožní drobný posuv a jemné doladění finální polohy.</span>
+                <span class="en-lang">The mount will be attached to the aluminum profiles of the frame (20 &times; 20 mm cross-section) using <strong>two M4 screws</strong>. These will pass through pre-drilled holes in the profiles and be secured with nuts on the other side. So that we wouldn't be entirely dependent on the accuracy of the drilled holes, we designed the mount with <strong>longitudinal slots for the screws</strong>. This allows for slight movement and fine-tuning of the final position.</span>
             </p>
 
             <img src="media/JVC/ModelDrzaku.JPG" alt="Návrh držáku v programu Fusion 360." class="project-image-noborder" loading="lazy">
 
-            <h3>Návrh navijáku a sběrače</h3>
+            <h3>
+                <span class="cs-lang">Návrh navijáku a sběrače</span>
+                <span class="en-lang">Winch and slip ring design</span>
+            </h3>
 
             <p>
-                Při návrhu navijáku jsme museli vyřešit několik překážek. 
-                První z nich bylo <strong>rovnoměrné skládání lanka</strong>. 
-                Pro přesné řízení pohybu LED je důležité znát <strong>aktuální průměr navijáku</strong>, ten se ale s každou nově navinutou vrstvou lanka zvětšuje. 
+                <span class="cs-lang">Při návrhu navijáku jsme museli vyřešit několik překážek. První z nich bylo <strong>rovnoměrné skládání lanka</strong>. Pro přesné řízení pohybu LED je důležité znát <strong>aktuální průměr navijáku</strong>, ten se ale s každou nově navinutou vrstvou lanka zvětšuje.</span>
+                <span class="en-lang">When designing the winch, we had to overcome several obstacles. The first was <strong>even winding of the cable</strong>. For accurate control of the LED's movement, it's important to know the <strong>current diameter of the winch</strong>, but this increases with every newly wound layer of cable.</span>
             </p>
             
             <p>
-                Prvním zvažovaným řešením byl naviják ve tvaru dlouhého válce se spirálovitou drážkou, do které by se lanko namotávalo vždy do jedné vrstvy. 
-                Takový naviják by ale byl <strong>zbytečně velký</strong> a tuhé ocelové lanko by se do něj špatně navádělo. 
-                Druhou variantou byl naviják s 1 mm širokou a cca 3 cm hlubokou drážkou, kde by každá otočka tvořila novou vrstvu. 
-                I v tomto případě by byl naviják velký a navádění lanka do takto úzké štěrbiny by bylo obtížné. 
+                <span class="cs-lang">Prvním zvažovaným řešením byl naviják ve tvaru dlouhého válce se spirálovitou drážkou, do které by se lanko namotávalo vždy do jedné vrstvy. Takový naviják by ale byl <strong>zbytečně velký</strong> a tuhé ocelové lanko by se do něj špatně navádělo. Druhou variantou byl naviják s 1 mm širokou a cca 3 cm hlubokou drážkou, kde by každá otočka tvořila novou vrstvu. I v tomto případě by byl naviják velký a navádění lanka do takto úzké štěrbiny by bylo obtížné.</span>
+                <span class="en-lang">The first considered solution was a long cylinder-shaped winch with a spiral groove, where the cable would always wind in a single layer. However, such a winch would be <strong>unnecessarily large</strong> and the stiff steel cable would be hard to guide into it. The second option was a winch with a 1 mm wide and approx. 3 cm deep groove, where each turn would form a new layer. In this case as well, the winch would be large, and guiding the cable into such a narrow slit would be difficult.</span>
             </p>
             
             <p>
-                Nakonec jsme se rozhodli pro naviják s drážkou <strong>širokou 3,2 mm a hlubokou 1 cm</strong>. 
-                Do jedné vrstvy se tak bezpečně vejdou <strong>tři otočky lanka</strong>. 
-                Softwarovou kompenzaci zvětšujícího se průměru vyřešíme na základě experimentálního zjištění,
-                kolik otoček se průměrně do jedné vrstvy vejde.
+                <span class="cs-lang">Nakonec jsme se rozhodli pro naviják s drážkou <strong>širokou 3,2 mm a hlubokou 1 cm</strong>. Do jedné vrstvy se tak bezpečně vejdou <strong>tři otočky lanka</strong>. Softwarovou kompenzaci zvětšujícího se průměru vyřešíme na základě experimentálního zjištění, kolik otoček se průměrně do jedné vrstvy vejde.</span>
+                <span class="en-lang">In the end, we decided on a winch with a groove <strong>3.2 mm wide and 1 cm deep</strong>. This safely fits <strong>three turns of cable</strong> in one layer. We'll solve the software compensation for the increasing diameter based on experimental findings of how many turns on average fit into a single layer.</span>
             </p>
 
             <p>
-                Vnitřní průměr navijáku jsme stanovili na 4,5 mm, což je dostatečně velké na to, aby se kolem něj dalo tuhé lanko ohnout. 
-                Pro snazší navádění lanka jsme <strong>okraje drážky navijáku zkosili</strong>. 
-                Konec lanka se provléká otvorem z drážky až na zadní stranu navijáku, kde je zajištěn třemi šroubky. 
-                Tyto šroubky navíc slouží ke spojení obou polovin navijáku k sobě.
+                <span class="cs-lang">Vnitřní průměr navijáku jsme stanovili na 4,5 mm, což je dostatečně velké na to, aby se kolem něj dalo tuhé lanko ohnout. Pro snazší navádění lanka jsme <strong>okraje drážky navijáku zkosili</strong>. Konec lanka se provléká otvorem z drážky až na zadní stranu navijáku, kde je zajištěn třemi šroubky. Tyto šroubky navíc slouží ke spojení obou polovin navijáku k sobě.</span>
+                <span class="en-lang">We set the inner diameter of the winch to 4.5 mm, which is large enough to allow the stiff cable to bend around it. For easier cable guidance, we <strong>chamfered the edges of the winch groove</strong>. The end of the cable is threaded through a hole from the groove to the back of the winch, where it's secured with three screws. These screws also serve to join the two halves of the winch together.</span>
             </p>
 
             <p>
-                Po vnějším obvodu navijáku nalepíme <strong>hliníkovou lepicí pásku</strong>, kterou přehneme přes hranu až pod zmíněné tři šroubky. 
-                Ty tak přitlačí ocelové lanko k hliníkové fólii, čímž se vytvoří <strong>vodivé spojení</strong>. 
-                Na držák se následně upevní měděný plíšek (široký 7,5 mm a dlouhý 6 cm) ohnutý tak,
-                aby zvenčí na dvou místech <strong>pružně doléhal na hliníkovou pásku</strong>.
+                <span class="cs-lang">Po vnějším obvodu navijáku nalepíme <strong>hliníkovou lepicí pásku</strong>, kterou přehneme přes hranu až pod zmíněné tři šroubky. Ty tak přitlačí ocelové lanko k hliníkové fólii, čímž se vytvoří <strong>vodivé spojení</strong>. Na držák se následně upevní měděný plíšek (široký 7,5 mm a dlouhý 6 cm) ohnutý tak, aby zvenčí na dvou místech <strong>pružně doléhal na hliníkovou pásku</strong>.</span>
+                <span class="en-lang">Along the outer circumference of the winch, we stick <strong>aluminum adhesive tape</strong>, folding it over the edge and under the three mentioned screws. These will press the steel cable against the aluminum foil, creating a <strong>conductive connection</strong>. A copper plate (7.5 mm wide and 6 cm long) is then mounted onto the bracket, bent so that it <strong>flexibly presses against the aluminum tape</strong> from the outside in two places.</span>
             </p>
 
             <p>
-                Naviják se pak připevní k hřídeli krokového motoru pomocí šroubku M3 a závitové vložky.
+                <span class="cs-lang">Naviják se pak připevní k hřídeli krokového motoru pomocí šroubku M3 a závitové vložky.</span>
+                <span class="en-lang">The winch is then attached to the stepper motor shaft using an M3 screw and a threaded insert.</span>
             </p>
 
             <img src="media/JVC/ModelNavijakuShora.JPG" alt="Model navijáku shora." class="project-image-noborder" loading="lazy">
             <img src="media/JVC/ModelNavijakuZdola.JPG" alt="Model navijáku zdola." class="project-image-noborder" loading="lazy">
             <img src="media/JVC/ModelCelehoNavijaku.JPG" alt="Model celého navijáku." class="project-image-noborder" loading="lazy">
 
-            <h3>3D tisk</h3>
+            <h3>
+                <span class="cs-lang">3D tisk</span>
+                <span class="en-lang">3D printing</span>
+            </h3>
 
             <p>
-                Hotové modely jsme z Fusionu 360 vyexportovali do <strong>formátu 3MF</strong> (přes <em>Utilities -> 3D print</em>) a připravili pro tisk v programu <strong>Bambu Studio</strong>. 
-                Jelikož jsme měli k dispozici převážně jen zbytky různých filamentů, tiskli jsme z materiálů <strong>PLA a PETG</strong> o různých barvách. 
-                Tisk probíhal na školní 3D tiskárně <strong>Bambu Lab A1 Mini s 0,4 mm tryskou</strong> s následujícím nastavením:
+                <span class="cs-lang">Hotové modely jsme z Fusionu 360 vyexportovali do <strong>formátu 3MF</strong> (přes <em>Utilities -> 3D print</em>) a připravili pro tisk v programu <strong>Bambu Studio</strong>. Jelikož jsme měli k dispozici převážně jen zbytky různých filamentů, tiskli jsme z materiálů <strong>PLA a PETG</strong> o různých barvách. Tisk probíhal na školní 3D tiskárně <strong>Bambu Lab A1 Mini s 0,4 mm tryskou</strong> s následujícím nastavením:</span>
+                <span class="en-lang">We exported the finished models from Fusion 360 to the <strong>3MF format</strong> (via <em>Utilities -> 3D print</em>) and prepared them for printing in <strong>Bambu Studio</strong>. Since we mostly had leftover bits of various filaments available, we printed from <strong>PLA and PETG</strong> materials in different colors. The printing was done on the school's <strong>Bambu Lab A1 Mini 3D printer with a 0.4 mm nozzle</strong> with the following settings:</span>
             </p>
             
             <ul>
-                <li><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</li>
-                <li><strong>Nozzle temperature (teplota trysky):</strong> 210 °C pro PLA, 240 °C pro PETG</li>
-                <li><strong>Bed temperature (teplota podložky):</strong> 65 °C pro PLA, 70 °C pro PETG</li>
-                <li><strong>Wall loops (perimetry):</strong> 4</li>
-                <li><strong>Sparse infill density (hustota výplně):</strong> 25 %</li>
-                <li><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</li>
-                <li><strong>Outer wall speed (rychlost vnější stěny):</strong> 100 mm/s</li>
+                <li>
+                    <span class="cs-lang"><strong>Profil:</strong> 0,20 mm Standard @BBL A1M</span>
+                    <span class="en-lang"><strong>Profile:</strong> 0.20 mm Standard @BBL A1M</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Nozzle temperature (teplota trysky):</strong> 210 °C pro PLA, 240 °C pro PETG</span>
+                    <span class="en-lang"><strong>Nozzle temperature:</strong> 210 °C for PLA, 240 °C for PETG</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Bed temperature (teplota podložky):</strong> 65 °C pro PLA, 70 °C pro PETG</span>
+                    <span class="en-lang"><strong>Bed temperature:</strong> 65 °C for PLA, 70 °C for PETG</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Wall loops (perimetry):</strong> 4</span>
+                    <span class="en-lang"><strong>Wall loops:</strong> 4</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Sparse infill density (hustota výplně):</strong> 25 %</span>
+                    <span class="en-lang"><strong>Sparse infill density:</strong> 25 %</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</span>
+                    <span class="en-lang"><strong>Sparse infill pattern:</strong> Gyroid</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Outer wall speed (rychlost vnější stěny):</strong> 100 mm/s</span>
+                    <span class="en-lang"><strong>Outer wall speed:</strong> 100 mm/s</span>
+                </li>
             </ul>
             
             <p>
-                Zbylá nastavení jsme ponechali na výchozích hodnotách vybraného tiskového profilu.
+                <span class="cs-lang">Zbylá nastavení jsme ponechali na výchozích hodnotách vybraného tiskového profilu.</span>
+                <span class="en-lang">We left the remaining settings at the default values of the selected printing profile.</span>
             </p>
 
             <p>
-                Pro otvory zapuštěných hlaviček šroubků, které drží pohromadě naviják, bylo nutné <strong>využít podpěry</strong>. 
-                Nastavili jsme je následovně:
+                <span class="cs-lang">Pro otvory zapuštěných hlaviček šroubků, které drží pohromadě naviják, bylo nutné <strong>využít podpěry</strong>. Nastavili jsme je následovně:</span>
+                <span class="en-lang">For the countersunk screw head holes that hold the winch together, we had to <strong>use supports</strong>. We configured them as follows:</span>
             </p>
 
             <ul>
-                <li><strong>Type (typ):</strong> Tree (auto)</li>
-                <li><strong>Top Z distance (mezera v ose Z):</strong> 0,25 mm</li>
+                <li>
+                    <span class="cs-lang"><strong>Type (typ):</strong> Tree (auto)</span>
+                    <span class="en-lang"><strong>Type:</strong> Tree (auto)</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Top Z distance (mezera v ose Z):</strong> 0,25 mm</span>
+                    <span class="en-lang"><strong>Top Z distance:</strong> 0.25 mm</span>
+                </li>
             </ul>
 
             <p>
-                Ostatní parametry podpěr zůstaly výchozí.
+                <span class="cs-lang">Ostatní parametry podpěr zůstaly výchozí.</span>
+                <span class="en-lang">Other support parameters remained at their defaults.</span>
             </p>
 
             <img src="media/JVC/DrzakBS.JPG" alt="Držák v Bambu Studiu." class="project-image" loading="lazy">
             <img src="media/JVC/NavijakBS.JPG" alt="Naviják v Bambu Studiu." class="project-image" loading="lazy">
 
             <p>
-                Během tisku se objevil problém s <strong>nekvalitně vytištěnými převisy</strong> u navijáku. 
-                Hrubý povrch zasahoval i do míst, kam se měla lepit hliníková páska, kde je potřeba <strong>dokonale rovný podklad</strong>. 
-                Tato místa jsme proto zabrousili brusným papírem a zbývající problémové díly jsme raději vytiskli na tiskárně Prusa při <strong>poloviční rychlosti</strong>.
+                <span class="cs-lang">Během tisku se objevil problém s <strong>nekvalitně vytištěnými převisy</strong> u navijáku. Hrubý povrch zasahoval i do míst, kam se měla lepit hliníková páska, kde je potřeba <strong>dokonale rovný podklad</strong>. Tato místa jsme proto zabrousili brusným papírem a zbývající problémové díly jsme raději vytiskli na tiskárně Prusa při <strong>poloviční rychlosti</strong>.</span>
+                <span class="en-lang">During printing, an issue arose with <strong>poorly printed overhangs</strong> on the winch. The rough surface extended into the areas where the aluminum tape was to be applied, which required a <strong>perfectly flat base</strong>. Therefore, we sanded these areas with sandpaper and chose to print the remaining problematic parts on a Prusa printer at <strong>half speed</strong>.</span>
             </p>
 
             <img src="media/JVC/VytiskleDrzaky.JPG" alt="Vytištěné držáky na tiskárně." class="project-image" loading="lazy">
 
-            <h3>Sestavení</h3>
+            <h3>
+                <span class="cs-lang">Sestavení</span>
+                <span class="en-lang">Assembly</span>
+            </h3>
 
             <p>
-                Ve spěchu jsem bohužel nechal vytisknout všechny navijáky stejné, ačkoliv měly být v <strong>zrcadlově převrácených párech</strong>.
-                Ve dvou dílech bylo tedy nutné <strong>vyvrtat nový otvor</strong> pro protažení lanka.
+                <span class="cs-lang">Ve spěchu jsem bohužel nechal vytisknout všechny navijáky stejné, ačkoliv měly být v <strong>zrcadlově převrácených párech</strong>. Ve dvou dílech bylo tedy nutné <strong>vyvrtat nový otvor</strong> pro protažení lanka.</span>
+                <span class="en-lang">In a rush, unfortunately, I printed all the winches exactly the same, although they should have been in <strong>mirrored pairs</strong>. It was therefore necessary to <strong>drill a new hole</strong> in two parts for the cable to pass through.</span>
             </p>
 
             <img src="media/JVC/VrtaniNovychDrazek.JPG" alt="Vrtání nových drážek pro lanko." class="project-image" loading="lazy">
             <img src="media/JVC/NoveDrazky.JPG" alt="Vyvrtané nové drážky pro lanko." class="project-image" loading="lazy">
 
             <p>
-                Jelikož pájecí hrot pro instalaci závitových vložek nebyl dostatečně dlouhý, bylo třeba být kreativní.
-                Vložku jsem zčásti prošrouboval a hrot páječky jsem přikládal ke šroubku, který <strong>přenášel teplo k vložce</strong>.
+                <span class="cs-lang">Jelikož pájecí hrot pro instalaci závitových vložek nebyl dostatečně dlouhý, bylo třeba být kreativní. Vložku jsem zčásti prošrouboval a hrot páječky jsem přikládal ke šroubku, který <strong>přenášel teplo k vložce</strong>.</span>
+                <span class="en-lang">Since the soldering tip for installing the threaded inserts was not long enough, it was necessary to be creative. I partially screwed in the insert and applied the soldering iron tip to the screw, which <strong>transferred the heat to the insert</strong>.</span>
             </p>
 
             <img src="media/JVC/InstalaceZavitoveVlozky.JPG" alt="Instalace závitových vložek pomocí páječky ve stojanu." class="project-image" loading="lazy">
 
             <p>
-                Následně se navijáky odmastily isopropylalkoholem a Adam je <strong>polepil hliníkovou fólií</strong>.
+                <span class="cs-lang">Následně se navijáky odmastily isopropylalkoholem a Adam je <strong>polepil hliníkovou fólií</strong>.</span>
+                <span class="en-lang">Subsequently, the winches were degreased with isopropyl alcohol and Adam <strong>covered them with aluminum foil</strong>.</span>
             </p>
 
             <img src="media/JVC/NavijakPredPolepenim.JPG" alt="Naviják s nepřilepenou hliníkovou páskou." class="project-image" loading="lazy">
@@ -226,22 +306,48 @@
             <img src="media/JVC/NavijakyBezPlisku.JPG" alt="Sestavené navijáky bez sběračů." class="project-image" loading="lazy">
 
             <p>
-                Sběrač vznikl z <strong>měděného plíšku</strong>, který byl nejdřív kancelářskými nůžkami rozstřižen podélně na dvě poloviny
-                široké 7,5 mm a následně nastříhán na délku 6 cm.
+                <span class="cs-lang">Sběrač vznikl z <strong>měděného plíšku</strong>, který byl nejdřív kancelářskými nůžkami rozstřižen podélně na dvě poloviny široké 7,5 mm a následně nastříhán na délku 6 cm.</span>
+                <span class="en-lang">The slip ring was made from a <strong>copper plate</strong>, which was first cut lengthwise with office scissors into two halves 7.5 mm wide, and then cut to a length of 6 cm.</span>
             </p>
 
             <img src="media/JVC/NavijakSPliskem.JPG" alt="Sestavený naviják se sběračem." class="project-image" loading="lazy">
 
-            <h2>Mé vedlejší činnosti</h2>
+            <h2>
+                <span class="cs-lang">Zhodnocení a možná vylepšení</span>
+                <span class="en-lang">Conclusion and possible improvements</span>
+            </h2>
 
             <p>
-                Kromě práce na navijácích jsem se podílel na:
+                <span class="cs-lang">Ačkoliv navijáky nakonec fungovaly poměrně spolehlivě, narazili jsme na několik problémů. Náš odhad, že motory zvládnou zátěž <strong>bez převodů</strong>, se ukázal jako nepřesný. Při nižších rychlostech a menším napětí lanek systém funguje, ale pokud lanka více napneme (pro omezení kývání LED) a zvýšíme rychlost, motory začnou <strong>přeskakovat kroky</strong>. Řešením by bylo motory <strong>zpřevodovat</strong>, například v poměru <strong>1:3</strong>. Druhým problémem je <strong>rychlé opotřebení</strong> našeho DIY sběrače. Měděný plíšek podléhá korozi a <strong>ztrácí vodivost</strong>, zatímco hliníková páska se kvůli neustálému tření <strong>drolí na jemný prach</strong>. Pro dlouhodobý a spolehlivější chod by proto bylo lepší nahradit toto řešení kvalitním <strong>komerčním sběračem</strong>.</span>
+                <span class="en-lang">Although the winches ultimately worked quite reliably, we encountered a few shortcomings. Our assumption that the motors could handle the load <strong>without gears</strong> proved to be inaccurate. At lower speeds and lower cable tension, the system works fine, but if we increase the tension (to minimize the LED swinging) and the speed, the motors start <strong>skipping steps</strong>. An ideal solution would be to <strong>gear down</strong> the motors, for example with a <strong>1:3 ratio</strong>. The second issue is the <strong>rapid wear and tear</strong> of our DIY slip ring. The copper plate corrodes and <strong>loses conductivity</strong>, while the aluminum tape <strong>crumbles into a fine dust</strong> due to constant friction. For long-term and more reliable operation, it would therefore be better to replace this solution with a high-quality <strong>commercial slip ring</strong>.</span>
+            </p>
+
+            <h2>
+                <span class="cs-lang">Mé vedlejší činnosti</span>
+                <span class="en-lang">My secondary activities</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Kromě práce na navijácích jsem se podílel na:</span>
+                <span class="en-lang">Besides working on the winches, I also contributed to:</span>
             </p>
             <ul>
-                <li>sestavení Fusion návrhů ostatních členů týmu do jedné <strong>finální sestavy</strong>,</li>
-                <li><strong>3D tisku</strong> ostatních dílů,</li>
-                <li><strong>pájení</strong> dlouhých kabelů krokových motorů,</li>
-                <li>různých dalších maličkostech.</li>
+                <li>
+                    <span class="cs-lang">sestavení Fusion návrhů ostatních členů týmu do jedné <strong>finální sestavy</strong>,</span>
+                    <span class="en-lang">assembling the Fusion designs of other team members into a single <strong>final assembly</strong>,</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>3D tisku</strong> ostatních dílů,</span>
+                    <span class="en-lang"><strong>3D printing</strong> other parts,</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>pájení</strong> dlouhých kabelů krokových motorů,</span>
+                    <span class="en-lang"><strong>soldering</strong> the long stepper motor cables,</span>
+                </li>
+                <li>
+                    <span class="cs-lang">různých dalších maličkostech.</span>
+                    <span class="en-lang">various other small tasks.</span>
+                </li>
             </ul>
 
             <img src="media/JVC/SpajeneKabely.JPG" alt="Prodloužené kabely krokových motorů." class="project-image" loading="lazy">
@@ -251,5 +357,44 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeBtn = document.getElementById('theme-toggle');
+            
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeBtn.textContent = '☀️';
+            }
+            
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.textContent = '🌙';
+                }
+            });
+
+            const langBtn = document.getElementById('lang-toggle');
+            
+            if (localStorage.getItem('lang') === 'en') {
+                document.body.classList.add('lang-en');
+                langBtn.textContent = 'CS';
+            }
+            
+            langBtn.addEventListener('click', () => {
+                document.body.classList.toggle('lang-en');
+                if (document.body.classList.contains('lang-en')) {
+                    localStorage.setItem('lang', 'en');
+                    langBtn.textContent = 'CS';
+                } else {
+                    localStorage.setItem('lang', 'cs');
+                    langBtn.textContent = 'EN';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

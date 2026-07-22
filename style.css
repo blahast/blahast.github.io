@@ -58,6 +58,21 @@ body.dark-mode .final-project:hover {
     background-color: #555;
 }
 
+body.dark-mode .file-badge:not(.fusion) {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .download-btn {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.dark-mode .download-btn:hover {
+    background-color: #555;
+}
+
 body:not(.lang-en) .en-lang { 
     display: none; 
 }
@@ -614,7 +629,7 @@ code {
 }
 
 .file-badge {
-    background-color: var(--text-dark);
+    background-color: #333;
     color: #fff;
     font-size: 0.8rem;
     font-weight: bold;
