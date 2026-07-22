@@ -372,6 +372,29 @@ strong {
     cursor: default;
 }
 
+.sidebar-heading {
+    display: block;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sidebar .sidebar-heading:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none; 
+}
+
+.sidebar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
 /* Main content */
 .content {
     flex-grow: 1;

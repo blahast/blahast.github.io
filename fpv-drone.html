@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPV Drone | Štěpán Blaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head> 
+
+<body>
+    <nav>
+        <div class="controls">
+            <button id="theme-toggle" class="action-btn" title="Toggle dark mode">🌙</button>
+            <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
+        </div>
+        <a href="index.html">
+            <span class="cs-lang">Domů</span>
+            <span class="en-lang">Home</span>
+        </a>
+        <a href="about-me.html">
+            <span class="cs-lang">O mně</span>
+            <span class="en-lang">About me</span>
+        </a>
+    </nav>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar">
+            <div class="sidebar-heading">
+                <span class="cs-lang">Osobní projekty</span>
+                <span class="en-lang">Personal Projects</span>
+            </div>
+            
+            <a href="mouse-mover.html">
+                <span class="cs-lang">Mouse Mover</span>
+                <span class="en-lang">Mouse Mover</span>
+            </a>
+            <a href="fpv-drone.html" class="active">
+                <span class="cs-lang">FPV dron</span>
+                <span class="en-lang">FPV Drone</span>
+            </a>
+
+            <div class="sidebar-heading">
+                <span class="cs-lang">Jak vyrobit (téměř) cokoliv</span>
+                <span class="en-lang">How to Make (Almost) Anything</span>
+            </div>
+
+            <a href="week1.html">
+                <span class="cs-lang">1. týden</span>
+                <span class="en-lang">Week 1</span>
+            </a>
+            <a href="week2.html">
+                <span class="cs-lang">2. týden</span>
+                <span class="en-lang">Week 2</span>
+            </a>
+            <a href="week3.html">
+                <span class="cs-lang">3. týden</span>
+                <span class="en-lang">Week 3</span>
+            </a>
+            <a href="week4.html">
+                <span class="cs-lang">4. týden</span>
+                <span class="en-lang">Week 4</span>
+            </a>
+            <a href="week5.html">
+                <span class="cs-lang">5. týden</span>
+                <span class="en-lang">Week 5</span>
+            </a>
+            <a href="week6.html">
+                <span class="cs-lang">6. týden</span>
+                <span class="en-lang">Week 6</span>
+            </a>
+            <a href="week7.html">
+                <span class="cs-lang">7. týden</span>
+                <span class="en-lang">Week 7</span>
+            </a>
+            <a href="week8.html">
+                <span class="cs-lang">8. týden</span>
+                <span class="en-lang">Week 8</span>
+            </a>
+            <a href="week9.html">
+                <span class="cs-lang">9. týden</span>
+                <span class="en-lang">Week 9</span>
+            </a>
+            <a href="week10.html">
+                <span class="cs-lang">10. týden</span>
+                <span class="en-lang">Week 10</span>
+            </a>
+            <a href="week11-12.html">
+                <span class="cs-lang">11. a 12. týden</span>
+                <span class="en-lang">Week 11 and 12</span>
+            </a>
+            <a href="week13.html">
+                <span class="cs-lang">13. týden</span>
+                <span class="en-lang">Week 13</span>
+            </a>
+            <a href="final-project.html" class="active">
+                <span class="cs-lang">Hexapod</span>
+                <span class="en-lang">Hexapod</span>
+            </a>
+        </aside>
+
+        <main class="content">
+            <h1>
+                <span class="cs-lang">FPV dron</span>
+                <span class="en-lang">FPV Drone</span>
+            </h1>
+
+            <div class="toc">
+                <h2>
+                    <span class="cs-lang">Obsah</span>
+                    <span class="en-lang">Table of Contents</span>
+                </h2>
+                <ul>
+                    <li>
+                        <a href="#hexapod">
+                            <span class="cs-lang">Hexapod</span>
+                            <span class="en-lang">Hexapod</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="#hexapod-elektronika">
+                                    <span class="cs-lang">Návrh elektroniky</span>
+                                    <span class="en-lang">Electronics design</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="#hexapod-elektronika-komponenty">
+                                            <span class="cs-lang">Použité komponenty</span>
+                                            <span class="en-lang">Used components</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#hexapod-navrh-elektroniky">
+                                            <span class="cs-lang">Návrh v programu KiCAD</span>
+                                            <span class="en-lang">Design in KiCAD</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <hr>
+
+
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const codeContainers = document.querySelectorAll('.code-container');
+        
+            codeContainers.forEach(container => {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                if(codeContent && toggleBtn && copyBtn) {
+                    codeContent.classList.add('collapsed');
+                    toggleBtn.textContent = '▶\uFE0E';
+            
+                    toggleBtn.addEventListener('click', () => {
+                        codeContent.classList.toggle('collapsed');
+                        
+                        if (codeContent.classList.contains('collapsed')) {
+                            toggleBtn.textContent = '▶\uFE0E'; 
+                        } else {
+                            toggleBtn.textContent = '▼\uFE0E';
+                        }
+                    });
+            
+                    copyBtn.addEventListener('click', () => {
+                        const textToCopy = codeBlock.innerText;
+                        
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalText = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<span class="cs-lang">Zkopírováno</span><span class="en-lang">Copied</span>';
+                            copyBtn.style.color = '#28a745';
+                            
+                            setTimeout(() => {
+                                copyBtn.innerHTML = originalText;
+                                copyBtn.style.color = '';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('chyba ', err);
+                            copyBtn.innerHTML = '<span class="cs-lang">Chyba!</span><span class="en-lang">Error!</span>';
+                        });
+                    });
+                }
+            });
+        });
+
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.textContent = '🌙';
+            }
+        });
+
+        const langBtn = document.getElementById('lang-toggle');
+        if (localStorage.getItem('lang') === 'en') {
+            document.body.classList.add('lang-en');
+            langBtn.textContent = 'CS';
+        }
+        langBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lang-en');
+            if (document.body.classList.contains('lang-en')) {
+                localStorage.setItem('lang', 'en');
+                langBtn.textContent = 'CS';
+            } else {
+                localStorage.setItem('lang', 'cs');
+                langBtn.textContent = 'EN';
+            }
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+
+</body>
+</html>
