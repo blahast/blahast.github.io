@@ -113,7 +113,7 @@
                 <span class="cs-lang">13. týden</span>
                 <span class="en-lang">Week 13</span>
             </a>
-            <a href="final-project.html" class="active">
+            <a href="final-project.html">
                 <span class="cs-lang">Hexapod</span>
                 <span class="en-lang">Hexapod</span>
             </a>
@@ -130,44 +130,1734 @@
                     <span class="cs-lang">Obsah</span>
                     <span class="en-lang">Table of Contents</span>
                 </h2>
+
                 <ul>
-                    <li>
-                        <a href="#hexapod">
-                            <span class="cs-lang">Hexapod</span>
-                            <span class="en-lang">Hexapod</span>
-                        </a>
+                    <li><a href="#cil-projektu"><span class="cs-lang">Úvod a cíle projektu</span><span class="en-lang">Introduction and project goals</span></a></li>
+                    <li><a href="#cad-navrh"><span class="cs-lang">CAD návrh</span><span class="en-lang">CAD design</span></a>
                         <ul>
-                            <li>
-                                <a href="#hexapod-elektronika">
-                                    <span class="cs-lang">Návrh elektroniky</span>
-                                    <span class="en-lang">Electronics design</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#hexapod-elektronika-komponenty">
-                                            <span class="cs-lang">Použité komponenty</span>
-                                            <span class="en-lang">Used components</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#hexapod-navrh-elektroniky">
-                                            <span class="cs-lang">Návrh v programu KiCAD</span>
-                                            <span class="en-lang">Design in KiCAD</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            <li><a href="#cad-telo"><span class="cs-lang">Tělo</span><span class="en-lang">Body</span></a></li>
+                            <li><a href="#cad-platforma"><span class="cs-lang">Otáčecí platforma</span><span class="en-lang">Rotating platform</span></a></li>
+                            <li><a href="#cad-vedeni-pasu"><span class="cs-lang">Konstrukce pro vedení pásu</span><span class="en-lang">Belt guide structure</span></a></li>
+                            <li><a href="#cad-remen-remenice"><span class="cs-lang">Řemen a řemenice</span><span class="en-lang">Belt and pulley</span></a></li>
+                            <li><a href="#cad-hotovy"><span class="cs-lang">Hotový CAD návrh</span><span class="en-lang">Finished CAD design</span></a></li>
                         </ul>
                     </li>
+                    <li><a href="#elektronika"><span class="cs-lang">Elektronika</span><span class="en-lang">Electronics</span></a>
+                        <ul>
+                            <li><a href="#elektronika-seznam-soucastek"><span class="cs-lang">Seznam součástek</span><span class="en-lang">List of components</span></a></li>
+                            <li><a href="#elektronika-schema"><span class="cs-lang">Schéma a návrh elektroniky</span><span class="en-lang">Schematic and electronics design</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#3d-tisk"><span class="cs-lang">3D tisk</span><span class="en-lang">3D printing</span></a>
+                        <ul>
+                            <li><a href="#3d-tisk-pla"><span class="cs-lang">Díly z PLA</span><span class="en-lang">PLA parts</span></a></li>
+                            <li><a href="#3d-tisk-tpu"><span class="cs-lang">Díly z TPU</span><span class="en-lang">TPU parts</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#sestaveni"><span class="cs-lang">Sestavení</span><span class="en-lang">Assembly</span></a>
+                        <ul>
+                            <li><a href="#sestaveni-material"><span class="cs-lang">Seznam součástek a materiálů</span><span class="en-lang">List of components and materials</span></a></li>
+                            <li><a href="#sestaveni-postup"><span class="cs-lang">Postup sestavení</span><span class="en-lang">Assembly process</span></a></li>
+                            <li><a href="#sestaveni-vysledek"><span class="cs-lang">Sestavený stroj</span><span class="en-lang">Assembled machine</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#programovani"><span class="cs-lang">Programování</span><span class="en-lang">Programming</span></a></li>
+                    <li><a href="#co-se-nepovedlo"><span class="cs-lang">Co se nepovedlo</span><span class="en-lang">What went wrong</span></a>
+                        <ul>
+                            <li><a href="#volba-konstrukce"><span class="cs-lang">Volba konstrukce</span><span class="en-lang">Choice of construction</span></a></li>
+                            <li><a href="#zaznam-pohybu"><span class="cs-lang">Záznam pohybu myši</span><span class="en-lang">Mouse movement recording</span></a></li>
+                            <li><a href="#spalene-arduino"><span class="cs-lang">Spálené Arduino</span><span class="en-lang">Burnt Arduino</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#showcase"><span class="cs-lang">Showcase</span><span class="en-lang">Showcase</span></a></li>
+                    <li><a href="#zdrojovy-kod"><span class="cs-lang">Zdrojový kód</span><span class="en-lang">Source code</span></a></li>
+                    <li><a href="#cad-model"><span class="cs-lang">CAD modely</span><span class="en-lang">CAD models</span></a></li>
                 </ul>
             </div>
 
             <hr>
 
+            <h1 id="cil-projektu">
+                <span class="cs-lang">Úvod a cíle projektu</span>
+                <span class="en-lang">Introduction and project goals</span>
+            </h1>
+
+            <p>
+                <span class="cs-lang">Při práci z domova se stává, že si odskočíte pro kávu, na toaletu, nebo se jen na chvíli vzdálíte od počítače, a systém vás po chvíli nečinnosti označí jako <strong>nepřítomné</strong>. To může u nadřízených či kolegů vyvolat dojem, že se flákáte. Abych tento problém vyřešil, sestrojil jsem zařízení, které <strong>fyzicky pohybuje počítačovou myší</strong>. Počítač díky tomu registruje <strong>neustálou aktivitu</strong> bez nutnosti instalovat software pro pohyb kurzorem nebo připojovat pochybná USB zařízení, což firemní pravidla navíc často zakazují.</span>
+                <span class="en-lang">When working from home, it happens that you step away for coffee, to the restroom, or just leave the computer for a moment, and the system marks you as <strong>away</strong> after a short period of inactivity. This can give superiors or colleagues the impression that you are slacking off. To solve this problem, I built a device that <strong>physically moves a computer mouse</strong>. Thanks to this, the computer registers <strong>constant activity</strong> without the need to install cursor-moving software or connect dubious USB devices, which corporate rules also frequently prohibit.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Cílem bylo postavit zařízení, které bude splňovat následující požadavky:</span>
+                <span class="en-lang">The goal was to build a device that meets the following requirements:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="cs-lang">Napodobení <strong>lidského zacházení</strong> s myší.</span>
+                    <span class="en-lang">Imitation of <strong>human handling</strong> of the mouse.</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Oklamání sofistikovanějších sledovacích programů pomocí <strong>náhodných pohybů</strong>.</span>
+                    <span class="en-lang">Deceiving more sophisticated tracking programs using <strong>random movements</strong>.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Kompaktní design</strong>, který na stole nezabere příliš místa.</span>
+                    <span class="en-lang"><strong>Compact design</strong> that doesn't take up too much space on the desk.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Univerzální konstrukce</strong>, do které lze vložit jakoukoliv bezdrátovou myš bez složitého upevňování.</span>
+                    <span class="en-lang"><strong>Universal construction</strong> where any wireless mouse can be placed without complex fastening.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Jednoduchost používání</strong>.</span>
+                    <span class="en-lang"><strong>Simplicity of use</strong>.</span>
+                </li>
+                <li>
+                    <span class="cs-lang">Zařízení nebude třeba <strong>zapojit do počítače</strong>.</span>
+                    <span class="en-lang">The device will not need to be <strong>plugged into the computer</strong>.</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="cs-lang">Zařízení neobsahuje <strong>funkci klikání</strong>. Její implementace by výrazně zvýšila složitost projektu a bez vizuální zpětné vazby (sledování obrazovky) by náhodné klikání mohlo být <strong>nebezpečné</strong>. Absence této funkce sice usnadňuje detekci, ale pro většinu běžných případů je <strong>samotný pohyb kurzoru dostačující</strong>.</span>
+                <span class="en-lang">The device does not include a <strong>clicking function</strong>. Implementing it would significantly increase the complexity of the project, and without visual feedback (screen monitoring), random clicking could be <strong>dangerous</strong>. While the absence of this function makes detection easier, for most common cases, the <strong>cursor movement itself is sufficient</strong>.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Komerční řešení tohoto problému, často označovaná jako <strong>„mouse jigglery“</strong>, pohybují kurzorem jen v řádu jednotek pixelů a sledovací software je dokáže <strong>snadno odhalit</strong>. Další variantou jsou malé <strong>USB emulátory</strong>, které se tváří jako myš, avšak zapojovat neznámá zařízení do firemního počítače bývá <strong>zakázané</strong>. Podobné zákazy často platí i pro softwarová řešení.</span>
+                <span class="en-lang">Commercial solutions to this problem, often referred to as <strong>"mouse jigglers"</strong>, move the cursor only by a few pixels, and tracking software can <strong>easily detect them</strong>. Another option is small <strong>USB emulators</strong> that pretend to be a mouse, but plugging unknown devices into a company computer is usually <strong>prohibited</strong>. Similar bans often apply to software solutions as well.</span>
+            </p>
+
+            <img src="media/MouseMover/MouseJiggler.JPG" alt="Mouse Jiggler" class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/MouseEmulator.JPG" alt="Emulátor myši" class="project-image-noborder" loading="lazy">
+
+            <br>
+
+            <h1 id="cad-navrh">
+                <span class="cs-lang">CAD návrh</span>
+                <span class="en-lang">CAD design</span>
+            </h1>
+
+            <p>
+                <span class="cs-lang">Pro pohyb myši ve dvou osách jsou potřeba alespoň <strong>dva stupně volnosti</strong>. Zpočátku jsem zvažoval konstrukci klasického <strong>2D plotteru</strong>. Ten by sice dokázal věrně napodobit lidský pohyb (včetně ostrých změn směru), ale výsledné zařízení by bylo příliš <strong>rozměrné, nepraktické, neestetické</strong> a vyžadovalo by složité uchycení myši.</span>
+                <span class="en-lang">For moving the mouse in two axes, at least <strong>two degrees of freedom</strong> are required. Initially, I considered the construction of a classic <strong>2D plotter</strong>. Although it would faithfully imitate human movement (including sharp changes of direction), the resulting device would be too <strong>large, impractical, unesthetic</strong>, and would require a complex mouse mounting.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Rozhodl jsem se proto pro <strong>kompaktnější řešení</strong>: myš je volně položena na otočné platformě, pod kterou se přímo pod senzorem pohybuje pás. Tím dostaneme potřebné dva stupně volnosti, zařízení je vizuálně <strong>jednoduché</strong> a myš na něj stačí jen položit. Nevýhodou tohoto řešení je <strong>neschopnost simulovat ostré změny směru</strong> (s výjimkou otočení o 180°). Při větších úhlech se musí platforma s myší nejdřív pomalu natočit, aby myš nespadla. Vzhledem k absenci uchycení není zařízení vhodné pro myši s kabelem, což mi ale nevadí, jelikož používám výhradně <strong>myši bezdrátové</strong>.</span>
+                <span class="en-lang">I therefore decided on a <strong>more compact solution</strong>: the mouse is placed freely on a rotating platform, under which a belt moves directly below the sensor. This provides the necessary two degrees of freedom, the device is visually <strong>simple</strong>, and you just need to place the mouse on it. The disadvantage of this solution is the <strong>inability to simulate sharp changes of direction</strong> (with the exception of a 180° turn). For larger angles, the platform with the mouse must first turn slowly so the mouse doesn't fall off. Due to the lack of mounting, the device is not suitable for wired mice, which doesn't bother me, as I exclusively use <strong>wireless mice</strong>.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Pro CAD návrh jsem použil program <strong>Fusion 360</strong>.</span>
+                <span class="en-lang">For the CAD design, I used the <strong>Fusion 360</strong> program.</span>
+            </p>
+
+            <h2 id="cad-telo">
+                <span class="cs-lang">Tělo</span>
+                <span class="en-lang">Body</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Tělo zařízení mělo být co <strong>nejmenší a vzhledné</strong>. Jelikož ponese motory a elektroniku, musí být zároveň <strong>robustní</strong>.</span>
+                <span class="en-lang">The body of the device was intended to be as <strong>small and aesthetically pleasing</strong> as possible. Since it will hold the motors and electronics, it must also be <strong>robust</strong>.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Zvolil jsem <strong>tvar válce</strong> o výšce 82 mm, průměru 72,5 mm a tloušťce stěn 5 mm s <strong>bočním výběžkem</strong> pro uložení elektroniky. Do čistě válcového prostoru se mi bohužel veškerou elektroniku a motory vměstnat nepodařilo.</span>
+                <span class="en-lang">I chose a <strong>cylindrical shape</strong> with a height of 82 mm, a diameter of 72.5 mm, and a wall thickness of 5 mm with a <strong>side extension</strong> for housing the electronics. Unfortunately, I was unable to fit all the electronics and motors into a purely cylindrical space.</span>
+            </p>
+
+            <img src="media/MouseMover/Telo1.JPG" alt="Pohled na model těla zařízení shora." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/Telo2.JPG" alt="Pohled na model těla zařízení zboku." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/Telo3.JPG" alt="Pohled na model těla zařízení zdola." class="project-image-noborder" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Protože <strong>Arduino UNO</strong> s <strong>CNC shieldem</strong> a zapojenými drivery má rozměry zhruba 54 &times; 69 &times; 43 mm, vytvořil jsem pro něj zmíněný boční výběžek. Arduino je v něm uchyceno pomocí dvou šroubů M2 &times; 4 mm. V konstrukci jsou pro ně připraveny dva otvory o průměru 2 mm, které jsou vypouklé o 3 mm, aby vznikl prostor pro piny vyčnívající ze zadní strany desky. Aby bylo možné Arduino <strong>programovat i po uzavření krabičky</strong>, vytvořil jsem z boku otvor pro USB port o rozměrech 11,3 &times; 12,7 mm.</span>
+                <span class="en-lang">Because the <strong>Arduino UNO</strong> with a <strong>CNC shield</strong> and plugged-in drivers has dimensions of roughly 54 &times; 69 &times; 43 mm, I created the aforementioned side extension for it. The Arduino is mounted in it using two M2 &times; 4 mm screws. Two 2 mm diameter holes are prepared in the structure for them, which are raised by 3 mm to create space for the pins protruding from the back of the board. To make it possible to <strong>program the Arduino even after the box is closed</strong>, I created an opening for the USB port on the side with dimensions of 11.3 &times; 12.7 mm.</span>
+            </p>
+
+            <img src="media/MouseMover/ProstorProElektroniku.JPG" alt="Detail modelu výbežku pro umístění elektroniky" class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Motory <strong>Nema-17</strong> jsou uchyceny pomocí čtyř šroubků M3 &times; 8 mm. Při návrhu jejich úchytů jsem vycházel z následujících nákresů:</span>
+                <span class="en-lang">The <strong>Nema-17</strong> motors are mounted using four M3 &times; 8 mm screws. When designing their mounts, I relied on the following drawings:</span>
+            </p>
+
+            <img src="media/JVC/MotorRozmeryZepredu.JPG" alt="Rozměry krokového motoru zepředu." class="project-image-noborder" loading="lazy">
+            <img src="media/JVC/MotorRozmeryZboku.JPG" alt="Rozměry krokového motoru z boku." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/UchytyProMotory.JPG" alt="Detail modelu úchytu pro motory." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Do velkého otvoru navrchu těla zapadá <strong>ložisko 6014</strong> (70 &times; 110 &times; 20 mm), které zajišťuje hladký pohyb platformy s myší. Proč tak velké ložisko? Bylo ve <strong>výprodeji</strong>. Původně jsem chtěl navrhnout vlastní ložisko pomocí malých kovových kuliček, ale slevu 90 % zkrátka nešlo odmítnout.</span>
+                <span class="en-lang">A <strong>6014 bearing</strong> (70 &times; 110 &times; 20 mm) fits into the large hole on top of the body, ensuring smooth movement of the platform with the mouse. Why such a large bearing? It was on <strong>sale</strong>. Originally, I wanted to design my own bearing using small metal balls, but a 90% discount was simply impossible to refuse.</span>
+            </p>
+
+            <img src="media/MouseMover/VelkeLozisko.JPG" alt="Porovnání velkého a malého ložiska." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Na boku přístroje jsem vymodeloval malý kruhový otvor s průměrem 13 mm (se seříznutou horní a dolní úsečí o výšce 0,6 mm) pro <strong>napájecí konektor</strong>.</span>
+                <span class="en-lang">On the side of the device, I modeled a small circular hole with a 13 mm diameter (with a cut-off top and bottom segment of 0.6 mm height) for the <strong>power connector</strong>.</span>
+            </p>
+
+            <img src="media/MouseMover/OtvorProNapajeni.JPG" alt="Otvor pro napájecí konektor." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Spodní kryt je k tělu přišroubován čtyřmi šroubky M3 &times; 8 mm. Ke krytu je následně pomocí dvou šroubků M2 &times; 4 mm připevněn <strong>měnič napětí</strong> (i pro ně jsou připraveny vypouklé otvory jako u Arduina).</span>
+                <span class="en-lang">The bottom cover is screwed to the body with four M3 &times; 8 mm screws. A <strong>voltage converter</strong> is subsequently attached to the cover using two M2 &times; 4 mm screws (raised holes are also prepared for them, just like for the Arduino).</span>
+            </p>
+
+            <img src="media/MouseMover/SpodniKryt1.JPG" alt="Model spodního krytu shora." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/SpodniKryt2.JPG" alt="Model spodního krytu zdola." class="project-image-noborder" loading="lazy">
+
+            <br>
+
+            <h2 id="cad-platforma">
+                <span class="cs-lang">Otáčecí platforma</span>
+                <span class="en-lang">Rotating platform</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Platforma, na které myš leží, je zasazena do vnitřního kruhu velkého ložiska. Uprostřed má otvor o průměru 58 mm pro pohyblivý pás. Výšku platformy jsem ladil celkem natřikrát, aby se pás pohyboval co nejtěsněji pod <strong>optickým senzorem myši</strong>.</span>
+                <span class="en-lang">The platform on which the mouse rests is set into the inner ring of the large bearing. In the middle, it has a 58 mm diameter hole for the moving belt. I fine-tuned the height of the platform a total of three times so that the belt moves as closely as possible under the mouse's <strong>optical sensor</strong>.</span>
+            </p>
+
+            <img src="media/MouseMover/Platforma1.JPG" alt="Model platformy shora." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/Platforma2.JPG" alt="Model platformy zdola." class="project-image-noborder" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Otáčení zajišťuje ozubené kolo, které je s platformou <strong>pevně spojeno</strong>. Model ozubeného kola jsem vygeneroval pomocí doplňku <strong>Spur Gear</strong> (UTILITIES -> ADD-INS -> Scripts and Add-ins -> Spur Gear). Po aktivaci se tento nástroj přidá do menu SOLID -> CREATE. Parametry kola jsem zvolil následovně:</span>
+                <span class="en-lang">Rotation is provided by a gear that is <strong>firmly connected</strong> to the platform. I generated the gear model using the <strong>Spur Gear</strong> add-in (UTILITIES -> ADD-INS -> Scripts and Add-ins -> Spur Gear). After activation, this tool is added to the SOLID -> CREATE menu. I chose the gear parameters as follows:</span>
+            </p>
+
+            <img src="media/MouseMover/ParametrySpurGear.JPG" alt="Parametry ozubeného kola v generátoru Spur Gear." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">K pohonu platformy slouží menší ozubené kolo se stejnými parametry zubů (počet zubů 11), které je nasazeno na <strong>hřídel krokového motoru</strong> (průměr 5 mm). Průměr vnitřního otvoru ozubeného kola je 5,2 mm a k hřídeli je zafixován šroubkem M3 &times; 8 mm. Ten částečně projde tělem kolečka a opře se o hřídel, čímž zabrání prokluzování.</span>
+                <span class="en-lang">A smaller gear with the same tooth parameters (11 teeth) is used to drive the platform, which is mounted on the <strong>stepper motor shaft</strong> (5 mm diameter). The diameter of the inner hole of the gear is 5.2 mm and it is fixed to the shaft with an M3 &times; 8 mm screw. This partially passes through the body of the gear and rests against the shaft, preventing slipping.</span>
+            </p>
+
+            <img src="media/MouseMover/MaleKolecko.JPG" alt="Model ozubeného kolečka otáčejícího platformou." class="project-image-noborder" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Aby myš na platformě při prudších pohybech neklouzala a nespadla, polepím horní plochu 0,4 mm silnou <strong>protiskluzovou podložkou</strong> z flexibilního filamentu (<strong>TPU</strong>).</span>
+                <span class="en-lang">So that the mouse on the platform doesn't slide and fall during sharper movements, I will glue a 0.4 mm thick <strong>anti-slip pad</strong> made of flexible filament (<strong>TPU</strong>) to the upper surface.</span>
+            </p>
+
+            <img src="media/MouseMover/VrstvaProtiSkluzu.JPG" alt="Model úzké podložky z materiálu TPU." class="project-image-noborder" loading="lazy">
+
+            <br>
+
+            <h2 id="cad-vedeni-pasu">
+                <span class="cs-lang">Konstrukce pro vedení pásu</span>
+                <span class="en-lang">Belt guide structure</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Pás pohybující se pod senzorem myši je napnutý mezi řemenicí na hřídeli motoru a <strong>vodicí konstrukcí</strong>, která jej udržuje ve správné výšce. Tato konstrukce se skládá ze dvou bočnic přišroubovaných k tělu stroje pomocí čtyř šroubů M3 &times; 12 mm. Bočnice mezi sebou svírají dva svorníky prošroubované dvěma šrouby M3 &times; 40 mm. Hladký chod pásu je zajištěn <strong>šesti ložisky</strong>, která jsou na svornících nasazena a proložena distančními podložkami (spacery). Spacery umístěné mezi ložisky mají průměr 11 mm a tloušťku 4 mm, čímž vytvářejí prostor pro zuby řemenu. Spacery na krajích (mezi bočnicemi a ložisky) mají tloušťku 2 mm.</span>
+                <span class="en-lang">The belt moving under the mouse sensor is stretched between the pulley on the motor shaft and the <strong>guide structure</strong>, which keeps it at the correct height. This structure consists of two side plates screwed to the machine body using four M3 &times; 12 mm screws. The side plates clamp two bolts between them, screwed through with two M3 &times; 40 mm screws. Smooth running of the belt is ensured by <strong>six bearings</strong> mounted on the bolts and interspersed with distance washers (spacers). The spacers located between the bearings have a diameter of 11 mm and a thickness of 4 mm, creating space for the belt teeth. The spacers on the edges (between the side plates and bearings) have a thickness of 2 mm.</span>
+            </p>
+
+            <img src="media/MouseMover/KonstrukcePasu.JPG" alt="Model konstrukce pro vedení pásu bez ložisek." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/KonstrukcePasuLoziska.JPG" alt="Model konstrukce pro vedení pásu s ložisky." class="project-image-noborder" loading="lazy">
+
+            <br>
+
+            <h2 id="cad-remen-remenice">
+                <span class="cs-lang">Řemen a řemenice</span>
+                <span class="en-lang">Belt and pulley</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Potřebnou délku řemenu jsem odvodil z náčrtu, do kterého jsem promítl obrysy řemenice a ložisek a následně je spojil tečnami. Teoretický vnitřní obvod vyšel na zhruba <strong>184 mm</strong>. Aby však řemen nebyl příliš volný a zároveň šel rozumně lehce nasadit, navrhl jsem jej s vnitřním obvodem <strong>177,2 mm</strong> a šířkou 0,8 mm.</span>
+                <span class="en-lang">I derived the necessary belt length from a sketch into which I projected the outlines of the pulley and bearings, and then connected them with tangents. The theoretical inner circumference turned out to be roughly <strong>184 mm</strong>. However, so that the belt wasn't too loose and could be put on reasonably easily at the same time, I designed it with an inner circumference of <strong>177.2 mm</strong> and a width of 0.8 mm.</span>
+            </p>
+
+            <img src="media/MouseMover/RemenDelka.JPG" alt="Náčrt řemenu pro změření potřebné délky." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">První verze řemenu spoléhající pouze na tření <strong>prokluzovala</strong>. Proto jsem na něj přidal <strong>dvě řady zubů</strong> (celkem 92 zubů na řadu o šířce 4 mm). Řady jsou od sebe vzdálené přesně na šířku jednoho ložiska 608Z (8 &times; 22 &times; 7 mm) a jsou vůči sobě natočeny o polovinu zubu pro plynulejší chod. Zuby jsou ze spodní strany zkoseny pod úhlem zhruba 52°, aby se daly vytisknout na 3D tiskárně bez nutnosti podpor. Díky tomuto vylepšení řemen už neprokluzuje, daní za to je ale <strong>mírně hlučnější chod</strong>.</span>
+                <span class="en-lang">The first version of the belt, relying only on friction, <strong>was slipping</strong>. Therefore, I added <strong>two rows of teeth</strong> to it (a total of 92 teeth per row with a width of 4 mm). The rows are spaced exactly the width of one 608Z bearing (8 &times; 22 &times; 7 mm) apart and are rotated relative to each other by half a tooth for smoother running. The teeth are chamfered from the bottom at an angle of roughly 52° so that they can be printed on a 3D printer without the need for supports. Thanks to this improvement, the belt no longer slips, but the price for this is <strong>slightly noisier operation</strong>.</span>
+            </p>
+
+            <img src="media/MouseMover/ParametryZubuRemen.JPG" alt="Parametry zubů na řemenu." class="project-image" loading="lazy">
+            <img src="media/MouseMover/Remen.JPG" alt="Model řemenu." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang"><strong>Řemenice</strong> se nasazuje na hřídel motoru otvorem o průměru 5,2 mm a je zajištěna fixačním šroubkem stejně jako ozubené kolo u platformy. Ozubení na řemenici odpovídá profilu na řemenu, přičemž každá řada obsahuje 26 zubů.</span>
+                <span class="en-lang">The <strong>pulley</strong> mounts to the motor shaft via a 5.2 mm diameter hole and is secured by a set screw just like the platform gear. The teeth on the pulley match the profile on the belt, with each row containing 26 teeth.</span>
+            </p>
+
+            <img src="media/MouseMover/Remenice.JPG" alt="Model řemenice." class="project-image-noborder" loading="lazy">
+
+            <br>
+
+            <h2 id="cad-hotovy">
+                <span class="cs-lang">Hotový CAD návrh</span>
+                <span class="en-lang">Finished CAD design</span>
+            </h2>
+
+            <img src="media/MouseMover/Render1.png" alt="Render modelu přístroje." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/Render2.png" alt="Render modelu přístroje." class="project-image-noborder" loading="lazy">
+            <img src="media/MouseMover/Render3.png" alt="Render modelu přístroje bez platformy s pohledem dovnitř." class="project-image-noborder" loading="lazy">
+
+            <br>
+
+            <h1 id="elektronika">
+                <span class="cs-lang">Elektronika</span>
+                <span class="en-lang">Electronics</span>
+            </h1>
+
+            <h2 id="elektronika-seznam-soucastek">
+                <span class="cs-lang">Seznam součástek</span>
+                <span class="en-lang">List of components</span>
+            </h2>
+            <ul>
+                <li><span class="cs-lang"><strong>Arduino UNO R3</strong> (klon)</span><span class="en-lang"><strong>Arduino UNO R3</strong> (clone)</span></li>
+                <li><span class="cs-lang">Arduino <strong>CNC shield V3</strong></span><span class="en-lang">Arduino <strong>CNC shield V3</strong></span></li>
+                <li><span class="cs-lang">Step-down měnič s <strong>LM2596</strong></span><span class="en-lang">Step-down converter with <strong>LM2596</strong></span></li>
+                <li><span class="cs-lang">2&times; driver <strong>TMC2209 V2.0</strong></span><span class="en-lang">2&times; <strong>TMC2209 V2.0</strong> driver</span></li>
+                <li><span class="cs-lang">Krokový motor <strong>NEMA 17</strong> (17HS3401, 0,28 Nm)</span><span class="en-lang">Stepper motor <strong>NEMA 17</strong> (17HS3401, 0.28 Nm)</span></li>
+                <li><span class="cs-lang">Krokový motor <strong>NEMA 17</strong> (17HS4023, 0,14 Nm)</span><span class="en-lang">Stepper motor <strong>NEMA 17</strong> (17HS4023, 0.14 Nm)</span></li>
+                <li><span class="cs-lang">Síťový napájecí adaptér (12 V, 3 A, konektor 5,5 / 2,1 mm)</span><span class="en-lang">AC power adapter (12 V, 3 A, 5.5 / 2.1 mm connector)</span></li>
+                <li><span class="cs-lang">Napájecí konektor panelový DC-022 (5,5 / 2,1 mm)</span><span class="en-lang">Panel mount DC power jack DC-022 (5.5 / 2.1 mm)</span></li>
+                <li><span class="cs-lang">Propojovací kabely DuPont (M-F)</span><span class="en-lang">DuPont jumper wires (M-F)</span></li>
+            </ul>
+
+            <h2 id="elektronika-schema">
+                <span class="cs-lang">Schéma a návrh elektroniky</span>
+                <span class="en-lang">Schematic and electronics design</span>
+            </h2>
+
+            <img src="media/MouseMover/Schema.JPG" alt="Schéma elektroniky." class="project-image-noborder" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Zařízení je napájeno ze sítě pomocí <strong>12V adaptéru</strong> přes panelový DC konektor. Z něj je V+ a GND vedeno do svorkovnice <strong>CNC shieldu</strong>, který zajišťuje napájení krokových motorů. Paralelně je ke konektoru připojen <strong>step-down měnič</strong> snižující napětí na <strong>5,1 V</strong>. Ten slouží k napájení logiky CNC shieldu a samotného Arduina.</span>
+                <span class="en-lang">The device is powered from the mains via a <strong>12V adapter</strong> through a panel-mount DC connector. From it, V+ and GND are routed to the terminal block of the <strong>CNC shield</strong>, which provides power to the stepper motors. A <strong>step-down converter</strong> is connected in parallel to the connector, dropping the voltage to <strong>5.1 V</strong>. This is used to power the CNC shield logic and the Arduino itself.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Pro <strong>přesné řízení pozice bez nutnosti zpětné vazby</strong> a pro možnost nekonečného otáčení jsem zvolil krokové motory NEMA 17 (s krouticím momentem 0,14 Nm a 0,28 Nm). Výkonově by sice postačovaly dva slabší motory (0,14 Nm), ale využil jsem ty, které jsem měl aktuálně k dispozici.</span>
+                <span class="en-lang">For <strong>precise position control without the need for feedback</strong> and for the possibility of endless rotation, I chose NEMA 17 stepper motors (with torques of 0.14 Nm and 0.28 Nm). Although two weaker motors (0.14 Nm) would have sufficed in terms of power, I utilized the ones I currently had on hand.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">K řízení obou motorů slouží drivery <strong>TMC2209</strong>. Ty udržují hladký sinusový průběh proudu, což zajišťuje <strong>velmi tichý chod</strong>. Drivery jsou nastaveny na mikrokrokování (1/8), ale interně dokážou kroky plynule interpolovat na 1/256. Výsledkem je <strong>plynulý pohyb</strong> bez vysokých nároků na výkon Arduina. Původně jsem testoval i drivery DRV8825, ale motory s nimi byly příliš hlučné.</span>
+                <span class="en-lang"><strong>TMC2209</strong> drivers are used to control both motors. They maintain a smooth sinusoidal current profile, ensuring <strong>very quiet operation</strong>. The drivers are set to microstepping (1/8), but internally they can smoothly interpolate steps up to 1/256. The result is <strong>smooth movement</strong> without high demands on the Arduino's performance. Originally, I also tested DRV8825 drivers, but the motors were too noisy with them.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Aby motory nespotřebávaly zbytečně velký proud a <strong>nepřehřívaly se</strong>, omezil jsem na driverech pomocí trimru špičkový proud pro oba motory na <strong>0,4 A</strong> (maximální špičkový proud motorů je přitom 0,7 A a 1,2 A). Výpočet se řídí vzorcem:</span>
+                <span class="en-lang">So that the motors don't consume unnecessarily large current and <strong>do not overheat</strong>, I limited the peak current for both motors on the drivers using a trimmer to <strong>0.4 A</strong> (the maximum peak current of the motors is 0.7 A and 1.2 A). The calculation is governed by the formula:</span>
+            </p>
+
+            <p class="math-display">
+                $$I_{peak} = V_{ref}$$
+            </p>
+
+            <ul>
+                <li>
+                    <span class="cs-lang"><strong>$I_{peak}$ :</strong> Maximální proud na fázi.</span>
+                    <span class="en-lang"><strong>$I_{peak}$ :</strong> Maximum phase current.</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>$V_{ref}$ :</strong> Napětí na trimru.</span>
+                    <span class="en-lang"><strong>$V_{ref}$ :</strong> Voltage on the trimmer.</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="cs-lang">Trimr jsem pomocí malého šroubováku nastavil tak, abych na něm vůči GND pinu Arduina naměřil referenční napětí <strong>0,4 V</strong>. Při tomto nastaveném proudu motory <strong>nevynechávají kroky</strong> a zároveň mají dostatek síly pro pohyb myši.</span>
+                <span class="en-lang">I adjusted the trimmer with a small screwdriver so that I measured a reference voltage of <strong>0.4 V</strong> on it relative to the Arduino's GND pin. At this set current, the motors <strong>do not skip steps</strong> while simultaneously having enough power to move the mouse.</span>
+            </p>
 
 
+            <h1 id="3d-tisk">
+                <span class="cs-lang">3D tisk</span>
+                <span class="en-lang">3D printing</span>
+            </h1>
+
+            <h2 id="3d-tisk-pla">
+                <span class="cs-lang">Díly z PLA</span>
+                <span class="en-lang">PLA parts</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Hotové modely těla stroje, platformy, ozubeného kolečka, řemenice, spacerů, svorníků a bočnic konstrukce pro vedení pásu jsem exportoval do formátu <strong>3MF</strong> a připravil k tisku ve sliceru <strong>Bambu Studio</strong>. Jako materiál jsem zvolil <strong>PLA</strong>. Tisk probíhal na 3D tiskárně <strong>Bambu Lab A1 Mini</strong> s tryskou o průměru <strong>0,4 mm</strong> a s následujícím nastavením:</span>
+                <span class="en-lang">I exported the finished models of the machine body, platform, gear, pulley, spacers, bolts, and side plates of the belt guide structure to the <strong>3MF format</strong> and prepared them for printing in the <strong>Bambu Studio</strong> slicer. I chose <strong>PLA</strong> as the material. Printing took place on a <strong>Bambu Lab A1 Mini</strong> 3D printer with a <strong>0.4 mm</strong> diameter nozzle and the following settings:</span>
+            </p>
+
+            <ul>
+                <li><span class="cs-lang"><strong>Profil:</strong> 0.20 mm Standard @BBL A1M</span><span class="en-lang"><strong>Profile:</strong> 0.20 mm Standard @BBL A1M</span></li>
+                <li><span class="cs-lang"><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</span><span class="en-lang"><strong>Nozzle temperature:</strong> 210 °C</span></li>
+                <li><span class="cs-lang"><strong>Bed temperature (teplota podložky):</strong> 65 °C</span><span class="en-lang"><strong>Bed temperature:</strong> 65 °C</span></li>
+                <li><span class="cs-lang"><strong>Wall loops (perimetry):</strong> 2</span><span class="en-lang"><strong>Wall loops:</strong> 2</span></li>
+                <li><span class="cs-lang"><strong>Sparse infill density (hustota výplně):</strong> 15 %</span><span class="en-lang"><strong>Sparse infill density:</strong> 15%</span></li>
+                <li><span class="cs-lang"><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</span><span class="en-lang"><strong>Sparse infill pattern:</strong> Gyroid</span></li>
+                <li><span class="cs-lang"><strong>Outer wall speed (rychlost tisku vnější stěny):</strong> 60 mm/s</span><span class="en-lang"><strong>Outer wall speed:</strong> 60 mm/s</span></li>
+            </ul>
+
+            <p>
+                <span class="cs-lang">Zbylá nastavení jsem ponechal na výchozích hodnotách vybraného tiskového profilu.</span>
+                <span class="en-lang">I left the remaining settings at the default values for the selected print profile.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Jelikož některé díly obsahují <strong>výrazné převisy</strong> (zejména tělo stroje), bylo nezbytné použít <strong>podpěry</strong>. Ty jsem nastavil následovně:</span>
+                <span class="en-lang">Since some parts contain <strong>significant overhangs</strong> (especially the machine body), it was necessary to use <strong>supports</strong>. I set these up as follows:</span>
+            </p>
+
+            <ul>
+                <li><span class="cs-lang"><strong>Type (typ):</strong> Tree (auto)</span><span class="en-lang"><strong>Type:</strong> Tree (auto)</span></li>
+                <li><span class="cs-lang"><strong>Top Z distance (mezera v ose Z):</strong> 0,20 mm</span><span class="en-lang"><strong>Top Z distance:</strong> 0.20 mm</span></li>
+            </ul>
+
+            <p>
+                <span class="cs-lang">Ostatní parametry podpěr zůstaly ve výchozím stavu.</span>
+                <span class="en-lang">The other support parameters remained in their default state.</span>
+            </p>
+
+            <img src="media/MouseMover/CaseBambu.JPG" alt="Model těla stroje v BambuStudiu připravený k tisku." class="project-image" loading="lazy">
+            <img src="media/MouseMover/PlatformaBambu.JPG" alt="Model platformy v BambuStudiu připravený k tisku." class="project-image" loading="lazy">
+            <img src="media/MouseMover/ZbytekBambu.JPG" alt="Zbylé modely v BambuStudiu připravené k tisku." class="project-image" loading="lazy">
+
+            <img src="media/MouseMover/SpodniKryt.JPG" alt="Vytištěný spodní kryt." class="project-image" loading="lazy">
+            <img src="media/MouseMover/Platforma.JPG" alt="Vytištěná platforma." class="project-image" loading="lazy">
+            <img src="media/MouseMover/OzubeneKolecko.JPG" alt="Vytištěné ozubené kolečko." class="project-image" loading="lazy">
+            <img src="media/MouseMover/RemeniceVytisk.JPG" alt="Vytištěná řemenice." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Ukázka hrubšího povrchu po odstranění podpěr:</span>
+                <span class="en-lang">Example of the rougher surface after support removal:</span>
+            </p>
+
+            <img src="media/MouseMover/HrubyPovrch.JPG" alt="Hrubý povrch po odstranění podpěr." class="project-image" loading="lazy">
+
+
+            <h2 id="3d-tisk-tpu">
+                <span class="cs-lang">Díly z TPU</span>
+                <span class="en-lang">TPU parts</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Protiskluzovou podložku a řemen jsem tiskl z flexibilního materiálu <strong>TPU</strong> s tvrdostí <strong>95A</strong>. Tato tvrdost představuje kompromis mezi dostatečnou pružností a snadným tiskem. Aby optický senzor myši lépe zachytil pohyb pásu, využil jsem funkci <strong>Fuzzy Skin</strong>, která na povrchu vytvoří drobnou, umělou texturu. Tisk probíhal s tímto nastavením:</span>
+                <span class="en-lang">I printed the anti-slip pad and the belt from a flexible <strong>TPU</strong> material with a hardness of <strong>95A</strong>. This hardness represents a compromise between sufficient flexibility and ease of printing. For the mouse's optical sensor to better capture the belt's movement, I used the <strong>Fuzzy Skin</strong> function, which creates a fine, artificial texture on the surface. Printing proceeded with these settings:</span>
+            </p>
+
+            <ul>
+                <li><span class="cs-lang"><strong>Profil:</strong> 0.20 mm Standard @BBL A1M</span><span class="en-lang"><strong>Profile:</strong> 0.20 mm Standard @BBL A1M</span></li>
+                <li><span class="cs-lang"><strong>Nozzle temperature (teplota trysky):</strong> 230 °C</span><span class="en-lang"><strong>Nozzle temperature:</strong> 230 °C</span></li>
+                <li><span class="cs-lang"><strong>Bed temperature (teplota podložky):</strong> 30 °C</span><span class="en-lang"><strong>Bed temperature:</strong> 30 °C</span></li>
+                <li><span class="cs-lang"><strong>Wall loops (perimetry):</strong> 2</span><span class="en-lang"><strong>Wall loops:</strong> 2</span></li>
+                <li><span class="cs-lang"><strong>Sparse infill density (hustota výplně):</strong> 15 %</span><span class="en-lang"><strong>Sparse infill density:</strong> 15%</span></li>
+                <li><span class="cs-lang"><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</span><span class="en-lang"><strong>Sparse infill pattern:</strong> Gyroid</span></li>
+                <li><span class="cs-lang"><strong>Fuzzy skin point distance:</strong> 0,08 mm</span><span class="en-lang"><strong>Fuzzy skin point distance:</strong> 0.08 mm</span></li>
+                <li><span class="cs-lang"><strong>Fuzzy skin thickness:</strong> 0,08 mm</span><span class="en-lang"><strong>Fuzzy skin thickness:</strong> 0.08 mm</span></li>
+                <li><span class="cs-lang"><strong>Rychlosti:</strong> Veškeré rychlosti tisku jsem sjednotil na 40 mm/s.</span><span class="en-lang"><strong>Speeds:</strong> I unified all printing speeds to 40 mm/s.</span></li>
+            </ul>
+
+            <p>
+                <span class="cs-lang">Zbylá nastavení jsem opět nechal na výchozích hodnotách. Tisk těchto dílů proběhl <strong>bez použití podpěr</strong>.</span>
+                <span class="en-lang">I once again left the remaining settings at default values. Printing these parts was done <strong>without using supports</strong>.</span>
+            </p>
+
+            <img src="media/MouseMover/RubberBambu.JPG" alt="Model protiskluzové podložky v BambuStudiu připravený k tisku." class="project-image" loading="lazy">
+            <img src="media/MouseMover/BeltBambu.JPG" alt="Model řemene v BambuStudiu připravený k tisku." class="project-image" loading="lazy">
+
+            <img src="media/MouseMover/ProtiskluzovaPodlozka.JPG" alt="Vytištěná protiskluzová podložka." class="project-image" loading="lazy">
+            <img src="media/MouseMover/FuzzySkin.JPG" alt="Vytištěný řemen s fuzzy skin texturou." class="project-image" loading="lazy">
+
+
+            <h1 id="sestaveni">
+                <span class="cs-lang">Sestavení</span>
+                <span class="en-lang">Assembly</span>
+            </h1>
+
+            <h2 id="sestaveni-material">
+                <span class="cs-lang">Seznam součástek a materiálů</span>
+                <span class="en-lang">List of components and materials</span>
+            </h2>
+            <ul>
+                <li><span class="cs-lang"><strong>Arduino UNO R3</strong> (klon)</span><span class="en-lang"><strong>Arduino UNO R3</strong> (clone)</span></li>
+                <li><span class="cs-lang">Arduino <strong>CNC shield V3</strong></span><span class="en-lang">Arduino <strong>CNC shield V3</strong></span></li>
+                <li><span class="cs-lang">Step-down měnič s <strong>LM2596</strong></span><span class="en-lang">Step-down converter with <strong>LM2596</strong></span></li>
+                <li><span class="cs-lang">2&times; driver <strong>TMC2209 V2.0</strong></span><span class="en-lang">2&times; <strong>TMC2209 V2.0</strong> driver</span></li>
+                <li><span class="cs-lang">Krokový motor <strong>NEMA 17</strong> (17HS3401, 0,28 Nm)</span><span class="en-lang">Stepper motor <strong>NEMA 17</strong> (17HS3401, 0.28 Nm)</span></li>
+                <li><span class="cs-lang">Krokový motor <strong>NEMA 17</strong> (17HS4023, 0,14 Nm)</span><span class="en-lang">Stepper motor <strong>NEMA 17</strong> (17HS4023, 0.14 Nm)</span></li>
+                <li><span class="cs-lang">Síťový napájecí adaptér (12 V, 3 A, konektor 5,5 / 2,1 mm)</span><span class="en-lang">AC power adapter (12 V, 3 A, 5.5 / 2.1 mm connector)</span></li>
+                <li><span class="cs-lang">Napájecí konektor panelový DC-022 (5,5 / 2,1 mm)</span><span class="en-lang">Panel mount DC power jack DC-022 (5.5 / 2.1 mm)</span></li>
+                <li><span class="cs-lang">Propojovací kabely DuPont (M-F)</span><span class="en-lang">DuPont jumper wires (M-F)</span></li>
+                <li><span class="cs-lang">252 g filamentu <strong>Bambu Lab PLA Basic</strong> (cca 10,5 hodin tisku na Bambu Lab A1 mini)</span><span class="en-lang">252 g of <strong>Bambu Lab PLA Basic</strong> filament (approx. 10.5 hours of printing on Bambu Lab A1 mini)</span></li>
+                <li><span class="cs-lang">13 g filamentu <strong>TPU Professional Lab</strong> (cca 1,3 hodiny tisku na Bambu Lab A1 mini)</span><span class="en-lang">13 g of <strong>TPU Professional Lab</strong> filament (approx. 1.3 hours of printing on Bambu Lab A1 mini)</span></li>
+                <li><span class="cs-lang">Kuličkové ložisko <strong>6014</strong> (70 &times; 110 &times; 20 mm)</span><span class="en-lang">Ball bearing <strong>6014</strong> (70 &times; 110 &times; 20 mm)</span></li>
+                <li><span class="cs-lang">6&times; kuličkové ložisko <strong>608Z</strong> (8 &times; 22 &times; 7 mm)</span><span class="en-lang">6&times; ball bearing <strong>608Z</strong> (8 &times; 22 &times; 7 mm)</span></li>
+                <li><span class="cs-lang">Sada šroubků a matic (M2-M4)</span><span class="en-lang">Set of screws and nuts (M2-M4)</span></li>
+                <li><span class="cs-lang">Vteřinové lepidlo</span><span class="en-lang">Superglue</span></li>
+            </ul>
+
+            <h2 id="sestaveni-postup">
+                <span class="cs-lang">Postup sestavení</span>
+                <span class="en-lang">Assembly process</span>
+            </h2>
+            <p>
+                <span class="cs-lang">Samotné sestavení bylo <strong>poměrně zdlouhavé</strong>, protože utahování šroubů probíhalo ve velmi stísněných prostorech, kde nebylo možné s imbusem udělat celou otáčku. Osvědčilo se mi proto všechny závity ještě před samotnou montáží <strong>několikrát prošroubovat nanečisto</strong>. Otvory se tím mírně uvolnily, takže při finálním sestavování šrouby stačilo zašroubovat rukou a imbus použít až na dotažení.</span>
+                <span class="en-lang">The assembly itself was <strong>rather tedious</strong> because tightening the screws took place in very cramped spaces, where it was not possible to make a full turn with the hex key. It therefore proved useful to <strong>pre-thread all the holes multiple times</strong> before the actual assembly. This loosened the holes slightly, so during final assembly, the screws just needed to be screwed in by hand and the hex key used only for tightening.</span>
+            </p>
+
+            <img src="media/MouseMover/VnitrekBezPasu.JPG" alt="Vnitřek stroje bez sestavené konstrukce pro vedení pásu." class="project-image" loading="lazy">
+            <img src="media/MouseMover/KonstrukceProPas.JPG" alt="Sestavená konstrukce pro vedení pásu." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Montáž pásu vyžadovala specifický postup: nejprve jsem sestavil celou konstrukci pro jeho vedení, <strong>volně jsem na ni nasadil pás</strong> a poté jsem ji přišrouboval k tělu zařízení. Následně jsem pás přetáhl přes řemenici krokového motoru. Ten byl v tu chvíli už vložený na svém místě, ale záměrně <strong>ještě nebyl přišroubovaný</strong>. Až finálním dotažením motoru k tělu stroje se řemen napnul.</span>
+                <span class="en-lang">Installing the belt required a specific procedure: first, I assembled the entire guide structure, <strong>loosely fitted the belt onto it</strong>, and then screwed it to the device body. Subsequently, I pulled the belt over the stepper motor pulley. At that moment, it was already placed in its position but intentionally <strong>was not screwed down yet</strong>. Only with the final tightening of the motor to the machine body was the belt tensioned.</span>
+            </p>
+
+            <img src="media/MouseMover/VnitrekSPasem.JPG" alt="Vnitřek stroje se sestavenou konstrukcí pro vedení pásu." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Dráty od motorů byly od výroby zbytečně dlouhé, proto jsem je do sebe zakroutil, abych je tím zkrátil a ušetřil uvnitř místo. Kabely jsem poté na několika místech <strong>zafixoval tavným lepidlem</strong>, aby se v těle stroje nemohly volně pohybovat a nehrozilo jejich zachycení do pohyblivých částí.</span>
+                <span class="en-lang">The motor wires were unnecessarily long from the factory, so I twisted them together to shorten them and save space inside. I then <strong>secured the cables with hot melt adhesive</strong> in several places so they couldn't move freely inside the machine body, eliminating the risk of getting caught in moving parts.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Následovalo připevnění spodního krytu. Poté jsem horním otvorem pomocí dlouhého magnetického imbusu přišrouboval měnič napětí. Do velkého otvoru na vrchní straně stroje pak už jen stačilo zasadit <strong>hlavní ložisko</strong> a do něj vložit rotační platformu.</span>
+                <span class="en-lang">This was followed by attaching the bottom cover. Then, I screwed on the voltage converter through the top opening using a long magnetic hex key. All that was left was to seat the <strong>main bearing</strong> into the large opening on the top side of the machine and insert the rotating platform into it.</span>
+            </p>
+
+            <img src="media/MouseMover/VnitrekZespodu.JPG" alt="Vnitřek stroje zespodu." class="project-image" loading="lazy">
+            <img src="media/MouseMover/SestavenyBezPlatformy.JPG" alt="Sestavený stroj bez platformy." class="project-image" loading="lazy">
+            <img src="media/MouseMover/SestavenyBezGumy.JPG" alt="Sestavený stroj bez protiskluzové podložky." class="project-image" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Na závěr jsem k rotační platformě vteřinovým lepidlem přilepil vytištěnou <strong>protiskluzovou podložku z TPU</strong>.</span>
+                <span class="en-lang">Finally, I glued the printed <strong>TPU anti-slip pad</strong> to the rotating platform using superglue.</span>
+            </p>
+
+            <h2 id="sestaveni-vysledek">
+                <span class="cs-lang">Sestavený stroj</span>
+                <span class="en-lang">Assembled machine</span>
+            </h2>
+            <img src="media/MouseMover/SestavenyStroj2.JPG" alt="Sestavený stroj bez myši." class="project-image" loading="lazy">
+            <img src="media/MouseMover/SestavenyStroj1.JPG" alt="Sestavený stroj s položenou myší." class="project-image" loading="lazy">
+            <img src="media/MouseMover/SestavenyStroj3.JPG" alt="Sestavený stroj - pohled zdola." class="project-image" loading="lazy">
+
+            <h1 id="programovani">
+                <span class="cs-lang">Programování</span>
+                <span class="en-lang">Programming</span>
+            </h1>
+
+            <p>
+                <span class="cs-lang">Řízení stroje zajišťuje <strong>Arduino UNO</strong>. Původně jsem chtěl přehrávat <strong>reálné záznamy pohybu myši</strong>, ale kvůli problémům se šumem (o kterých detailněji píši v <a href="#co-se-nepovedlo">Co se nepovedlo</a>) jsem od tohoto přístupu nakonec ustoupil. Místo toho jsem navrhl program, který dráhy generuje uměle přímo za běhu.</span>
+                <span class="en-lang">Machine control is provided by the <strong>Arduino UNO</strong>. Originally, I wanted to play back <strong>real mouse movement recordings</strong>, but due to noise problems (which I detail in What went wrong), I eventually abandoned this approach. Instead, I designed a program that artificially generates paths on the fly.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">K dosažení přirozeně působícího pohybu je důležité <strong>plynulé zrychlování a zpomalování</strong>. Kdyby se motory okamžitě roztočily na maximální rychlost, pohyb by byl velmi trhaný a strojový. Navíc by se myš na platformě neudržela a spadla by. Funkce <code>generateRotation()</code> a <code>generateSpline()</code> se proto starají o to, aby měl každý přesun hladký náběh i dojezd. Funkce <code>generateSpline()</code> navíc do lineárního posuvu pásu přimíchává mírné sinusové nebo obloukové natáčení platformy. Díky tomu se kurzor nepohybuje po dokonale rovných úsečkách, ale po <strong>přirozenějších křivkách</strong>.</span>
+                <span class="en-lang">To achieve natural-looking movement, <strong>smooth acceleration and deceleration</strong> are important. If the motors instantly spun up to maximum speed, the movement would be very jerky and robotic. Furthermore, the mouse wouldn't stay on the platform and would fall off. Therefore, the <code>generateRotation()</code> and <code>generateSpline()</code> functions ensure that every transition has a smooth start and stop. Additionally, the <code>generateSpline()</code> function mixes a slight sinusoidal or arched platform rotation into the linear belt advance. Thanks to this, the cursor does not move along perfectly straight lines, but along <strong>more natural curves</strong>.</span>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">mouse_mover.cpp</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                <div class="code-content">
+<pre><code class="language-cpp">void generateSpline(long stepLength, int distPixels, float maxRotAmp, int waveCount, float maxVel, float accel) {
+  // ...
+  while (stepsRemaining > 0) {
+    // Calculate braking distance
+    float brakingDist = (currentVel * currentVel) / (2.0 * accel);
+    
+    if (stepsRemaining <= brakingDist && currentVel > 1.0) {
+      currentVel -= accel;
+    } else if (currentVel < maxVel) {
+      currentVel += accel;
+    }
+
+    int beltSteps = round(currentVel);
+    // ...
+
+    // Apply sine wave offset based on movement progress
+    float progress = 1.0 - ((float)stepsRemaining / (float)totalSteps);
+    int rotSteps = round(maxRotAmp * distPixels * sin(progress * waveCount * PI));
+
+    pushFrame(beltSteps * dirMultiplier, rotSteps);
+    stepsRemaining -= beltSteps;
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <p>
+                <span class="cs-lang">Program si v paměti udržuje přehled o pozici kurzoru v rámci rozlišení <strong>1920&times;1080</strong>. V hlavní smyčce <code>loop()</code> vybere náhodný cílový bod na obrazovce a vypočítá vzdálenost a úhel, pod kterým k němu musí platformu natočit. Vzhledem k limitům zvolené konstrukce probíhá přesun <strong>ve dvou fázích</strong>: stroj nejprve platformu s myší natočí do správného směru a až poté rozhýbe pás, který kurzor posune k cíli. Pokud by se platforma musela otáčet o více než 90°, program <strong>invertuje směr pohybu pásu</strong>, díky čemuž se může natočit pouze o doplněk k tomuto úhlu (180° - daný úhel). Rychlosti a zrychlení se u každého pohybu navíc mírně randomizují.</span>
+                <span class="en-lang">The program keeps track of the cursor position in memory within a resolution of <strong>1920&times;1080</strong>. In the main <code>loop()</code>, it selects a random target point on the screen and calculates the distance and angle at which the platform must turn toward it. Given the limits of the chosen design, the move occurs <strong>in two phases</strong>: the machine first rotates the platform with the mouse into the correct direction, and only then starts the belt moving, pushing the cursor to the target. If the platform had to rotate more than 90°, the program <strong>inverts the belt direction</strong>, allowing it to rotate only by the complement to that angle (180° - the given angle). Speeds and accelerations are also slightly randomized for each movement.</span>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">mouse_mover.cpp</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                <div class="code-content">
+<pre><code class="language-cpp">void loop() {
+  // ...
+  // Generate random target and calculate angle
+  float targetX = random(MIN_X, MAX_X);
+  float targetY = random(MIN_Y, MAX_Y);
+
+  float dx = targetX - currX;
+  float dy = targetY - currY;
+  float targetAngle = atan2(dy, dx);
+  float deltaAngle = targetAngle - currAngle;
+  
+  while (deltaAngle > PI) deltaAngle -= 2.0 * PI;
+  while (deltaAngle < -PI) deltaAngle += 2.0 * PI;
+
+  float distPixels = sqrt(dx * dx + dy * dy);
+
+  // Optimize path by allowing backward movement
+  if (deltaAngle > PI / 2.0) {
+    deltaAngle -= PI;
+    distPixels = -distPixels; 
+  } else if (deltaAngle < -PI / 2.0) {
+    deltaAngle += PI;
+    distPixels = -distPixels; 
+  }
+  // ...
+}</code></pre>
+                </div>
+            </div>
+
+            <p>
+                <span class="cs-lang">Protože stroj funguje <strong>bez zpětné vazby</strong>, neví, kde na monitoru se kurzor fyzicky nachází. Postupem času tak dochází k <strong>desynchronizaci</strong> mezi souřadnicemi v paměti Arduina a realitou. Tento problém řeší funkce <code>homing()</code>. Ta se spouští v náhodných intervalech a pošle kurzor daleko za okraj obrazovky do jednoho z rohů. Fyzicky kurzor narazí na hranu monitoru a zastaví se, čímž si program své souřadnice zarovná s reálnou pozicí.</span>
+                <span class="en-lang">Because the machine operates <strong>without feedback</strong>, it doesn't know where the cursor is physically located on the monitor. Over time, this leads to <strong>desynchronization</strong> between the coordinates in the Arduino's memory and reality. This problem is solved by the <code>homing()</code> function. It is triggered at random intervals and sends the cursor far beyond the edge of the screen into one of the corners. Physically, the cursor hits the edge of the monitor and stops, allowing the program to align its coordinates with the real position.</span>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">mouse_mover.cpp</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                <div class="code-content">
+<pre><code class="language-cpp">void homing() {
+  int corner = random(0, 4);
+  float targetX, targetY, newX, newY;
+
+  switch(corner) {
+    case 0: 
+      targetX = -4000.0; targetY = -4000.0;
+      newX = 0.0; newY = 0.0;
+      break;
+    // ... other corners ...
+    case 3: 
+      targetX = MAX_X + 4000.0; targetY = MAX_Y + 4000.0;
+      newX = MAX_X; newY = MAX_Y;
+      break;
+  }
+  // ... move to target ...
+
+  // Reset coordinates to match the physical corner
+  currX = newX;
+  currY = newY;
+}</code></pre>
+                </div>
+            </div>
+
+            <p>
+                <span class="cs-lang">Plynulý chod krokových motorů i ve chvílích, kdy Arduino počítá složité goniometrické funkce pro plánování další trasy, jsem zajistil <strong>oddělením plánování a samotného pohybu</strong> pomocí kruhového bufferu a hardwarového časovače. Časovač běží na frekvenci 20 kHz a spouští přerušení <code>ISR(TIMER1_COMPA_vect)</code>. To čte vypočítané instrukce z bufferu při frekvenci 50 Hz a pomocí <strong>DDA (Digital Differential Analyzer) algoritmu</strong> rovnoměrně rozprostírá potřebný počet kroků mezi ticky časovače. Výsledkem je plynulý chod nezávislý na zatížení hlavní smyčky.</span>
+                <span class="en-lang">I ensured the smooth operation of the stepper motors even when the Arduino is calculating complex trigonometric functions to plan the next route by <strong>separating the planning and the movement itself</strong> using a circular buffer and a hardware timer. The timer runs at a frequency of 20 kHz and triggers the <code>ISR(TIMER1_COMPA_vect)</code> interrupt. It reads the calculated instructions from the buffer at a frequency of 50 Hz and uses a <strong>DDA (Digital Differential Analyzer) algorithm</strong> to evenly spread the required number of steps between timer ticks. The result is smooth operation independent of the main loop load.</span>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">mouse_mover.cpp</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                <div class="code-content">
+<pre><code class="language-cpp">// Setup Timer1 for interrupts in setup()
+  noInterrupts(); 
+  TCCR1A = 0;
+  TCCR1B = 0;
+  OCR1A = 799; // 20 kHz
+  TCCR1B |= (1 << WGM12) | (1 << CS10);  
+  TIMSK1 |= (1 << OCIE1A); 
+  interrupts();
+// ...
+
+// Timer1 interrupt
+ISR(TIMER1_COMPA_vect) {
+  // ... fetch next command from buffer ...
+
+  // Generate step pulses using DDA
+  if (isMoving) {
+    bool stepBelt = false;
+    bool stepRot = false;
+
+    if (currentBeltSteps > 0) {
+      beltAccumulator += currentBeltSteps;
+      if (beltAccumulator >= TICKS_PER_FRAME) {
+        stepBelt = true;
+        beltAccumulator -= TICKS_PER_FRAME; 
+      }
+    }
+    // ... same for rotation axis ...
+
+    // Trigger physical steps
+    if (stepBelt) PORTD |= (1 << PORTD4);
+    if (stepRot) PORTD |= (1 << PORTD2);
+    
+    if (stepBelt || stepRot) {
+      delayMicroseconds(1); 
+      if (stepBelt) PORTD &= ~(1 << PORTD4);
+      if (stepRot) PORTD &= ~(1 << PORTD2);
+    }
+  }
+
+  tickCounter++;
+}</code></pre>
+                </div>
+            </div>
+
+            <h1 id="co-se-nepovedlo">
+                <span class="cs-lang">Co se nepovedlo</span>
+                <span class="en-lang">What went wrong</span>
+            </h1>
+
+            <h2 id="volba-konstrukce">
+                <span class="cs-lang">Volba konstrukce</span>
+                <span class="en-lang">Choice of construction</span>
+            </h2>
+
+            <p>
+                <span class="cs-lang">Při navrhování stroje jsem si sice uvědomoval, že zvolená konstrukce (jeden motor pro otáčení platformy, druhý pro posuv pásu) <strong>nedokáže prudce měnit směr pohybu</strong> tak snadno jako běžný 2D plotter, ale nedocenil jsem, jak velký problém to v praxi bude.</span>
+                <span class="en-lang">While designing the machine, I realized that the chosen construction (one motor for platform rotation, another for belt advance) <strong>cannot abruptly change the direction of movement</strong> as easily as a regular 2D plotter, but I underestimated what a big problem this would be in practice.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Lidé myší nepohybují po dokonalých a hladkých křivkách. Naopak často dělají ostré změny směru. Aby je můj stroj dokázal napodobit, musel by všechny ostré rohy buď uměle zaoblovat (což by v záznamu působilo strojově a nepřirozeně), nebo <strong>se v daném bodě úplně zastavit</strong>, natočit platformu do nového směru a teprve poté pokračovat. Nakonec jsem zvolil druhou variantu.</span>
+                <span class="en-lang">People do not move mice along perfect and smooth curves. On the contrary, they frequently make sharp directional changes. For my machine to mimic them, it would either have to artificially round off all sharp corners (which would look robotic and unnatural in the recording), or <strong>completely stop at the given point</strong>, turn the platform to the new direction, and only then proceed. I eventually opted for the second variant.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Další úskalí této konstrukce je v tom, že různé myši mají různé rozměry a <strong>odlišné umístění optického senzoru</strong>. Trefit senzor přesně do osy otáčení platformy je proto téměř nemožné. Pokud senzor neleží přesně ve středu, každé pootočení platformy vyvolá nechtěný pohyb kurzoru. Navíc se domnívám, že i při dokonalém vycentrování by senzor během rotace zaznamenával falešný pohyb kvůli vlastním nedokonalostem.</span>
+                <span class="en-lang">Another pitfall of this construction is that different mice have different dimensions and <strong>different placement of the optical sensor</strong>. Hitting the sensor exactly on the rotation axis of the platform is therefore almost impossible. If the sensor is not exactly in the center, every slight turn of the platform causes unintended cursor movement. Furthermore, I suspect that even with perfect centering, the sensor would register false movement during rotation due to its own imperfections.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Největší problém však nastal, když jsem se snažil <strong>zaznamenat reálný pohyb myší a následně ho strojem reprodukovat</strong>.</span>
+                <span class="en-lang">However, the biggest problem occurred when I tried to <strong>record real mouse movement and then reproduce it with the machine</strong>.</span>
+            </p>
+
+            <h2 id="zaznam-pohybu">
+                <span class="cs-lang">Záznam pohybu myši</span>
+                <span class="en-lang">Mouse movement recording</span>
+            </h2>
+            <p>
+                <span class="cs-lang">Mým původním plánem bylo <strong>zaznamenat reálný pohyb myší a následně ho strojem reprodukovat</strong>. Napsal jsem proto v Pythonu skript, který vzorkoval polohu kurzoru s frekvencí 50 Hz. Získaná data se překládala na kroky pro motory a ukládala na SD kartu, ze které je stroj posléze četl.</span>
+                <span class="en-lang">My initial plan was to <strong>record real mouse movement and subsequently reproduce it with the machine</strong>. Therefore, I wrote a script in Python that sampled the cursor position at a frequency of 50 Hz. The acquired data was translated into motor steps and saved to an SD card, from which the machine later read it.</span>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">Python</span>
+                        <span class="language-label">mouse_tracker.py</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                
+                <div class="code-content">            
+
+<pre><code class="language-python">import time
+import pyautogui
+
+SAMPLING_FREQUENCY = 50.0                # Hz
+RECORDING_DURATION = 10                  # s
+OUTPUT_FILE = "RawRecording.csv"
+
+INTERVAL = 1.0 / SAMPLING_FREQUENCY
+
+def main():
+    # Prevent stopping the script if the mouse hits a screen corner
+    pyautogui.FAILSAFE = False
+
+    pyautogui.PAUSE = 0
+
+    # Screen dimensions and center coordinates
+    screen_width, screen_height = pyautogui.size()
+    center_x, center_y = screen_width // 2, screen_height // 2
+
+    print("Recording starts in 3 seconds...")
+    time.sleep(3)
+
+    # Move the mouse to the center
+    pyautogui.moveTo(center_x, center_y)
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        # Write CSV header
+        f.write("Time_ms,Abs_X_px,Abs_Y_px\n")
+        print("Recording started")
+
+        total_samples = int(SAMPLING_FREQUENCY * RECORDING_DURATION)
+        start_time = time.perf_counter()
+        next_time = start_time + INTERVAL
+
+        for _ in range(total_samples):
+            # Capture mouse position
+            current_x, current_y = pyautogui.position()
+
+            # Calculate elapsed time
+            current_time_ms = int((time.perf_counter() - start_time) * 1000)
+            
+            # Write data to the CSV file
+            f.write(f"{current_time_ms},{current_x},{current_y}\n")
+
+            # Time remaining until the next sample is due
+            time_remaining = next_time - time.perf_counter()
+            
+            # Waiting
+            if time_remaining > 0.002:
+                time.sleep(time_remaining - 0.002)
+                
+            # Busy waiting
+            while time.perf_counter() < next_time:
+                pass
+                
+            next_time += INTERVAL
+
+    print("Recording finished")
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">Python</span>
+                        <span class="language-label">mouse_compiler.py</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                
+                <div class="code-content">            
+
+<pre><code class="language-python">import csv
+import math
+import struct
+import numpy as np
+from scipy.signal import lfilter
+
+# Kinematics config
+MOUSE_DPI = 970
+STEPS_PER_REV = 3200       
+PULLEY_DIAMETER = 16.5     
+ROTATION_RATIO = 3.0       
+SAMPLING_FREQUENCY = 50.0  
+INTERVAL = 1.0 / SAMPLING_FREQUENCY 
+
+THRESHOLD_DEG = 10.0     
+V_MAX_DEG = 90.0         
+ACCEL_DEG = 200.0 
+DEADBAND = 0.03        
+
+INPUT_FILE = "RawRecording.csv"
+OUTPUT_SMOOTH = "data.bin"
+OUTPUT_RAW = "data_raw.bin"
+
+# Filter config
+SMA_WINDOW = 20          # Simple Moving Average
+EMA_WINDOW = 10          # Exponential Moving Average
+
+# Precomputed constants
+PULLEY_CIRCUMFERENCE = math.pi * PULLEY_DIAMETER
+THRESHOLD_RAD = math.radians(THRESHOLD_DEG)
+V_MAX_RAD = math.radians(V_MAX_DEG)
+ACCEL_RAD = math.radians(ACCEL_DEG)
+
+def normalize_angle(angle_rad):
+    # Normalize to [-pi, pi]
+    return (angle_rad + math.pi) % (2 * math.pi) - math.pi
+
+def generate_rotation_profile(delta_rad):
+    # Trapezoidal velocity profile generation
+    total_rad = abs(delta_rad)
+    if total_rad == 0:
+        return []
+
+    direction = math.copysign(1, delta_rad)
+    
+    t_accel = V_MAX_RAD / ACCEL_RAD
+    d_accel = 0.5 * ACCEL_RAD * (t_accel ** 2)
+
+    if 2 * d_accel > total_rad:
+        # Short move (triangular profile)
+        d_accel = total_rad / 2
+        v_max_used = math.sqrt(2 * ACCEL_RAD * d_accel)
+        t_accel = v_max_used / ACCEL_RAD
+        t_flat = 0.0
+    else:
+        # Long move (trapezoidal profile)
+        v_max_used = V_MAX_RAD
+        t_flat = (total_rad - 2 * d_accel) / v_max_used
+
+    total_time = 2 * t_accel + t_flat
+    frame_count = math.ceil(total_time / INTERVAL)
+
+    frames_rad = []
+    last_pos = 0.0
+
+    for i in range(1, frame_count + 1):
+        t = min(i * INTERVAL, total_time)
+        
+        if t <= t_accel:
+            pos = 0.5 * ACCEL_RAD * (t ** 2)
+        elif t <= t_accel + t_flat:
+            pos = d_accel + v_max_used * (t - t_accel)
+        else:
+            t_dec = t - t_accel - t_flat
+            pos = (total_rad - d_accel) + (v_max_used * t_dec - 0.5 * ACCEL_RAD * (t_dec ** 2))
+            
+        frames_rad.append((pos - last_pos) * direction)
+        last_pos = pos
+
+    return frames_rad
+
+def load_and_filter_data(filepath):
+    # Load absolute positions, generate raw deltas, smooth them
+    raw_abs_x = []
+    raw_abs_y = []
+    
+    with open(filepath, "r", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            raw_abs_x.append(float(row['Abs_X_px']))
+            raw_abs_y.append(float(row['Abs_Y_px']))
+            
+    if not raw_abs_x:
+        return [], [], [], []
+
+    abs_x = np.array(raw_abs_x)
+    abs_y = np.array(raw_abs_y)
+    
+    raw_dx = np.insert(np.diff(abs_x), 0, 0.0)
+    raw_dy = np.insert(np.diff(abs_y), 0, 0.0)
+    
+    # SMA
+    window_sma = min(SMA_WINDOW, len(raw_dx))
+    if window_sma > 1:
+        kernel = np.ones(window_sma) / window_sma
+        filt_dx = np.convolve(raw_dx, kernel, mode='same')
+        filt_dy = np.convolve(raw_dy, kernel, mode='same')
+    else:
+        filt_dx = np.copy(raw_dx)
+        filt_dy = np.copy(raw_dy)
+        
+    # EMA
+    window_ema = min(EMA_WINDOW, len(raw_dx))
+    if window_ema > 1:
+        alpha = 2.0 / (window_ema + 1.0)
+        # y[n] = alpha*x[n] + (1 - alpha)*y[n - 1]
+        b = [alpha]
+        a = [1.0, -(1.0 - alpha)]
+        
+        filt_dx = lfilter(b, a, filt_dx)
+        filt_dy = lfilter(b, a, filt_dy)
+        
+    return raw_dx, raw_dy, filt_dx, filt_dy
+
+def process_raw_kinematics(dx_array, dy_array, output_file):
+    # No physical limits or belt reversals
+    belt_acc = 0.0
+    rot_acc = 0.0
+    output_frames = []
+    current_theta = 0.0
+
+    for dx, dy in zip(dx_array, dy_array):
+        d_mm = math.hypot(dx, dy) * (25.4 / MOUSE_DPI)
+
+        if d_mm == 0:
+            output_frames.append((0, 0))
+            continue
+        
+        target_theta = math.atan2(dx, -dy)
+        delta = normalize_angle(target_theta - current_theta)
+        current_theta += delta
+
+        belt_acc += (d_mm / PULLEY_CIRCUMFERENCE) * STEPS_PER_REV
+        rot_acc += (delta / (2 * math.pi)) * ROTATION_RATIO * STEPS_PER_REV
+
+        steps_belt_int = int(round(belt_acc))
+        steps_rot_int = int(round(rot_acc))
+
+        belt_acc -= steps_belt_int
+        rot_acc -= steps_rot_int
+
+        output_frames.append((steps_belt_int, steps_rot_int))
+
+    with open(output_file, "wb") as f_out:
+        for b_steps, r_steps in output_frames:
+            f_out.write(struct.pack('&lt;hh', b_steps, r_steps))
+            
+    return len(output_frames)
+
+def process_smoothed_kinematics(dx_array, dy_array, output_file):
+    # Applies kinematic limits (belt reversals, acceleration profiles)
+    belt_acc = 0.0
+    rot_acc = 0.0
+    output_frames = []
+
+    def add_frame(belt_mm, rot_rad):
+        nonlocal belt_acc, rot_acc
+        
+        belt_acc += (belt_mm / PULLEY_CIRCUMFERENCE) * STEPS_PER_REV
+        rot_acc += (rot_rad / (2 * math.pi)) * ROTATION_RATIO * STEPS_PER_REV
+
+        steps_belt_int = int(round(belt_acc))
+        steps_rot_int = int(round(rot_acc))
+
+        belt_acc -= steps_belt_int
+        rot_acc -= steps_rot_int
+
+        output_frames.append((steps_belt_int, steps_rot_int))
+
+    sharp_stops = 0
+    current_theta = 0.0
+    belt_reversed = False
+
+    for dx, dy in zip(dx_array, dy_array):
+        d_mm = math.hypot(dx, dy) * (25.4 / MOUSE_DPI)
+
+        if d_mm < DEADBAND:
+            add_frame(0.0, 0.0)
+            continue
+        
+        target_theta = math.atan2(dx, -dy)
+        effective_heading = current_theta + (math.pi if belt_reversed else 0)
+        
+        delta = normalize_angle(target_theta - effective_heading)
+        
+        # Reverse belt direction for sharp turns
+        if abs(delta) > math.radians(135.0):
+            belt_reversed = not belt_reversed
+            effective_heading = current_theta + (math.pi if belt_reversed else 0)
+            delta = normalize_angle(target_theta - effective_heading)
+
+        belt_dir = -1.0 if belt_reversed else 1.0
+
+        if abs(delta) > THRESHOLD_RAD:
+            sharp_stops += 1
+            for rad_step in generate_rotation_profile(delta):
+                add_frame(0.0, rad_step)
+            
+            current_theta += delta
+            add_frame(d_mm * belt_dir, 0.0)
+        else:
+            current_theta += delta
+            add_frame(d_mm * belt_dir, delta)
+
+    with open(output_file, "wb") as f_out:
+        for b_steps, r_steps in output_frames:
+            f_out.write(struct.pack('&lt;hh', b_steps, r_steps))
+            
+    return len(output_frames), sharp_stops
+
+def main():
+    print("Loading CSV data and applying filters...")
+    raw_dx, raw_dy, filt_dx, filt_dy = load_and_filter_data(INPUT_FILE)
+    
+    if len(raw_dx) == 0:
+        print("No data found.")
+        return
+
+    print("Translating RAW data (1:1)...")
+    frames_raw = process_raw_kinematics(raw_dx, raw_dy, OUTPUT_RAW)
+    
+    print("Translating SMOOTHED data and applying kinematics...")
+    frames_filt, stops_filt = process_smoothed_kinematics(filt_dx, filt_dy, OUTPUT_SMOOTH)
+
+    print("-" * 40)
+    print("Done!")
+    print(f"Saved to: {OUTPUT_RAW} and {OUTPUT_SMOOTH}")
+    print(f"Original mouse recording: {len(raw_dx) * INTERVAL:.2f} s ({len(raw_dx)} samples)")
+    print(f"Raw data timeline:        {frames_raw * INTERVAL:.2f} s ({frames_raw} frames)")
+    print(f"Smoothed timeline:        {frames_filt * INTERVAL:.2f} s ({frames_filt} frames), sharp stops: {stops_filt}")
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">Python</span>
+                        <span class="language-label">mouse_visualiser.py</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                
+                <div class="code-content">            
+
+<pre><code class="language-python">import struct
+import math
+import matplotlib.pyplot as plt
+
+STEPS_PER_REV = 3200
+PULLEY_DIAMETER = 16.5
+ROTATION_RATIO = 3.0
+FREQUENCY = 50.0
+INTERVAL = 1.0 / FREQUENCY
+
+PULLEY_CIRCUMFERENCE = math.pi * PULLEY_DIAMETER
+INPUT_SMOOTH = "data.bin"
+INPUT_RAW = "data_raw.bin"
+
+def load_and_calculate_kinematics(filepath):
+    # Load .bin file and reconstruct trajectory from step data
+    time_data = []
+    x_coords = [0.0]
+    y_coords = [0.0]
+    angles_deg = []
+    cum_distance = []
+
+    curr_x = 0.0
+    curr_y = 0.0
+    curr_angle_rad = 0.0
+    curr_distance = 0.0
+    curr_time = 0.0
+
+    try:
+        with open(filepath, "rb") as f:
+            data = f.read()
+    except FileNotFoundError:
+        print(f"Warning: File '{filepath}' not found.")
+        return None
+
+    frame_size = struct.calcsize('&lt;hh')
+    frame_count = len(data) // frame_size
+
+    print(f"Loading {frame_count} frames from {filepath}...")
+
+    for i in range(frame_count):
+        frame = data[i*frame_size : (i+1)*frame_size]
+        b_steps, r_steps = struct.unpack('&lt;hh', frame)
+
+        belt_mm = (b_steps / STEPS_PER_REV) * PULLEY_CIRCUMFERENCE
+        rotation_rad = (r_steps / (ROTATION_RATIO * STEPS_PER_REV)) * 2 * math.pi
+
+        curr_angle_rad += rotation_rad
+    
+        curr_x += belt_mm * math.sin(curr_angle_rad)
+        curr_y += belt_mm * math.cos(curr_angle_rad)
+        
+        curr_distance += abs(belt_mm)
+        curr_time += INTERVAL
+
+        time_data.append(curr_time)
+        x_coords.append(curr_x)
+        y_coords.append(curr_y)
+        angles_deg.append(math.degrees(curr_angle_rad))
+        cum_distance.append(curr_distance)
+        
+    return time_data, x_coords, y_coords, angles_deg, cum_distance
+
+def main():
+    data_smooth = load_and_calculate_kinematics(INPUT_SMOOTH)
+    data_raw = load_and_calculate_kinematics(INPUT_RAW)
+
+    if not data_smooth and not data_raw:
+        print("Error: No data to visualize. Run the generator first.")
+        return
+
+    # Plotting
+    fig = plt.figure(figsize=(12, 8))
+    fig.canvas.manager.set_window_title('Mouse Trajectory Analysis (Raw vs Smoothed)')
+
+    ax1 = plt.subplot(2, 1, 1)
+    
+    # Plot raw data below smoothed data
+    if data_raw:
+        time_r, x_r, y_r, angle_r, dist_r = data_raw
+        ax1.plot(x_r, y_r, label='Raw Trajectory', color='lightgray', linewidth=1.5, linestyle='--')
+        ax1.plot(x_r[-1], y_r[-1], 'x', color='gray', label='Target (Raw)', markersize=8)
+
+    # Plot smoothed data on top
+    if data_smooth:
+        time_s, x_s, y_s, angle_s, dist_s = data_smooth
+        ax1.plot(x_s, y_s, label='Smoothed Trajectory', color='blue', linewidth=1.5)
+        ax1.plot(x_s[0], y_s[0], 'go', label='Start', markersize=8)
+        ax1.plot(x_s[-1], y_s[-1], 'ro', label='Target (Smoothed)', markersize=8)
+
+    ax1.set_aspect('equal', adjustable='datalim')
+    ax1.set_title("2D Mouse Trajectory on Desk")
+    ax1.set_xlabel("X Axis (mm)")
+    ax1.set_ylabel("Y Axis (mm)")
+    ax1.grid(True, linestyle='--', alpha=0.7)
+    ax1.legend()
+
+    ax2 = plt.subplot(2, 2, 3)
+    if data_raw:
+        ax2.plot(time_r, angle_r, color='moccasin', label='Raw Data', linestyle='--')
+    if data_smooth:
+        ax2.plot(time_s, angle_s, color='orange', label='Smoothed Data')
+    ax2.set_title("Machine Orientation Over Time")
+    ax2.set_xlabel("Time (s)")
+    ax2.set_ylabel("Angle (°)")
+    ax2.grid(True, linestyle='--', alpha=0.7)
+    ax2.legend()
+
+    ax3 = plt.subplot(2, 2, 4)
+    if data_raw:
+        ax3.plot(time_r, dist_r, color='lightgreen', label='Raw Data', linestyle='--')
+    if data_smooth:
+        ax3.plot(time_s, dist_s, color='green', label='Smoothed Data')
+    ax3.set_title("Distance Over Time")
+    ax3.set_xlabel("Time (s)")
+    ax3.set_ylabel("Distance (mm)")
+    ax3.grid(True, linestyle='--', alpha=0.7)
+    ax3.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+                </div>
+            </div>
+
+            <p>
+                <span class="cs-lang">Ukázalo se ale, že přirozený <strong>šum v datech</strong>, chvění ruky a mírně trhaný pohyb myši po stole způsobují po přepočtu na kinematiku stroje <strong>obrovské a nesmyslné skoky</strong> v úhlu natočení platformy mezi jednotlivými vzorky.</span>
+                <span class="en-lang">It turned out, however, that natural <strong>noise in the data</strong>, hand jitter, and the slightly jerky movement of the mouse on the table caused <strong>huge and nonsensical jumps</strong> in the platform rotation angle between individual samples after conversion to the machine's kinematics.</span>
+            </p>
+
+            <img src="media/MouseMover/UhelGraf.JPG" alt="Graf úhlu s nefiltrovanými daty." class="project-image-noborder" loading="lazy">
+
+            <p>
+                <span class="cs-lang">Vyzkoušel jsem několik metod filtrace signálu, nikdy jsem však nedospěl k uspokojivému výsledku. Některé algoritmy (SMA, EMA) <strong>vyhladily pohyb</strong> natolik, že působil <strong>strojově a nepřirozeně</strong>. Proložení spline křivkami zase <strong>nezachovalo původní rychlosti</strong> a filtrace Savitzky-Golay vnášela do pohybu <strong>podkmity</strong>. Nakonec jsem od snahy přehrávat reálný záznam upustil a rozhodl jsem se generovat dráhu pohybu uměle.</span>
+                <span class="en-lang">I tried several signal filtering methods, but never arrived at a satisfactory result. Some algorithms (SMA, EMA) <strong>smoothed the movement</strong> so much that it looked <strong>robotic and unnatural</strong>. Fitting with spline curves <strong>failed to preserve the original speeds</strong>, and Savitzky-Golay filtering introduced <strong>undershoots</strong> into the movement. Ultimately, I abandoned the attempt to play back the real recording and decided to generate the movement path artificially.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Příklad filtrace pomocí SMA a EMA:</span>
+                <span class="en-lang">Example of filtering using SMA and EMA:</span>
+            </p>
+
+            <img src="media/MouseMover/FiltrovanyGraf.JPG" alt="Grafy pohybu myši s filtrovanými daty." class="project-image-noborder" loading="lazy">
+
+            <h2 id="spalene-arduino">
+                <span class="cs-lang">Spálené Arduino</span>
+                <span class="en-lang">Burnt Arduino</span>
+            </h2>
+            <p>
+                <span class="cs-lang">Během fáze, kdy jsem ještě testoval čtení instrukcí z SD karty, jsem narazil na problém, kdy se stroj <strong>po chvíli běhu vždy zasekl</strong>. K úplnému selhání ale nedošlo okamžitě. Nejprve začal vynechávat instrukce zhruba v sekundových blocích, tyto výpadky se postupně prodlužovaly, až se motory zastavily úplně. Zvláštní bylo, že pokud jsem Arduino s CNC shieldem napájel z počítače přes USB a motory ze sítě (se společnou zemí), <strong>vše fungovalo bezchybně</strong>.</span>
+                <span class="en-lang">During the phase when I was still testing reading instructions from the SD card, I encountered a problem where the machine <strong>always froze after running for a while</strong>. However, total failure did not happen immediately. First, it started dropping instructions in roughly one-second blocks, these dropouts gradually lengthened until the motors stopped completely. The strange thing was that if I powered the Arduino with the CNC shield from a computer via USB and the motors from the mains (with a common ground), <strong>everything worked flawlessly</strong>.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Zpočátku jsem podezříval <strong>elektromagnetické rušení</strong> od krokových motorů, které by mohlo narušovat komunikaci s SD modulem. Abych to vyřešil, přidal jsem na výstup měniče napětí i na vstup SD karty blokovací kondenzátory (100 nF keramický a 680 µF elektrolytický). Také jsem pro jistotu zkroutil fázové vodiče motorů i napájecí vodiče SD karty. Problém však přetrvával.</span>
+                <span class="en-lang">Initially, I suspected <strong>electromagnetic interference</strong> from the stepper motors, which could disrupt communication with the SD module. To solve this, I added bypass capacitors (100 nF ceramic and 680 µF electrolytic) to the voltage converter output and the SD card input. Just to be sure, I also twisted the motor phase wires and the SD card power wires. However, the problem persisted.</span>
+            </p>
+
+            <p>
+                <span class="cs-lang">Na skutečnou příčinu jsem přišel, až když jsem rozebraný stroj testoval a spálil si prst o hlavní čip <strong>ATmega328P na Arduinu</strong>. Problém tedy nezpůsobovalo rušení, ale poškozené Arduino, které se <strong>přehřívalo</strong> a z důvodu tepelné ochrany vypínalo. Po výměně Arduina za nový kus už tento problém nikdy nenastal.</span>
+                <span class="en-lang">I discovered the real cause only when I was testing the disassembled machine and burned my finger on the main <strong>ATmega328P chip on the Arduino</strong>. Therefore, the problem was not caused by interference, but by a damaged Arduino that was <strong>overheating</strong> and shutting down due to thermal protection. After replacing the Arduino with a new unit, this problem never occurred again.</span>
+            </p>
+
+            <h1 id="showcase">
+                <span class="cs-lang">Showcase</span>
+                <span class="en-lang">Showcase</span>
+            </h1>
+
+            <div class="video-container">
+                <iframe 
+                    src="" 
+                    title="Ukázka funkce stroje" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <h1 id="zdrojovy-kod">
+                <span class="cs-lang">Zdrojový kód</span>
+                <span class="en-lang">Source code</span>
+            </h1>
+
+            <p>
+                <span class="cs-lang">Zdrojový kód najdete také na <a href="https://github.com/blahast/MouseMover" target="_blank"><strong>GitHubu</strong></a>.</span>
+                <span class="en-lang">The source code is also available on <a href="https://github.com/blahast/MouseMover" target="_blank"><strong>GitHub</strong></a>.</span>
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-info">
+                        <button class="toggle-btn" title="Expand / Collapse">▼</button>
+                        <span class="lang-badge">C++</span>
+                        <span class="language-label">mouse_mover.cpp</span>
+                    </div>
+                    <button class="copy-btn">
+                        <span class="cs-lang">Kopírovat</span>
+                        <span class="en-lang">Copy</span>
+                    </button>
+                </div>
+                
+                <div class="code-content">            
+
+<pre><code class="language-cpp">#include &lt;Arduino.h&gt;
+#include &lt;math.h&gt;
+
+// Change motor orientation
+const bool INVERT_ROTATION_DIR = false; 
+const bool INVERT_BELT_DIR = false;
+
+// Speed and acceleration limits
+const float MIN_BELT_SPEED = 90.0;    
+const float MAX_BELT_SPEED = 110.0;
+const float MIN_ROT_SPEED = 40.0; 
+const float MAX_ROT_SPEED = 60.0;
+
+const float MIN_LIN_ACCEL = 1.5;     
+const float MAX_LIN_ACCEL = 2.5;
+const float MIN_ROT_ACCEL = 0.8;
+const float MAX_ROT_ACCEL = 1.2;
+
+// Pause durations (ms)
+const long MIN_PAUSE_AFTER_ROT_MS = 100;  
+const long MAX_PAUSE_AFTER_ROT_MS = 200; 
+const long MIN_PAUSE_AFTER_MOVE_MS = 100;  
+const long MAX_PAUSE_AFTER_MOVE_MS = 20000; 
+
+// Spline movement and workspace boundaries
+const float MIN_WAVE_AMP = -0.03; 
+const float MAX_WAVE_AMP = 0.03;
+const int MIN_WAVE_COUNT = 1;
+const int MAX_WAVE_COUNT = 2;
+
+const float MIN_X = 0.0; 
+const float MAX_X = 1920.0;
+const float MIN_Y = 0.0;
+const float MAX_Y = 1080.0;
+
+// Hardware and kinematics properties
+const float STEPS_PER_REV = 1600.0; 
+const float ROTATION_GEAR_RATIO = 3.0;      
+const float PULLEY_TEETH = 26.0;     
+const float TOOTH_PITCH = 2.0;        
+const float MOUSE_DPI = 1300.0;        
+
+// Calibration intervals
+const int MIN_MOVES_BEFORE_CALIB = 5;
+const int MAX_MOVES_BEFORE_CALIB = 15;
+
+// Pin definitions for CNC Shield V3
+#define MOTOR_ROT_STEP  2  
+#define MOTOR_ROT_DIR   5  
+#define MOTOR_BELT_STEP 4  
+#define MOTOR_BELT_DIR  7  
+#define EN_PIN          8  
+
+// Timer interrupt settings
+#define TIMER_FREQUENCY 20000 
+#define TICKS_PER_FRAME 400   
+
+struct Command {
+  int16_t beltSteps;
+  int16_t rotSteps;
+};
+
+// Command buffer configuration
+#define BUFFER_SIZE 100 
+Command buffer[BUFFER_SIZE];
+volatile uint8_t bufferHead = 0; 
+volatile uint8_t bufferTail = 0;  
+
+// Stepper state variables
+volatile int tickCounter = TICKS_PER_FRAME; 
+volatile int currentBeltSteps = 0;
+volatile int currentRotSteps = 0;
+volatile long beltAccumulator = 0;
+volatile long rotAccumulator = 0;
+volatile bool isMoving = false; 
+
+// Precalculated kinematics coefficients
+const float RAD_PER_ROT_STEP = (2.0 * PI) / (STEPS_PER_REV * ROTATION_GEAR_RATIO);
+const float MM_PER_INCH = 25.4;
+const float MM_PER_PIXEL = MM_PER_INCH / MOUSE_DPI; 
+const float MM_PER_BELT_STEP = (PULLEY_TEETH * TOOTH_PITCH) / STEPS_PER_REV;
+const float STEPS_PER_PIXEL = MM_PER_PIXEL / MM_PER_BELT_STEP;
+const float MS_PER_FRAME = (1000.0 * TICKS_PER_FRAME) / TIMER_FREQUENCY;
+
+// Current machine state
+float currX = 0.0;             
+float currY = 0.0;           
+float currAngle = -PI / 2.0; 
+int movesUntilCalib = 0; 
+
+void setup() {
+  randomSeed(analogRead(A0)); 
+
+  pinMode(MOTOR_BELT_STEP, OUTPUT); 
+  pinMode(MOTOR_BELT_DIR, OUTPUT);
+  pinMode(MOTOR_ROT_STEP, OUTPUT); 
+  pinMode(MOTOR_ROT_DIR, OUTPUT);
+  pinMode(EN_PIN, OUTPUT);
+  digitalWrite(EN_PIN, LOW); 
+
+  // Setup Timer1 for interrupts
+  noInterrupts(); 
+  TCCR1A = 0;
+  TCCR1B = 0;
+  TCNT1  = 0;
+  OCR1A = 799; 
+  TCCR1B |= (1 << WGM12) | (1 << CS10);  
+  TIMSK1 |= (1 << OCIE1A); 
+  interrupts();
+
+  delay(1000);
+}
+
+// Push a new motion frame into the ring buffer
+void pushFrame(int16_t belt, int16_t rot) {
+  uint8_t nextHead = (bufferHead + 1) % BUFFER_SIZE;
+  
+  while (nextHead == bufferTail) {
+    delayMicroseconds(100); 
+  }
+  
+  buffer[bufferHead].beltSteps = belt;
+  buffer[bufferHead].rotSteps = rot;
+  bufferHead = nextHead;
+
+  // Update coordinates based on movement
+  currAngle += rot * RAD_PER_ROT_STEP;
+  float pixelDisplacement = (float)belt / STEPS_PER_PIXEL; 
+  currX += pixelDisplacement * cos(currAngle);
+  currY += pixelDisplacement * sin(currAngle);
+
+  while (currAngle > PI) currAngle -= 2.0 * PI;
+  while (currAngle < -PI) currAngle += 2.0 * PI;
+}
+
+// Generate empty frames to create a pause
+void insertPause(long ms) {
+  int frames = round(ms / MS_PER_FRAME);
+  for(int i = 0; i < frames; i++) {
+    pushFrame(0, 0);
+  }
+}
+
+float randomFloat(float minVal, float maxVal) {
+  return minVal + (float)random(0, 1000) / 1000.0 * (maxVal - minVal);
+}
+
+// Generate a rotational profile with acceleration/deceleration
+void generateRotation(long stepAngle, float maxVel, float accel) {
+  long stepsRemaining = abs(stepAngle);
+  if (stepsRemaining == 0) return;
+  
+  int dirMultiplier = (stepAngle > 0) ? 1 : -1;
+  float currentVel = 0;
+
+  while (stepsRemaining > 0) {
+    float brakingDist = (currentVel * currentVel) / (2.0 * accel);
+    
+    if (stepsRemaining <= brakingDist && currentVel > 1.0) {
+      currentVel -= accel;
+    } else if (currentVel < maxVel) {
+      currentVel += accel;
+    }
+
+    int steps = round(currentVel);
+    if (steps < 1) steps = 1; 
+    if (steps > stepsRemaining) steps = stepsRemaining;
+    
+    pushFrame(0, steps * dirMultiplier);
+    stepsRemaining -= steps;
+  }
+}
+
+// Generate a linear movement combined with a sine wave rotation
+void generateSpline(long stepLength, int distPixels, float maxRotAmp, int waveCount, float maxVel, float accel) {
+  long stepsRemaining = abs(stepLength);
+  if (stepsRemaining == 0) return;
+  
+  int dirMultiplier = (stepLength > 0) ? 1 : -1;
+  float currentVel = 0;
+  long totalSteps = stepsRemaining;
+
+  while (stepsRemaining > 0) {
+    float brakingDist = (currentVel * currentVel) / (2.0 * accel);
+    
+    if (stepsRemaining <= brakingDist && currentVel > 1.0) {
+      currentVel -= accel;
+    } else if (currentVel < maxVel) {
+      currentVel += accel;
+    }
+
+    int beltSteps = round(currentVel);
+    if (beltSteps < 1) beltSteps = 1; 
+    if (beltSteps > stepsRemaining) beltSteps = stepsRemaining;
+
+    // Apply sine wave offset based on movement progress
+    float progress = 1.0 - ((float)stepsRemaining / (float)totalSteps);
+    int rotSteps = round(maxRotAmp * distPixels * sin(progress * waveCount * PI));
+
+    pushFrame(beltSteps * dirMultiplier, rotSteps);
+    stepsRemaining -= beltSteps;
+  }
+}
+
+// Move to a random corner to reset physical position
+void homing() {
+  int corner = random(0, 4);
+  float targetX, targetY, newX, newY;
+
+  switch(corner) {
+    case 0: 
+      targetX = -4000.0; targetY = -4000.0;
+      newX = 0.0; newY = 0.0;
+      break;
+    case 1: 
+      targetX = MAX_X + 4000.0; targetY = -4000.0;
+      newX = MAX_X; newY = 0.0;
+      break;
+    case 2: 
+      targetX = -4000.0; targetY = MAX_Y + 4000.0;
+      newX = 0.0; newY = MAX_Y;
+      break;
+    case 3: 
+      targetX = MAX_X + 4000.0; targetY = MAX_Y + 4000.0;
+      newX = MAX_X; newY = MAX_Y;
+      break;
+  }
+
+  // Calculate trajectory and angles
+  float dx = targetX - currX;
+  float dy = targetY - currY;
+  float targetAngle = atan2(dy, dx);
+  float deltaAngle = targetAngle - currAngle;
+  
+  while (deltaAngle > PI) deltaAngle -= 2.0 * PI;
+  while (deltaAngle < -PI) deltaAngle += 2.0 * PI;
+
+  // Rotation towards corner
+  long rotSteps = round(deltaAngle / RAD_PER_ROT_STEP);
+  generateRotation(rotSteps, MAX_ROT_SPEED, MAX_ROT_ACCEL);
+  insertPause(200);
+
+  // Move into the corner
+  float distPixels = sqrt(dx * dx + dy * dy);
+  long beltSteps = round(distPixels * STEPS_PER_PIXEL);
+  generateSpline(beltSteps, distPixels, 0.0, 0, MAX_BELT_SPEED, MAX_LIN_ACCEL);
+  
+  insertPause(1000); 
+
+  // Reset coordinates to match the physical corner
+  currX = newX;
+  currY = newY;
+}
+
+void loop() {
+  // Periodic homing
+  if (movesUntilCalib <= 0) {
+    homing();
+    movesUntilCalib = random(MIN_MOVES_BEFORE_CALIB, MAX_MOVES_BEFORE_CALIB + 1); 
+  }
+
+  // Generate random target
+  float targetX = random(MIN_X, MAX_X);
+  float targetY = random(MIN_Y, MAX_Y);
+
+  float dx = targetX - currX;
+  float dy = targetY - currY;
+  float targetAngle = atan2(dy, dx);
+  float deltaAngle = targetAngle - currAngle;
+  
+  while (deltaAngle > PI) deltaAngle -= 2.0 * PI;
+  while (deltaAngle < -PI) deltaAngle += 2.0 * PI;
+
+  float distPixels = sqrt(dx * dx + dy * dy);
+
+  // Optimize path by allowing backward movement
+  if (deltaAngle > PI / 2.0) {
+    deltaAngle -= PI;
+    distPixels = -distPixels; 
+  } else if (deltaAngle < -PI / 2.0) {
+    deltaAngle += PI;
+    distPixels = -distPixels; 
+  }
+
+  // Randomize dynamic parameters
+  float currentRotVel = randomFloat(MIN_ROT_SPEED, MAX_ROT_SPEED);
+  float currentRotAccel = randomFloat(MIN_ROT_ACCEL, MAX_ROT_ACCEL);
+  float currentBeltVel = randomFloat(MIN_BELT_SPEED, MAX_BELT_SPEED);
+  float currentLinAccel = randomFloat(MIN_LIN_ACCEL, MAX_LIN_ACCEL);
+
+  // Execute rotation
+  long rotSteps = round(deltaAngle / RAD_PER_ROT_STEP);
+  generateRotation(rotSteps, currentRotVel, currentRotAccel);
+  insertPause(random(MIN_PAUSE_AFTER_ROT_MS, MAX_PAUSE_AFTER_ROT_MS + 1));
+
+  // Execute linear movement
+  long beltSteps = round(distPixels * STEPS_PER_PIXEL);
+  float waveAmp = randomFloat(MIN_WAVE_AMP, MAX_WAVE_AMP);
+  int countAmp = random(MIN_WAVE_COUNT, MAX_WAVE_COUNT + 1);
+  generateSpline(beltSteps, distPixels, waveAmp, countAmp, currentBeltVel, currentLinAccel);
+  insertPause(random(MIN_PAUSE_AFTER_MOVE_MS, MAX_PAUSE_AFTER_MOVE_MS));
+
+  movesUntilCalib--;
+}
+
+// Timer1 interrupt
+ISR(TIMER1_COMPA_vect) {
+  if (tickCounter >= TICKS_PER_FRAME) {
+    tickCounter = 0;
+    
+    // Fetch next command from buffer if available
+    if (bufferTail != bufferHead) {
+      Command currentCmd = buffer[bufferTail];
+      bufferTail = (bufferTail + 1) % BUFFER_SIZE; 
+      
+      // Setup belt direction
+      bool beltDir = (currentCmd.beltSteps >= 0);
+      if (INVERT_BELT_DIR) beltDir = !beltDir;
+      if (beltDir) PORTD |= (1 << PORTD7);  
+      else PORTD &= ~(1 << PORTD7);                        
+      currentBeltSteps = abs(currentCmd.beltSteps);
+      
+      // Setup rotation direction
+      bool rotDir = (currentCmd.rotSteps >= 0);
+      if (INVERT_ROTATION_DIR) rotDir = !rotDir;
+      if (rotDir) PORTD |= (1 << PORTD5);
+      else PORTD &= ~(1 << PORTD5);
+      currentRotSteps = abs(currentCmd.rotSteps);
+      
+      if (currentBeltSteps > TICKS_PER_FRAME) currentBeltSteps = TICKS_PER_FRAME;
+      if (currentRotSteps > TICKS_PER_FRAME) currentRotSteps = TICKS_PER_FRAME;
+
+      isMoving = true;
+    } else {
+      isMoving = false;
+      currentBeltSteps = 0;
+      currentRotSteps = 0;
+    }
+  }
+
+  // Generate step pulses using DDA
+  if (isMoving) {
+    bool stepBelt = false;
+    bool stepRot = false;
+
+    if (currentBeltSteps > 0) {
+      beltAccumulator += currentBeltSteps;
+      if (beltAccumulator >= TICKS_PER_FRAME) {
+        stepBelt = true;
+        beltAccumulator -= TICKS_PER_FRAME; 
+      }
+    }
+    
+    if (currentRotSteps > 0) {
+      rotAccumulator += currentRotSteps;
+      if (rotAccumulator >= TICKS_PER_FRAME) {
+        stepRot = true;
+        rotAccumulator -= TICKS_PER_FRAME;
+      }
+    }
+
+    // Trigger physical steps
+    if (stepBelt) PORTD |= (1 << PORTD4);
+    if (stepRot) PORTD |= (1 << PORTD2);
+    
+    if (stepBelt || stepRot) {
+      delayMicroseconds(1); 
+      if (stepBelt) PORTD &= ~(1 << PORTD4);
+      if (stepRot) PORTD &= ~(1 << PORTD2);
+    }
+  }
+
+  tickCounter++;
+}
+</code></pre>
+                </div>
+            </div>
+
+            <br>
+
+            <h1 id="cad-model">
+                <span class="cs-lang">CAD modely</span>
+                <span class="en-lang">CAD models</span>
+            </h1>
+
+            <div class="file-container">
+                <div class="file-info">
+                    <span class="file-badge">STEP</span>
+                    <span class="file-name">MouseMoverAssembly.step</span>
+                    <span class="file-size">(22,49 MB)</span>
+                </div>
+                <a href="media/MouseMover/CAD/MouseMoverAssembly.step" download="MouseMoverAssembly.step" aria-label="Stáhnout CAD model MouseMoverAssembly.step" class="download-btn">
+                    <span class="cs-lang">Stáhnout</span>
+                    <span class="en-lang">Download</span>
+                </a>
+            </div>
+
+            <div class="file-container">
+                <div class="file-info">
+                    <span class="file-badge fusion">FUSION</span>
+                    <span class="file-name">MouseMoverAssembly.f3z</span>
+                    <span class="file-size">(22,89 MB)</span>
+                </div>
+                <a href="media/MouseMover/CAD/MouseMoverAssembly.f3z" download="MouseMoverAssembly.f3z" aria-label="Stáhnout CAD model MouseMoverAssembly.f3z" class="download-btn">
+                    <span class="cs-lang">Stáhnout</span>
+                    <span class="en-lang">Download</span>
+                </a>
+            </div>
+        
         </main>
-
     </div>
 
     <script>
@@ -249,7 +1939,8 @@
     </script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
