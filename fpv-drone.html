@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPV Drone | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head> 
 
 <body>
@@ -125,61 +115,715 @@
                 <span class="en-lang">FPV Drone</span>
             </h1>
 
+            <div class="toc">
+                <h2>
+                    <span class="cs-lang">Obsah</span>
+                    <span class="en-lang">Table of Contents</span>
+                </h2>
+                <ul>
+                    <li>
+                        <a href="#uvod">
+                            <span class="cs-lang">Úvod</span>
+                            <span class="en-lang">Introduction</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#seznam-soucasti">
+                            <span class="cs-lang">Seznam součástek</span>
+                            <span class="en-lang">Component List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#sestaveni">
+                            <span class="cs-lang">Sestavení</span>
+                            <span class="en-lang">Assembly</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#sestaveny-dron">
+                            <span class="cs-lang">Sestavený dron</span>
+                            <span class="en-lang">Assembled Drone</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#nastaveni-dronu">
+                            <span class="cs-lang">Nastavení dronu</span>
+                            <span class="en-lang">Drone Configuration</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#nastaveni-ovladace">
+                            <span class="cs-lang">Nastavení dálkového ovladače</span>
+                            <span class="en-lang">Transmitter Setup</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#legislativa">
+                            <span class="cs-lang">Legislativa</span>
+                            <span class="en-lang">Legislation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#stojan-pro-dron">
+                            <span class="cs-lang">Stojan pro dron</span>
+                            <span class="en-lang">Drone Stand</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="#cad-navrh">
+                                    <span class="cs-lang">CAD návrh</span>
+                                    <span class="en-lang">CAD Design</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#cad-hotovy">
+                                    <span class="cs-lang">Hotový model stojanu</span>
+                                    <span class="en-lang">Finished Stand Model</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#3d-tisk-a-sestaveni">
+                                    <span class="cs-lang">3D tisk a sestavení</span>
+                                    <span class="en-lang">3D Printing & Assembly</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#hotovy-stojan">
+                                    <span class="cs-lang">Hotový stojan</span>
+                                    <span class="en-lang">Finished Stand</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#showcase">
+                            <span class="cs-lang">Showcase</span>
+                            <span class="en-lang">Showcase</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#cad-soubory">
+                            <span class="cs-lang">CAD soubory</span>
+                            <span class="en-lang">CAD Files</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <h1 id="uvod">
+                <span class="cs-lang">Úvod</span>
+                <span class="en-lang">Introduction</span>
+            </h1>
+
             <p>
-                Coming soon.
+                <span class="cs-lang">Rád bych úvodem poděkoval studijnímu programu <strong>Kybernetika a robotika</strong> na <strong>ČVUT FEL</strong> za <strong>zafinancování</strong> většiny tohoto projektu. Velmi si vážím toho, že fakulta podporuje <strong>studentské aktivity</strong> i nad rámec běžné výuky.</span>
+                <span class="en-lang">I would like to start by thanking the <strong>Cybernetics and Robotics</strong> study program at <strong>CTU FEE</strong> for <strong>funding</strong> most of this project. I highly appreciate that the faculty supports <strong>student activities</strong> beyond regular classes.</span>
             </p>
 
+            <p>
+                <span class="cs-lang">Cílem bylo postavit <strong>cenově dostupného</strong> (do 10 000 Kč), avšak <strong>výkonného</strong> a kvalitního <strong>5" freestyle FPV drona</strong>.</span>
+                <span class="en-lang">The goal was to build an <strong>affordable</strong> (under 10,000 CZK), yet <strong>powerful</strong> and high-quality <strong>5" freestyle FPV drone</strong>.</span>
+            </p>
 
+            <h1 id="seznam-soucasti">
+                <span class="cs-lang">Seznam součástek</span>
+                <span class="en-lang">Component List</span>
+            </h1>
+
+            <ul>
+                <li>
+                    <span class="cs-lang"><strong>Rám:</strong> Readytosky Johnny 5" V2</span>
+                    <span class="en-lang"><strong>Frame:</strong> Readytosky Johnny 5" V2</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>3D tisknuté díly:</strong> Readytosky Johnny 5" V2 - držáky antén</span>
+                    <span class="en-lang"><strong>3D Print Parts:</strong> Readytosky Johnny 5" V2 - antenna mounts</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Pásky na baterii:</strong> 2&times; Rotorama battery strap - pogumovaný Kevlar 20&times;250 mm</span>
+                    <span class="en-lang"><strong>Battery Straps:</strong> 2&times; Rotorama battery strap - rubberized Kevlar 20&times;250 mm</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <span class="cs-lang"><strong>Řídicí jednotka &amp; ESC Stack:</strong> Skystars F4 V4 + KO50A BLS</span>
+                    <span class="en-lang"><strong>Flight Controller &amp; ESC Stack:</strong> Skystars F4 V4 + KO50A BLS</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Motory:</strong> 4&times; iFlight XING-E Pro 2207 1800KV</span>
+                    <span class="en-lang"><strong>Motors:</strong> 4&times; iFlight XING-E Pro 2207 1800KV</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Vrtule:</strong> HQProp 5&times;4,3&times;3 V2S Durable</span>
+                    <span class="en-lang"><strong>Propellers:</strong> HQProp 5&times;4.3&times;3 V2S Durable</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>LiPo baterie:</strong> CNHL Black Series 1300mAh 6S 130C</span>
+                    <span class="en-lang"><strong>LiPo Battery:</strong> CNHL Black Series 1300mAh 6S 130C</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <span class="cs-lang"><strong>Vysílačka:</strong> RadioMaster Pocket ELRS</span>
+                    <span class="en-lang"><strong>Transmitter:</strong> RadioMaster Pocket ELRS</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Baterie do vysílačky:</strong> 2&times; Samsung 35E 18650 3400mAh 8A</span>
+                    <span class="en-lang"><strong>Transmitter Batteries:</strong> 2&times; Samsung 35E 18650 3400mAh 8A</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Přijímač:</strong> SpeedyBee ELRS Nano 2.4G - TCXO</span>
+                    <span class="en-lang"><strong>Receiver:</strong> SpeedyBee ELRS Nano 2.4G - TCXO</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <span class="cs-lang"><strong>FPV kamera:</strong> Caddx Ratel 2 Micro</span>
+                    <span class="en-lang"><strong>FPV Camera:</strong> Caddx Ratel 2 Micro</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Video vysílač (VTX):</strong> JHEMCU VTX30 25-800mW</span>
+                    <span class="en-lang"><strong>Video Transmitter (VTX):</strong> JHEMCU VTX30 25-800mW</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>FPV brýle:</strong> DMKR 008D Pro</span>
+                    <span class="en-lang"><strong>FPV Goggles:</strong> DMKR 008D Pro</span>
+                </li>
+                <li>
+                    <span class="cs-lang"><strong>Anténa:</strong> iFlight Albatross V2.1 - 180mm RHCP RP-SMA</span>
+                    <span class="en-lang"><strong>Antenna:</strong> iFlight Albatross V2.1 - 180mm RHCP RP-SMA</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <span class="cs-lang"><strong>Ochrana proti zkratu (Smoke Stopper):</strong> VIFLY ShortSaver V2</span>
+                    <span class="en-lang"><strong>Smoke Stopper:</strong> VIFLY ShortSaver V2</span>
+                </li>
+            </ul>
+
+        <h1 id="sestaveni">
+            <span class="cs-lang">Sestavení</span>
+            <span class="en-lang">Assembly</span>
+        </h1>
+
+        <p>
+            <span class="cs-lang">Dron budu stavět na relativně malém freestylovém rámu <strong>Johnny 5″ V2</strong>. Tento rám by měl být <strong>snadný na sestavení</strong>, je tedy <strong>vhodný pro začátečníky</strong>, jako jsem já.</span>
+            <span class="en-lang">I will be building the drone on a relatively small freestyle frame, the <strong>Johnny 5″ V2</strong>. This frame should be <strong>easy to assemble</strong>, making it <strong>suitable for beginners</strong> like me.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni1.JPG" alt="Součástky pro složení rámu. / Components for frame assembly." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Začal jsem montáží <strong>spodního patra</strong>. Do vnitřních středových otvorů spodní desky jsem vložil <strong>šrouby</strong> a volně jsem na ně nasadil <strong>ramena dronu</strong>.</span>
+            <span class="en-lang">I started by assembling the <strong>bottom deck</strong>. I inserted <strong>screws</strong> into the inner center holes of the bottom plate and loosely attached the <strong>drone arms</strong> to them.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni2.JPG" alt="Spodní patro rámu s centrálními šroubky. / Bottom frame deck with center screws." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni3.JPG" alt="Spodní patro rámu s centrálními šroubky a rameny. / Bottom frame deck with center screws and arms." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Na tyto šrouby jsem následně přidal <strong>střední zpevňovací desku</strong> a zlehka ji zajistil maticemi. Matice jsem v této fázi <strong>nedotahoval úplně</strong>, aby si díly mohly při dalším kroku "sednout".</span>
+            <span class="en-lang">Next, I added the <strong>middle reinforcement plate</strong> onto these screws and lightly secured it with nuts. I <strong>did not tighten the nuts fully</strong> at this stage, allowing the parts to "settle" in the next step.</span>
+        </p>    
+
+        <img src="media/Dron/Sestaveni4.JPG" alt="Spodní patro rámu s centrálními šroubky, rameny a střední deskou. / Bottom deck with center screws, arms, and middle plate." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Do zbylých čtyř vnějších otvorů uprostřed rámu jsem zasunul <strong>delší šrouby</strong> (přiložené k řídicí jednotce a regulátoru) a opět je zajistil maticemi. Následně jsem celou <strong>středovou konstrukci a všechny šrouby pevně dotáhl</strong>.</span>
+            <span class="en-lang">I inserted <strong>longer screws</strong> (included with the flight controller and ESC) into the remaining four outer holes in the center of the frame and secured them with nuts again. Afterward, I <strong>tightened the entire center structure and all screws firmly</strong>.</span>
+        </p>  
+
+        <img src="media/Dron/Sestaveni6.JPG" alt="Spodní patro s vnějšími centrálními šrouby. / Bottom deck with outer center screws." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni7.JPG" alt="Spodní patro s utaženými vnějšími centrálními šrouby. / Bottom deck with tightened outer center screws." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Dalším krokem byla <strong>instalace motorů</strong>. Každý motor jsem připevnil na konec ramene pomocí <strong>čtyř šroubů</strong>. Zde je nutné dát si pozor na jejich <strong>délku</strong> - nesmí být příliš dlouhé, aby <strong>nepoškodily vinutí</strong> motoru, ale zároveň musí být dostatečně dlouhé, aby v karbonovém rámu pevně držely a nestrhly závit. Motory jsem orientoval tak, aby jejich <strong>kabely směřovaly ke středu</strong> rámu. Pro jistotu jsem také našrouboval matice k upevnění vrtulí na hřídele, abych je neztratil.</span>
+            <span class="en-lang">The next step was the <strong>installation of the motors</strong>. I attached each motor to the end of the arm using <strong>four screws</strong>. It's necessary to pay attention to their <strong>length</strong> here - they must not be too long to <strong>avoid damaging the motor windings</strong>, but at the same time long enough to hold firmly in the carbon frame without stripping the thread. I oriented the motors so that their <strong>cables pointed towards the center</strong> of the frame. To be safe, I also screwed the propeller nuts onto the shafts so I wouldn't lose them.</span>
+        </p>  
+
+        <img src="media/Dron/Sestaveni8.JPG" alt="Obsah balení motorů. / Motor package contents." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni9.JPG" alt="Motory přišroubované k rámu. / Motors screwed to the frame." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Aby kabely motorů při letu neplandaly a nedošlo k jejich <strong>přeseknutí ostrou hranou vrtule</strong>, <strong>zafixoval jsem je</strong> k ramenům na dvou místech (těsně u motoru a u těla rámu) pomocí <strong>izolační pásky</strong>.</span>
+            <span class="en-lang">To prevent the motor cables from flapping during flight and getting <strong>cut by the sharp edge of the propeller</strong>, I <strong>secured them</strong> to the arms in two places (right next to the motor and near the frame body) using <strong>electrical tape</strong>.</span>
+        </p>  
+
+        <img src="media/Dron/Sestaveni10.JPG" alt="Přišroubované motory se zafixovanými kabely. / Mounted motors with secured cables." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Před instalací elektroniky jsem na delší středové šrouby nasadil <strong>průhlednou plastovou izolaci</strong>. Ta <strong>brání dotyku vodivých částí</strong> regulátoru s karbonovým rámem a šrouby a <strong>předchází tak zkratu</strong>.</span>
+            <span class="en-lang">Before installing the electronics, I placed a <strong>transparent plastic insulation</strong> over the longer center screws. This <strong>prevents the conductive parts</strong> of the ESC from touching the carbon frame and screws, thus <strong>preventing a short circuit</strong>.</span>
+        </p>  
+
+        <img src="media/Dron/Sestaveni11.JPG" alt="Rám s nasazenou průhlednou plastovou destičkou. / Frame with a transparent plastic plate fitted." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang"><strong>Regulátor otáček (ESC)</strong> se usazuje na čtyřech středových šroubech přes gumové distanční podložky (tzv. <strong><em>softmounty</em></strong>). Ty <strong>pohlcují vibrace</strong> z rámu, které by jinak rušily senzory (gyroskop a akcelerometr) na řídicí jednotce a zhoršovaly tak letové vlastnosti dronu.</span>
+            <span class="en-lang">The <strong>Electronic Speed Controller (ESC)</strong> is mounted on the four center screws using rubber standoffs (known as <strong><em>softmounts</em></strong>). These <strong>absorb vibrations</strong> from the frame that would otherwise interfere with the sensors (gyroscope and accelerometer) on the flight controller, degrading the drone's flight characteristics.</span>
+        </p> 
+
+        <img src="media/Dron/Sestaveni12.JPG" alt="Obsah balení řídící jednotky a regulátory. / Flight controller and ESC package contents." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni13.JPG" alt="Regulátor nasazený na rámu. / ESC mounted on the frame." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni14.JPG" alt="Regulátor nasazený na rámu - podrobnější záběr. / ESC mounted on the frame - detailed shot." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Následovala příprava na <strong>pájení</strong>. <strong>Pocínoval jsem si všechny plošky</strong> na regulátoru určené pro motory a napájení. Zejména velké plochy pro baterii velmi rychle odváděly teplo. Použil jsem proto <strong>široký pájecí hrot</strong>, teplotu páječky jsem zvýšil na <strong>400 °C</strong> a použil jsem <strong>olovnatou pájku</strong>. Pro usnadnění práce jsem aplikoval <strong>tavidlo</strong>. Vzhledem k tomu, že bylo elektricky vodivé, musel jsem po pájení desku regulátoru <strong>vyčistit 99% isopropylalkoholem</strong> a kartáčkem.</span>
+            <span class="en-lang">Next came the preparation for <strong>soldering</strong>. I <strong>tinned all the pads</strong> on the ESC meant for the motors and power. The large battery pads in particular dissipated heat very quickly. Therefore, I used a <strong>broad soldering tip</strong>, increased the iron's temperature to <strong>400 °C</strong>, and used <strong>leaded solder</strong>. To make the work easier, I applied <strong>flux</strong>. Since it was electrically conductive, I had to <strong>clean the ESC board with 99% isopropyl alcohol</strong> and a brush after soldering.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni15.JPG" alt="Regulátor s pocínovanými ploškami. / ESC with tinned pads." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni16.JPG" alt="Pocínovaný regulátor na rámu. / Tinned ESC on the frame." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Před samotným pájením jsem všechny <strong>kabely zakrátil na minimum</strong>, aby v rámu nepřekážely. Poté jsem konce vodičů odizoloval na délku plošky na regulátoru a pocínoval je. Trojici kabelů od každého motoru lze <strong>připájet v libovolném pořadí</strong> - přehozením dvou fází se pouze <strong>změní směr otáčení</strong> motoru, což lze později upravit softwarově v konfigurátoru. Následně jsem připájel <strong>hlavní napájecí kabel</strong> s konektorem <strong>XT60</strong> (červený na +, černý na -).</span>
+            <span class="en-lang">Before the actual soldering, I <strong>shortened all cables to a minimum</strong> so they wouldn't get in the way inside the frame. Then I stripped the wire ends to the length of the ESC pads and tinned them. The three cables from each motor can be <strong>soldered in any order</strong> - swapping two phases only <strong>changes the motor's rotation direction</strong>, which can be adjusted via software in the configurator later. Subsequently, I soldered the <strong>main power cable</strong> with the <strong>XT60</strong> connector (red to +, black to -).</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni17.JPG" alt="Regulátor s připájenými motory a konektorem pro baterii. / ESC with soldered motors and battery connector." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Ke zmenšení napěťových špiček a rušení bylo nutné přidat <strong>elektrolytický Low-ESR 35V 1000 μF kondenzátor</strong>. Jeho nožičky jsem zkrátil na zhruba 2 mm a napájel jsem na ně ohebný silikonový kabel. Ten jsem pak připojil k menším ploškám vedle hlavního napájení na regulátoru. Při instalaci kondenzátoru je <strong>důležité dodržet správnou polaritu</strong> - záporný pól je na jeho obalu <strong>vyznačen světlým pruhem</strong>.</span>
+            <span class="en-lang">To reduce voltage spikes and interference, it was necessary to add a <strong>electrolytic Low-ESR 35V 1000 μF capacitor</strong>. I shortened its legs to about 2 mm and soldered a flexible silicone cable to them. I then connected this to the smaller pads next to the main power on the ESC. When installing the capacitor, it is <strong>crucial to observe the correct polarity</strong> - the negative pole is <strong>marked with a light stripe</strong> on its casing.</span>
+        </p> 
+
+        <img src="media/Dron/Sestaveni18.JPG" alt="Připájený kondenzátor. / Soldered capacitor." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Nad regulátor jsem nasadil <strong>řídicí jednotku (FC)</strong>, kterou jsem <strong>zorientoval podle vyznačené šipky</strong> ve směru letu. S regulátorem jsem ji propojil dodaným <strong>8pinovým kabelem</strong> a zkontroloval jsem, že černý vodič <strong>propojuje GND</strong> na obou modulech.</span>
+            <span class="en-lang">Above the ESC, I mounted the <strong>Flight Controller (FC)</strong>, which I <strong>oriented with the marked arrow</strong> facing the direction of flight. I connected it to the ESC using the included <strong>8-pin cable</strong> and checked that the black wire <strong>connects GND</strong> on both modules.</span>
+        </p> 
+
+        <img src="media/Dron/Sestaveni19.JPG" alt="Rám s řídící jednotkou. / Frame with the flight controller." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang"><strong>FPV kameru</strong> bylo potřeba uchytit do karbonových bočnic rámu. Jelikož je její tělo o něco užší než mezera mezi bočnicemi, <strong>vypodložil jsem ji</strong> na každé straně gumovým spacerem a dvěma klasickými ocelovými podložkami. Kameru jsem upevnil <strong>pod úhlem zhruba 15°</strong> (což kompenzuje náklon dronu při letu dopředu) a zasunul ji dostatečně hluboko, aby nepřečuhovala a <strong>byla chráněna</strong> při případném čelním nárazu.</span>
+            <span class="en-lang">The <strong>FPV camera</strong> needed to be mounted into the carbon side plates of the frame. Since its body is slightly narrower than the gap between the side plates, I <strong>shimmed it</strong> on each side with a rubber spacer and two standard steel washers. I mounted the camera <strong>at an angle of about 15°</strong> (which compensates for the drone's tilt during forward flight) and pushed it in deep enough so it wouldn't protrude and <strong>would be protected</strong> in the event of a frontal crash.</span>
+        </p>
+
+        <p>
+            <span class="cs-lang">Kameru jsem s řídicí jednotkou propojil <strong>3pinovým kabelem</strong>, který jsem předtím lehce zakroutil, aby v rámu neplandal. Červený vodič jsem připájel na <strong>pad 5V</strong>, černý na <strong>GND</strong> a žlutý na <strong>pad C2</strong>.</span>
+            <span class="en-lang">I connected the camera to the flight controller with a <strong>3-pin cable</strong>, which I lightly twisted beforehand so it wouldn't flap around in the frame. I soldered the red wire to the <strong>5V pad</strong>, the black to <strong>GND</strong>, and the yellow to <strong>pad C2</strong>.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni20.JPG" alt="Obsah balení FPV kamery. / FPV camera package contents." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni21.JPG" alt="Kamera připevněná k bočnicím - zboku. / Camera mounted to side plates - side view." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni22.JPG" alt="Kamera připevněná k bočnicím - shora. / Camera mounted to side plates - top view." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni23.JPG" alt="Kamera zasazená do rámu. / Camera slotted into the frame." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Dále jsem k řídicí jednotce připojil <strong>RC přijímač</strong>. Šlo o čtyři kabely: <code>G</code> na pad <strong>GND</strong>, <code>5V</code> na <strong>4V5</strong>, <code>R</code> (RX) na <strong>TX2</strong> a <code>T</code> (TX) na <strong>RX2</strong>. Po zacvaknutí antény jsem přijímač <strong>schoval do smršťovací bužírky</strong> a stahovací páskou jsem ho <strong>přichytil k zadní části</strong> spodního plata rámu. Na T-anténu jsem navlékl pružný <strong>TPU držák</strong> vytištěný na 3D tiskárně (bylo nutné ho mírně naříznout).</span>
+            <span class="en-lang">Next, I connected the <strong>RC receiver</strong> to the flight controller. This involved four wires: <code>G</code> to the <strong>GND</strong> pad, <code>5V</code> to <strong>4V5</strong>, <code>R</code> (RX) to <strong>TX2</strong>, and <code>T</code> (TX) to <strong>RX2</strong>. After snapping on the antenna, I <strong>hid the receiver inside a heat shrink tube</strong> and secured it to the rear of the bottom frame plate with a zip tie. I slipped a flexible 3D-printed <strong>TPU mount</strong> onto the T-antenna (it had to be slightly slit).</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni24.JPG" alt="Obsah balení RC přijímače. / RC receiver package contents." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni25.JPG" alt="TPU držáky. / TPU mounts." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni26.JPG" alt="Anténa v TPU držáku a vysílač v bužírce. / Antenna in TPU mount and receiver in heat shrink." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni27.JPG" alt="Vysílač upevněný na rámu. / Receiver mounted on the frame." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Pro montáž <strong>video vysílače</strong> jsem na dlouhé šrouby nad řídicí jednotku přidal <strong>nylonové distanční sloupky</strong>.</span>
+            <span class="en-lang">To mount the <strong>video transmitter</strong>, I added <strong>nylon standoffs</strong> onto the long screws above the flight controller.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni28.JPG" alt="Řídící jednotka s nylonovými šroubky. / Flight controller with nylon standoffs." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Z dodávaného 6pinového kabelu pro <strong>video vysílač (VTX)</strong> jsem mohl před zapojením <strong>odstřihnout druhý GND a +5V vodič</strong>, protože video signál do něj putuje zprostředkovaně přes řídicí jednotku. Zapojení zbylých kabelů vypadalo následovně: <code>DC-IN</code> na pad <strong>10V</strong>, <code>GND</code> na <strong>GND</strong>, <code>VIDEO</code> na <strong>VTX</strong> a <code>IRC</code> (telemetrie) na <strong>TX6</strong>. Následně jsem VTX nasadil na připravené nylonové sloupky a <strong>zajistil maticemi</strong>.</span>
+            <span class="en-lang">From the included 6-pin cable for the <strong>Video Transmitter (VTX)</strong>, I was able to <strong>cut off the second GND and +5V wire</strong> before connecting, because the video signal routes to it indirectly through the flight controller. The wiring for the remaining cables was as follows: <code>DC-IN</code> to the <strong>10V</strong> pad, <code>GND</code> to <strong>GND</strong>, <code>VIDEO</code> to <strong>VTX</strong>, and <code>IRC</code> (telemetry) to <strong>TX6</strong>. Afterward, I placed the VTX onto the prepared nylon standoffs and <strong>secured it with nuts</strong>.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni29.JPG" alt="Obsah balení video vysílače. / Video transmitter package contents." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni30.JPG" alt="Konektor video vysílače. / Video transmitter connector." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni31.JPG" alt="Rám s upevněným video vysílačem. / Frame with the mounted video transmitter." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Ke spodnímu patru jsem přišrouboval <strong>hliníkové distanční sloupky</strong> rámu.</span>
+            <span class="en-lang">I screwed the <strong>aluminum frame standoffs</strong> to the bottom deck.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni32.JPG" alt="Rám s distančními sloupky - zespodu. / Frame with standoffs - bottom view." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni33.JPG" alt="Rám s distančními sloupky - shora / Frame with standoffs - top view." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Do video vysílače jsem zacvakl <strong>pigtail pro anténu</strong>. Jeho SMA konektor jsem protáhl <strong>3D tištěným držákem</strong>, utáhl maticí a celý tento držák jsem navlékl na zadní distanční sloupky.</span>
+            <span class="en-lang">I snapped the <strong>antenna pigtail</strong> into the video transmitter. I threaded its SMA connector through the <strong>3D printed mount</strong>, tightened it with a nut, and slipped this entire mount onto the rear standoffs.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni34.JPG" alt="Anténa a pigtail v TPU držácích nasazených na sloupcích. / Antenna and pigtail in TPU mounts fitted on standoffs." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Konstrukci jsem uzavřel přišroubováním <strong>horního karbonového plata</strong>. Na něj jsem nalepil <strong>pěnovou podložku</strong>. Ta díky vysokému tření <strong>zamezuje vyklouznutí baterie</strong> a zároveň ji zespodu <strong>chrání před protržením</strong> o hlavičky šroubů.</span>
+            <span class="en-lang">I closed the structure by screwing on the <strong>top carbon plate</strong>. I adhered a <strong>foam pad</strong> to it. Thanks to its high friction, it <strong>prevents the battery from slipping out</strong> and simultaneously <strong>protects it from being punctured</strong> from underneath by the screw heads.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni35.JPG" alt="Dron s uzavřeným rámem. / Drone with closed frame." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni36.JPG" alt="Protiskluzová podložka. / Anti-slip pad." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni37.JPG" alt="Přilepená protiskluzová podložka. / Glued anti-slip pad." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Na SMA konektor vzadu jsem <strong>našrouboval video anténu</strong>, protáhl <strong>kevlarový pásek</strong> pro uchycení LiPo baterie a <strong>připnul ji na její místo</strong> na hřbetě dronu.</span>
+            <span class="en-lang">I <strong>screwed the video antenna</strong> onto the rear SMA connector, threaded the <strong>Kevlar strap</strong> for securing the LiPo battery, and <strong>strapped it into its place</strong> on the drone's back.</span>
+        </p>
+
+        <p>
+            <span class="cs-lang">Úplně první zapojení baterie jsem provedl přes tzv. <strong>smoke stopper</strong>, což je ochranné zařízení, které v případě detekce zkratu (např. chyba v pájení) <strong>okamžitě rozpojí obvod</strong> a <strong>zachrání tak drahou elektroniku</strong> dronu.</span>
+            <span class="en-lang">I performed the very first battery connection through a so-called <strong>smoke stopper</strong>, which is a protective device that, upon detecting a short circuit (e.g., a soldering mistake), <strong>instantly disconnects the circuit</strong>, thus <strong>saving the expensive drone electronics</strong>.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni38.JPG" alt="Dron s anténou video vysílače. / Drone with video transmitter antenna." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni39.JPG" alt="Dron zapojený přes smoke stopper. / Drone connected via smoke stopper." class="project-image" loading="lazy">
+        <img src="media/Dron/Sestaveni40.JPG" alt="Dron s baterií. / Drone with battery." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Nakonec proběhla <strong>montáž vrtulí</strong>. Pro snazší uchycení jsem zvon motoru <strong>obmotal gumovou páskou</strong> proti prokluzování a vrtuli jsem <strong>pevně utáhl maticí</strong>.</span>
+            <span class="en-lang">Finally came the <strong>propeller installation</strong>. For an easier grip, I <strong>wrapped a rubber band</strong> around the motor bell to prevent slipping and <strong>tightened the propeller firmly with a nut</strong>.</span>
+        </p>
+
+        <img src="media/Dron/Sestaveni41.JPG" alt="Sestavený dron s vrtulemi. / Assembled drone with propellers." class="project-image" loading="lazy">
+
+        <h1 id="sestaveny-dron">
+            <span class="cs-lang">Sestavený dron</span>
+            <span class="en-lang">Assembled Drone</span>
+        </h1>
+
+        <img src="media/Dron/HotovyDron1.JPG" alt="Hotový dron na stojanu. / Finished drone on the stand." class="project-image" loading="lazy">
+        <img src="media/Dron/HotovyDron2.JPG" alt="Hotový dron zepředu / Finished drone front view" class="project-image" loading="lazy">
+        <img src="media/Dron/HotovyDron3.JPG" alt="Hotový dron zboku / Finished drone side view" class="project-image" loading="lazy">
+        <img src="media/Dron/HotovyDron4.JPG" alt="Hotový dron shora / Finished drone top view" class="project-image" loading="lazy">
+
+        <h1 id="nastaveni-dronu">
+            <span class="cs-lang">Nastavení dronu</span>
+            <span class="en-lang">Drone Configuration</span>
+        </h1>
+
+        <p>
+            <span class="cs-lang">Regulátor <strong>KO50A BLS</strong> je z výroby dodáván s firmwarem <strong>BlHeli_S</strong>, který bohužel <strong>nepodporuje</strong> funkci <strong>bidirectional DShot</strong>. Tato funkce zajišťuje <strong>obousměrnou komunikaci</strong>, při které regulátor posílá zpět do řídicí jednotky informace o <strong>otáčkách motorů</strong> a <strong>napětí</strong>. Tato data jsou klíčová pro správné fungování <strong>RPM filtru</strong>, který filtruje signály z gyroskopu a výrazně tak <strong>zlepšuje stabilitu letu</strong> a <strong>eliminaci vibrací</strong>. Rozhodl jsem se proto přejít na open-source firmware <strong>Bluejay</strong>, který tuto technologii <strong>podporuje</strong>.</span>
+            <span class="en-lang">The <strong>KO50A BLS</strong> ESC comes factory-flashed with <strong>BlHeli_S</strong> firmware, which unfortunately <strong>does not support</strong> the <strong>bidirectional DShot</strong> feature. This feature enables <strong>two-way communication</strong>, where the ESC sends <strong>motor RPM</strong> and <strong>voltage</strong> information back to the flight controller. This data is crucial for the proper functioning of the <strong>RPM filter</strong>, which filters gyroscope signals and significantly <strong>improves flight stability</strong> and <strong>vibration elimination</strong>. I therefore decided to switch to the open-source <strong>Bluejay</strong> firmware, which <strong>supports</strong> this technology.</span>
+        </p>
+
+        <p>
+            <span class="cs-lang">K instalaci firmwaru Bluejay jsem využil webový nástroj <a href="https://esc-configurator.com/" target="_blank">ESC konfigurátor</a>. Před samotným procesem je nutné z dronu <strong>sundat vrtule</strong>, propojit ho s počítačem pomocí <strong>USB kabelu</strong> a <strong>zapojit baterii</strong>. Doporučuji před připojením baterie zcela <strong>odpojit video vysílač</strong>, nebo k němu alespoň <strong>přimontovat anténu</strong>, jinak hrozí jeho <strong>poškození</strong>.</span>
+            <span class="en-lang">To install the Bluejay firmware, I used the web-based <a href="https://esc-configurator.com/" target="_blank">ESC Configurator</a>. Before starting the process, you must <strong>remove the propellers</strong> from the drone, connect it to the computer via a <strong>USB cable</strong>, and <strong>plug in the battery</strong>. I recommend completely <strong>disconnecting the video transmitter</strong> before plugging in the battery, or at least <strong>attaching an antenna</strong> to it, otherwise it risks being <strong>damaged</strong>.</span>
+        </p>
+
+        <img src="media/Dron/ESCconfig.JPG" alt="Nástroj ESC Configurator. / ESC Configurator tool." class="project-image" loading="lazy">
+        
+        <p>
+            <span class="cs-lang">Pro nastavení řídicí jednotky jsem zvolil software <strong>Betaflight</strong>. Ten dnes funguje primárně jako <a href="https://app.betaflight.com/" target="_blank">webová aplikace</a>, kterou si můžete v prohlížeči pomocí malé ikony nainstalovat jako <strong>PWA</strong> a používat ji jako běžný program, případně si lze z <a href="https://github.com/betaflight/betaflight-configurator/releases" target="_blank">GitHubu</a> stáhnout klasickou <strong>desktopovou verzi</strong>. Dron stačí propojit s počítačem <strong>datovým kabelem</strong>, vybrat ho z nabídky v aplikaci a <strong>připojit</strong>.</span>
+            <span class="en-lang">For the flight controller configuration, I chose the <strong>Betaflight</strong> software. Today, it primarily functions as a <a href="https://app.betaflight.com/" target="_blank">web application</a> that you can install from your browser as a <strong>PWA</strong> using a small icon and use it as a regular program, or you can download the classic <strong>desktop version</strong> from <a href="https://github.com/betaflight/betaflight-configurator/releases?utm_source=chatgpt.com" target="_blank">GitHub</a>. Simply connect the drone to the computer with a <strong>data cable</strong>, select it from the menu in the application, and <strong>connect</strong>.</span>
+        </p>
+
+        <img src="media/Dron/PripojeniDronu.JPG" alt="Připojení dronu k Betaflightu. / Connecting the drone to Betaflight." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Jako první krok jsem provedl <strong>aktualizaci firmwaru</strong> řídicí jednotky. Ačkoliv se to začátečníkům často <strong>nedoporučuje</strong> kvůli ztrátě továrního nastavení, můj dron s přednastavenými parametry <strong>téměř nedokázal vzlétnout</strong>, takže případná <strong>ztráta konfigurace</strong> nepředstavovala žádný problém.</span>
+            <span class="en-lang">As a first step, I <strong>updated the firmware</strong> of the flight controller. Although this is often <strong>not recommended</strong> for beginners due to the loss of factory settings, my drone <strong>could barely take off</strong> with the pre-set parameters, so any potential <strong>loss of configuration</strong> was not an issue.</span>
+        </p>
+
+        <p>
+            <span class="cs-lang">Pro jistotu jsem si ale v sekci <strong>Presets</strong> vytvořil <strong>zálohu aktuálního stavu</strong> pomocí tlačítka <strong>Save backup</strong>. Zálohu lze pak kdykoliv obnovit přes volbu <strong>Load backup</strong>.</span>
+            <span class="en-lang">Just to be safe, however, I created a <strong>backup of the current state</strong> in the <strong>Presets</strong> section using the <strong>Save backup</strong> button. The backup can then be restored at any time via the <strong>Load backup</strong> option.</span>
+        </p>
+
+        <img src="media/Dron/TlacitkaBackupu.JPG" alt="Tlačítka Save a Load backup v sekci Presets. / Save and Load backup buttons in the Presets section." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Samotná aktualizace se provádí přes možnost <strong>Update Firmware</strong>. V nabídce stačí nechat <strong>automaticky detekovat</strong> připojenou desku a vybrat <strong>nejnovější dostupnou verzi</strong> firmwaru. Pokud nevyužíváte žádné nestandardní komunikační protokoly mezi řídicí jednotkou, regulátorem a přijímačem, sekci <strong>Build Configuration</strong> není třeba nijak upravovat. Následně stačí kliknout na <strong>Load Firmware [Online]</strong> a zahájit proces přes <strong>Flash Firmware</strong>.</span>
+            <span class="en-lang">The update itself is done via the <strong>Update Firmware</strong> option. In the menu, simply let it <strong>automatically detect</strong> the connected board and select the <strong>latest available firmware version</strong>. If you are not using any non-standard communication protocols between the flight controller, ESC, and receiver, there is no need to modify the <strong>Build Configuration</strong> section. Then just click on <strong>Load Firmware [Online]</strong> and start the process via <strong>Flash Firmware</strong>.</span>
+        </p>
+
+        <img src="media/Dron/FirmwareUpdate.JPG" alt="Vybraná řídící jednotka a firmware." class="project-image-noborder" loading="lazy">
+        <img src="media/Dron/BuildConfig.JPG" alt="Nastavení v sekci Build Configuration." class="project-image-noborder" loading="lazy">
+        <img src="media/Dron/LoadFlash.JPG" alt="Tlačítka Load a Flash Firmware. / Load and Flash Firmware buttons." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">V operačním systému Windows se často stává, že počítač řídicí jednotku po přepnutí do režimu <strong>DFU nerozpozná</strong> a systém tak neumožní nahrát nový firmware. Tento problém řeší stažení a spuštění malé utility <strong><a href="https://github.com/ImpulseRC/ImpulseRC_Driver_Fixer" target="_blank">ImpulseRC Driver Fixer</a></strong>.</span>
+            <span class="en-lang">In the Windows operating system, it often happens that the computer <strong>does not recognize</strong> the flight controller after switching to <strong>DFU mode</strong>, preventing the system from flashing the new firmware. This problem is solved by downloading and running a small utility called <strong><a href="https://github.com/ImpulseRC/ImpulseRC_Driver_Fixer" target="_blank">ImpulseRC Driver Fixer</a></strong>.</span>
+        </p>
+
+        <img src="media/Dron/ImpulseRC.JPG" alt="Nástroj ImpulseRC Driver Fixer. / ImpulseRC Driver Fixer tool." class="project-image-noborder" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Po úspěšném nahrání firmwaru je potřeba <strong>zkalibrovat akcelerometr</strong>, během čehož musí dron ležet v <strong>naprosté rovině</strong>. Protože zespodu mého rámu vyčnívá stahovací páska, nemohl jsem ho položit přímo na stůl. Vypomohl jsem si <strong>termoskou</strong>, o kterou se dron opíral pouze v místech karbonového rámu a páska se šrouby tak vůbec nepřekážely. Zpočátku dron po vzletu <strong>mírně driftoval doprava</strong>, kalibraci jsem proto několikrát zopakoval s postupným podkládáním termosky papírem, dokud dron nedržel ve vzduchu <strong>stabilně na místě</strong>.</span>
+            <span class="en-lang">After successfully flashing the firmware, you need to <strong>calibrate the accelerometer</strong>, during which the drone must lie <strong>perfectly flat</strong>. Because a zip tie protrudes from the bottom of my frame, I couldn't place it directly on the table. I used a <strong>thermos</strong>, which supported the drone only on the carbon frame parts, so the zip tie and screws weren't in the way at all. Initially, the drone <strong>drifted slightly to the right</strong> after takeoff, so I repeated the calibration several times, gradually shimming the thermos with paper until the drone hovered <strong>stably in place</strong>.</span>
+        </p>
+
+        <img src="media/Dron/DronNaTermosce.JPG" alt="Dron položený na termosce při kalibraci akcelerometru. / Drone resting on a thermos during accelerometer calibration." class="project-image" loading="lazy">
+        <img src="media/Dron/KalibraceAkcelerometru.JPG" alt="Kalibrace akcelerometru v Betaflightu. / Accelerometer calibration in Betaflight." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Následně jsem v záložce <strong>Ports</strong> nakonfiguroval fyzické <strong>sériové porty</strong>. Port <strong>USB VCP</strong> je vyhrazen pro komunikaci s počítačem. Na <strong>UART2</strong> jsem aktivoval <strong>Serial Rx</strong> pro rádiový přijímač. <strong>UART3</strong> jsem nastavil jako <strong>Sensor Input</strong> pro sběr telemetrických dat z regulátorů, což je nezbytné pro chod <strong>RPM filtrů</strong>. Nakonec jsem <strong>UART6</strong> nastavil na <strong>Peripherals</strong> s protokolem <strong>IRC Tramp</strong>, který zajišťuje softwarové ovládání video vysílače z vysílačky nebo OSD.</span>
+            <span class="en-lang">Next, in the <strong>Ports</strong> tab, I configured the physical <strong>serial ports</strong>. The <strong>USB VCP</strong> port is reserved for computer communication. On <strong>UART2</strong>, I enabled <strong>Serial Rx</strong> for the radio receiver. I set <strong>UART3</strong> as <strong>Sensor Input</strong> to collect telemetry data from the ESCs, which is essential for the <strong>RPM filters</strong>. Finally, I set <strong>UART6</strong> to <strong>Peripherals</strong> with the <strong>IRC Tramp</strong> protocol, which allows software control of the video transmitter from the radio or OSD.</span>
+        </p>
+
+        <img src="media/Dron/Porty.JPG" alt="Nastavení v záložce Ports. / Settings in the Ports tab." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">V záložce <strong>Configuration</strong> jsem upravil základní chování systému a funkci <strong>Dshot Beacon</strong>. Nastavení <strong>RX_SET</strong> a <strong>RX_LOST</strong> umožňuje manuálně i automaticky aktivovat <strong>hlasité pípání motorů</strong> při ztrátě signálu, což zásadně usnadňuje <strong>hledání zapadlého dronu</strong> v trávě.</span>
+            <span class="en-lang">In the <strong>Configuration</strong> tab, I adjusted the basic system behavior and the <strong>Dshot Beacon</strong> feature. The <strong>RX_SET</strong> and <strong>RX_LOST</strong> settings allow you to manually and automatically activate a <strong>loud motor beeping</strong> upon signal loss, which significantly makes <strong>finding a lost drone</strong> in the grass easier.</span>
+        </p>
+
+        <img src="media/Dron/SystemConfig.JPG" alt="Nastavení v sekci System Configuration. / Settings in the System Configuration section." class="project-image" loading="lazy">
+        <img src="media/Dron/DShotBeaconConfig.JPG" alt="Nastavení v sekci Dshot Beacon Configuration. / Settings in the Dshot Beacon Configuration section." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Detailní ladění <strong>PID regulátoru</strong> a filtrů bývá složitý proces, proto jsem v záložce <strong>PID Tuning</strong> zvolil <strong>výchozí profil</strong> Betaflightu. Ten je navržen jako <strong>bezpečný a univerzální základ</strong>, který na mém dronu funguje dobře a nevyžadoval <strong>žádné další zásahy</strong>.</span>
+            <span class="en-lang">Detailed tuning of the <strong>PID controller</strong> and filters is usually a complex process, so in the <strong>PID Tuning</strong> tab, I chose the <strong>default Betaflight profile</strong>. It is designed as a <strong>safe and universal baseline</strong> that works well on my drone and required <strong>no further adjustments</strong>.</span>
+        </p>
+
+        <img src="media/Dron/PID.JPG" alt="Nastavení v záložce PID Tuning v sekci PID Profile Settiings. / Settings in the PID Tuning tab under PID Profile Settings." class="project-image" loading="lazy">
+        <img src="media/Dron/Rateprofile.JPG" alt="Nastavení v záložce PID Tuning v sekci Rateprofile Settings. / Settings in the PID Tuning tab under Rateprofile Settings." class="project-image" loading="lazy">
+        <img src="media/Dron/Filter.JPG" alt="Nastavení v záložce PID Tuning v sekci Filter Settings. / Settings in the PID Tuning tab under Filter Settings." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Dalším krokem bylo <strong>spárování přijímače</strong> s ovladačem v záložce <strong>Receiver</strong> pomocí <strong>Bind Receiver</strong> (více o spárování řídící jednotky a rádiového ovladače v sekci <a href="#nastaveni-ovladace">Nastavení dálkového ovladače</a>). Poté jsem ověřil, že pohyby páček <strong>správně odpovídají reakcím</strong> na obrazovce. Můj ovladač Radiomaster Pocket i po důkladné kalibraci vykazoval v klidové poloze <strong>mírné nepřesnosti</strong> a posílal hodnoty v rozmezí 1503 až 1505. Nastavil jsem proto parametry <strong>RC deadband</strong> a <strong>Yaw deadband</strong> na hodnotu <strong>10</strong>, aby ovladač tyto drobné odchylky od ideální hodnoty 1500 <strong>ignoroval</strong>.</span>
+            <span class="en-lang">The next step was <strong>binding the receiver</strong> to the transmitter in the <strong>Receiver</strong> tab using <strong>Bind Receiver</strong> (for more on pairing the flight controller with the radio transmitter, see the <a href="#nastaveni-ovladace">Transmitter Setup</a> section). I verified that the stick movements <strong>correctly corresponded to the reactions</strong> on the screen. Even after a thorough calibration, my Radiomaster Pocket transmitter showed <strong>slight inaccuracies</strong> in the resting position, sending values between 1503 and 1505. Therefore, I set the <strong>RC deadband</strong> and <strong>Yaw deadband</strong> parameters to a value of <strong>10</strong>, so the controller would <strong>ignore</strong> these minor deviations from the ideal value of 1500.</span>
+        </p>
+
+        <img src="media/Dron/Receiver.JPG" alt="Nastavení v záložce Receiver. / Settings in the Receiver tab." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Přiřazení <strong>konkrétních funkcí</strong> k přepínačům se provádí v záložce <strong>Modes</strong>. Na levý třístupňový přepínač jsem namapoval <strong>letové režimy</strong>. Režim <strong>Angle</strong> dron stabilizuje a omezuje jeho náklon, <strong>Horizon</strong> se chová podobně, ale při větší výchylce se chová jako Acro, a výchozí režim <strong>Acro</strong> ponechává plnou kontrolu <strong>bez jakékoliv stabilizace</strong>. Levé aretovatelné tlačítko jsem určil pro <strong>odjištění motorů (Arm)</strong> a pravý přepínač aktivuje <strong>pípání</strong>.</span>
+            <span class="en-lang">Assigning <strong>specific functions</strong> to the switches is done in the <strong>Modes</strong> tab. I mapped the <strong>flight modes</strong> to the left 3-position switch. The <strong>Angle</strong> mode stabilizes the drone and limits its tilt, <strong>Horizon</strong> acts similarly but behaves like Acro at larger deflections, and the default mode <strong>Acro</strong> leaves full control <strong>without any stabilization</strong>. I assigned the left latching button to <strong>arming the motors (Arm)</strong> and the right switch activates the <strong>beeping</strong>.</span>
+        </p>
+
+        <img src="media/Dron/Modes.JPG" alt="Nastavení v záložce Modes. / Settings in the Modes tab." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Předposledním krokem byla aktivace <strong>bidirectional DShot</strong> komunikace v záložce <strong>Motors</strong>. Dále jsem <strong>bez nasazených vrtulí</strong> a antény připojil baterii, aktivoval rozhraní pro <strong>testování motorů</strong> a zkontroloval jsem, zda reálné pořadí a <strong>směr otáčení motorů</strong> odpovídá zobrazenému schématu v Betaflightu.</span>
+            <span class="en-lang">The penultimate step was enabling the <strong>bidirectional DShot</strong> communication in the <strong>Motors</strong> tab. Next, <strong>without propellers attached</strong> and with the antenna removed, I plugged in the battery, enabled the <strong>motor testing interface</strong>, and checked if the actual motor order and <strong>rotation direction</strong> matched the diagram shown in Betaflight.</span>
+        </p>
+
+        <img src="media/Dron/Motors.JPG" alt="Nastavení v záložce Motors. / Settings in the Motors tab." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Závěrem jsem v záložce <strong>OSD</strong> uspořádal prvky <strong>uživatelského rozhraní</strong> tak, jak se budou překrývat přes obraz v <strong>FPV brýlích</strong>. Díky tomu mám během letu přehled o <strong>napětí baterie</strong> a <strong>výšce dronu</strong>.</span>
+            <span class="en-lang">Finally, in the <strong>OSD</strong> tab, I arranged the <strong>user interface</strong> elements exactly as they will overlay the image in the <strong>FPV goggles</strong>. This gives me an overview of the <strong>battery voltage</strong> and <strong>drone altitude</strong> during flight.</span>
+        </p>
+
+        <img src="media/Dron/OSD.JPG" alt="Nastavení v záložce OSD. / Settings in the OSD tab." class="project-image" loading="lazy">
+
+        <h1 id="nastaveni-ovladace">
+            <span class="cs-lang">Nastavení dálkového ovladače</span>
+            <span class="en-lang">Transmitter Setup</span>
+        </h1>
+
+        <p>
+            <span class="cs-lang">Dálkový ovladač <strong>RadioMaster Pocket</strong> jsem nakonfiguroval podle následujícího <strong>YouTube tutoriálu</strong>:</span>
+            <span class="en-lang">I configured the <strong>RadioMaster Pocket</strong> transmitter according to the following <strong>YouTube tutorial</strong>:</span>
+        </p>
+
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube-nocookie.com/embed/GgaWMvAHZi8?si=qhRoU7HEaiyUIJw9" 
+                title="Nastavení RadioMaster Pocket / RadioMaster Pocket setup" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <h1 id="legislativa">
+            <span class="cs-lang">Legislativa</span>
+            <span class="en-lang">Legislation</span>
+        </h1>
+
+        <p class="note">
+            <span class="cs-lang">
+                <strong>Poznámka:</strong> Níže popsaná legislativa a pravidla letu platí pro <strong>Českou republiku</strong> (dle pravidel EASA). V jiných zemích se mohou <strong>pravidla lišit</strong>.
+            </span>
+            <span class="en-lang">
+                <strong>Note:</strong> The legislation and flight rules described below apply to the <strong>Czech Republic</strong> (under EASA regulations). Please be aware that rules may <strong>differ in other countries</strong>.
+            </span>
+        </p>
+
+        <p>
+            <span class="cs-lang">Jelikož můj 5" dron bezpečně <strong>přesahuje 250 gramů</strong>, spadá podle legislativy do třídy <strong>soukromě zhotovených dronů do 25 kg</strong>. Z toho pro mě plyne <strong>povinnost</strong> <a href="https://dron.caa.cz/" target="_blank">zaregistrovat se</a> u Úřadu pro civilní letectví (ÚCL) a absolvovat <a href="https://dron.caa.cz/" target="_blank">online test pilota</a>. Přidělené <strong>registrační číslo provozovatele</strong> jsem si vytiskl na malý štítek a připevnil jsem ho zespodu na karbonový rám dronu.</span>
+            <span class="en-lang">Since my 5" drone safely <strong>exceeds 250 grams</strong>, it falls under the class of <strong>privately built drones up to 25 kg</strong> according to the legislation. This entails an <strong>obligation</strong> for me to <a href="https://dron.caa.cz/" target="_blank">register</a> with the Civil Aviation Authority (CAA) and pass an <a href="https://dron.caa.cz/" target="_blank">online pilot test</a>. I printed the assigned <strong>operator registration number</strong> on a small label and attached it to the bottom of the drone's carbon frame.</span>
+        </p>
+
+        <img src="media/Dron/CisloProvozovatele.JPG" alt="Registrační číslo provozovatele na štítku na dronu. / Operator registration number on the drone label." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Provoz tohoto dronu spadá v rámci Otevřené kategorie do <strong>podkategorie A3</strong>. V praxi to znamená, že s ním smím létat <strong>pouze mimo města a hustě osídlené oblasti</strong>. Musím udržovat horizontální vzdálenost <strong>minimálně 150 metrů</strong> od obytných, obchodních či rekreačních zón a létat ideálně na louce (maximálně <strong>do výšky 120 metrů</strong>), kde se v dosahu nevyskytují <strong>žádné nezúčastněné osoby</strong>.</span>
+            <span class="en-lang">The operation of this drone falls within the Open category into <strong>subcategory A3</strong>. In practice, this means I am allowed to fly it <strong>only outside of cities and densely populated areas</strong>. I must maintain a horizontal distance of <strong>at least 150 meters</strong> from residential, commercial, or recreational zones and fly ideally in a meadow (up to a maximum <strong>altitude of 120 meters</strong>) where there are <strong>no uninvolved people</strong> within range.</span>
+        </p>
+
+        <img src="media/Dron/TabulkaKategorie.jpg" alt="Tabulka s podkategoriemi otevřené kategorie a třídami typu dronu. / Table with open category subcategories and drone type classes." class="project-image-noborder" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Protože létám přes FPV brýle, musím mít tzv. <strong>pozorovatele (spottera)</strong>. To je <strong>druhá osoba</strong>, která <strong>hlídá letový prostor</strong> kvůli nečekaným překážkám nebo pohybu nezúčastněných osob.</span>
+            <span class="en-lang">Because I fly using FPV goggles, I must have a <strong>spotter</strong>. This is a <strong>second person</strong> who <strong>monitors the airspace</strong> for unexpected obstacles or the movement of uninvolved people.</span>
+        </p>
+
+        <h1 id="stojan-pro-dron">
+            <span class="cs-lang">Stojan pro dron</span>
+            <span class="en-lang">Drone Stand</span>
+        </h1>
+
+        <p>
+            <span class="cs-lang">Abych drona nemusel jen tak položit na poličku, navrhl jsem si pro něj <strong>vlastní stojan</strong>. Cílem bylo vytvořit uchycení, které na dronu <strong>nebude vidět</strong>, a zároveň ho <strong>nakloní pod úhlem 25°</strong>. To napodobuje náklon typický pro let FPV dronů. Model jsem vytvořil v programu <strong>Fusion 360</strong>.</span>
+            <span class="en-lang">So that I wouldn't have to just leave the drone sitting flat on a shelf, I designed a <strong>custom stand</strong> for it. The goal was to create a mount that <strong>wouldn't be visible</strong> on the drone while <strong>tilting it at a 25° angle</strong>. This mimics the typical flight angle of FPV drones. I created the model in <strong>Fusion 360</strong>.</span>
+        </p>
+
+        <h2 id="cad-navrh">
+            <span class="cs-lang">CAD návrh</span>
+            <span class="en-lang">CAD Design</span>
+        </h2>
+
+        <p>
+            <span class="cs-lang">Pro zajištění stability má <strong>základna tvar písmene V</strong>, doplněný o malou opěru vzadu. Ramena jsou dlouhá přibližně <strong>110 mm a široká 15 mm</strong> a svírají <strong>úhel 70°</strong>. Horní plocha základny se mírně <strong>svažuje pod úhlem 4°</strong> - v zadní části je vysoká 16,4 mm a klesá na 9 mm na koncích ramen.</span>
+            <span class="en-lang">To ensure stability, the <strong>base is V-shaped</strong>, supplemented with a small rear support. The arms are approximately <strong>110 mm long and 15 mm wide</strong>, forming a <strong>70° angle</strong>. The top surface of the base slopes slightly <strong>at a 4° angle</strong> - it's 16.4 mm high at the rear and tapers down to 9 mm at the arm ends.</span>
+        </p>
+
+        <img src="media/Dron/BottomModel.JPG" alt="Model základny stojanu. / Stand base model." class="project-image-noborder" loading="lazy">
+
+        <p>
+            <span class="cs-lang">K základně se <strong>rameno stojanu připevní vteřinovým lepidlem</strong> a šroubem <strong>M3 &times; 30 mm</strong>. Samotné rameno o šířce 12 mm opisuje <strong>kruhový oblouk s poloměrem 155 mm</strong>. Toto zakřivení <strong>posouvá těžiště</strong> usazeného dronu nad střed základny, čímž <strong>zabraňuje jeho převážení</strong>.</span>
+            <span class="en-lang">The stand arm is attached to the base using <strong>superglue</strong> and an <strong>M3 &times; 30 mm</strong> screw. The 12 mm wide arm itself forms a <strong>circular arc with a 155 mm radius</strong>. This curvature <strong>shifts the center of gravity</strong> of the mounted drone over the center of the base, <strong>preventing it from tipping over</strong>.</span>
+        </p>
+
+        <img src="media/Dron/MiddleModel.JPG" alt="Model prostřední části stojanu. / Model of the stand's middle part." class="project-image-noborder" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Dron je k rameni připevněn <strong>přes nástavec</strong>. Ten se k rameni opět <strong>přilepí vteřinovým lepidlem</strong> a zajistí šroubem <strong>M3 &times; 8 mm</strong>. K samotnému uchycení dronu na nástavec pak slouží <strong>dvojice šroubů M3 &times; 12 mm</strong>, které zapadají do otvorů ve spodní části rámu.</span>
+            <span class="en-lang">The drone is attached to the arm <strong>via an adapter piece</strong>. This adapter is again <strong>glued to the arm with superglue</strong> and secured with an <strong>M3 &times; 8 mm</strong> screw. To mount the drone to the adapter, a <strong>pair of M3 &times; 12 mm screws</strong> are used, which slot into the holes in the bottom plate of the frame.</span>
+        </p>
+
+        <img src="media/Dron/TopModel.JPG" alt="Model úchytu pro dron. / Drone mount model." class="project-image-noborder" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Jelikož jsou otvory pro hlavy některých šroubů v orientaci, která by běžně vyžadovala použití podpěr, použil jsem následující trik, kterým jsem se <strong>podpěrám vyhnul</strong>: protože kruhový otvor nelze při 3D tisku snadno přemostit, <strong>rozdělil jsem jeho strop na tři stupňovité vrstvy</strong> (odpovídající výšce tiskové vrstvy). První dvě vrstvy tak lze vytisknout <strong>pomocí přemostění</strong> a finální kruhový otvor je natolik malý, že jej tiskárna zvládne vytisknout <strong>bez propadnutí materiálu</strong>.</span>
+            <span class="en-lang">Since the screw head countersinks are oriented in a way that would normally require supports, I used the following trick to <strong>avoid supports entirely</strong>: because a circular hole cannot be easily bridged in 3D printing, I <strong>split its ceiling into three stepped layers</strong> (corresponding to the layer height). The first two layers can thus be printed <strong>using bridging</strong>, and the final circular hole is small enough that the printer can handle it <strong>without material sagging</strong>.</span>
+        </p>
+
+        <img src="media/Dron/HoleModel.JPG" alt="Model úchytu pro dron. / Drone mount model." class="project-image" loading="lazy">
+        <img src="media/Dron/HoleBambu.JPG" alt="Model úchytu pro dron. / Drone mount model." class="project-image" loading="lazy">
+
+        <h2 id="cad-hotovy">
+            <span class="cs-lang">Hotový model stojanu</span>
+            <span class="en-lang">Finished Stand Model</span>
+        </h2>
+
+        <img src="media/Dron/Render1.png" alt="První render stojanu pro drona. / First render of the drone stand." class="project-image-noborder" loading="lazy">
+        <img src="media/Dron/Render2.png" alt="Druhý render stojanu pro drona. / Second render of the drone stand." class="project-image-noborder" loading="lazy">
+        <img src="media/Dron/Render3.png" alt="Třetí render stojanu pro drona. / Third render of the drone stand." class="project-image-noborder" loading="lazy">
+        <img src="media/Dron/Render4.png" alt="Čtvrtý render stojanu pro drona. / Fourth render of the drone stand." class="project-image-noborder" loading="lazy">
+
+        <h2 id="3d-tisk-a-sestaveni">
+            <span class="cs-lang">3D tisk a sestavení</span>
+            <span class="en-lang">3D Printing &amp; Assembly</span>
+        </h2>
+
+        <p>
+            <span class="cs-lang">Hotové modely jsem vyexportoval z Fusion (Utilities -> 3D print) do <strong>formátu 3MF</strong> a připravil k tisku v programu <strong>Bambu Studio</strong>. Tisk probíhal na tiskárně <strong>Bambu Lab A1 Mini</strong> z <strong>PLA</strong> filamentu. Většinu povrchů základny jsem navrhl <strong>se zaoblením či zkosením</strong>, abych otestoval <strong>novou 0,2 mm trysku</strong>, která dokáže tyto detaily vytisknout s mnohem vyšší jemností. Tisk probíhal s tímto nastavením:</span>
+            <span class="en-lang">I exported the finished models from Fusion (Utilities -> 3D print) to the <strong>3MF format</strong> and prepared them for printing in <strong>Bambu Studio</strong>. The printing was done on a <strong>Bambu Lab A1 Mini</strong> printer using <strong>PLA</strong> filament. I designed most of the base surfaces <strong>with fillets or chamfers</strong> to test out a <strong>new 0.2 mm nozzle</strong>, which can print these details with much higher fidelity. The print was done with the following settings:</span>
+        </p>
+
+        <ul>
+            <li>
+                <span class="cs-lang"><strong>Profil:</strong> 0,08 mm High Quality @BBL A1M 0.2 nozzle</span>
+                <span class="en-lang"><strong>Profile:</strong> 0.08 mm High Quality @BBL A1M 0.2 nozzle</span>
+            </li>
+            <li>
+                <span class="cs-lang"><strong>Nozzle temperature (teplota trysky):</strong> 210 °C</span>
+                <span class="en-lang"><strong>Nozzle temperature:</strong> 210 °C</span>
+            </li>
+            <li>
+                <span class="cs-lang"><strong>Bed temperature (teplota podložky):</strong> 65 °C</span>
+                <span class="en-lang"><strong>Bed temperature:</strong> 65 °C</span>
+            </li>
+            <li>
+                <span class="cs-lang"><strong>Wall loops (perimetry):</strong> 5</span>
+                <span class="en-lang"><strong>Wall loops:</strong> 5</span>
+            </li>
+            <li>
+                <span class="cs-lang"><strong>Sparse infill density (hustota výplně):</strong> 10 %</span>
+                <span class="en-lang"><strong>Sparse infill density:</strong> 10 %</span>
+            </li>
+            <li>
+                <span class="cs-lang"><strong>Sparse infill pattern (vzor výplně):</strong> Gyroid</span>
+                <span class="en-lang"><strong>Sparse infill pattern:</strong> Gyroid</span>
+            </li>
+        </ul>
+
+        <p>
+            <span class="cs-lang">Ostatní parametry zůstaly na <strong>výchozích hodnotách</strong> tiskového profilu. Celý model se tiskl <strong>bez podpěr</strong>.</span>
+            <span class="en-lang">The other parameters were left at the print profile's <strong>default values</strong>. The entire model was printed <strong>without supports</strong>.</span>
+        </p>
+
+        <img src="media/Dron/BottomBambu.JPG" alt="Model základny stojanu drona v BambuStudiu. / Stand base model in Bambu Studio." class="project-image" loading="lazy">
+        <img src="media/Dron/SpodniDilStojanu.JPG" alt="Vytištěná základna stojanu drona. / Printed drone stand base." class="project-image" loading="lazy">
+        <img src="media/Dron/MiddleBambu.JPG" alt="Model prostřední části stojanu drona v BambuStudiu. / Middle part model in Bambu Studio."  class="project-image" loading="lazy">
+        <img src="media/Dron/ProstredniDilStojanu.JPG" alt="Vytištěná prostřední část stojanu drona. / Printed middle part of the drone stand."  class="project-image" loading="lazy">
+        <img src="media/Dron/TopBambu.JPG" alt="Model úchytu drona v BambuStudiu. / Drone mount model in Bambu Studio."  class="project-image" loading="lazy">
+        <img src="media/Dron/HorniDilStojanu.JPG" alt="Vytištěný úchyt drona. / Printed drone mount."  class="project-image" loading="lazy">
+
+        <h2 id="hotovy-stojan">
+            <span class="cs-lang">Hotový stojan</span>
+            <span class="en-lang">Finished Stand</span>
+        </h2>
+
+        <img src="media/Dron/SestavenyStojan1.JPG" alt="Sestavený stojan pro dron zboku. / Assembled drone stand side view."  class="project-image" loading="lazy">
+        <img src="media/Dron/SestavenyStojan2.JPG" alt="Sestavený stojan pro dron zepředu. / Assembled drone stand front view."  class="project-image" loading="lazy">
+        <img src="media/Dron/HotovyDron3.JPG" alt="Sestavený stojan pro dron s nasazeným dronem. / Assembled drone stand with mounted drone."  class="project-image" loading="lazy">
+
+        <h1 id="showcase">
+            <span class="cs-lang">Showcase</span>
+            <span class="en-lang">Showcase</span>
+        </h1>
+
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube-nocookie.com/embed/cUopbdk5jsA" 
+                title="Ukázka dronu / Drone showcase" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <h1 id="cad-soubory">
+            <span class="cs-lang">CAD soubory</span>
+            <span class="en-lang">CAD Files</span>
+        </h1>
+
+        <div class="file-container">
+                <div class="file-info">
+                    <span class="file-badge">STEP</span>
+                    <span class="file-name">Stand.step</span>
+                    <span class="file-size">(0,17 MB)</span>
+                </div>
+                <a href="media/Dron/CAD/Stand.step" download="Stand.step" aria-label="Stáhnout CAD model Stand.step" class="download-btn">
+                    <span class="cs-lang">Stáhnout</span>
+                    <span class="en-lang">Download</span>
+                </a>
+            </div>
+
+            <div class="file-container">
+                <div class="file-info">
+                    <span class="file-badge fusion">FUSION</span>
+                    <span class="file-name">Stand.f3d</span>
+                    <span class="file-size">(0,39 MB)</span>
+                </div>
+                <a href="media/Dron/CAD/Stand.f3d" download="Stand.f3d" aria-label="Stáhnout CAD model Stand.f3d" class="download-btn">
+                    <span class="cs-lang">Stáhnout</span>
+                    <span class="en-lang">Download</span>
+                </a>
+            </div>
 
         </main>
 
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const codeContainers = document.querySelectorAll('.code-container');
-        
-            codeContainers.forEach(container => {
-                const toggleBtn = container.querySelector('.toggle-btn');
-                const copyBtn = container.querySelector('.copy-btn');
-                const codeContent = container.querySelector('.code-content');
-                const codeBlock = container.querySelector('code');
-        
-                if(codeContent && toggleBtn && copyBtn) {
-                    codeContent.classList.add('collapsed');
-                    toggleBtn.textContent = '▶\uFE0E';
-            
-                    toggleBtn.addEventListener('click', () => {
-                        codeContent.classList.toggle('collapsed');
-                        
-                        if (codeContent.classList.contains('collapsed')) {
-                            toggleBtn.textContent = '▶\uFE0E'; 
-                        } else {
-                            toggleBtn.textContent = '▼\uFE0E';
-                        }
-                    });
-            
-                    copyBtn.addEventListener('click', () => {
-                        const textToCopy = codeBlock.innerText;
-                        
-                        navigator.clipboard.writeText(textToCopy).then(() => {
-                            const originalText = copyBtn.innerHTML;
-                            copyBtn.innerHTML = '<span class="cs-lang">Zkopírováno</span><span class="en-lang">Copied</span>';
-                            copyBtn.style.color = '#28a745';
-                            
-                            setTimeout(() => {
-                                copyBtn.innerHTML = originalText;
-                                copyBtn.style.color = '';
-                            }, 2000);
-                        }).catch(err => {
-                            console.error('chyba ', err);
-                            copyBtn.innerHTML = '<span class="cs-lang">Chyba!</span><span class="en-lang">Error!</span>';
-                        });
-                    });
-                }
-            });
-        });
-
         const themeBtn = document.getElementById('theme-toggle');
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
@@ -200,6 +844,7 @@
         if (localStorage.getItem('lang') === 'en') {
             document.body.classList.add('lang-en');
             langBtn.textContent = 'CS';
+            document.documentElement.lang = 'en';
         }
         langBtn.addEventListener('click', () => {
             document.body.classList.toggle('lang-en');
@@ -209,12 +854,10 @@
             } else {
                 localStorage.setItem('lang', 'cs');
                 langBtn.textContent = 'EN';
+                document.documentElement.lang = 'cs';
             }
         });
     </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
 
 </body>
 </html>

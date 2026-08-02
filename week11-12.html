@@ -407,12 +407,11 @@
             });
 
             const langBtn = document.getElementById('lang-toggle');
-            
             if (localStorage.getItem('lang') === 'en') {
                 document.body.classList.add('lang-en');
                 langBtn.textContent = 'CS';
+                document.documentElement.lang = 'en';
             }
-            
             langBtn.addEventListener('click', () => {
                 document.body.classList.toggle('lang-en');
                 if (document.body.classList.contains('lang-en')) {
@@ -421,6 +420,7 @@
                 } else {
                     localStorage.setItem('lang', 'cs');
                     langBtn.textContent = 'EN';
+                    document.documentElement.lang = 'cs';
                 }
             });
         });

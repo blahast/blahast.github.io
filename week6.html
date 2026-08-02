@@ -612,6 +612,7 @@ plt.show()
         if (localStorage.getItem('lang') === 'en') {
             document.body.classList.add('lang-en');
             langBtn.textContent = 'CS';
+            document.documentElement.lang = 'en';
         }
         langBtn.addEventListener('click', () => {
             document.body.classList.toggle('lang-en');
@@ -621,6 +622,7 @@ plt.show()
             } else {
                 localStorage.setItem('lang', 'cs');
                 langBtn.textContent = 'EN';
+                document.documentElement.lang = 'cs';
             }
         });
     </script>

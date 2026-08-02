@@ -134,8 +134,8 @@
                 <ul>
                     <li>
                         <a href="#prvotni-idea">
-                            <span class="cs-lang">Prvotní idea závěrečného projektu</span>
-                            <span class="en-lang">Initial idea for the final project</span>
+                            <span class="cs-lang">Úvod a cíle projektu</span>
+                            <span class="en-lang">Introduction and project goals</span>
                         </a>
                     </li>
                     <li>
@@ -478,13 +478,13 @@
             <hr>
 
             <h1 id="prvotni-idea">
-                <span class="cs-lang">Prvotní idea závěrečného projektu</span>
-                <span class="en-lang">Initial idea for the final project</span>
+                <span class="cs-lang">Úvod a cíle projektu</span>
+                <span class="en-lang">Introduction and project goals</span>
             </h1>
 
             <p>
-                <span class="cs-lang">Jako závěrečný projekt se pokusím postavit <strong>hexapoda</strong>, tedy <strong>šestinohého robota</strong>. Tento projekt plánuji již delší dobu, jsem tedy rád, že mám konečně záminku ho zrealizovat.</span>
-                <span class="en-lang">For the final project, I will attempt to build a <strong>hexapod</strong>, a <strong>six-legged robot</strong>. I have been planning this project for quite some time, so I am glad to finally have an excuse to realize it.</span>
+                <span class="cs-lang">Tento <strong>hexapod</strong> vznikl jako můj závěrečný projekt pro předmět <strong>Jak vyrobit téměř cokoliv na ČVUT FEL</strong>. Stavbu podobného robota jsem plánoval již delší dobu a tento předmět mi poskytl ideální příležitost k jeho realizaci.</span>
+                <span class="en-lang">This <strong>hexapod</strong> was created as my final project for the course <strong>How to Make (Almost) Anything at CTU FEE</strong>. I had been planning to build a similar robot for quite some time, and this course provided me with the ideal opportunity to realize it.</span>
             </p>
                 
             <img src="media/JVC/HexapodRender.png" alt="3D render návrhu hexapoda" class="project-image-noborder" loading="lazy">
@@ -3164,6 +3164,18 @@ static const float servo_calibration[NUM_OF_LEGS][JOINTS_PER_LEG][CAL_POINTS] = 
                 <span class="cs-lang">Showcase</span>
                 <span class="en-lang">Showcase</span>
             </h1>
+
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube-nocookie.com/embed/tkAf_53JpA0" 
+                    title="Ukázka hexapoda" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <br>
 
             <h2 id="showcase-chuze">
                 <span class="cs-lang">Chůze</span>
@@ -6801,6 +6813,7 @@ void* walking_thread(void* arg) {
         if (localStorage.getItem('lang') === 'en') {
             document.body.classList.add('lang-en');
             langBtn.textContent = 'CS';
+            document.documentElement.lang = 'en';
         }
         langBtn.addEventListener('click', () => {
             document.body.classList.toggle('lang-en');
@@ -6810,6 +6823,7 @@ void* walking_thread(void* arg) {
             } else {
                 localStorage.setItem('lang', 'cs');
                 langBtn.textContent = 'EN';
+                document.documentElement.lang = 'cs';
             }
         });
     </script>

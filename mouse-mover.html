@@ -1924,11 +1924,12 @@ ISR(TIMER1_COMPA_vect) {
                 themeBtn.textContent = '🌙';
             }
         });
-
+        
         const langBtn = document.getElementById('lang-toggle');
         if (localStorage.getItem('lang') === 'en') {
             document.body.classList.add('lang-en');
             langBtn.textContent = 'CS';
+            document.documentElement.lang = 'en';
         }
         langBtn.addEventListener('click', () => {
             document.body.classList.toggle('lang-en');
@@ -1938,6 +1939,7 @@ ISR(TIMER1_COMPA_vect) {
             } else {
                 localStorage.setItem('lang', 'cs');
                 langBtn.textContent = 'EN';
+                document.documentElement.lang = 'cs';
             }
         });
     </script>
