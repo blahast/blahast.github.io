@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About me | Štěpán Blaha</title>
+    <title>Mouse Mover | Štěpán Blaha</title>
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head> 
 
+<body>
+    
     <script>
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
@@ -19,15 +30,14 @@
 
     <nav>
         <div class="controls">
-            <button id="theme-toggle" class="action-btn" title="Přepnout tmavý režim / Toggle dark mode">🌙</button>
+            <button id="theme-toggle" class="action-btn" title="Toggle dark mode">🌙</button>
             <button id="lang-toggle" class="action-btn" title="Switch language">EN</button>
         </div>
-
         <a href="index.html">
             <span class="cs-lang">Domů</span>
             <span class="en-lang">Home</span>
         </a>
-        <a href="about-me.html" class="active">
+        <a href="about-me.html">
             <span class="cs-lang">O mně</span>
             <span class="en-lang">About me</span>
         </a>
@@ -36,13 +46,12 @@
     <div class="main-wrapper">
         
         <aside class="sidebar">
-            
             <div class="sidebar-heading">
                 <span class="cs-lang">Osobní projekty</span>
                 <span class="en-lang">Personal Projects</span>
             </div>
-            
-            <a href="hexapodv2.html">
+
+            <a href="hexapodv2.html" class="active">
                 <span class="cs-lang">Hexapod V2</span>
                 <span class="en-lang">Hexapod V2</span>
             </a>
@@ -114,60 +123,91 @@
                 <span class="cs-lang">Hexapod</span>
                 <span class="en-lang">Hexapod</span>
             </a>
-            
         </aside>
 
         <main class="content">
             <h1>
-                <span class="cs-lang">O mně | Štěpán Blaha</span>
-                <span class="en-lang">About me | Štěpán Blaha</span>
+                <span class="cs-lang">Hexapod V2</span>
+                <span class="en-lang">Hexapod V2</span>
+            </h1>
+
+            <div class="toc">
+                <h2>
+                    <span class="cs-lang">Obsah</span>
+                    <span class="en-lang">Table of Contents</span>
+                </h2>
+
+                <ul>
+                    <li><a href="#cil-projektu"><span class="cs-lang">Úvod a cíle projektu</span><span class="en-lang">Introduction and project goals</span></a></li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <h1 id="cil-projektu">
+                <span class="cs-lang">Úvod a cíle projektu</span>
+                <span class="en-lang">Introduction and project goals</span>
             </h1>
 
             <p>
-                <span class="cs-lang">Ahoj, jmenuji se Štěpán Blaha a pocházím z Hradce Králové. Jsem studentem druhého ročníku bakalářského programu Kybernetika a robotika na ČVUT FEL v Praze.</span>
-                <span class="en-lang">Hi, my name is Štěpán Blaha and I come from Hradec Králové, Czech Republic. I am a second-year student in the Cybernetics and Robotics bachelor's program at CTU FEE in Prague.</span>
+                Coming soon.
             </p>
-
-            <p>
-                <span class="cs-lang">O bastlení jsem se začal více zajímat v posledním ročníku gymnázia. V té době vznikl můj dodnes nejoblíbenější projekt - dálkově ovládaná ponorka. Když jsem ji stavěl, neměl jsem ještě 3D tiskárnu, chyběly mi zkušenosti s elektronikou a s programováním jsem teprve začínal.</span>
-                <span class="en-lang">I became more interested in tinkering during my last year of high school. At that time, my favorite project to date was created - a remote-controlled submarine. When I was building it, I didn't have a 3D printer yet, I lacked experience with electronics, and I was just starting out with programming.</span>
-            </p>
-
-            <img src="media/JVC/Ponorka.jpg" alt="Projekt ponorka" class="project-image" loading="lazy">
-
-            <p>
-                <span class="cs-lang">Od té doby jsem zrealizoval spoustu dalších nápadů, včetně například malé robotické ruky, hexapoda nebo FPV drona. Zkušenosti z těchto projektů mě výrazně posunuly a zdokonalil jsem se především ve 3D modelování, 3D tisku a programování.</span>
-                <span class="en-lang">Since then, I have realized many other ideas, including a small robotic arm, a hexapod and an FPV drone. The experience gained from these projects has pushed me significantly forward, and I have improved mainly in 3D modeling, 3D printing, and programming.</span>
-            </p>
-
-            <p>
-                <span class="cs-lang">Když se zrovna nevěnuji škole nebo vlastním projektům, rád si zajdu do posilovny, zahraju si něco na počítači a baví mě lyžování.</span>
-                <span class="en-lang">When I'm not focusing on school or my own projects, I like to go to the gym, play computer games, and I enjoy skiing.</span>
-            </p>
-
-            <h2 class="contact-heading">
-                <span class="cs-lang">Kontakt</span>
-                <span class="en-lang">Contact</span>
-            </h2>
-
-            <p>
-                <a href="mailto:blahast2@cvut.cz" style="color: #0066cc; font-weight: bold; text-decoration: none;">blahast2@cvut.cz</a>
-            </p>
+        
         </main>
-
     </div>
 
     <script>
-        const themeBtn = document.getElementById('theme-toggle');
+        document.addEventListener('DOMContentLoaded', () => {
+            const codeContainers = document.querySelectorAll('.code-container');
+        
+            codeContainers.forEach(container => {
+                const toggleBtn = container.querySelector('.toggle-btn');
+                const copyBtn = container.querySelector('.copy-btn');
+                const codeContent = container.querySelector('.code-content');
+                const codeBlock = container.querySelector('code');
+        
+                if(codeContent && toggleBtn && copyBtn) {
+                    codeContent.classList.add('collapsed');
+                    toggleBtn.textContent = '▶\uFE0E';
+            
+                    toggleBtn.addEventListener('click', () => {
+                        codeContent.classList.toggle('collapsed');
+                        
+                        if (codeContent.classList.contains('collapsed')) {
+                            toggleBtn.textContent = '▶\uFE0E'; 
+                        } else {
+                            toggleBtn.textContent = '▼\uFE0E';
+                        }
+                    });
+            
+                    copyBtn.addEventListener('click', () => {
+                        const textToCopy = codeBlock.innerText;
+                        
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalText = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<span class="cs-lang">Zkopírováno</span><span class="en-lang">Copied</span>';
+                            copyBtn.style.color = '#28a745';
+                            
+                            setTimeout(() => {
+                                copyBtn.innerHTML = originalText;
+                                copyBtn.style.color = '';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('chyba ', err);
+                            copyBtn.innerHTML = '<span class="cs-lang">Chyba!</span><span class="en-lang">Error!</span>';
+                        });
+                    });
+                }
+            });
+        });
 
+        const themeBtn = document.getElementById('theme-toggle');
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
             themeBtn.textContent = '☀️';
         }
-
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
                 themeBtn.textContent = '☀️';
@@ -176,7 +216,7 @@
                 themeBtn.textContent = '🌙';
             }
         });
-
+        
         const langBtn = document.getElementById('lang-toggle');
         if (localStorage.getItem('lang') === 'en') {
             document.body.classList.add('lang-en');
@@ -195,6 +235,10 @@
             }
         });
     </script>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
