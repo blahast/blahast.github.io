@@ -1089,7 +1089,7 @@ void loop() {
     sendFrameHW(v, buttons);
   }
 
-  // === BLOCK 2: Render OLED display (~28 FPS, independent of BT) ===
+  // Render OLED display
   static uint32_t last = 0;
   uint32_t now = millis();
   
@@ -3481,7 +3481,7 @@ void loop() {
     sendFrameHW(v, buttons);
   }
 
-  // === BLOCK 2: Render OLED display (~28 FPS, independent of BT) ===
+  // Render OLED display
   static uint32_t last = 0;
   uint32_t now = millis();
   
