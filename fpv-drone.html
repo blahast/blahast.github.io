@@ -517,7 +517,7 @@
         
         <p>
             <span class="cs-lang">Pro nastavení řídicí jednotky jsem zvolil software <strong>Betaflight</strong>. Ten dnes funguje primárně jako <a href="https://app.betaflight.com/" target="_blank">webová aplikace</a>, kterou si můžete v prohlížeči pomocí malé ikony nainstalovat jako <strong>PWA</strong> a používat ji jako běžný program, případně si lze z <a href="https://github.com/betaflight/betaflight-configurator/releases" target="_blank">GitHubu</a> stáhnout klasickou <strong>desktopovou verzi</strong>. Dron stačí propojit s počítačem <strong>datovým kabelem</strong>, vybrat ho z nabídky v aplikaci a <strong>připojit</strong>.</span>
-            <span class="en-lang">For the flight controller configuration, I chose the <strong>Betaflight</strong> software. Today, it primarily functions as a <a href="https://app.betaflight.com/" target="_blank">web application</a> that you can install from your browser as a <strong>PWA</strong> using a small icon and use it as a regular program, or you can download the classic <strong>desktop version</strong> from <a href="https://github.com/betaflight/betaflight-configurator/releases?utm_source=chatgpt.com" target="_blank">GitHub</a>. Simply connect the drone to the computer with a <strong>data cable</strong>, select it from the menu in the application, and <strong>connect</strong>.</span>
+            <span class="en-lang">For the flight controller configuration, I chose the <strong>Betaflight</strong> software. Today, it primarily functions as a <a href="https://app.betaflight.com/" target="_blank">web application</a> that you can install from your browser as a <strong>PWA</strong> using a small icon and use it as a regular program, or you can download the classic <strong>desktop version</strong> from <a href="https://github.com/betaflight/betaflight-configurator/releases" target="_blank">GitHub</a>. Simply connect the drone to the computer with a <strong>data cable</strong>, select it from the menu in the application, and <strong>connect</strong>.</span>
         </p>
 
         <img src="media/Dron/PripojeniDronu.JPG" alt="Připojení dronu k Betaflightu. / Connecting the drone to Betaflight." class="project-image" loading="lazy">
@@ -566,12 +566,12 @@
         <img src="media/Dron/Porty.JPG" alt="Nastavení v záložce Ports. / Settings in the Ports tab." class="project-image" loading="lazy">
 
         <p>
-            <span class="cs-lang">V záložce <strong>Configuration</strong> jsem upravil základní chování systému a funkci <strong>Dshot Beacon</strong>. Nastavení <strong>RX_SET</strong> a <strong>RX_LOST</strong> umožňuje manuálně i automaticky aktivovat <strong>hlasité pípání motorů</strong> při ztrátě signálu, což zásadně usnadňuje <strong>hledání zapadlého dronu</strong> v trávě.</span>
-            <span class="en-lang">In the <strong>Configuration</strong> tab, I adjusted the basic system behavior and the <strong>Dshot Beacon</strong> feature. The <strong>RX_SET</strong> and <strong>RX_LOST</strong> settings allow you to manually and automatically activate a <strong>loud motor beeping</strong> upon signal loss, which significantly makes <strong>finding a lost drone</strong> in the grass easier.</span>
+            <span class="cs-lang">V záložce <strong>Configuration</strong> jsem upravil základní chování systému a funkci <strong>DShot Beacon</strong>. Nastavení <strong>RX_SET</strong> a <strong>RX_LOST</strong> umožňuje manuálně i automaticky aktivovat <strong>hlasité pípání motorů</strong> při ztrátě signálu, což zásadně usnadňuje <strong>hledání zapadlého dronu</strong> v trávě.</span>
+            <span class="en-lang">In the <strong>Configuration</strong> tab, I adjusted the basic system behavior and the <strong>DShot Beacon</strong> feature. The <strong>RX_SET</strong> and <strong>RX_LOST</strong> settings allow you to manually and automatically activate a <strong>loud motor beeping</strong> upon signal loss, which significantly makes <strong>finding a lost drone</strong> in the grass easier.</span>
         </p>
 
         <img src="media/Dron/SystemConfig.JPG" alt="Nastavení v sekci System Configuration. / Settings in the System Configuration section." class="project-image" loading="lazy">
-        <img src="media/Dron/DShotBeaconConfig.JPG" alt="Nastavení v sekci Dshot Beacon Configuration. / Settings in the Dshot Beacon Configuration section." class="project-image" loading="lazy">
+        <img src="media/Dron/DShotBeaconConfig.JPG" alt="Nastavení v sekci DShot Beacon Configuration. / Settings in the DShot Beacon Configuration section." class="project-image" loading="lazy">
 
         <p>
             <span class="cs-lang">Detailní ladění <strong>PID regulátoru</strong> a filtrů bývá složitý proces, proto jsem v záložce <strong>PID Tuning</strong> zvolil <strong>výchozí profil</strong> Betaflightu. Ten je navržen jako <strong>bezpečný a univerzální základ</strong>, který na mém dronu funguje dobře a nevyžadoval <strong>žádné další zásahy</strong>.</span>
@@ -583,8 +583,8 @@
         <img src="media/Dron/Filter.JPG" alt="Nastavení v záložce PID Tuning v sekci Filter Settings. / Settings in the PID Tuning tab under Filter Settings." class="project-image" loading="lazy">
 
         <p>
-            <span class="cs-lang">Dalším krokem bylo <strong>spárování přijímače</strong> s ovladačem v záložce <strong>Receiver</strong> pomocí <strong>Bind Receiver</strong> (více o spárování řídící jednotky a rádiového ovladače v sekci <a href="#nastaveni-ovladace">Nastavení dálkového ovladače</a>). Poté jsem ověřil, že pohyby páček <strong>správně odpovídají reakcím</strong> na obrazovce. Můj ovladač Radiomaster Pocket i po důkladné kalibraci vykazoval v klidové poloze <strong>mírné nepřesnosti</strong> a posílal hodnoty v rozmezí 1503 až 1505. Nastavil jsem proto parametry <strong>RC deadband</strong> a <strong>Yaw deadband</strong> na hodnotu <strong>10</strong>, aby ovladač tyto drobné odchylky od ideální hodnoty 1500 <strong>ignoroval</strong>.</span>
-            <span class="en-lang">The next step was <strong>binding the receiver</strong> to the transmitter in the <strong>Receiver</strong> tab using <strong>Bind Receiver</strong> (for more on pairing the flight controller with the radio transmitter, see the <a href="#nastaveni-ovladace">Transmitter Setup</a> section). I verified that the stick movements <strong>correctly corresponded to the reactions</strong> on the screen. Even after a thorough calibration, my Radiomaster Pocket transmitter showed <strong>slight inaccuracies</strong> in the resting position, sending values between 1503 and 1505. Therefore, I set the <strong>RC deadband</strong> and <strong>Yaw deadband</strong> parameters to a value of <strong>10</strong>, so the controller would <strong>ignore</strong> these minor deviations from the ideal value of 1500.</span>
+            <span class="cs-lang">Dalším krokem bylo <strong>spárování přijímače</strong> s ovladačem v záložce <strong>Receiver</strong> pomocí <strong>Bind Receiver</strong> (více o spárování řídící jednotky a rádiového ovladače v sekci <a href="#nastaveni-ovladace">Nastavení dálkového ovladače</a>). Poté jsem ověřil, že pohyby páček <strong>správně odpovídají reakcím</strong> na obrazovce. Můj ovladač RadioMaster Pocket i po důkladné kalibraci vykazoval v klidové poloze <strong>mírné nepřesnosti</strong> a posílal hodnoty v rozmezí 1503 až 1505. Nastavil jsem proto parametry <strong>RC deadband</strong> a <strong>Yaw deadband</strong> na hodnotu <strong>10</strong>, aby ovladač tyto drobné odchylky od ideální hodnoty 1500 <strong>ignoroval</strong>.</span>
+            <span class="en-lang">The next step was <strong>binding the receiver</strong> to the transmitter in the <strong>Receiver</strong> tab using <strong>Bind Receiver</strong> (for more on pairing the flight controller with the radio transmitter, see the <a href="#nastaveni-ovladace">Transmitter Setup</a> section). I verified that the stick movements <strong>correctly corresponded to the reactions</strong> on the screen. Even after a thorough calibration, my RadioMaster Pocket transmitter showed <strong>slight inaccuracies</strong> in the resting position, sending values between 1503 and 1505. Therefore, I set the <strong>RC deadband</strong> and <strong>Yaw deadband</strong> parameters to a value of <strong>10</strong>, so the controller would <strong>ignore</strong> these minor deviations from the ideal value of 1500.</span>
         </p>
 
         <img src="media/Dron/Receiver.JPG" alt="Nastavení v záložce Receiver. / Settings in the Receiver tab." class="project-image" loading="lazy">
@@ -597,18 +597,47 @@
         <img src="media/Dron/Modes.JPG" alt="Nastavení v záložce Modes. / Settings in the Modes tab." class="project-image" loading="lazy">
 
         <p>
-            <span class="cs-lang">Předposledním krokem byla aktivace <strong>bidirectional DShot</strong> komunikace v záložce <strong>Motors</strong>. Dále jsem <strong>bez nasazených vrtulí</strong> a antény připojil baterii, aktivoval rozhraní pro <strong>testování motorů</strong> a zkontroloval jsem, zda reálné pořadí a <strong>směr otáčení motorů</strong> odpovídá zobrazenému schématu v Betaflightu.</span>
+            <span class="cs-lang">Následovala aktivace <strong>bidirectional DShot</strong> komunikace v záložce <strong>Motors</strong>. Dále jsem <strong>bez nasazených vrtulí</strong> a antény připojil baterii, aktivoval rozhraní pro <strong>testování motorů</strong> a zkontroloval jsem, zda reálné pořadí a <strong>směr otáčení motorů</strong> odpovídá zobrazenému schématu v Betaflightu.</span>
             <span class="en-lang">The penultimate step was enabling the <strong>bidirectional DShot</strong> communication in the <strong>Motors</strong> tab. Next, <strong>without propellers attached</strong> and with the antenna removed, I plugged in the battery, enabled the <strong>motor testing interface</strong>, and checked if the actual motor order and <strong>rotation direction</strong> matched the diagram shown in Betaflight.</span>
         </p>
 
         <img src="media/Dron/Motors.JPG" alt="Nastavení v záložce Motors. / Settings in the Motors tab." class="project-image" loading="lazy">
 
         <p>
-            <span class="cs-lang">Závěrem jsem v záložce <strong>OSD</strong> uspořádal prvky <strong>uživatelského rozhraní</strong> tak, jak se budou překrývat přes obraz v <strong>FPV brýlích</strong>. Díky tomu mám během letu přehled o <strong>napětí baterie</strong> a <strong>výšce dronu</strong>.</span>
+            <span class="cs-lang">V předposledním kroku jsem v záložce <strong>OSD</strong> uspořádal prvky <strong>uživatelského rozhraní</strong> tak, jak se budou překrývat přes obraz v <strong>FPV brýlích</strong>. Díky tomu mám během letu přehled o <strong>napětí baterie</strong> a <strong>výšce dronu</strong>.</span>
             <span class="en-lang">Finally, in the <strong>OSD</strong> tab, I arranged the <strong>user interface</strong> elements exactly as they will overlay the image in the <strong>FPV goggles</strong>. This gives me an overview of the <strong>battery voltage</strong> and <strong>drone altitude</strong> during flight.</span>
         </p>
 
         <img src="media/Dron/OSD.JPG" alt="Nastavení v záložce OSD. / Settings in the OSD tab." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Při prvotních testech se <strong>video vysílač</strong> (JHEMCU VTX30) extrémně zahříval i v klidovém stavu. Zjistil jsem, že problém spočíval ve špatně předvyplněné <strong>VTX tabulce</strong>. Vysílač podporuje výkony <strong>25 mW, 100 mW, 200 mW, 400 mW a 800 mW</strong>. Výchozí hodnoty v Betaflightu však byly nastaveny na 25, 400, 800, 1500 a 3000 mW, v důsledku čehož nefungovalo nastavení výkonu správně. Po manuální opravě těchto hodnot v záložce <strong>Video Transmitter</strong> začal vysílač reagovat tak, jak má.</span>
+            <span class="en-lang">During initial tests, the <strong>video transmitter</strong> (JHEMCU VTX30) overheated excessively even when disarmed. I discovered the issue was an incorrectly pre-configured <strong>VTX table</strong>. The transmitter supports output powers of <strong>25 mW, 100 mW, 200 mW, 400 mW, and 800 mW</strong>. However, the default Betaflight values were set to 25, 400, 800, 1500, and 3000 mW, causing the power control to malfunction. After manually correcting these values in the <strong>Video Transmitter</strong> tab, the transmitter started responding correctly.</span>
+        </p>
+
+        <img src="media/Dron/VTXtable.JPG" alt="Nastavení v sekci VTX Table. / Settings in the VTX Table section." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Následně jsem ve stejné záložce aktivoval funkci <strong>Low Power Disarm</strong>. Ta zajišťuje, že dokud nejsou motory odjištěny, vysílá VTX na minimální výkon (25 mW). Tím se dron zbytečně <strong>nezahřívá</strong> a předchází se <strong>poškození vysílače</strong>.</span>
+            <span class="en-lang">Next, in the same tab, I enabled the <strong>Low Power Disarm</strong> feature. This ensures that as long as the motors are disarmed, the VTX transmits at the minimum power (25 mW). This prevents unnecessary <strong>heating</strong> and protects the <strong>transmitter from damage</strong>.</span>
+        </p>
+
+        <img src="media/Dron/SelectedMode.JPG" alt="Nastavení v sekci Selected Mode. / Settings in the Selected Mode section." class="project-image" loading="lazy">
+
+        <p>
+            <span class="cs-lang">Na závěr jsem chtěl mít možnost <strong>měnit vysílací výkon přímo za letu</strong>. Výchozí výkon jsem ponechal na 25 mW a na levý třípolohový přepínač ovladače RadioMaster Pocket jsem namapoval přepínání mezi hodnotami <strong>25 mW, 400 mW a 800 mW</strong>. Toho lze docílit zadáním následujících příkazů do <strong>Betaflight konzole (CLI)</strong>:</span>
+            <span class="en-lang">Finally, I wanted the ability to <strong>change the transmission power mid-flight</strong>. I left the default power at 25 mW and mapped the left 3-position switch on my RadioMaster Pocket to toggle between <strong>25 mW, 400 mW, and 800 mW</strong>. This can be achieved by entering the following commands into the <strong>Betaflight CLI console</strong>:</span>
+        </p>
+
+        <pre style="background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; overflow-x: auto; font-family: monospace; margin-bottom: 25px;"><code>vtx 0 2 0 0 1 900 1300
+vtx 1 2 0 0 4 1300 1700
+vtx 2 2 0 0 5 1700 2100
+save</code></pre>
+
+        <p>
+            <span class="cs-lang">První číslo určuje index pravidla, číslo <code>2</code> označuje vybraný kanál (v tomto případě AUX 3). Dvě nuly znamenají, že se nemění pásmo ani kanál. Hodnoty <code>1</code>, <code>4</code> a <code>5</code> odkazují na úroveň výkonu z VTX tabulky (1. = 25 mW, 4. = 400 mW, 5. = 800 mW). Poslední dvě čísla pak definují rozsah signálu pro jednotlivé polohy přepínače (např. 900-1300 pro spodní polohu). Příkaz <code>save</code> všechny změny trvale uloží do řídicí jednotky.</span>
+            <span class="en-lang">The first number is the rule index, the number <code>2</code> indicates the selected channel (in this case AUX 3). The two zeros mean the band and channel remain unchanged. The values <code>1</code>, <code>4</code>, and <code>5</code> refer to the power level from the VTX table (1st = 25 mW, 4th = 400 mW, 5th = 800 mW). The last two numbers define the signal range for each switch position (e.g., 900-1300 for the bottom position). The <code>save</code> command permanently saves all changes to the flight controller.</span>
+        </p>
 
         <h1 id="nastaveni-ovladace">
             <span class="cs-lang">Nastavení dálkového ovladače</span>
@@ -759,11 +788,11 @@
             <span class="en-lang">The other parameters were left at the print profile's <strong>default values</strong>. The entire model was printed <strong>without supports</strong>.</span>
         </p>
 
-        <img src="media/Dron/BottomBambu.JPG" alt="Model základny stojanu drona v BambuStudiu. / Stand base model in Bambu Studio." class="project-image" loading="lazy">
+        <img src="media/Dron/BottomBambu.JPG" alt="Model základny stojanu drona v Bambu Studiu. / Stand base model in Bambu Studio." class="project-image" loading="lazy">
         <img src="media/Dron/SpodniDilStojanu.JPG" alt="Vytištěná základna stojanu drona. / Printed drone stand base." class="project-image" loading="lazy">
-        <img src="media/Dron/MiddleBambu.JPG" alt="Model prostřední části stojanu drona v BambuStudiu. / Middle part model in Bambu Studio."  class="project-image" loading="lazy">
+        <img src="media/Dron/MiddleBambu.JPG" alt="Model prostřední části stojanu drona v Bambu Studiu. / Middle part model in Bambu Studio."  class="project-image" loading="lazy">
         <img src="media/Dron/ProstredniDilStojanu.JPG" alt="Vytištěná prostřední část stojanu drona. / Printed middle part of the drone stand."  class="project-image" loading="lazy">
-        <img src="media/Dron/TopBambu.JPG" alt="Model úchytu drona v BambuStudiu. / Drone mount model in Bambu Studio."  class="project-image" loading="lazy">
+        <img src="media/Dron/TopBambu.JPG" alt="Model úchytu drona v Bambu Studiu. / Drone mount model in Bambu Studio."  class="project-image" loading="lazy">
         <img src="media/Dron/HorniDilStojanu.JPG" alt="Vytištěný úchyt drona. / Printed drone mount."  class="project-image" loading="lazy">
 
         <h2 id="hotovy-stojan">
