@@ -724,8 +724,13 @@ code {
         flex-direction: column;
         padding: 0 10px;
     }
+    /*
     .sidebar {
         width: 100%;
+    }
+    */
+    .sidebar {
+        display: none; 
     }
     .content {
         padding: 20px;
